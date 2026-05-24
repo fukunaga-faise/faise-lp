@@ -11,9 +11,7 @@ const services = [
     copy: '人と空間の魅力を、\n予約につながる体験へ。',
     body: 'トレーナーの人柄と施設の空気感を、"会いに行きたい"という感情へ変換する。ブランディング設計から動画・広告・体験予約導線まで、一気通貫でご支援します。',
     tags: ['トレーナーブランディング', 'SNS動画企画', '広告運用', '体験予約導線設計'],
-    // Replace src with: /images/service-gym.jpg
-    imgStyle: { background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)' },
-    dark: false,
+    img: '/images/service-gym.jpg',
   },
   {
     num: '02',
@@ -22,9 +20,7 @@ const services = [
     copy: '価格ではなく、\n"選ばれる理由"をつくる。',
     body: '安心感と上質感を、来院動機として言語化・映像化する。クリニックの世界観を、SNS・広告・LP全体で一貫したブランド体験として設計します。',
     tags: ['世界観設計', 'SNS / 広告クリエイティブ', '来院導線設計', 'ブランディング支援'],
-    // Replace src with: /images/service-clinic.jpg
-    imgStyle: { background: 'linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 50%, #d8d8d8 100%)' },
-    dark: false,
+    img: '/images/service-clinic.jpg',
   },
   {
     num: '03',
@@ -33,9 +29,7 @@ const services = [
     copy: '広告ではなく、\n"見たくなるコンテンツ"を。',
     body: '思わず止まり、続きが見たくなる。エンタメ発想でショート動画・広告クリエイティブを企画・制作。キャスティングからSNS施策まで対応します。',
     tags: ['ショート動画制作', '広告クリエイティブ', 'キャスティング', 'SNS施策'],
-    // Replace src with: /images/service-video.jpg
-    imgStyle: { background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111827 100%)' },
-    dark: false,
+    img: '/images/service-video.jpg',
   },
 ]
 
@@ -92,12 +86,13 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
         animate={inView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 1, delay: 0.15 }}
         className={`relative min-h-[300px] md:min-h-[500px] overflow-hidden ${reverse ? 'md:order-1' : ''}`}
-        style={s.imgStyle}
       >
-        {/* Replace this div with <img src="/images/..." className="absolute inset-0 w-full h-full object-cover" /> */}
-        <div className="absolute inset-0 flex items-end p-8 md:p-12">
-          <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-white/20">{s.en}</p>
-        </div>
+        <img
+          src={s.img}
+          alt={s.en}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/10" />
       </motion.div>
     </motion.div>
   )
