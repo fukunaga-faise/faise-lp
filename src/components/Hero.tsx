@@ -19,12 +19,12 @@ export default function Hero() {
           }}
         />
 
-        {/* F mark — large, right side, partially cropped */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-[-8vw] md:right-[-4vw] pointer-events-none">
+        {/* F mark — very large, right side, GA Technologies style */}
+        <div className="absolute top-1/2 -translate-y-[45%] right-[-6vw] pointer-events-none">
           <img
             src="/logo-fmark.png"
             alt=""
-            className="w-[60vw] md:w-[44vw] max-w-2xl opacity-[0.18] brightness-0 invert select-none"
+            className="w-[72vw] md:w-[58vw] max-w-4xl opacity-40 select-none"
             aria-hidden="true"
           />
         </div>
