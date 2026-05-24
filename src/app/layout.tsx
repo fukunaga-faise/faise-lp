@@ -17,6 +17,9 @@ const noto = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
+  verification: {
+    google: 'ZJwBSJHA3cQnOMN3sZvgRCI4nJJMGVRw2fnw1ZNoJvU',
+  },
   title: '株式会社Faise | 人が動く理由を設計する。',
   description:
     '体験設計型マーケティング。パーソナルジム・美容クリニック・店舗型ビジネスの集客・予約・成約を、SNS・広告・体験設計から一気通貫で支援します。',
