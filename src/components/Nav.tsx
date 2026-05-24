@@ -34,8 +34,8 @@ export default function Nav() {
             : 'bg-white/95 border-b border-[#e8e8e8]'
         }`}
       >
-        <a href="#" className="font-inter font-black text-lg tracking-[0.08em] text-[#0f0f0f]">
-          F<span className="text-[#0050d0]">.</span>AISE
+        <a href="#">
+          <img src="/logo.png" alt="Faise" className="h-9 w-auto" />
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -93,6 +93,7 @@ export default function Nav() {
             >
               無料相談
             </button>
+            <img src="/logo.png" alt="Faise" className="h-12 w-auto mt-6 opacity-60" />
           </motion.div>
         )}
       </AnimatePresence>

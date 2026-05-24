@@ -8,8 +8,6 @@ const rows = [
   { label: '所在地',   value: '〒140-0014　東京都品川区大井4-18-25' },
   { label: '代表者',   value: '代表取締役　福永 遥斗' },
   { label: '設立年月', value: '2025年12月' },
-  { label: '事業内容', value: '店舗型ビジネスの集客・予約・成約支援\n体験設計型マーケティングコンサルティング' },
-  { label: 'メール',   value: 'fukunaga@faise-inc.com' },
 ]
 
 export default function Company() {

@@ -9,13 +9,12 @@ import Entertainment from '@/components/Entertainment'
 import Service from '@/components/Service'
 import Ideas from '@/components/Ideas'
 import Founder from '@/components/Founder'
-import OtherResults from '@/components/OtherResults'
 import Company from '@/components/Company'
 import CTA from '@/components/CTA'
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="bg-white text-[#0f0f0f]">
       <Nav />
       <Hero />
       <Problem />
@@ -27,7 +26,6 @@ export default function Home() {
       <Service />
       <Ideas />
       <Founder />
-      <OtherResults />
       <Company />
       <CTA />
     </main>

@@ -5,6 +5,17 @@ import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import ContactModal from './ContactModal'
 
+const floatingWords = [
+  { text: '認知', x: '8%',  y: '18%', delay: 0.2, size: 'text-xs' },
+  { text: '体験設計', x: '82%', y: '14%', delay: 0.5, size: 'text-xs' },
+  { text: 'SNS', x: '15%', y: '72%', delay: 0.8, size: 'text-xs' },
+  { text: '予約', x: '78%', y: '68%', delay: 0.3, size: 'text-xs' },
+  { text: '集客', x: '5%',  y: '44%', delay: 1.0, size: 'text-xs' },
+  { text: 'ファン化', x: '88%', y: '42%', delay: 0.6, size: 'text-xs' },
+  { text: '広告', x: '25%', y: '85%', delay: 0.9, size: 'text-xs' },
+  { text: '成約', x: '68%', y: '82%', delay: 0.4, size: 'text-xs' },
+]
+
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -18,6 +29,21 @@ export default function Hero() {
             backgroundSize: '60px 60px',
           }}
         />
+
+        {/* Floating keyword labels */}
+        {floatingWords.map((w, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: [8, 0, 8] }}
+            transition={{ duration: 4 + i * 0.5, delay: w.delay, repeat: Infinity, ease: 'easeInOut' }}
+            className={`absolute font-inter font-bold tracking-widest uppercase text-white/15 pointer-events-none hidden md:block ${w.size}`}
+            style={{ left: w.x, top: w.y }}
+          >
+            {w.text}
+          </motion.span>
+        ))}
+
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pt-16">

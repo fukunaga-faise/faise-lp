@@ -73,8 +73,8 @@ export default function CTA() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16 pt-8 border-t border-white/[0.07] flex flex-col sm:flex-row justify-between items-center gap-3"
           >
-            <a href="#" className="font-inter font-black text-lg tracking-[0.08em] text-white">
-              F<span className="text-[#4d9fff]">.</span>AISE
+            <a href="#">
+              <img src="/logo.png" alt="Faise" className="h-8 w-auto brightness-0 invert opacity-80" />
             </a>
             <p className="text-[11px] text-white/25 tracking-wide text-center">
               株式会社Faise　東京都品川区大井4-18-25
