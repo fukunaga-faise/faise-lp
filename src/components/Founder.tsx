@@ -32,46 +32,42 @@ export default function Founder() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section id="founder" className="section-divider bg-[#050505] py-16 md:py-36 px-6">
+    <section id="founder" className="bg-white py-16 md:py-36 px-6 border-t border-[#eaeaea]">
       <div className="max-w-5xl mx-auto" ref={ref}>
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-inter text-[11px] tracking-[0.28em] uppercase text-blue-500 mb-6"
+          className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
         >
           Founder
         </motion.p>
 
         <div className="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 items-start">
-          {/* Identity */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="flex md:flex-col items-center md:items-start gap-5 md:gap-0"
           >
-            {/* Photo */}
-            <div className="w-20 h-20 md:w-full md:aspect-square md:h-auto shrink-0 bg-white/[0.04] border border-white/[0.07] rounded-sm flex items-center justify-center mb-0 md:mb-6 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 to-transparent" />
+            <div className="w-20 h-20 md:w-full md:aspect-square md:h-auto shrink-0 bg-[#f5f5f5] border border-[#e8e8e8] rounded-sm flex items-center justify-center mb-0 md:mb-6 relative overflow-hidden">
               <span className="text-2xl md:text-3xl relative z-10">👤</span>
             </div>
             <div>
-              <p className="font-inter text-[10px] tracking-[0.18em] uppercase text-blue-400 mb-1">Haruto Fukunaga</p>
-              <h3 className="text-[clamp(20px,3vw,32px)] font-black tracking-tight leading-tight mb-1">福永 遥斗</h3>
-              <p className="text-xs text-white/35">株式会社Faise 代表取締役</p>
+              <p className="font-inter text-[10px] tracking-[0.18em] uppercase text-[#0050d0] mb-1">Haruto Fukunaga</p>
+              <h3 className="text-[clamp(20px,3vw,32px)] font-black tracking-tight leading-tight mb-1 text-[#0f0f0f]">福永 遥斗</h3>
+              <p className="text-xs text-[#999]">株式会社Faise 代表取締役</p>
             </div>
           </motion.div>
 
-          {/* Career */}
           <div>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-[clamp(15px,2.2vw,22px)] font-bold leading-[1.6] text-white/80 mb-8"
+              className="text-[clamp(15px,2.2vw,22px)] font-bold leading-[1.6] text-[#555] mb-8"
             >
-              「店舗で人を動かす」「テーマパークで人を熱狂させる」<span className="text-white">経験を持つマーケター</span>。
+              「店舗で人を動かす」「テーマパークで人を熱狂させる」<span className="text-[#0f0f0f]">経験を持つマーケター</span>。
             </motion.p>
 
             <div className="flex flex-col gap-0">
@@ -84,18 +80,18 @@ export default function Founder() {
                   className="flex gap-5 pb-8 last:pb-0"
                 >
                   <div className="flex flex-col items-center shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-1.5" />
-                    {i < career.length - 1 && <div className="w-px flex-1 bg-white/[0.07] mt-2" />}
+                    <div className="w-2 h-2 rounded-full bg-[#0050d0] mt-1.5" />
+                    {i < career.length - 1 && <div className="w-px flex-1 bg-[#e8e8e8] mt-2" />}
                   </div>
                   <div className="flex-1">
-                    <p className="font-inter text-[10px] tracking-[0.14em] uppercase text-blue-400/65 mb-0.5">{c.role}</p>
-                    <p className="text-[15px] font-black text-white mb-0.5">{c.company}</p>
-                    <p className="text-[12px] font-semibold text-white/50 mb-2">{c.headline}</p>
-                    <p className="text-[12px] text-white/38 leading-[1.85] mb-3">{c.body}</p>
+                    <p className="font-inter text-[10px] tracking-[0.14em] uppercase text-[#0050d0]/70 mb-0.5">{c.role}</p>
+                    <p className="text-[15px] font-black text-[#0f0f0f] mb-0.5">{c.company}</p>
+                    <p className="text-[12px] font-semibold text-[#999] mb-2">{c.headline}</p>
+                    <p className="text-[12px] text-[#666] leading-[1.85] mb-3">{c.body}</p>
                     {c.stats.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {c.stats.map((s) => (
-                          <span key={s} className="text-[11px] font-bold text-blue-400 border border-blue-500/20 bg-blue-950/15 px-2.5 py-1 rounded-sm">
+                          <span key={s} className="text-[11px] font-bold text-[#0050d0] border border-[#bfdbfe] bg-[#eff6ff] px-2.5 py-1 rounded-sm">
                             {s}
                           </span>
                         ))}

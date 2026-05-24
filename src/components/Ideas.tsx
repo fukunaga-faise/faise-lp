@@ -53,7 +53,7 @@ export default function Ideas() {
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <section className="relative bg-black py-16 md:py-36 px-0 md:px-6 overflow-hidden">
+    <section className="bg-[#f5f5f5] py-16 md:py-36 px-0 md:px-6 border-t border-[#eaeaea]">
       <div className="max-w-5xl mx-auto" ref={ref}>
 
         <div className="px-6 md:px-0 mb-8">
@@ -61,7 +61,7 @@ export default function Ideas() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="font-inter text-[11px] tracking-[0.28em] uppercase text-blue-500 mb-6"
+            className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
           >
             Idea Examples
           </motion.p>
@@ -70,7 +70,7 @@ export default function Ideas() {
               initial={{ y: 50, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(24px,4vw,52px)] font-black leading-[1.15] tracking-tight"
+              className="text-[clamp(24px,4vw,52px)] font-black leading-[1.15] tracking-tight text-[#0f0f0f]"
             >
               &ldquo;広告素材&rdquo;ではなく、
               <br />
@@ -79,18 +79,16 @@ export default function Ideas() {
           </div>
         </div>
 
-        {/* Swipe hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.4 }}
           className="md:hidden flex items-center justify-end gap-1.5 px-6 mb-4"
         >
-          <span className="text-[11px] text-white/25 tracking-widest">Swipe</span>
-          <span className="text-white/25 text-sm">→</span>
+          <span className="text-[11px] text-[#999] tracking-widest">Swipe</span>
+          <span className="text-[#999] text-sm">→</span>
         </motion.div>
 
-        {/* Carousel on mobile / grid on desktop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -101,33 +99,33 @@ export default function Ideas() {
             md:grid md:grid-cols-3 md:overflow-visible md:pl-0 md:pr-0 md:pb-0
           "
         >
-          {ideas.map((idea, i) => (
+          {ideas.map((idea) => (
             <div
               key={idea.num}
               className="
                 snap-start shrink-0 w-[72vw] sm:w-64
                 md:w-auto md:shrink
-                group border border-white/[0.07] bg-white/[0.025]
-                hover:bg-white/[0.04] hover:border-white/15
+                group border border-[#e8e8e8] bg-white
+                hover:bg-[#f8fbff] hover:border-[#0050d0]/20
                 p-5 rounded-sm transition-all duration-300
+                shadow-[0_1px_4px_rgba(0,0,0,0.04)]
               "
             >
               <div className="flex items-start justify-between mb-4">
-                <span className="font-inter text-[11px] font-bold text-white/20">{idea.num}</span>
-                <span className="text-[10px] font-bold tracking-widest uppercase text-blue-400/60 border border-blue-500/20 px-2 py-0.5 rounded-sm whitespace-nowrap ml-2">
+                <span className="font-inter text-[11px] font-bold text-[#ccc]">{idea.num}</span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-[#0050d0] border border-[#bfdbfe] bg-[#eff6ff] px-2 py-0.5 rounded-sm whitespace-nowrap ml-2">
                   {idea.tag}
                 </span>
               </div>
-              <h3 className="text-[15px] font-black text-white mb-2 leading-snug">{idea.title}</h3>
-              <p className="text-[12px] text-white/45 leading-[1.8]">{idea.desc}</p>
+              <h3 className="text-[15px] font-black text-[#0f0f0f] mb-2 leading-snug">{idea.title}</h3>
+              <p className="text-[12px] text-[#666] leading-[1.8]">{idea.desc}</p>
             </div>
           ))}
         </motion.div>
 
-        {/* Dot indicators */}
         <div className="md:hidden flex justify-center gap-1.5 mt-5">
           {ideas.map((_, i) => (
-            <div key={i} className={`h-px w-4 rounded-full ${i === 0 ? 'bg-blue-500' : 'bg-white/15'}`} />
+            <div key={i} className={`h-px w-4 rounded-full ${i === 0 ? 'bg-[#0050d0]' : 'bg-[#ddd]'}`} />
           ))}
         </div>
       </div>

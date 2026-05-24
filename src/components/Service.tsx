@@ -54,7 +54,7 @@ export default function Service() {
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <section id="service" className="section-divider bg-[#050505] py-16 md:py-36 px-0 md:px-6">
+    <section id="service" className="bg-white py-16 md:py-36 px-0 md:px-6 border-t border-[#eaeaea]">
       <div className="max-w-5xl mx-auto" ref={ref}>
 
         <div className="px-6 md:px-0 mb-8">
@@ -62,7 +62,7 @@ export default function Service() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="font-inter text-[11px] tracking-[0.28em] uppercase text-blue-500 mb-6"
+            className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
           >
             Services
           </motion.p>
@@ -71,25 +71,23 @@ export default function Service() {
               initial={{ y: 50, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(30px,5vw,60px)] font-black leading-[1.1] tracking-tight"
+              className="text-[clamp(30px,5vw,60px)] font-black leading-[1.1] tracking-tight text-[#0f0f0f]"
             >
               支援領域
             </motion.h2>
           </div>
         </div>
 
-        {/* Swipe hint - mobile only */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.4 }}
           className="md:hidden flex items-center justify-end gap-1.5 px-6 mb-4"
         >
-          <span className="text-[11px] text-white/25 tracking-widest">Swipe</span>
-          <span className="text-white/25 text-sm">→</span>
+          <span className="text-[11px] text-[#999] tracking-widest">Swipe</span>
+          <span className="text-[#999] text-sm">→</span>
         </motion.div>
 
-        {/* Carousel on mobile / grid on desktop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
@@ -106,24 +104,24 @@ export default function Service() {
               className="
                 snap-start shrink-0 w-[76vw] sm:w-72
                 md:w-auto md:shrink
-                group border border-white/[0.07] bg-white/[0.02] hover:bg-blue-950/25
-                hover:border-blue-500/25 p-6 rounded-sm
-                transition-all duration-400
+                group border border-[#e8e8e8] bg-white hover:bg-[#f8fbff]
+                hover:border-[#0050d0]/30 p-6 rounded-sm
+                transition-all duration-300 shadow-[0_1px_4px_rgba(0,0,0,0.04)]
               "
             >
               <div className="flex items-start justify-between mb-5">
-                <div className="w-9 h-9 rounded-sm bg-blue-600/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-                  <s.icon size={16} className="text-blue-400" />
+                <div className="w-9 h-9 rounded-sm bg-[#eff6ff] border border-[#bfdbfe] flex items-center justify-center group-hover:bg-[#dbeafe] transition-colors">
+                  <s.icon size={16} className="text-[#0050d0]" />
                 </div>
-                <span className="font-inter text-[10px] tracking-[0.14em] uppercase text-white/20 group-hover:text-blue-400/60 transition-colors">
+                <span className="font-inter text-[10px] tracking-[0.14em] uppercase text-[#bbb] group-hover:text-[#0050d0]/60 transition-colors">
                   {s.en}
                 </span>
               </div>
-              <h3 className="text-[17px] font-black text-white mb-2">{s.title}</h3>
-              <p className="text-[13px] text-white/50 leading-[1.8] mb-4">{s.desc}</p>
+              <h3 className="text-[17px] font-black text-[#0f0f0f] mb-2">{s.title}</h3>
+              <p className="text-[13px] text-[#666] leading-[1.8] mb-4">{s.desc}</p>
               <div className="flex flex-wrap gap-1.5">
                 {s.tags.map((t) => (
-                  <span key={t} className="text-[11px] text-white/35 border border-white/[0.07] px-2 py-0.5 rounded-sm">
+                  <span key={t} className="text-[11px] text-[#666] border border-[#e8e8e8] bg-[#fafafa] px-2 py-0.5 rounded-sm">
                     {t}
                   </span>
                 ))}
@@ -132,10 +130,9 @@ export default function Service() {
           ))}
         </motion.div>
 
-        {/* Dot indicator - mobile only */}
         <div className="md:hidden flex justify-center gap-1.5 mt-5">
           {services.map((_, i) => (
-            <div key={i} className={`h-px w-5 rounded-full ${i === 0 ? 'bg-blue-500' : 'bg-white/15'}`} />
+            <div key={i} className={`h-px w-5 rounded-full ${i === 0 ? 'bg-[#0050d0]' : 'bg-[#ddd]'}`} />
           ))}
         </div>
       </div>
