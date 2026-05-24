@@ -9,11 +9,35 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28">
-        {/* subtle radial glow */}
+      <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28 overflow-hidden">
+
+        {/* Background photo */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="/images/hero-bg.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-40"
+            aria-hidden="true"
+          />
+          {/* Dark gradient overlay — keeps text readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
+        </div>
+
+        {/* Large transparent logo — right side watermark */}
+        <div className="absolute inset-0 flex items-center justify-end pr-0 pointer-events-none overflow-hidden">
+          <img
+            src="/logo.png"
+            alt=""
+            className="w-[55vw] max-w-2xl opacity-[0.055] mix-blend-screen select-none"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* subtle blue glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 55% at 30% 55%, rgba(0,80,208,0.06) 0%, transparent 100%)' }}
+          style={{ background: 'radial-gradient(ellipse 50% 50% at 20% 60%, rgba(0,80,208,0.10) 0%, transparent 100%)' }}
         />
 
         <div className="relative max-w-7xl w-full">
@@ -21,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/25 mb-12 md:mb-16"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-12 md:mb-16"
           >
             Faise Inc. — Experience Design Marketing
           </motion.p>
@@ -55,7 +79,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* scroll line */}
+        {/* scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
