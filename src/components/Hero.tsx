@@ -16,20 +16,20 @@ export default function Hero() {
           <img
             src="/images/hero-bg.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-60"
             aria-hidden="true"
           />
-          {/* Dark gradient overlay — keeps text readable */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-[#0a0a0a]/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/60" />
+          {/* Subtle dark overlay — readable but background visible */}
+          <div className="absolute inset-0 bg-[#0a0a0a]/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/30" />
         </div>
 
-        {/* Large transparent logo — right side watermark */}
-        <div className="absolute inset-0 flex items-center justify-end pr-0 pointer-events-none overflow-hidden">
+        {/* Large transparent logo — centered watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <img
-            src="/logo.png"
+            src="/logo-transparent.png"
             alt=""
-            className="w-[55vw] max-w-2xl opacity-[0.055] mix-blend-screen select-none"
+            className="w-[60vw] max-w-3xl opacity-[0.08] filter brightness-0 invert select-none"
             aria-hidden="true"
           />
         </div>
@@ -37,7 +37,7 @@ export default function Hero() {
         {/* subtle blue glow */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 50% 50% at 20% 60%, rgba(0,80,208,0.10) 0%, transparent 100%)' }}
+          style={{ background: 'radial-gradient(ellipse 50% 50% at 20% 60%, rgba(0,80,208,0.12) 0%, transparent 100%)' }}
         />
 
         <div className="relative max-w-7xl w-full">
