@@ -5,15 +5,12 @@ import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import ContactModal from './ContactModal'
 
-const floatingWords = [
-  { text: '認知', x: '8%',  y: '18%', delay: 0.2, size: 'text-xs' },
-  { text: '体験設計', x: '82%', y: '14%', delay: 0.5, size: 'text-xs' },
-  { text: 'SNS', x: '15%', y: '72%', delay: 0.8, size: 'text-xs' },
-  { text: '予約', x: '78%', y: '68%', delay: 0.3, size: 'text-xs' },
-  { text: '集客', x: '5%',  y: '44%', delay: 1.0, size: 'text-xs' },
-  { text: 'ファン化', x: '88%', y: '42%', delay: 0.6, size: 'text-xs' },
-  { text: '広告', x: '25%', y: '85%', delay: 0.9, size: 'text-xs' },
-  { text: '成約', x: '68%', y: '82%', delay: 0.4, size: 'text-xs' },
+const tags = ['動画制作ディレクション', 'Meta / TikTok広告', 'LP・予約導線設計', 'LINE運用']
+
+const stats = [
+  { value: '¥1,000', label: 'CPA達成実績' },
+  { value: '20×', label: '体験予約増加' },
+  { value: '一気通貫', label: '動画〜広告〜導線' },
 ]
 
 export default function Hero() {
@@ -30,67 +27,77 @@ export default function Hero() {
           }}
         />
 
-        {/* Floating keyword labels */}
-        {floatingWords.map((w, i) => (
-          <motion.span
-            key={i}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: [8, 0, 8] }}
-            transition={{ duration: 4 + i * 0.5, delay: w.delay, repeat: Infinity, ease: 'easeInOut' }}
-            className={`absolute font-inter font-bold tracking-widest uppercase text-white/15 pointer-events-none hidden md:block ${w.size}`}
-            style={{ left: w.x, top: w.y }}
-          >
-            {w.text}
-          </motion.span>
-        ))}
+        {/* Ambient glow */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, delay: 0.3 }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse, rgba(0,80,208,0.12) 0%, transparent 70%)' }}
+        />
 
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pt-16">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24 pb-12">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="font-inter text-[10px] tracking-[0.32em] uppercase text-[#4d9fff] mb-8"
           >
-            Experience Design Marketing
+            For Personal Gyms &amp; Beauty Clinics
           </motion.p>
 
-          <div className="overflow-hidden mb-2">
+          <div className="overflow-hidden mb-3">
             <motion.h1
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(40px,10vw,100px)] font-black leading-[1.05] tracking-tight text-white"
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[clamp(34px,8vw,84px)] font-black leading-[1.08] tracking-tight text-white"
             >
-              人が動く理由を
+              エンタメ発想で、
             </motion.h1>
           </div>
           <div className="overflow-hidden mb-10">
             <motion.h1
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(40px,10vw,100px)] font-black leading-[1.05] tracking-tight text-gradient"
+              transition={{ duration: 0.9, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[clamp(34px,8vw,84px)] font-black leading-[1.08] tracking-tight text-gradient"
             >
-              設計する。
+              行きたくなる理由をつくる。
             </motion.h1>
           </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.95 }}
-            className="text-[clamp(13px,1.8vw,17px)] text-white/50 max-w-xl mx-auto leading-[2] mb-12"
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="text-[clamp(13px,1.8vw,17px)] text-white/55 max-w-2xl mx-auto leading-[2] mb-8"
           >
-            広告運用ではなく、SNS・体験・導線・企画を横断し、
-            &ldquo;行きたくなる理由&rdquo;から店舗の成長をつくるマーケティングチーム。
+            パーソナルジム・美容クリニックの体験予約を伸ばす、
+            <br className="hidden sm:block" />
+            動画×広告×導線設計。企画から一気通貫でご支援します。
           </motion.p>
+
+          {/* Service tags */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 1.05 }}
+            className="flex flex-wrap justify-center gap-2 mb-10"
+          >
+            {tags.map((tag, i) => (
+              <span key={i} className="font-inter text-[10px] tracking-wide text-white/40 border border-white/15 px-3 py-1 rounded-sm">
+                {tag}
+              </span>
+            ))}
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1 }}
+            transition={{ duration: 0.7, delay: 1.15 }}
             className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
             <button
@@ -100,22 +107,39 @@ export default function Hero() {
               無料相談する
             </button>
             <a
-              href="#problem"
+              href="#result"
               className="w-full sm:w-auto text-center text-sm font-bold tracking-[0.1em] uppercase text-white/50 hover:text-white border border-white/20 hover:border-white/50 px-8 py-4 rounded-sm transition-all duration-200"
             >
-              サービスを見る
+              支援実績を見る
             </a>
           </motion.div>
         </div>
 
+        {/* Quick stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+          className="relative z-10 w-full max-w-2xl mx-auto px-6 mb-20"
+        >
+          <div className="border border-white/10 bg-white/[0.04] rounded-sm flex divide-x divide-white/10">
+            {stats.map((s, i) => (
+              <div key={i} className="flex-1 text-center py-4 px-3">
+                <p className="font-inter text-[clamp(16px,2.5vw,22px)] font-black text-white leading-none mb-1">{s.value}</p>
+                <p className="font-inter text-[9px] tracking-widest uppercase text-white/35">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          transition={{ delay: 1.8, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <div className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
-          <ArrowDown size={12} className="text-white/25" />
+          <div className="w-px h-8 bg-gradient-to-b from-white/25 to-transparent" />
+          <ArrowDown size={12} className="text-white/20" />
         </motion.div>
       </section>
 

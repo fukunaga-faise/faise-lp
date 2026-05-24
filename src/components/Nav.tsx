@@ -6,8 +6,8 @@ import ContactModal from './ContactModal'
 
 const links = [
   { label: 'Problem', href: '#problem' },
+  { label: 'Solution', href: '#solution' },
   { label: 'Results', href: '#result' },
-  { label: 'Services', href: '#service' },
   { label: 'Founder', href: '#founder' },
 ]
 

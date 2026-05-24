@@ -2,14 +2,27 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Sparkles, Target, TrendingUp } from 'lucide-react'
 
-const funnel = [
-  { phase: '認知', en: 'Awareness', tools: ['広告', 'SNS', 'インフルエンサー'], color: '#0050d0' },
-  { phase: '興味', en: 'Interest',  tools: ['LP', 'SNSコンテンツ', '口コミ設計'],  color: '#0070cc' },
-  { phase: '予約', en: 'Booking',   tools: ['LINE', '予約導線', 'CTA設計'],         color: '#0090c0' },
-  { phase: '来店', en: 'Visit',     tools: ['体験設計', '空間演出', '接客設計'],     color: '#00a0a8' },
-  { phase: '成約', en: 'Close',     tools: ['クロージング', '比較設計', 'LP'],       color: '#00aa88' },
-  { phase: 'ファン化', en: 'Fan',   tools: ['UGC設計', '紹介施策', 'コミュニティ'], color: '#00b870' },
+const pillars = [
+  {
+    icon: Sparkles,
+    en: 'Entertainment',
+    title: '「見たい」から始まる',
+    desc: 'エンタメ業界で培ったコンテンツ設計の視点で、施設の魅力を「思わず見てしまう」クリエイティブに変換します。情報の羅列ではなく、感情を動かすコンテンツを設計します。',
+  },
+  {
+    icon: Target,
+    en: 'Experience',
+    title: '「行きたい」に変える',
+    desc: '体験の価値を、予約動機として言語化・映像化します。「なんとなく良さそう」で終わらせず、「ここに行かなきゃ」という具体的な理由をつくります。',
+  },
+  {
+    icon: TrendingUp,
+    en: 'Conversion',
+    title: '「予約する」まで設計',
+    desc: '動画・広告・LP・LINEの導線をひとつのチームで一気通貫に設計・運用します。各施策がバラバラに動くのではなく、すべてが体験予約という成果に向かって連動します。',
+  },
 ]
 
 export default function Concept() {
@@ -17,97 +30,60 @@ export default function Concept() {
   const inView = useInView(ref, { once: true, margin: '-40px' })
 
   return (
-    <section id="concept" className="bg-white py-16 md:py-36 px-0 md:px-6 border-t border-[#eaeaea]">
+    <section id="concept" className="bg-[#f5f5f5] py-16 md:py-32 px-6 border-t border-[#eaeaea]">
       <div className="max-w-5xl mx-auto" ref={ref}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
+          className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
+        >
+          Concept
+        </motion.p>
 
-        <div className="px-6 md:px-0 mb-8">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6 }}
-            className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
+        <div className="overflow-hidden mb-4">
+          <motion.h2
+            initial={{ y: 50, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[clamp(26px,4.5vw,52px)] font-black leading-[1.15] tracking-tight text-[#0f0f0f]"
           >
-            Concept
-          </motion.p>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: 50, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(28px,5vw,60px)] font-black leading-[1.1] tracking-tight text-[#0f0f0f]"
-            >
-              Faiseは、<span className="text-gradient">体験</span>を設計する。
-            </motion.h2>
-          </div>
+            エンタメ発想が、
+            <br />
+            <span className="text-gradient">施設マーケティングを変える。</span>
+          </motion.h2>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-          className="md:hidden flex items-center justify-end gap-1.5 px-6 mb-4"
-        >
-          <span className="text-[11px] text-[#999] tracking-widest">Swipe</span>
-          <span className="text-[#999] text-sm">→</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="
-            flex overflow-x-auto snap-x snap-mandatory no-scrollbar
-            gap-0 pl-6 pb-2
-            md:grid md:grid-cols-6 md:overflow-visible md:pl-0 md:pb-0 md:gap-0
-          "
-        >
-          {funnel.map((item, i) => (
-            <div
-              key={item.phase}
-              className="
-                snap-start shrink-0 w-[58vw] sm:w-48
-                md:w-auto md:shrink
-                relative border border-[#e8e8e8] hover:border-[#0050d0]/30
-                bg-white hover:bg-[#f0f6ff]
-                p-4 transition-all duration-300
-                flex flex-col
-              "
-            >
-              {i < funnel.length - 1 && (
-                <div className="md:hidden absolute -right-3 top-6 z-10 text-[#ccc] text-xs">▶</div>
-              )}
-
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: item.color }}>
-                  <span className="font-inter font-black text-[9px] text-white">{i + 1}</span>
-                </div>
-                <div>
-                  <p className="text-base md:text-lg font-black leading-none" style={{ color: item.color }}>
-                    {item.phase}
-                  </p>
-                  <p className="font-inter text-[9px] tracking-widest text-[#999] uppercase">{item.en}</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1.5 mt-auto">
-                {item.tools.map((t) => (
-                  <span key={t} className="text-[11px] text-[#666] border border-[#e8e8e8] px-2 py-0.5 rounded-sm bg-[#fafafa]">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-8 text-center text-xs text-[#999] tracking-wide px-6 md:px-0"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-[14px] text-[#666] leading-[2] max-w-2xl mb-12"
         >
-          各フェーズに広告・SNS・LP・LINE・企画・クリエイティブ・体験設計が連動する
+          吉本興業をはじめとするエンタメ領域での知見を、パーソナルジム・美容クリニックの集客に応用。
+          「見せ方」ではなく「体験したくなる理由」を最初から設計するのがFaiseの強みです。
         </motion.p>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {pillars.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 + i * 0.12 }}
+              className="bg-white border border-[#e8e8e8] rounded-sm p-7 flex flex-col gap-4 shadow-[0_1px_4px_rgba(0,0,0,0.05)]"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-sm bg-[#eff6ff] border border-[#bfdbfe] flex items-center justify-center shrink-0">
+                  <p.icon size={16} className="text-[#0050d0]" />
+                </div>
+                <span className="font-inter text-[9px] tracking-[0.2em] uppercase text-[#bbb]">{p.en}</span>
+              </div>
+              <h3 className="text-[17px] font-black text-[#0f0f0f] leading-snug">{p.title}</h3>
+              <p className="text-[13px] text-[#666] leading-[1.9]">{p.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )
