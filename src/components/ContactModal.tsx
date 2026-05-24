@@ -51,7 +51,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-1/2 -translate-y-1/2 max-w-lg mx-auto bg-[#0a0a0a] border border-white/[0.08] rounded-sm z-50 p-7 md:p-10"
+            className="fixed inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-[#0a0a0a] border border-white/[0.08] rounded-sm z-50 p-7 md:p-10 overflow-y-auto"
           >
             <button
               onClick={onClose}
