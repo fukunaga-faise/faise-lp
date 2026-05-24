@@ -16,12 +16,11 @@ export default function Hero() {
           <img
             src="/images/hero-bg.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-60"
+            className="w-full h-full object-cover"
             aria-hidden="true"
           />
-          {/* Subtle dark overlay — readable but background visible */}
-          <div className="absolute inset-0 bg-[#0a0a0a]/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/30" />
+          {/* Light overlay — text readable, bg clearly visible */}
+          <div className="absolute inset-0 bg-[#0a0a0a]/55" />
         </div>
 
         {/* Large transparent logo — centered watermark */}
@@ -29,7 +28,7 @@ export default function Hero() {
           <img
             src="/logo-transparent.png"
             alt=""
-            className="w-[60vw] max-w-3xl opacity-[0.08] filter brightness-0 invert select-none"
+            className="w-[65vw] max-w-3xl opacity-20 brightness-0 invert select-none"
             aria-hidden="true"
           />
         </div>
