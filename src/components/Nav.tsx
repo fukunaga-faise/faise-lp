@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ContactModal from './ContactModal'
 
 const links = [
   { label: 'Problem', href: '#problem' },
@@ -13,6 +14,7 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -50,12 +52,12 @@ export default function Nav() {
           ))}
         </ul>
 
-        <a
-          href="mailto:info@faise.jp"
+        <button
+          onClick={() => setModalOpen(true)}
           className="hidden md:inline-flex items-center gap-2 text-xs font-bold tracking-[0.1em] uppercase text-white border border-blue-500/50 hover:border-blue-500 hover:bg-blue-600 px-5 py-2.5 rounded-sm transition-all duration-300"
         >
           無料相談
-        </a>
+        </button>
 
         {/* Mobile menu toggle */}
         <button
@@ -88,15 +90,17 @@ export default function Nav() {
                 {l.label}
               </a>
             ))}
-            <a
-              href="mailto:info@faise.jp"
+            <button
+              onClick={() => { setOpen(false); setModalOpen(true) }}
               className="mt-4 text-sm font-bold uppercase tracking-widest text-white bg-blue-600 px-10 py-4 rounded-sm"
             >
               無料相談
-            </a>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
 }
