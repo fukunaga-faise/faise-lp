@@ -23,12 +23,12 @@ export default function Hero() {
           <div className="absolute inset-0 bg-[#0a0a0a]/55" />
         </div>
 
-        {/* Large transparent logo — centered watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        {/* Logo watermark — top right, away from heading text */}
+        <div className="absolute top-[12%] right-[-4%] pointer-events-none overflow-hidden">
           <img
             src="/logo-transparent.png"
             alt=""
-            className="w-[65vw] max-w-3xl opacity-20 brightness-0 invert select-none"
+            className="w-[42vw] max-w-xl opacity-20 brightness-0 invert select-none"
             aria-hidden="true"
           />
         </div>
