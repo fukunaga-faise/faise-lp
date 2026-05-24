@@ -11,40 +11,30 @@ export default function Hero() {
     <>
       <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28 overflow-hidden">
 
-        {/* Background photo */}
-        <div className="absolute inset-0 pointer-events-none">
-          <img
-            src="/images/hero-bg.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-            aria-hidden="true"
-          />
-          {/* Light overlay — text readable, bg clearly visible */}
-          <div className="absolute inset-0 bg-[#0a0a0a]/55" />
-        </div>
-
-        {/* Logo — large, right side, partially cropped like GA Technologies */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-[-6vw] pointer-events-none">
-          <img
-            src="/logo-transparent.png"
-            alt=""
-            className="w-[52vw] md:w-[40vw] max-w-2xl opacity-30 brightness-0 invert select-none"
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* subtle blue glow */}
+        {/* Subtle gradient background — no photo */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 50% 50% at 20% 60%, rgba(0,80,208,0.12) 0%, transparent 100%)' }}
+          style={{
+            background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,80,208,0.13) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0,40,120,0.10) 0%, transparent 60%)',
+          }}
         />
+
+        {/* F mark — large, right side, partially cropped */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-[-8vw] md:right-[-4vw] pointer-events-none">
+          <img
+            src="/logo-fmark.png"
+            alt=""
+            className="w-[60vw] md:w-[44vw] max-w-2xl opacity-[0.18] brightness-0 invert select-none"
+            aria-hidden="true"
+          />
+        </div>
 
         <div className="relative max-w-7xl w-full">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-12 md:mb-16"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/25 mb-12 md:mb-16"
           >
             Faise Inc. — Experience Design Marketing
           </motion.p>
@@ -70,7 +60,7 @@ export default function Hero() {
           >
             <button
               onClick={() => setModalOpen(true)}
-              className="group inline-flex items-center gap-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 hover:text-white transition-colors duration-400"
+              className="group inline-flex items-center gap-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 hover:text-white transition-colors duration-300"
             >
               集客について相談する
               <span className="block h-px w-10 bg-white/30 group-hover:w-20 group-hover:bg-white/80 transition-all duration-500 ease-out" />
