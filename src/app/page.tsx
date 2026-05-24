@@ -10,6 +10,7 @@ import Service from '@/components/Service'
 import Ideas from '@/components/Ideas'
 import Founder from '@/components/Founder'
 import OtherResults from '@/components/OtherResults'
+import Company from '@/components/Company'
 import CTA from '@/components/CTA'
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       <Ideas />
       <Founder />
       <OtherResults />
+      <Company />
       <CTA />
     </main>
   )
