@@ -44,7 +44,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
       initial={{ opacity: 0 }}
       animate={inView ? { opacity: 1 } : {}}
       transition={{ duration: 0.8 }}
-      className={`grid md:grid-cols-2 gap-0 border-b border-[#eaeaea] ${reverse ? '' : ''}`}
+      className={`grid md:grid-cols-2 gap-0 border-b border-white/10`}
     >
       {/* Text block */}
       <div className={`py-16 md:py-24 px-8 md:px-16 flex flex-col justify-center ${reverse ? 'md:order-2' : ''}`}>
@@ -54,25 +54,25 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
           transition={{ duration: 0.9, delay: 0.1 }}
         >
           <div className="flex items-center gap-4 mb-8">
-            <span className="font-inter text-[11px] font-bold tracking-[0.3em] text-[#bbb]">{s.num}</span>
-            <span className="font-inter text-[10px] tracking-[0.25em] uppercase text-[#bbb]">{s.en}</span>
+            <span className="font-inter text-[11px] font-bold tracking-[0.3em] text-white/30">{s.num}</span>
+            <span className="font-inter text-[10px] tracking-[0.25em] uppercase text-white/30">{s.en}</span>
           </div>
 
-          <h3 className="text-[clamp(24px,3.5vw,42px)] font-black leading-[1.2] tracking-tight text-[#0f0f0f] mb-6 whitespace-pre-line">
+          <h3 className="text-[clamp(24px,3.5vw,42px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
             {s.title}
           </h3>
 
-          <p className="text-[clamp(15px,1.8vw,19px)] font-medium text-[#444] leading-[1.8] mb-6 whitespace-pre-line">
+          <p className="text-[clamp(15px,1.8vw,19px)] font-medium text-white/60 leading-[1.8] mb-6 whitespace-pre-line">
             {s.copy}
           </p>
 
-          <p className="text-[13px] text-[#888] leading-[2] mb-8 max-w-sm">
+          <p className="text-[13px] text-white/35 leading-[2] mb-8 max-w-sm">
             {s.body}
           </p>
 
           <div className="flex flex-wrap gap-2">
             {s.tags.map((tag) => (
-              <span key={tag} className="font-inter text-[10px] tracking-wide text-[#666] border border-[#ddd] px-3 py-1.5 rounded-sm">
+              <span key={tag} className="font-inter text-[10px] tracking-wide text-white/40 border border-white/15 px-3 py-1.5">
                 {tag}
               </span>
             ))}
@@ -92,7 +92,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
           alt={s.en}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-black/30" />
       </motion.div>
     </motion.div>
   )
@@ -103,15 +103,14 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="services" className="bg-white border-t border-[#eaeaea]">
+    <section id="services" className="bg-[#0a0a0a] border-t border-white/10">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div ref={ref} className="px-8 md:px-20 pt-20 md:pt-28 pb-12 md:pb-16">
           <motion.p
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#aaa] mb-6"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-6"
           >
             Services
           </motion.p>
@@ -120,16 +119,15 @@ export default function Services() {
               initial={{ y: 60, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(28px,4.5vw,54px)] font-black leading-[1.2] tracking-tight text-[#0f0f0f]"
+              className="text-[clamp(28px,4.5vw,54px)] font-black leading-[1.2] tracking-tight text-white"
             >
               人が行きたくなる設計を、
               <br />
-              <span className="text-[#aaa]">すべての施設へ。</span>
+              <span className="text-white/30">すべての施設へ。</span>
             </motion.h2>
           </div>
         </div>
 
-        {/* Services */}
         {services.map((s, i) => (
           <ServiceRow key={i} s={s} i={i} />
         ))}

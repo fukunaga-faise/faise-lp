@@ -17,13 +17,13 @@ export default function Founder() {
 
   return (
     <>
-      <section id="founder" className="bg-[#f5f5f5] border-t border-[#eaeaea] py-32 md:py-52 px-8 md:px-20">
+      <section id="founder" className="bg-[#0a0a0a] border-t border-white/10 py-32 md:py-52 px-8 md:px-20">
         <div className="max-w-7xl mx-auto" ref={ref}>
           <motion.p
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#aaa] mb-16 md:mb-20"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-16 md:mb-20"
           >
             Founder
           </motion.p>
@@ -35,12 +35,12 @@ export default function Founder() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.1 }}
             >
-              <blockquote className="text-[clamp(20px,3vw,34px)] font-black leading-[1.7] tracking-tight text-[#0f0f0f] mb-10">
+              <blockquote className="text-[clamp(20px,3vw,34px)] font-black leading-[1.7] tracking-tight text-white mb-10">
                 人を動かすのは、<br />
                 感情だと思っています。
               </blockquote>
 
-              <div className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-[#666] leading-[2.2] max-w-xl mb-12">
+              <div className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/40 leading-[2.2] max-w-xl mb-12">
                 <p>
                   ただ広告を出すのではなく、"行きたくなる理由"をつくりたい。
                   ソニーの店頭で「人が止まる瞬間」を研究し、テーマパークで「また来たい感情」を設計した経験が、その確信を深めました。
@@ -51,20 +51,19 @@ export default function Founder() {
                 </p>
               </div>
 
-              {/* Career */}
-              <div className="space-y-0 border-t border-[#ddd]">
+              <div className="space-y-0 border-t border-white/10">
                 {career.map((c, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -12 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.7, delay: 0.4 + i * 0.1 }}
-                    className="flex items-start gap-6 py-5 border-b border-[#ddd]"
+                    className="flex items-start gap-6 py-5 border-b border-white/10"
                   >
-                    <span className="font-inter text-[10px] tracking-widest text-[#bbb] w-20 shrink-0 mt-0.5">{c.period}</span>
+                    <span className="font-inter text-[10px] tracking-widest text-white/25 w-20 shrink-0 mt-0.5">{c.period}</span>
                     <div>
-                      <p className="text-[14px] font-bold text-[#0f0f0f]">{c.company}</p>
-                      <p className="text-[12px] text-[#888] mt-0.5">{c.role}</p>
+                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
+                      <p className="text-[12px] text-white/35 mt-0.5">{c.role}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -78,17 +77,15 @@ export default function Founder() {
               transition={{ duration: 1, delay: 0.25 }}
               className="flex flex-col gap-5"
             >
-              {/* Photo — replace with <img src="/founder.jpg" ... /> */}
               <div
-                className="w-full aspect-[3/4] bg-[#e0e0e0] overflow-hidden"
-                style={{ background: 'linear-gradient(160deg, #d8d8d8 0%, #c8c8c8 100%)' }}
+                className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]"
               >
-                {/* Replace with actual photo */}
+                {/* Replace with: <img src="/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover" /> */}
               </div>
               <div>
-                <p className="font-inter text-[10px] tracking-[0.25em] uppercase text-[#aaa] mb-1">Haruto Fukunaga</p>
-                <p className="text-[18px] font-black text-[#0f0f0f]">福永 遥斗</p>
-                <p className="text-[12px] text-[#888] mt-1">株式会社Faise 代表取締役</p>
+                <p className="font-inter text-[10px] tracking-[0.25em] uppercase text-white/25 mb-1">Haruto Fukunaga</p>
+                <p className="text-[18px] font-black text-white">福永 遥斗</p>
+                <p className="text-[12px] text-white/35 mt-1">株式会社Faise 代表取締役</p>
               </div>
             </motion.div>
           </div>
@@ -98,17 +95,17 @@ export default function Founder() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.7 }}
-            className="mt-24 md:mt-36 pt-12 border-t border-[#ddd] flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+            className="mt-24 md:mt-36 pt-12 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
           >
             <div>
-              <p className="text-[clamp(18px,2.5vw,28px)] font-black text-[#0f0f0f] leading-snug mb-2">
+              <p className="text-[clamp(18px,2.5vw,28px)] font-black text-white leading-snug mb-2">
                 まずは、お話を聞かせてください。
               </p>
-              <p className="text-[13px] text-[#888]">無料相談受付中。2営業日以内にご連絡します。</p>
+              <p className="text-[13px] text-white/35">無料相談受付中。2営業日以内にご連絡します。</p>
             </div>
             <button
               onClick={() => setModalOpen(true)}
-              className="shrink-0 text-[11px] font-bold tracking-[0.2em] uppercase text-white bg-[#0f0f0f] hover:bg-[#0050d0] px-10 py-4 transition-colors duration-300"
+              className="shrink-0 text-[11px] font-bold tracking-[0.2em] uppercase text-white border border-white/30 hover:border-white hover:bg-white hover:text-[#0a0a0a] px-10 py-4 transition-all duration-300"
             >
               集客について相談する
             </button>
