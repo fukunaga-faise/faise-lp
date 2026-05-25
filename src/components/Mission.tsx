@@ -56,7 +56,7 @@ export default function Mission() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-[clamp(13px,1.4vw,16px)] text-white/40 leading-[2.4] pl-5"
+            className="text-[clamp(13px,1.4vw,16px)] text-white/70 leading-[2.4] pl-5"
           >
             FAISEは、<br />
             感情が動く瞬間を設計し、<br />

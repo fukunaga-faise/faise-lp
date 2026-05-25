@@ -61,11 +61,11 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
             {s.title}
           </h3>
 
-          <p className="text-[clamp(15px,1.8vw,19px)] font-medium text-white/60 leading-[1.8] mb-6 whitespace-pre-line">
+          <p className="text-[clamp(15px,1.8vw,19px)] font-medium text-white/80 leading-[1.8] mb-6 whitespace-pre-line">
             {s.copy}
           </p>
 
-          <p className="text-[13px] text-white/35 leading-[2] mb-8 max-w-sm">
+          <p className="text-[13px] text-white/80 leading-[2] mb-8 max-w-sm">
             {s.body}
           </p>
 
@@ -120,7 +120,7 @@ export default function Services() {
             >
               人が行きたくなる設計を、
               <br />
-              <span className="text-white/30">すべての施設へ。</span>
+              <span className="text-white/50">すべての施設へ。</span>
             </motion.h2>
           </div>
         </div>

@@ -44,7 +44,7 @@ export default function CTA() {
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-[clamp(13px,1.5vw,16px)] text-white/35 leading-[2] mb-14"
+            className="text-[clamp(13px,1.5vw,16px)] text-white/80 leading-[2] mb-14"
           >
             無料相談受付中。2営業日以内にご連絡します。
           </motion.p>

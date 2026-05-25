@@ -60,7 +60,7 @@ export default function Works() {
               <p className="font-inter text-[clamp(52px,8vw,96px)] font-black text-white leading-none tracking-tight mb-2">
                 {s.value}
               </p>
-              <p className="text-[12px] text-white/35">{s.sub}</p>
+              <p className="text-[12px] text-white/80">{s.sub}</p>
             </div>
           ))}
         </motion.div>
@@ -70,7 +70,7 @@ export default function Works() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.35 }}
-            className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/40 leading-[2.2]"
+            className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/70 leading-[2.2]"
           >
             <p>某都内パーソナルジムにて、トレーナーのブランディング設計から動画広告の構成・演出・広告運用までを一気通貫で支援。</p>
             <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
@@ -92,9 +92,9 @@ export default function Works() {
             <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/60 mb-6">Clients</p>
             <div className="space-y-4">
               {clients.map((c, i) => (
-                <p key={i} className="text-[15px] font-semibold text-white/55 tracking-wide border-b border-white/10 pb-4 last:border-b-0">{c}</p>
+                <p key={i} className="text-[15px] font-semibold text-white/75 tracking-wide border-b border-white/10 pb-4 last:border-b-0">{c}</p>
               ))}
-              <p className="text-[13px] text-white/25 tracking-wide">etc.</p>
+              <p className="text-[13px] text-white/40 tracking-wide">etc.</p>
             </div>
           </motion.div>
         </div>

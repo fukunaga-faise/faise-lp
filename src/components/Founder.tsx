@@ -27,7 +27,7 @@ export default function Founder() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
             >
-              Founder
+              Message
             </motion.p>
           </div>
 
@@ -42,7 +42,7 @@ export default function Founder() {
                 感情だと思っています。
               </blockquote>
 
-              <div className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/40 leading-[2.2] max-w-xl mb-12">
+              <div className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/70 leading-[2.2] max-w-xl mb-12">
                 <p>
                   ただ広告を出すのではなく、"行きたくなる理由"をつくりたい。
                   ソニーの店頭で「人が止まる瞬間」を研究し、テーマパークで「また来たい感情」を設計した経験が、その確信を深めました。
@@ -68,7 +68,7 @@ export default function Founder() {
                       <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
                       <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-2">{c.period}</p>
                       <p className="text-[14px] font-bold text-white/80 mb-0.5">{c.company}</p>
-                      <p className="text-[12px] text-white/35">{c.role}</p>
+                      <p className="text-[12px] text-white/80">{c.role}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -87,7 +87,7 @@ export default function Founder() {
               <div>
                 <p className="font-inter text-[10px] tracking-[0.25em] uppercase text-[#4d7fff]/50 mb-1">Haruto Fukunaga</p>
                 <p className="text-[18px] font-black text-white">福永 遥斗</p>
-                <p className="text-[12px] text-white/35 mt-1">株式会社Faise 代表取締役</p>
+                <p className="text-[12px] text-white/80 mt-1">株式会社Faise 代表取締役</p>
               </div>
             </motion.div>
           </div>
@@ -102,7 +102,7 @@ export default function Founder() {
               <p className="text-[clamp(18px,2.5vw,28px)] font-black text-white leading-snug mb-2">
                 まずは、お話を聞かせてください。
               </p>
-              <p className="text-[13px] text-white/35">無料相談受付中。2営業日以内にご連絡します。</p>
+              <p className="text-[13px] text-white/80">無料相談受付中。2営業日以内にご連絡します。</p>
             </div>
             <button
               onClick={() => setModalOpen(true)}
