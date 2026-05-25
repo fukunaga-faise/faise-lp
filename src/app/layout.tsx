@@ -23,9 +23,14 @@ export const metadata: Metadata = {
   title: '株式会社Faise | 人が動く理由を設計する。',
   description:
     '体験設計型マーケティング。パーソナルジム・美容クリニック・店舗型ビジネスの集客・予約・成約を、SNS・広告・体験設計から一気通貫で支援します。',
-  metadataBase: new URL('https://faise-lp.vercel.app'),
+  metadataBase: new URL('https://faise-inc.com'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://faise-inc.com',
+  },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
   },
   openGraph: {
     title: '株式会社Faise | 人が動く理由を設計する。',
@@ -33,7 +38,7 @@ export const metadata: Metadata = {
       '体験設計型マーケティング。集客から成約まで一気通貫でサポートします。',
     type: 'website',
     locale: 'ja_JP',
-    url: 'https://faise-lp.vercel.app',
+    url: 'https://faise-inc.com',
     siteName: '株式会社Faise',
   },
   twitter: {
@@ -47,7 +52,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: '株式会社Faise',
-  url: 'https://faise-lp.vercel.app',
+  url: 'https://faise-inc.com',
   email: 'fukunaga@faise-inc.com',
   address: {
     '@type': 'PostalAddress',
