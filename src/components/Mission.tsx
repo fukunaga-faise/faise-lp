@@ -3,70 +3,66 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const principles = [
-  { en: 'Feel', ja: '感情を設計する' },
-  { en: 'Move', ja: '人を動かす' },
-  { en: 'Experience', ja: '体験の入口をつくる' },
-]
-
 export default function Mission() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="mission" className="bg-white py-32 md:py-52 px-8 md:px-20">
-      <div className="max-w-7xl mx-auto" ref={ref}>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
-          className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#aaa] mb-16 md:mb-20"
-        >
-          Mission
-        </motion.p>
+    <section id="mission" className="relative bg-[#0a0a0a] py-32 md:py-52 px-8 md:px-20 overflow-hidden">
 
-        <div className="max-w-4xl">
-          <div className="overflow-hidden mb-8">
+      {/* F watermark */}
+      <div className="absolute top-1/2 right-[-6vw] -translate-y-1/2 pointer-events-none select-none">
+        <span className="font-black text-[clamp(320px,40vw,560px)] leading-none text-white/[0.04]">
+          F
+        </span>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto" ref={ref}>
+        {/* Left accent line + label */}
+        <div className="flex items-start gap-8 mb-16 md:mb-24">
+          <div className="w-px self-stretch bg-white/20 shrink-0" />
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8 }}
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 pt-1"
+          >
+            Mission
+          </motion.p>
+        </div>
+
+        <div className="pl-0 md:pl-10 max-w-3xl space-y-10">
+          <div className="overflow-hidden">
             <motion.h2
               initial={{ y: 70, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(30px,5vw,62px)] font-black leading-[1.2] tracking-[-0.02em] text-[#0f0f0f]"
+              className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white"
             >
               人は、論理だけでは動かない。
             </motion.h2>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
-            className="space-y-5 max-w-2xl"
+            className="text-[clamp(17px,2vw,22px)] text-white/70 leading-[1.85] font-medium"
           >
-            <p className="text-[clamp(16px,2.2vw,22px)] text-[#333] leading-[1.9] font-medium">
-              行きたくなる理由には、感情がある。
-            </p>
-            <p className="text-[clamp(13px,1.5vw,16px)] text-[#888] leading-[2.2]">
-              FAISEは、エンタメ業界で培った「感情を動かす設計」を、集客施設のマーケティングに応用する会社です。
-              広告を回す前に、"行きたくなる理由"そのものをつくる。
-              それが私たちのアプローチです。
-            </p>
-          </motion.div>
-        </div>
+            行きたくなる理由には、感情がある。
+          </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.55 }}
-          className="mt-24 md:mt-36 pt-12 border-t border-[#eaeaea] grid md:grid-cols-3 gap-10 md:gap-0 md:divide-x md:divide-[#eaeaea]"
-        >
-          {principles.map((p, i) => (
-            <div key={i} className="md:px-12 first:md:pl-0 last:md:pr-0">
-              <p className="font-inter text-[10px] tracking-[0.35em] uppercase text-[#bbb] mb-4">{p.en}</p>
-              <p className="text-[19px] font-black text-[#0f0f0f] tracking-tight">{p.ja}</p>
-            </div>
-          ))}
-        </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="text-[clamp(13px,1.4vw,16px)] text-white/40 leading-[2.4]"
+          >
+            FAISEは、エンタメ業界で培った「感情を動かす設計」を、集客施設のマーケティングに応用する会社です。<br />
+            広告を回す前に、"行きたくなる理由"そのものをつくる。<br />
+            それが私たちのアプローチです。
+          </motion.p>
+        </div>
       </div>
     </section>
   )
