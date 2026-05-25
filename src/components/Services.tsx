@@ -47,7 +47,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
       className={`grid md:grid-cols-2 gap-0 border-b border-white/10`}
     >
       {/* Text block */}
-      <div className={`py-16 md:py-24 px-8 md:px-16 flex flex-col justify-center ${reverse ? 'md:order-2' : ''}`}>
+      <div className={`py-16 md:py-24 px-8 md:px-16 flex flex-col justify-center order-2 ${reverse ? 'md:order-2' : 'md:order-1'}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -85,7 +85,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
         initial={{ opacity: 0, scale: 1.02 }}
         animate={inView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 1, delay: 0.15 }}
-        className={`relative min-h-[300px] md:min-h-[500px] overflow-hidden ${reverse ? 'md:order-1' : ''}`}
+        className={`relative min-h-[300px] md:min-h-[500px] overflow-hidden order-1 ${reverse ? 'md:order-1' : 'md:order-2'}`}
       >
         <img
           src={s.img}
