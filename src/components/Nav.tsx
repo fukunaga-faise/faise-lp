@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ContactModal from './ContactModal'
 
 const links = [
-  { label: 'Mission', href: '#mission' },
+  { label: 'Approach', href: '#mission' },
   { label: 'Services', href: '#services' },
   { label: 'Works', href: '#works' },
   { label: 'Founder', href: '#founder' },
