@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'ZJwBSJHA3cQnOMN3sZvgRCI4nJJMGVRw2fnw1ZNoJvU',
   },
-  title: '株式会社Faise | 人が動く理由を設計する。',
+  title: '株式会社Faise | エンタメ発想で、人を動かす。',
   description:
     '体験設計型マーケティング。パーソナルジム・美容クリニック・店舗型ビジネスの集客・予約・成約を、SNS・広告・体験設計から一気通貫で支援します。',
   metadataBase: new URL('https://faise-inc.com'),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     apple: '/icon.png',
   },
   openGraph: {
-    title: '株式会社Faise | 人が動く理由を設計する。',
+    title: '株式会社Faise | エンタメ発想で、人を動かす。',
     description:
       '体験設計型マーケティング。集客から成約まで一気通貫でサポートします。',
     type: 'website',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '株式会社Faise | 人が動く理由を設計する。',
+    title: '株式会社Faise | エンタメ発想で、人を動かす。',
     description: '体験設計型マーケティング。集客から成約まで一気通貫。',
   },
 }
