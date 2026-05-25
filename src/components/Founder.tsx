@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import ContactModal from './ContactModal'
 
 const career = [
@@ -10,10 +10,24 @@ const career = [
   { period: '2025–', company: '株式会社Faise' },
 ]
 
+const phrases = [
+  '「この場所に行ってみたい」',
+  '「この人に会ってみたい」',
+  '「この体験をしてみたい」',
+]
+
+const fullMessage = [
+  'どれだけ情報が溢れる時代でも、人が本当に行動を起こす瞬間には、必ず"心が動く理由"があります。その感情が、予約や来店につながっていく。',
+  'FAISEでは、単に広告を出すことを目的にはしていません。大切にしているのは、施設やブランドが持つ魅力を、"行きたくなる理由"として世の中に届けることです。',
+  '映像、世界観、言葉、導線設計——さまざまな要素を通して、人の感情を動かし、行動につながる体験を設計していく。それが、FAISEの考えるプロモーションです。',
+  'エンターテインメントの力で、集客施設の価値を、もっと世の中に広げていきたい。FAISEは、そんな想いから生まれました。',
+]
+
 export default function Founder() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [modalOpen, setModalOpen] = useState(false)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <>
@@ -37,58 +51,74 @@ export default function Founder() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.1 }}
             >
+              {/* Core quote */}
               <blockquote className="text-[clamp(22px,3.2vw,40px)] font-black leading-[1.7] tracking-tight text-white mb-10">
                 人を動かすのは、<br />
                 感情だと思っています。
               </blockquote>
 
-              <div className="space-y-6 text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2.2] max-w-xl mb-12">
-                <p>
-                  どれだけ情報が溢れる時代でも、<br />
-                  人が本当に行動を起こす瞬間には、<br />
-                  必ず"心が動く理由"があります。
-                </p>
-                <p className="text-white/90 font-medium">
-                  「この場所に行ってみたい」<br />
-                  「この人に会ってみたい」<br />
-                  「この体験をしてみたい」
-                </p>
-                <p>
-                  その感情が、<br />
-                  予約や来店につながっていく。
-                </p>
-                <p>
-                  FAISEでは、<br />
-                  単に広告を出すことを目的にはしていません。
-                </p>
-                <p>
-                  大切にしているのは、<br />
-                  施設やブランドが持つ魅力を、<br />
-                  "行きたくなる理由"として<br />
-                  世の中に届けることです。
-                </p>
-                <p>
-                  映像、世界観、言葉、導線設計。
-                </p>
-                <p>
-                  さまざまな要素を通して、<br />
-                  人の感情を動かし、<br />
-                  行動につながる体験を設計していく。
-                </p>
-                <p>
-                  それが、<br />
-                  FAISEの考えるプロモーションです。
-                </p>
-                <p className="text-white/90 font-medium">
-                  エンターテインメントの力で、<br />
-                  集客施設の価値を、<br />
-                  もっと世の中に広げていきたい。
-                </p>
-                <p>
-                  FAISEは、<br />
-                  そんな想いから生まれました。
-                </p>
+              {/* Key phrases — large typography */}
+              <div className="space-y-3 mb-10 pl-4 border-l-2 border-[#4d7fff]/60">
+                {phrases.map((phrase, i) => (
+                  <motion.p
+                    key={i}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.7, delay: 0.3 + i * 0.1 }}
+                    className="text-[clamp(16px,2vw,26px)] font-bold text-white/90 leading-[1.6]"
+                  >
+                    {phrase}
+                  </motion.p>
+                ))}
               </div>
+
+              {/* Summary — always visible */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-6"
+              >
+                その感情が、予約や来店につながっていく。<br />
+                FAISEは、"行きたくなる理由"を設計する会社です。
+              </motion.p>
+
+              {/* Expand button */}
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                onClick={() => setExpanded(v => !v)}
+                className="group flex items-center gap-3 text-[clamp(11px,1vw,13px)] font-semibold tracking-[0.2em] uppercase text-[#4d7fff]/70 hover:text-[#4d7fff] transition-colors duration-300 mb-10"
+              >
+                <span>{expanded ? '閉じる' : '全文を読む'}</span>
+                <motion.span
+                  animate={{ rotate: expanded ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-lg leading-none"
+                >
+                  +
+                </motion.span>
+              </motion.button>
+
+              {/* Full message — expandable */}
+              <AnimatePresence>
+                {expanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-5 text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-12 border-t border-[#4d7fff]/20 pt-8">
+                      {fullMessage.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Career timeline — desktop only */}
               <div className="relative pt-8 hidden md:block">
