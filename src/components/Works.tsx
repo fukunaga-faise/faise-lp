@@ -30,21 +30,24 @@ export default function Works() {
 
       <div className="relative max-w-7xl mx-auto px-8 md:px-20 py-32 md:py-52" ref={ref}>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8 }}
-          className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-16 md:mb-20"
-        >
-          Case Study
-        </motion.p>
+        {/* Large decorative section label — foru style */}
+        <div className="overflow-hidden mb-4">
+          <motion.p
+            initial={{ y: 40, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-white/8 select-none"
+          >
+            Our Works
+          </motion.p>
+        </div>
 
         {/* Headline */}
         <div className="overflow-hidden mb-16 md:mb-20">
           <motion.h2
             initial={{ y: 60, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(26px,4vw,50px)] font-black leading-[1.25] tracking-tight text-white"
           >
             &ldquo;行きたくなる理由&rdquo;を
@@ -53,7 +56,7 @@ export default function Works() {
           </motion.h2>
         </div>
 
-        {/* Stats — prominent */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -62,8 +65,8 @@ export default function Works() {
         >
           {stats.map((s, i) => (
             <div key={i} className="flex-1 py-10 md:py-14 border-b md:border-b-0 md:border-r border-white/15 last:border-r-0 md:pr-16 first:md:pr-16 last:md:pl-16">
-              <p className="font-inter text-[10px] tracking-[0.35em] uppercase text-white/30 mb-3">{s.label}</p>
-              <p className="text-[clamp(52px,8vw,96px)] font-black text-white leading-none tracking-tight mb-2">
+              <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-3">{s.label}</p>
+              <p className="font-inter text-[clamp(52px,8vw,96px)] font-black text-white leading-none tracking-tight mb-2">
                 {s.value}
               </p>
               <p className="text-[12px] text-white/35">{s.sub}</p>
@@ -85,7 +88,14 @@ export default function Works() {
             <p>
               単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。
             </p>
-            <p className="mt-6 text-[11px] text-white/20">
+            <div className="flex flex-wrap gap-2 pt-2">
+              {['#パーソナルジム', '#ブランディング', '#動画広告', '#広告運用'].map(tag => (
+                <span key={tag} className="font-inter text-[11px] tracking-wide text-white/35 border border-white/15 px-3 py-1">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p className="pt-2 text-[11px] text-white/20">
               ※実績の一例です。成果を保証するものではありません。
             </p>
           </motion.div>
@@ -95,7 +105,7 @@ export default function Works() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <p className="font-inter text-[10px] tracking-[0.35em] uppercase text-white/25 mb-6">Clients</p>
+            <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/25 mb-6">Clients</p>
             <div className="space-y-4">
               {clients.map((c, i) => (
                 <p key={i} className="text-[15px] font-semibold text-white/55 tracking-wide border-b border-white/10 pb-4 last:border-b-0">

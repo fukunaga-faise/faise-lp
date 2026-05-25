@@ -18,25 +18,25 @@ export default function Mission() {
       </div>
 
       <div className="relative max-w-7xl mx-auto" ref={ref}>
-        {/* Left accent line + label */}
-        <div className="flex items-start gap-8 mb-16 md:mb-24">
-          <div className="w-px self-stretch bg-white/20 shrink-0" />
+
+        {/* Large decorative section label — foru style */}
+        <div className="overflow-hidden mb-4">
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 pt-1"
+            initial={{ y: 40, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-white/8 select-none"
           >
-            Mission
+            Our Mission
           </motion.p>
         </div>
 
-        <div className="pl-0 md:pl-10 max-w-3xl space-y-10">
+        <div className="pl-0 md:pl-2 max-w-3xl space-y-10">
           <div className="overflow-hidden">
             <motion.h2
               initial={{ y: 70, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white"
             >
               人は、論理だけでは動かない。

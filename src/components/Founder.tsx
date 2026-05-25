@@ -17,16 +17,20 @@ export default function Founder() {
 
   return (
     <>
-      <section id="founder" className="bg-[#0a0a0a] border-t border-white/10 py-32 md:py-52 px-8 md:px-20">
+      <section id="founder" className="bg-[#0a0a0a] border-t border-white/10 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto" ref={ref}>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/30 mb-16 md:mb-20"
-          >
-            Founder
-          </motion.p>
+
+          {/* Large decorative section label — foru style */}
+          <div className="overflow-hidden mb-4">
+            <motion.p
+              initial={{ y: 40, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-white/8 select-none"
+            >
+              Founder
+            </motion.p>
+          </div>
 
           <div className="grid md:grid-cols-[1fr_320px] gap-16 md:gap-28 items-start">
             {/* Message */}
@@ -51,22 +55,25 @@ export default function Founder() {
                 </p>
               </div>
 
-              <div className="space-y-0 border-t border-white/10">
-                {career.map((c, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.7, delay: 0.4 + i * 0.1 }}
-                    className="flex items-start gap-6 py-5 border-b border-white/10"
-                  >
-                    <span className="font-inter text-[10px] tracking-widest text-white/25 w-20 shrink-0 mt-0.5">{c.period}</span>
-                    <div>
-                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
-                      <p className="text-[12px] text-white/35 mt-0.5">{c.role}</p>
-                    </div>
-                  </motion.div>
-                ))}
+              {/* Career — horizontal timeline foru style */}
+              <div className="relative pt-8">
+                <div className="absolute top-0 left-0 right-0 h-px bg-white/15" />
+                <div className="flex flex-col md:flex-row gap-8 md:gap-0">
+                  {career.map((c, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
+                      className="flex-1 md:pr-8 last:pr-0 relative"
+                    >
+                      <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-white/30" />
+                      <p className="font-inter text-[10px] tracking-[0.3em] text-white/25 mb-2">{c.period}</p>
+                      <p className="text-[14px] font-bold text-white/80 mb-0.5">{c.company}</p>
+                      <p className="text-[12px] text-white/35">{c.role}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
@@ -77,9 +84,7 @@ export default function Founder() {
               transition={{ duration: 1, delay: 0.25 }}
               className="flex flex-col gap-5"
             >
-              <div
-                className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]"
-              >
+              <div className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]">
                 {/* Replace with: <img src="/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover" /> */}
               </div>
               <div>
