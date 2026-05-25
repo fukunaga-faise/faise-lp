@@ -33,9 +33,9 @@ export default function Mission() {
               initial={{ y: 70, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white"
+              className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep"
             >
-              人は、論理だけでは動かない。
+              人は、論理だけでは<wbr />動かない。
             </motion.h2>
           </div>
 
