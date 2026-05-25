@@ -2,11 +2,12 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import Image from 'next/image'
 
 const clients = [
-  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ・プロモーション' },
-  { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア' },
-  { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス' },
+  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ・プロモーション', logo: '/images/logo-yoshimoto.png' },
+  { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', logo: '/images/logo-elife.png' },
+  { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', logo: '/images/logo-wellnessplus.png' },
 ]
 
 export default function Clients() {
@@ -56,6 +57,11 @@ export default function Clients() {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
               className="bg-[#0f0f0f] p-7 md:p-10 flex flex-col gap-3"
             >
+              {c.logo && (
+                <div className="mb-1">
+                  <Image src={c.logo} alt={c.name} width={120} height={40} className="object-contain object-left h-8 w-auto" />
+                </div>
+              )}
               <p className="text-[clamp(20px,2.2vw,30px)] font-black text-white leading-tight">{c.name}</p>
               <p className="font-inter text-[clamp(11px,1vw,13px)] text-white/40 tracking-wide">{c.nameEn}</p>
               <span className="self-start text-[clamp(11px,1vw,13px)] font-medium text-[#4d7fff] border border-[#4d7fff]/50 px-3 py-1 mt-auto">

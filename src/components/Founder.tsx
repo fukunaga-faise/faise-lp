@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import ContactModal from './ContactModal'
 
 const career = [
   { period: '2021–2023', company: 'ソニー株式会社' },
@@ -18,15 +17,14 @@ const phrases = [
 
 const fullMessage = [
   'どれだけ情報が溢れる時代でも、人が本当に行動を起こす瞬間には、必ず"心が動く理由"があります。その感情が、予約や来店につながっていく。',
-  'FAISEでは、単に広告を出すことを目的にはしていません。大切にしているのは、施設やブランドが持つ魅力を、"行きたくなる理由"として世の中に届けることです。',
-  '映像、世界観、言葉、導線設計——さまざまな要素を通して、人の感情を動かし、行動につながる体験を設計していく。それが、FAISEの考えるプロモーションです。',
-  'エンターテインメントの力で、集客施設の価値を、もっと世の中に広げていきたい。FAISEは、そんな想いから生まれました。',
+  'Faiseでは、単に広告を出すことを目的にはしていません。大切にしているのは、施設やブランドが持つ魅力を、"行きたくなる理由"として世の中に届けることです。',
+  '映像、世界観、言葉、導線設計——さまざまな要素を通して、人の感情を動かし、行動につながる体験を設計していく。それが、Faiseの考えるプロモーションです。',
+  'エンターテインメントの力で、集客施設の価値を、もっと世の中に広げていきたい。Faiseは、そんな想いから生まれました。',
 ]
 
 export default function Founder() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const [modalOpen, setModalOpen] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -80,7 +78,7 @@ export default function Founder() {
                 className="text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-6"
               >
                 その感情が、予約や来店につながっていく。<br />
-                FAISEは、"行きたくなる理由"を設計する会社です。
+                Faiseは、"行きたくなる理由"を設計する会社です。
               </motion.p>
 
               {/* Expand button */}
@@ -178,29 +176,8 @@ export default function Founder() {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.7 }}
-            className="mt-24 md:mt-36 pt-12 border-t border-[#4d7fff]/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
-          >
-            <div>
-              <p className="text-[clamp(18px,2.5vw,28px)] font-black text-white leading-snug mb-2">
-                まずは、お話を聞かせてください。
-              </p>
-              <p className="text-[13px] text-white/80">無料相談受付中。2営業日以内にご連絡します。</p>
-            </div>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="shrink-0 text-[11px] font-bold tracking-[0.2em] uppercase text-white border border-[#4d7fff]/50 hover:border-[#4d7fff] hover:bg-[#4d7fff] px-10 py-4 transition-all duration-300"
-            >
-              集客について相談する
-            </button>
-          </motion.div>
         </div>
       </section>
-
-      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
 }
