@@ -58,17 +58,6 @@ export default function Hero() {
           />
         ))}
 
-        {/* F mark — slowly drifting */}
-        <div className="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
-          <motion.img
-            src="/logo-fmark.png"
-            alt=""
-            aria-hidden="true"
-            className="w-[110vw] md:w-[72vw] opacity-40 select-none translate-x-[8%]"
-            animate={{ y: [0, -24, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          />
-        </div>
 
         <div className="relative max-w-7xl w-full">
           <motion.p
