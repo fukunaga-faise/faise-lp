@@ -42,7 +42,7 @@ export default function Founder() {
                 感情だと思っています。
               </blockquote>
 
-              <div className="space-y-5 text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2.2] max-w-xl mb-12">
+              <div className="space-y-5 text-[clamp(16px,1.8vw,28px)] text-white/70 leading-[2.2] max-w-xl mb-12">
                 <p>
                   ただ広告を出すのではなく、"行きたくなる理由"をつくりたい。
                   ソニーの店頭で「人が止まる瞬間」を研究し、テーマパークで「また来たい感情」を設計した経験が、その確信を深めました。

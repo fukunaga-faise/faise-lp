@@ -46,7 +46,7 @@ export default function Mission() {
             className="flex items-start gap-4"
           >
             <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
-            <p className="text-[clamp(18px,2.4vw,30px)] text-white/70 leading-[1.9] font-medium">
+            <p className="text-[clamp(20px,2.8vw,40px)] text-white/70 leading-[1.9] font-medium">
               行きたくなる理由には、<br />
               感情がある。
             </p>
@@ -56,7 +56,7 @@ export default function Mission() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-            className="text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2.4] pl-5"
+            className="text-[clamp(16px,1.8vw,28px)] text-white/70 leading-[2.4] pl-5"
           >
             FAISEは、<br />
             感情が動く瞬間を設計し、<br />

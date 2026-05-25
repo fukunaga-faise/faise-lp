@@ -57,11 +57,11 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
             <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-[#4d7fff]/60">{s.en}</span>
           </div>
 
-          <h3 className="text-[clamp(24px,3.5vw,42px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
+          <h3 className="text-[clamp(26px,3.5vw,48px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
             {s.title}
           </h3>
 
-          <p className="text-[clamp(17px,2vw,26px)] font-medium text-white/80 leading-[1.8] mb-6 whitespace-pre-line">
+          <p className="text-[clamp(18px,2.4vw,32px)] font-medium text-white/80 leading-[1.8] mb-6 whitespace-pre-line">
             {s.copy}
           </p>
 
