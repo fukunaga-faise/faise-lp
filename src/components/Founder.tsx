@@ -5,8 +5,8 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import ContactModal from './ContactModal'
 
 const career = [
-  { period: '2022–2024', company: 'ソニー株式会社' },
-  { period: '2024–2025', company: '株式会社刀' },
+  { period: '2021–2023', company: 'ソニー株式会社' },
+  { period: '2023–2025', company: '株式会社刀' },
   { period: '2025–', company: '株式会社Faise' },
 ]
 

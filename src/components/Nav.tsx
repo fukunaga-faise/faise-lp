@@ -56,9 +56,9 @@ export default function Nav() {
 
         <button
           onClick={() => setModalOpen(true)}
-          className="hidden md:inline-flex items-center text-[11px] font-bold tracking-[0.18em] uppercase px-6 py-2.5 text-white border border-white/20 hover:border-white hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
+          className="hidden md:inline-flex items-center text-[13px] font-bold tracking-[0.15em] uppercase px-8 py-3 text-white border border-white/20 hover:border-white hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
         >
-          相談する
+          問い合わせ
         </button>
 
         <button

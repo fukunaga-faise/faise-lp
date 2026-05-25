@@ -1,8 +1,6 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import ContactModal from './ContactModal'
 
 const blobs = [
   {
@@ -26,8 +24,6 @@ const blobs = [
 ]
 
 export default function Hero() {
-  const [modalOpen, setModalOpen] = useState(false)
-
   return (
     <>
       <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pt-32 pb-20 md:pt-0 md:pb-28 overflow-hidden">
@@ -88,7 +84,7 @@ export default function Hero() {
           </motion.p>
 
           {/* PC layout: h1 left + logo right */}
-          <div className="md:inline-flex md:items-end md:gap-10">
+          <div className="md:inline-flex md:items-end md:gap-6">
             <div>
               <div className="overflow-hidden">
                 <motion.h1
@@ -102,21 +98,6 @@ export default function Hero() {
                   人を動かす。
                 </motion.h1>
               </div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1.1 }}
-                className="mt-10 md:mt-12"
-              >
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="group inline-flex items-center gap-5 text-[clamp(12px,1.1vw,15px)] font-semibold tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors duration-300"
-                >
-                  集客について相談する
-                  <span className="block h-px w-10 bg-[#4d7fff]/60 group-hover:w-20 group-hover:bg-[#4d7fff] transition-all duration-500 ease-out" />
-                </button>
-              </motion.div>
             </div>
 
             {/* PC logo — same height as h1 block */}
@@ -124,16 +105,17 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden md:flex flex-col items-center gap-4 pb-2 shrink-0"
+              className="hidden md:flex flex-col items-center gap-3 pb-1 shrink-0"
             >
               <img
                 src="/logo-fmark.png"
                 alt="Faise"
                 className="h-[clamp(90px,17vw,220px)] w-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
               />
-              <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(13px,1.2vw,18px)] uppercase">
-                Faise Inc.
-              </span>
+              <div className="flex flex-col items-center leading-tight">
+                <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Faise</span>
+                <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Inc.</span>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -148,8 +130,6 @@ export default function Hero() {
           <div className="w-px h-12 bg-gradient-to-b from-[#4d7fff]/40 to-transparent" />
         </motion.div>
       </section>
-
-      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
 }
