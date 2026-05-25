@@ -29,7 +29,7 @@ const services = [
     copy: '広告ではなく、\n"見たくなるコンテンツ"を。',
     body: '思わず止まり、続きが見たくなる。エンタメ発想でショート動画・広告クリエイティブを企画・制作。キャスティングからSNS施策まで対応します。',
     tags: ['#ショート動画制作', '#広告クリエイティブ', '#キャスティング', '#SNS施策'],
-    img: '/images/service-video.jpg',
+    img: '/images/service-casting.jpg',
   },
 ]
 
