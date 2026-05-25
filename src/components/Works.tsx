@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 
 const stats = [
   { value: '¥1,000', label: 'CPA', sub: '体験予約 1件あたり' },
-  { value: '150', label: '体験予約数', sub: '広告運用開始から2週間' },
+  { value: '450', label: '体験予約数', sub: '広告運用開始から1ヶ月' },
   { value: '+300', label: '入会者数', sub: '施策開始後の純増' },
 ]
 
