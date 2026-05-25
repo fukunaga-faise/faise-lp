@@ -15,16 +15,18 @@ export default function Clients() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section className="bg-white py-16 md:py-24 px-6 border-t border-[#eaeaea]">
+    <section className="bg-white py-16 md:py-24 px-6 border-t border-[#eaeaea] overflow-hidden">
       <div className="max-w-5xl mx-auto" ref={ref}>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="font-inter text-[11px] tracking-[0.28em] uppercase text-[#0050d0] mb-6"
-        >
-          Clients
-        </motion.p>
+        <div className="overflow-hidden mb-2">
+          <motion.p
+            initial={{ y: 40, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/15 select-none"
+          >
+            Clients
+          </motion.p>
+        </div>
 
         <div className="overflow-hidden mb-10">
           <motion.h2

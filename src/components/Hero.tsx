@@ -59,20 +59,20 @@ export default function Hero() {
         ))}
 
 
-        {/* Hero logo — centered upper area */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pb-32 pointer-events-none">
+        {/* Hero logo */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pb-32 md:items-end md:justify-center md:pb-0 md:pr-[8vw] pointer-events-none">
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-4"
           >
             <img
               src="/logo-fmark.png"
               alt="Faise"
-              className="w-40 md:w-56 h-auto drop-shadow-[0_0_40px_rgba(77,127,255,0.6)]"
+              className="w-40 md:w-[22vw] max-w-[340px] h-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
             />
-            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] md:text-[22px] uppercase">
+            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] md:text-[20px] uppercase">
               Faise Inc.
             </span>
           </motion.div>

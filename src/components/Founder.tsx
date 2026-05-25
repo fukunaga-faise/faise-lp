@@ -53,17 +53,17 @@ export default function Founder() {
                 </p>
               </div>
 
-              {/* Career timeline */}
-              <div className="relative pt-8">
+              {/* Career timeline — desktop only */}
+              <div className="relative pt-8 hidden md:block">
                 <div className="absolute top-0 left-0 right-0 h-px bg-[#4d7fff]/30" />
-                <div className="flex flex-col md:flex-row gap-8 md:gap-0">
+                <div className="flex flex-row gap-0">
                   {career.map((c, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 12 }}
                       animate={inView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
-                      className="flex-1 md:pr-8 last:pr-0 relative"
+                      className="flex-1 pr-8 last:pr-0 relative"
                     >
                       <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
                       <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-2">{c.period}</p>
@@ -87,6 +87,26 @@ export default function Founder() {
                 <p className="font-inter text-[10px] tracking-[0.25em] uppercase text-[#4d7fff]/50 mb-1">Haruto Fukunaga</p>
                 <p className="text-[18px] font-black text-white">福永 遥斗</p>
                 <p className="text-[12px] text-white/80 mt-1">株式会社Faise 代表取締役</p>
+              </div>
+
+              {/* Career timeline — mobile only */}
+              <div className="relative pt-6 md:hidden">
+                <div className="absolute top-0 left-0 right-0 h-px bg-[#4d7fff]/30" />
+                <div className="flex flex-col gap-5">
+                  {career.map((c, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
+                      className="relative pl-4"
+                    >
+                      <div className="absolute left-0 top-0 w-px h-full bg-[#4d7fff]/40" />
+                      <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-1">{c.period}</p>
+                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
