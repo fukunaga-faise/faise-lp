@@ -6,22 +6,22 @@ import ContactModal from './ContactModal'
 
 const blobs = [
   {
-    className: 'w-[600px] h-[600px] top-[-10%] right-[5%]',
-    animate: { x: [0, 40, -20, 0], y: [0, -30, 20, 0] },
-    duration: 18,
-    color: 'rgba(77,127,255,0.13)',
+    className: 'w-[700px] h-[700px] top-[-15%] right-[0%]',
+    animate: { x: [0, 60, -30, 0], y: [0, -40, 30, 0] },
+    duration: 16,
+    color: 'rgba(77,127,255,0.22)',
   },
   {
-    className: 'w-[500px] h-[500px] bottom-[-5%] left-[-5%]',
-    animate: { x: [0, -30, 20, 0], y: [0, 30, -20, 0] },
-    duration: 22,
-    color: 'rgba(0,60,180,0.10)',
+    className: 'w-[550px] h-[550px] bottom-[-10%] left-[-8%]',
+    animate: { x: [0, -40, 30, 0], y: [0, 40, -30, 0] },
+    duration: 20,
+    color: 'rgba(30,80,220,0.18)',
   },
   {
-    className: 'w-[400px] h-[400px] top-[40%] left-[30%]',
-    animate: { x: [0, 25, -15, 0], y: [0, -20, 30, 0] },
-    duration: 26,
-    color: 'rgba(77,127,255,0.07)',
+    className: 'w-[400px] h-[400px] top-[35%] left-[25%]',
+    animate: { x: [0, 30, -20, 0], y: [0, -30, 40, 0] },
+    duration: 24,
+    color: 'rgba(77,127,255,0.12)',
   },
 ]
 
@@ -36,7 +36,7 @@ export default function Hero() {
         {blobs.map((blob, i) => (
           <motion.div
             key={i}
-            className={`absolute rounded-full pointer-events-none blur-[120px] ${blob.className}`}
+            className={`absolute rounded-full pointer-events-none blur-[80px] ${blob.className}`}
             style={{ background: blob.color }}
             animate={blob.animate}
             transition={{
@@ -54,8 +54,8 @@ export default function Hero() {
             alt=""
             aria-hidden="true"
             className="w-[110vw] md:w-[72vw] opacity-40 select-none translate-x-[8%]"
-            animate={{ y: [0, -18, 0] }}
-            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ y: [0, -24, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
 
