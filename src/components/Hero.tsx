@@ -19,12 +19,12 @@ export default function Hero() {
           }}
         />
 
-        {/* F mark — hero-filling, bottom protrudes below heading */}
-        <div className="absolute top-[15%] right-[-8vw] pointer-events-none">
+        {/* F mark — centered vertically, right-anchored */}
+        <div className="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
           <img
             src="/logo-fmark.png"
             alt=""
-            className="w-[90vw] md:w-[72vw] opacity-40 select-none"
+            className="w-[110vw] md:w-[72vw] opacity-40 select-none translate-x-[8%]"
             aria-hidden="true"
           />
         </div>
