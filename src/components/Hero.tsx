@@ -30,7 +30,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28 overflow-hidden">
+      <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pt-32 pb-20 md:pt-0 md:pb-28 overflow-hidden">
 
         {/* Background image */}
         <div className="absolute inset-0 pointer-events-none">
@@ -38,9 +38,9 @@ export default function Hero() {
             src="/images/bg-candidate-k.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-20 select-none"
+            className="w-full h-full object-cover opacity-40 select-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-[#0a0a0a]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
         </div>
 
         {/* Animated blobs */}
