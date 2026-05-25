@@ -37,12 +37,12 @@ export default function Founder() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.1 }}
             >
-              <blockquote className="text-[clamp(20px,3vw,34px)] font-black leading-[1.7] tracking-tight text-white mb-10">
+              <blockquote className="text-[clamp(22px,3.2vw,40px)] font-black leading-[1.7] tracking-tight text-white mb-10">
                 人を動かすのは、<br />
                 感情だと思っています。
               </blockquote>
 
-              <div className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/70 leading-[2.2] max-w-xl mb-12">
+              <div className="space-y-5 text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2.2] max-w-xl mb-12">
                 <p>
                   ただ広告を出すのではなく、"行きたくなる理由"をつくりたい。
                   ソニーの店頭で「人が止まる瞬間」を研究し、テーマパークで「また来たい感情」を設計した経験が、その確信を深めました。

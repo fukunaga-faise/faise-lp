@@ -40,7 +40,7 @@ export default function Works() {
             initial={{ y: 60, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(26px,4vw,50px)] font-black leading-[1.25] tracking-tight text-white"
+            className="text-[clamp(28px,4vw,56px)] font-black leading-[1.25] tracking-tight text-white"
           >
             &ldquo;行きたくなる理由&rdquo;を
             <br />
@@ -70,7 +70,7 @@ export default function Works() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.35 }}
-            className="space-y-5 text-[clamp(13px,1.5vw,16px)] text-white/70 leading-[2.2]"
+            className="space-y-5 text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2.2]"
           >
             <p>某都内パーソナルジムにて、トレーナーのブランディング設計から動画広告の構成・演出・広告運用までを一気通貫で支援。</p>
             <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
