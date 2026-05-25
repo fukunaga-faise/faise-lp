@@ -47,7 +47,7 @@ export default function Clients() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#4d7fff]/10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-px bg-[#4d7fff]/10">
           {clients.map((c, i) => (
             <motion.div
               key={i}
