@@ -28,7 +28,7 @@ export default function Works() {
             initial={{ y: 40, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
           >
             Our Works
           </motion.p>
@@ -68,13 +68,13 @@ export default function Works() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.35 }}
-          className="space-y-5 text-[clamp(16px,1.8vw,28px)] text-white/70 leading-[2.2] max-w-3xl"
+          className="space-y-5 text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.2] max-w-3xl"
         >
           <p>某都内パーソナルジムにて、トレーナーのブランディング設計から動画広告の構成・演出・広告運用までを一気通貫で支援。</p>
           <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
           <div className="flex flex-wrap gap-2 pt-2">
             {['#パーソナルジム', '#ブランディング', '#動画広告', '#広告運用'].map(tag => (
-              <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-[#4d7fff]/90 border border-[#4d7fff]/50 px-3 py-1">
+              <span key={tag} className="font-inter text-[clamp(13px,1.1vw,16px)] tracking-wide text-white border border-white/30 bg-[#4d7fff]/20 px-4 py-2">
                 {tag}
               </span>
             ))}

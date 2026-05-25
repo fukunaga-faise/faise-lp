@@ -39,7 +39,7 @@ export default function Founder() {
               initial={{ y: 40, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
+              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/60 select-none"
             >
               Message
             </motion.p>
@@ -133,8 +133,8 @@ export default function Founder() {
                       className="flex-1 pr-8 last:pr-0 relative"
                     >
                       <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
-                      <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-2">{c.period}</p>
-                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
+                      <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.3em] text-[#4d7fff]/80 mb-2">{c.period}</p>
+                      <p className="text-[clamp(15px,1.4vw,20px)] font-bold text-white">{c.company}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -153,7 +153,7 @@ export default function Founder() {
               <div>
                 <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.25em] uppercase text-[#4d7fff]/70 mb-2">Haruto Fukunaga</p>
                 <p className="text-[clamp(22px,2.5vw,32px)] font-black text-white">福永 遥斗</p>
-                <p className="text-[clamp(13px,1.2vw,16px)] text-white/70 mt-1">株式会社Faise 代表取締役</p>
+                <p className="text-[clamp(13px,1.2vw,16px)] text-white/90 mt-1">株式会社Faise 代表取締役</p>
               </div>
 
               {/* Career timeline — mobile only */}

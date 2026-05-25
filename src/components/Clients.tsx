@@ -22,7 +22,7 @@ export default function Clients() {
             initial={{ y: 40, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
           >
             Clients
           </motion.p>
@@ -56,9 +56,9 @@ export default function Clients() {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
               className="bg-[#0f0f0f] p-7 md:p-10 flex flex-col gap-3"
             >
-              <p className="text-[clamp(16px,1.8vw,22px)] font-black text-white leading-tight">{c.name}</p>
-              <p className="font-inter text-[10px] text-white/30 tracking-wide">{c.nameEn}</p>
-              <span className="self-start text-[10px] font-medium text-[#4d7fff]/80 border border-[#4d7fff]/30 px-2 py-0.5 mt-auto">
+              <p className="text-[clamp(20px,2.2vw,30px)] font-black text-white leading-tight">{c.name}</p>
+              <p className="font-inter text-[clamp(11px,1vw,13px)] text-white/40 tracking-wide">{c.nameEn}</p>
+              <span className="self-start text-[clamp(11px,1vw,13px)] font-medium text-[#4d7fff] border border-[#4d7fff]/50 px-3 py-1 mt-auto">
                 {c.category}
               </span>
             </motion.div>

@@ -28,7 +28,7 @@ export default function Nav() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-20 h-16 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-20 h-20 transition-all duration-500 ${
           scrolled ? 'bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
         }`}
       >
@@ -46,7 +46,7 @@ export default function Nav() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 hover:text-white transition-colors duration-300"
+                className="text-[14px] font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white transition-colors duration-300"
               >
                 {l.label}
               </a>
@@ -56,7 +56,7 @@ export default function Nav() {
 
         <button
           onClick={() => setModalOpen(true)}
-          className="hidden md:inline-flex items-center text-[13px] font-bold tracking-[0.15em] uppercase px-8 py-3 text-white border border-white/20 hover:border-white hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
+          className="hidden md:inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 text-white border border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
         >
           問い合わせ
         </button>

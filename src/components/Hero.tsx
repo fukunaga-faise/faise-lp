@@ -84,7 +84,7 @@ export default function Hero() {
           </motion.p>
 
           {/* PC layout: h1 left + logo right */}
-          <div className="md:inline-flex md:items-end md:gap-6">
+          <div className="md:inline-flex md:items-end md:gap-3">
             <div>
               <div className="overflow-hidden">
                 <motion.h1

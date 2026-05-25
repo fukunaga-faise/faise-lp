@@ -71,7 +71,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
 
           <div className="flex flex-wrap gap-2">
             {s.tags.map((tag) => (
-              <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-[#4d7fff]/90 border border-[#4d7fff]/50 px-3 py-1.5 hover:bg-[#4d7fff]/10 transition-colors duration-200">
+              <span key={tag} className="font-inter text-[clamp(13px,1.1vw,16px)] tracking-wide text-white border border-white/30 bg-[#4d7fff]/20 px-4 py-2 hover:bg-[#4d7fff]/40 transition-colors duration-200">
                 {tag}
               </span>
             ))}
