@@ -88,8 +88,8 @@ export default function Hero() {
           </motion.p>
 
           {/* PC layout: h1 left + logo right */}
-          <div className="md:flex md:items-end md:gap-12 lg:gap-20">
-            <div className="flex-1">
+          <div className="md:inline-flex md:items-end md:gap-10">
+            <div>
               <div className="overflow-hidden">
                 <motion.h1
                   initial={{ y: 100, opacity: 0 }}
