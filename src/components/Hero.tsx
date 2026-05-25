@@ -4,6 +4,27 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import ContactModal from './ContactModal'
 
+const blobs = [
+  {
+    className: 'w-[600px] h-[600px] top-[-10%] right-[5%]',
+    animate: { x: [0, 40, -20, 0], y: [0, -30, 20, 0] },
+    duration: 18,
+    color: 'rgba(77,127,255,0.13)',
+  },
+  {
+    className: 'w-[500px] h-[500px] bottom-[-5%] left-[-5%]',
+    animate: { x: [0, -30, 20, 0], y: [0, 30, -20, 0] },
+    duration: 22,
+    color: 'rgba(0,60,180,0.10)',
+  },
+  {
+    className: 'w-[400px] h-[400px] top-[40%] left-[30%]',
+    animate: { x: [0, 25, -15, 0], y: [0, -20, 30, 0] },
+    duration: 26,
+    color: 'rgba(77,127,255,0.07)',
+  },
+]
+
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -11,19 +32,30 @@ export default function Hero() {
     <>
       <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28 overflow-hidden">
 
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,80,208,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0,40,120,0.14) 0%, transparent 60%)',
-          }}
-        />
+        {/* Animated blobs */}
+        {blobs.map((blob, i) => (
+          <motion.div
+            key={i}
+            className={`absolute rounded-full pointer-events-none blur-[120px] ${blob.className}`}
+            style={{ background: blob.color }}
+            animate={blob.animate}
+            transition={{
+              duration: blob.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
 
+        {/* F mark — slowly drifting */}
         <div className="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
-          <img
+          <motion.img
             src="/logo-fmark.png"
             alt=""
-            className="w-[110vw] md:w-[72vw] opacity-40 select-none translate-x-[8%]"
             aria-hidden="true"
+            className="w-[110vw] md:w-[72vw] opacity-40 select-none translate-x-[8%]"
+            animate={{ y: [0, -18, 0] }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
 
