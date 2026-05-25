@@ -5,6 +5,7 @@ import Services from '@/components/Services'
 import Works from '@/components/Works'
 import Clients from '@/components/Clients'
 import Founder from '@/components/Founder'
+import Company from '@/components/Company'
 import CTA from '@/components/CTA'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Works />
       <Clients />
       <Founder />
+      <Company />
       <CTA />
     </main>
   )
