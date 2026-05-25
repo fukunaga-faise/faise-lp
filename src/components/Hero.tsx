@@ -11,15 +11,13 @@ export default function Hero() {
     <>
       <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pb-20 md:pb-28 overflow-hidden">
 
-        {/* Subtle gradient background — no photo */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,80,208,0.13) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0,40,120,0.10) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,80,208,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0,40,120,0.14) 0%, transparent 60%)',
           }}
         />
 
-        {/* F mark — centered vertically, right-anchored */}
         <div className="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden">
           <img
             src="/logo-fmark.png"
@@ -34,7 +32,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-white/25 mb-12 md:mb-16"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#0050d0]/70 mb-12 md:mb-16"
           >
             Faise Inc. — Experience Design Marketing
           </motion.p>
@@ -63,12 +61,11 @@ export default function Hero() {
               className="group inline-flex items-center gap-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 hover:text-white transition-colors duration-300"
             >
               集客について相談する
-              <span className="block h-px w-10 bg-white/30 group-hover:w-20 group-hover:bg-white/80 transition-all duration-500 ease-out" />
+              <span className="block h-px w-10 bg-[#0050d0]/60 group-hover:w-20 group-hover:bg-[#0050d0] transition-all duration-500 ease-out" />
             </button>
           </motion.div>
         </div>
 
-        {/* scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -76,7 +73,7 @@ export default function Hero() {
           className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-3"
         >
           <span className="font-inter text-[9px] tracking-[0.3em] uppercase text-white/20 [writing-mode:vertical-rl]">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-[#0050d0]/40 to-transparent" />
         </motion.div>
       </section>
 
