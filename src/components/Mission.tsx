@@ -49,7 +49,8 @@ export default function Mission() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-[clamp(17px,2vw,22px)] text-white/70 leading-[1.85] font-medium"
           >
-            行きたくなる理由には、感情がある。
+            行きたくなる理由には、<br />
+            感情がある。
           </motion.p>
 
           <motion.p
@@ -58,9 +59,10 @@ export default function Mission() {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-[clamp(13px,1.4vw,16px)] text-white/40 leading-[2.4]"
           >
-            FAISEは、エンタメ業界で培った「感情を動かす設計」を、集客施設のマーケティングに応用する会社です。<br />
-            広告を回す前に、"行きたくなる理由"そのものをつくる。<br />
-            それが私たちのアプローチです。
+            FAISEは、<br />
+            感情が動く瞬間を設計し、<br />
+            人が動きたくなる体験を、<br />
+            クリエイティブとして形にします。
           </motion.p>
         </div>
       </div>
