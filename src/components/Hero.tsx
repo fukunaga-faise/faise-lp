@@ -70,9 +70,9 @@ export default function Hero() {
             <img
               src="/logo-fmark.png"
               alt="Faise"
-              className="w-20 md:w-28 h-auto drop-shadow-[0_0_30px_rgba(77,127,255,0.5)]"
+              className="w-40 md:w-56 h-auto drop-shadow-[0_0_40px_rgba(77,127,255,0.6)]"
             />
-            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[13px] md:text-[15px] uppercase">
+            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] md:text-[22px] uppercase">
               Faise Inc.
             </span>
           </motion.div>
