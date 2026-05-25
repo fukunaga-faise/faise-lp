@@ -58,21 +58,20 @@ export default function Hero() {
           />
         ))}
 
-
-        {/* Hero logo */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pb-32 md:items-end md:justify-center md:pb-0 md:pr-[8vw] pointer-events-none">
+        {/* Mobile logo — centered upper */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pb-32 md:hidden pointer-events-none">
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-4"
+            className="flex flex-col items-center gap-3"
           >
             <img
               src="/logo-fmark.png"
               alt="Faise"
-              className="w-40 md:w-[22vw] max-w-[340px] h-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
+              className="w-40 h-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
             />
-            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] md:text-[20px] uppercase">
+            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] uppercase">
               Faise Inc.
             </span>
           </motion.div>
@@ -83,38 +82,60 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/70 mb-12 md:mb-16"
+            className="font-inter text-[clamp(12px,1.2vw,16px)] tracking-[0.3em] uppercase text-[#4d7fff]/80 mb-10 md:mb-14"
           >
             Faise Inc. — Experience Design Marketing
           </motion.p>
 
-          <div className="overflow-hidden">
-            <motion.h1
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(42px,8.5vw,112px)] font-black leading-[1.06] tracking-[-0.02em] text-white"
-            >
-              エンタメ発想で、
-              <br />
-              人を動かす。
-            </motion.h1>
-          </div>
+          {/* PC layout: h1 left + logo right */}
+          <div className="md:flex md:items-end md:gap-12 lg:gap-20">
+            <div className="flex-1">
+              <div className="overflow-hidden">
+                <motion.h1
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[clamp(42px,8.5vw,112px)] font-black leading-[1.06] tracking-[-0.02em] text-white"
+                >
+                  エンタメ発想で、
+                  <br />
+                  人を動かす。
+                </motion.h1>
+              </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.1 }}
-            className="mt-12 md:mt-16"
-          >
-            <button
-              onClick={() => setModalOpen(true)}
-              className="group inline-flex items-center gap-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 hover:text-white transition-colors duration-300"
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 1.1 }}
+                className="mt-10 md:mt-12"
+              >
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="group inline-flex items-center gap-5 text-[clamp(12px,1.1vw,15px)] font-semibold tracking-[0.22em] uppercase text-white/60 hover:text-white transition-colors duration-300"
+                >
+                  集客について相談する
+                  <span className="block h-px w-10 bg-[#4d7fff]/60 group-hover:w-20 group-hover:bg-[#4d7fff] transition-all duration-500 ease-out" />
+                </button>
+              </motion.div>
+            </div>
+
+            {/* PC logo — same height as h1 block */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="hidden md:flex flex-col items-center gap-4 pb-2 shrink-0"
             >
-              集客について相談する
-              <span className="block h-px w-10 bg-[#4d7fff]/60 group-hover:w-20 group-hover:bg-[#4d7fff] transition-all duration-500 ease-out" />
-            </button>
-          </motion.div>
+              <img
+                src="/logo-fmark.png"
+                alt="Faise"
+                className="h-[clamp(90px,17vw,220px)] w-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
+              />
+              <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(13px,1.2vw,18px)] uppercase">
+                Faise Inc.
+              </span>
+            </motion.div>
+          </div>
         </div>
 
         <motion.div

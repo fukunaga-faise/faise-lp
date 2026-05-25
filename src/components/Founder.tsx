@@ -84,9 +84,9 @@ export default function Founder() {
                 {/* Replace with: <img src="/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover" /> */}
               </div>
               <div>
-                <p className="font-inter text-[10px] tracking-[0.25em] uppercase text-[#4d7fff]/50 mb-1">Haruto Fukunaga</p>
-                <p className="text-[18px] font-black text-white">福永 遥斗</p>
-                <p className="text-[12px] text-white/80 mt-1">株式会社Faise 代表取締役</p>
+                <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.25em] uppercase text-[#4d7fff]/70 mb-2">Haruto Fukunaga</p>
+                <p className="text-[clamp(22px,2.5vw,32px)] font-black text-white">福永 遥斗</p>
+                <p className="text-[clamp(13px,1.2vw,16px)] text-white/70 mt-1">株式会社Faise 代表取締役</p>
               </div>
 
               {/* Career timeline — mobile only */}

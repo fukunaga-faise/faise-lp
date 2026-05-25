@@ -8,7 +8,7 @@ const links = [
   { label: 'Approach', href: '#mission' },
   { label: 'Services', href: '#services' },
   { label: 'Works', href: '#works' },
-  { label: 'Founder', href: '#founder' },
+  { label: 'Message', href: '#founder' },
 ]
 
 export default function Nav() {

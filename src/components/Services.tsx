@@ -54,7 +54,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
         >
           <div className="flex items-baseline gap-3 mb-8">
             <span className="font-inter text-[clamp(36px,5vw,56px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/25">{s.num}</span>
-            <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-[#4d7fff]/60">{s.en}</span>
+            <span className="font-inter text-[clamp(12px,1vw,15px)] tracking-[0.25em] uppercase text-[#4d7fff]/80">{s.en}</span>
           </div>
 
           <h3 className="text-[clamp(26px,3.5vw,48px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
@@ -71,7 +71,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
 
           <div className="flex flex-wrap gap-2">
             {s.tags.map((tag) => (
-              <span key={tag} className="font-inter text-[11px] tracking-wide text-[#4d7fff]/70 border border-[#4d7fff]/30 px-3 py-1.5 hover:bg-[#4d7fff]/10 transition-colors duration-200">
+              <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-[#4d7fff]/90 border border-[#4d7fff]/50 px-3 py-1.5 hover:bg-[#4d7fff]/10 transition-colors duration-200">
                 {tag}
               </span>
             ))}
@@ -105,7 +105,7 @@ export default function Services() {
               initial={{ y: 40, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
+              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
             >
               Our Services
             </motion.p>

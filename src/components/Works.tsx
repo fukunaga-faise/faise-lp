@@ -8,7 +8,6 @@ const stats = [
   { value: '20×', label: '体験予約数増加', sub: '広告運用開始初月' },
 ]
 
-const clients = ['吉本興業', 'eLife株式会社', 'wellnessplus株式会社']
 
 export default function Works() {
   const ref = useRef(null)
@@ -65,39 +64,23 @@ export default function Works() {
           ))}
         </motion.div>
 
-        <div className="grid md:grid-cols-[1fr_280px] gap-12 md:gap-24 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 0.35 }}
-            className="space-y-5 text-[clamp(16px,1.8vw,28px)] text-white/70 leading-[2.2]"
-          >
-            <p>某都内パーソナルジムにて、トレーナーのブランディング設計から動画広告の構成・演出・広告運用までを一気通貫で支援。</p>
-            <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              {['#パーソナルジム', '#ブランディング', '#動画広告', '#広告運用'].map(tag => (
-                <span key={tag} className="font-inter text-[11px] tracking-wide text-[#4d7fff]/70 border border-[#4d7fff]/30 px-3 py-1">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <p className="pt-2 text-[11px] text-white/20">※実績の一例です。成果を保証するものではありません。</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/60 mb-6">Clients</p>
-            <div className="space-y-4">
-              {clients.map((c, i) => (
-                <p key={i} className="text-[15px] font-semibold text-white/75 tracking-wide border-b border-white/10 pb-4 last:border-b-0">{c}</p>
-              ))}
-              <p className="text-[13px] text-white/40 tracking-wide">etc.</p>
-            </div>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, delay: 0.35 }}
+          className="space-y-5 text-[clamp(16px,1.8vw,28px)] text-white/70 leading-[2.2] max-w-3xl"
+        >
+          <p>某都内パーソナルジムにて、トレーナーのブランディング設計から動画広告の構成・演出・広告運用までを一気通貫で支援。</p>
+          <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {['#パーソナルジム', '#ブランディング', '#動画広告', '#広告運用'].map(tag => (
+              <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-[#4d7fff]/90 border border-[#4d7fff]/50 px-3 py-1">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <p className="pt-2 text-[clamp(11px,0.9vw,13px)] text-white/20">※実績の一例です。成果を保証するものではありません。</p>
+        </motion.div>
       </div>
     </section>
   )

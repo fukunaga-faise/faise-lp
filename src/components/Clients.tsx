@@ -7,7 +7,6 @@ const clients = [
   { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ・プロモーション' },
   { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア' },
   { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス' },
-  { name: 'その他', nameEn: 'and more...', category: '随時追加予定' },
 ]
 
 export default function Clients() {
