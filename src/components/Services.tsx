@@ -65,7 +65,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
             {s.copy}
           </p>
 
-          <p className="text-[13px] text-white/80 leading-[2] mb-8 max-w-sm">
+          <p className="text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2] mb-8">
             {s.body}
           </p>
 
