@@ -95,7 +95,7 @@ export default function Hero() {
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(42px,8.5vw,112px)] font-black leading-[1.06] tracking-[-0.02em] text-white"
+                  className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white md:whitespace-nowrap"
                 >
                   エンタメ発想で、
                   <br />
