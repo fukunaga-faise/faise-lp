@@ -32,7 +32,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#0050d0]/70 mb-12 md:mb-16"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/70 mb-12 md:mb-16"
           >
             Faise Inc. — Experience Design Marketing
           </motion.p>
@@ -61,7 +61,7 @@ export default function Hero() {
               className="group inline-flex items-center gap-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 hover:text-white transition-colors duration-300"
             >
               集客について相談する
-              <span className="block h-px w-10 bg-[#0050d0]/60 group-hover:w-20 group-hover:bg-[#0050d0] transition-all duration-500 ease-out" />
+              <span className="block h-px w-10 bg-[#4d7fff]/60 group-hover:w-20 group-hover:bg-[#4d7fff] transition-all duration-500 ease-out" />
             </button>
           </motion.div>
         </div>
@@ -73,7 +73,7 @@ export default function Hero() {
           className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-3"
         >
           <span className="font-inter text-[9px] tracking-[0.3em] uppercase text-white/20 [writing-mode:vertical-rl]">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-[#0050d0]/40 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-[#4d7fff]/40 to-transparent" />
         </motion.div>
       </section>
 

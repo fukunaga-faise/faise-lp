@@ -15,7 +15,7 @@ export default function Works() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="works" className="relative bg-[#0a0a0a] border-t border-[#0050d0]/20 overflow-hidden">
+    <section id="works" className="relative bg-[#0a0a0a] border-t border-[#4d7fff]/20 overflow-hidden">
 
       <div className="absolute inset-0">
         <img src="/images/service-gym.jpg" alt="" aria-hidden="true" className="w-full h-full object-cover opacity-20" />
@@ -29,7 +29,7 @@ export default function Works() {
             initial={{ y: 40, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#0050d0]/20 select-none"
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
           >
             Our Works
           </motion.p>
@@ -52,11 +52,11 @@ export default function Works() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
-          className="flex flex-col md:flex-row gap-0 border-t border-[#0050d0]/30 mb-16 md:mb-20"
+          className="flex flex-col md:flex-row gap-0 border-t border-[#4d7fff]/30 mb-16 md:mb-20"
         >
           {stats.map((s, i) => (
-            <div key={i} className="flex-1 py-10 md:py-14 border-b md:border-b-0 md:border-r border-[#0050d0]/20 last:border-r-0 md:pr-16 first:md:pr-16 last:md:pl-16">
-              <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#0050d0]/70 mb-3">{s.label}</p>
+            <div key={i} className="flex-1 py-10 md:py-14 border-b md:border-b-0 md:border-r border-[#4d7fff]/20 last:border-r-0 md:pr-16 first:md:pr-16 last:md:pl-16">
+              <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/70 mb-3">{s.label}</p>
               <p className="font-inter text-[clamp(52px,8vw,96px)] font-black text-white leading-none tracking-tight mb-2">
                 {s.value}
               </p>
@@ -76,7 +76,7 @@ export default function Works() {
             <p>単にサービスを紹介するのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、人と体験の両面から感情設計を行いました。</p>
             <div className="flex flex-wrap gap-2 pt-2">
               {['#パーソナルジム', '#ブランディング', '#動画広告', '#広告運用'].map(tag => (
-                <span key={tag} className="font-inter text-[11px] tracking-wide text-[#0050d0]/70 border border-[#0050d0]/30 px-3 py-1">
+                <span key={tag} className="font-inter text-[11px] tracking-wide text-[#4d7fff]/70 border border-[#4d7fff]/30 px-3 py-1">
                   {tag}
                 </span>
               ))}
@@ -89,7 +89,7 @@ export default function Works() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#0050d0]/60 mb-6">Clients</p>
+            <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/60 mb-6">Clients</p>
             <div className="space-y-4">
               {clients.map((c, i) => (
                 <p key={i} className="text-[15px] font-semibold text-white/55 tracking-wide border-b border-white/10 pb-4 last:border-b-0">{c}</p>

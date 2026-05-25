@@ -21,9 +21,9 @@ export default function Mission() {
             initial={{ y: 40, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#0050d0]/20 select-none"
+            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
           >
-            Our Mission
+            Our Approach
           </motion.p>
         </div>
 
@@ -45,7 +45,7 @@ export default function Mission() {
             transition={{ duration: 1, delay: 0.3 }}
             className="flex items-start gap-4"
           >
-            <div className="w-0.5 h-auto self-stretch bg-[#0050d0]/60 shrink-0 mt-1" />
+            <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
             <p className="text-[clamp(17px,2vw,22px)] text-white/70 leading-[1.9] font-medium">
               行きたくなる理由には、<br />
               感情がある。

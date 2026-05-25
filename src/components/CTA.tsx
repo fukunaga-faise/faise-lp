@@ -11,7 +11,7 @@ export default function CTA() {
 
   return (
     <>
-      <section className="relative bg-[#0a0a0a] border-t border-[#0050d0]/20 py-40 md:py-60 px-8 md:px-20 overflow-hidden">
+      <section className="relative bg-[#0a0a0a] border-t border-[#4d7fff]/20 py-40 md:py-60 px-8 md:px-20 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -24,7 +24,7 @@ export default function CTA() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#0050d0]/60 mb-12"
+            className="font-inter text-[10px] tracking-[0.4em] uppercase text-[#4d7fff]/60 mb-12"
           >
             Contact
           </motion.p>
@@ -56,7 +56,7 @@ export default function CTA() {
           >
             <button
               onClick={() => setModalOpen(true)}
-              className="inline-flex items-center gap-5 text-[11px] font-bold tracking-[0.22em] uppercase text-white border border-[#0050d0]/50 hover:border-[#0050d0] hover:bg-[#0050d0] px-12 py-5 transition-all duration-300"
+              className="inline-flex items-center gap-5 text-[11px] font-bold tracking-[0.22em] uppercase text-white border border-[#4d7fff]/50 hover:border-[#4d7fff] hover:bg-[#4d7fff] px-12 py-5 transition-all duration-300"
             >
               無料相談を申し込む
             </button>
@@ -64,7 +64,7 @@ export default function CTA() {
         </div>
       </section>
 
-      <footer className="bg-[#0a0a0a] border-t border-[#0050d0]/15 py-10 px-8 md:px-20">
+      <footer className="bg-[#0a0a0a] border-t border-[#4d7fff]/15 py-10 px-8 md:px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex flex-col gap-3">
             <a href="#">

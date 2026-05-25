@@ -53,8 +53,8 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
           transition={{ duration: 0.9, delay: 0.1 }}
         >
           <div className="flex items-baseline gap-3 mb-8">
-            <span className="font-inter text-[clamp(36px,5vw,56px)] font-black leading-none tracking-[-0.03em] text-[#0050d0]/25">{s.num}</span>
-            <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-[#0050d0]/60">{s.en}</span>
+            <span className="font-inter text-[clamp(36px,5vw,56px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/25">{s.num}</span>
+            <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-[#4d7fff]/60">{s.en}</span>
           </div>
 
           <h3 className="text-[clamp(24px,3.5vw,42px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
@@ -71,7 +71,7 @@ function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
 
           <div className="flex flex-wrap gap-2">
             {s.tags.map((tag) => (
-              <span key={tag} className="font-inter text-[11px] tracking-wide text-[#0050d0]/70 border border-[#0050d0]/30 px-3 py-1.5 hover:bg-[#0050d0]/10 transition-colors duration-200">
+              <span key={tag} className="font-inter text-[11px] tracking-wide text-[#4d7fff]/70 border border-[#4d7fff]/30 px-3 py-1.5 hover:bg-[#4d7fff]/10 transition-colors duration-200">
                 {tag}
               </span>
             ))}
@@ -97,7 +97,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="services" className="bg-[#0a0a0a] border-t border-[#0050d0]/20">
+    <section id="services" className="bg-[#0a0a0a] border-t border-[#4d7fff]/20">
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="px-8 md:px-20 pt-20 md:pt-28 pb-12 md:pb-16">
           <div className="overflow-hidden mb-2">
@@ -105,7 +105,7 @@ export default function Services() {
               initial={{ y: 40, opacity: 0 }}
               animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#0050d0]/20 select-none"
+              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
             >
               Our Services
             </motion.p>
