@@ -5,9 +5,9 @@ import { motion, useInView } from 'framer-motion'
 import ContactModal from './ContactModal'
 
 const career = [
-  { period: '2022–2024', company: 'ソニー株式会社', role: '法人店舗コンサルティング' },
-  { period: '2024–2025', company: '株式会社刀', role: '新規テーマパーク マーケティング' },
-  { period: '2025–', company: '株式会社Faise', role: '代表取締役 就任' },
+  { period: '2022–2024', company: 'ソニー株式会社' },
+  { period: '2024–2025', company: '株式会社刀' },
+  { period: '2025–', company: '株式会社Faise' },
 ]
 
 export default function Founder() {
@@ -67,8 +67,7 @@ export default function Founder() {
                     >
                       <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
                       <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-2">{c.period}</p>
-                      <p className="text-[14px] font-bold text-white/80 mb-0.5">{c.company}</p>
-                      <p className="text-[12px] text-white/80">{c.role}</p>
+                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
                     </motion.div>
                   ))}
                 </div>

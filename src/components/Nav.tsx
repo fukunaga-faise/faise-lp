@@ -32,12 +32,13 @@ export default function Nav() {
           scrolled ? 'bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
         }`}
       >
-        <a href="#">
+        <a href="#" className="flex items-center gap-2">
           <img
-            src="/logo.png"
+            src="/logo-fmark.png"
             alt="Faise"
-            className="h-8 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+            className="h-8 w-auto"
           />
+          <span className="font-inter font-black tracking-[0.12em] text-white text-[15px] uppercase">Faise</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-10">

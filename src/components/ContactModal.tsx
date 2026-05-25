@@ -33,7 +33,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
   }
 
   const inputClass =
-    'w-full bg-[#f8f8f8] border border-[#e8e8e8] rounded-sm px-4 py-3 text-sm text-[#0f0f0f] placeholder:text-[#bbb] focus:outline-none focus:border-[#0050d0] transition-colors'
+    'w-full bg-[#f8f8f8] border border-[#e8e8e8] rounded-sm px-4 py-3.5 text-base text-[#0f0f0f] placeholder:text-[#bbb] focus:outline-none focus:border-[#4d7fff] transition-colors'
 
   return (
     <AnimatePresence>
@@ -51,7 +51,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-4 bottom-4 max-w-lg mx-auto bg-white border border-[#e8e8e8] rounded-sm z-50 p-7 md:p-10 overflow-y-auto shadow-[0_8px_40px_rgba(0,0,0,0.12)]"
+            className="fixed inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 top-4 bottom-4 md:top-8 md:bottom-8 w-full md:w-[760px] bg-white border border-[#e8e8e8] rounded-sm z-50 p-7 md:p-14 overflow-y-auto shadow-[0_8px_40px_rgba(0,0,0,0.12)]"
           >
             <button
               onClick={onClose}
@@ -77,16 +77,16 @@ export default function ContactModal({ isOpen, onClose }: Props) {
               </div>
             ) : (
               <>
-                <p className="font-inter text-[10px] tracking-[0.24em] uppercase text-[#0050d0] mb-3">Contact</p>
-                <h2 className="text-xl font-black mb-1 text-[#0f0f0f]">無料相談する</h2>
-                <p className="text-xs text-[#999] mb-7 leading-relaxed">
+                <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-[#4d7fff] mb-3">Contact</p>
+                <h2 className="text-3xl font-black mb-2 text-[#0f0f0f]">無料相談する</h2>
+                <p className="text-sm text-[#999] mb-8 leading-relaxed">
                   内容を確認の上、2営業日以内にご連絡いたします。
                 </p>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">
+                      <label className="text-[12px] text-[#999] mb-1.5 block tracking-wide">
                         お名前 <span className="text-[#0050d0]">*</span>
                       </label>
                       <input
@@ -98,7 +98,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">
+                      <label className="text-[12px] text-[#999] mb-1.5 block tracking-wide">
                         会社名・店舗名
                       </label>
                       <input
