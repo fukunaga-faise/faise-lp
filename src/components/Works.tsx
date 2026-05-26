@@ -9,7 +9,6 @@ const stats = [
   { value: '+300', label: '入会者数', sub: '施策開始後の純増' },
 ]
 
-const tags = ['感情設計', '出演者ブランディング', '動画クリエイティブ', '体験予約導線']
 
 export default function Works() {
   const ref = useRef(null)
@@ -103,16 +102,7 @@ export default function Works() {
             </p>
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-10">
-            {tags.map(tag => (
-              <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-white border border-white/20 bg-[#4d7fff]/15 px-4 py-2">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <p className="mt-8 text-[clamp(10px,0.85vw,12px)] text-white/25 leading-relaxed">
+<p className="mt-8 text-[clamp(10px,0.85vw,12px)] text-white/25 leading-relaxed">
             ※実績の一例です。成果を保証するものではありません。
           </p>
         </motion.div>
