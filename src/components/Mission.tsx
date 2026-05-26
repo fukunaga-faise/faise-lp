@@ -58,7 +58,7 @@ export default function Mission() {
             transition={{ duration: 1, delay: 0.5 }}
             className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5"
           >
-            FAISEは、<br />
+            Faiseは、<br />
             感情が動く瞬間を設計し、<br />
             人が動きたくなる体験を、<br />
             クリエイティブとして形にします。

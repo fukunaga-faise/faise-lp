@@ -9,7 +9,7 @@ const stats = [
   { value: '+300', label: '入会者数', sub: '施策開始後の純増' },
 ]
 
-const tags = ['#感情設計', '#出演者ブランディング', '#動画クリエイティブ', '#体験予約導線']
+const tags = ['感情設計', '出演者ブランディング', '動画クリエイティブ', '体験予約導線']
 
 export default function Works() {
   const ref = useRef(null)

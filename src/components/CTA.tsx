@@ -49,7 +49,6 @@ export default function CTA() {
             transition={{ duration: 1, delay: 0.25 }}
             className="text-[clamp(13px,1.5vw,16px)] text-white/80 leading-[1.9] mb-14"
           >
-            集客・予約・成約に関するご相談、<br />
             各種お問い合わせはこちらから。
           </motion.p>
 
