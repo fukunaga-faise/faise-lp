@@ -18,8 +18,8 @@ export default function Works() {
   return (
     <section id="works" className="relative bg-[#0a0a0a] border-t border-[#4d7fff]/20 overflow-hidden">
 
-      <div className="absolute inset-0">
-        <img src="/images/service-gym.jpg" alt="" aria-hidden="true" className="w-full h-full object-cover opacity-20" />
+      <div className="absolute inset-0 bg-[#0a0a0a]">
+        <img src="/images/works-bg-tiktok.png" alt="" aria-hidden="true" className="w-full h-full object-contain opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/40 to-[#0a0a0a]/80" />
       </div>
 
