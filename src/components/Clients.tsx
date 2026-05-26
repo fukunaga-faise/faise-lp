@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const clients = [
-  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ・プロモーション', logo: '/images/logo-yoshimoto-new.svg' },
+  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', logo: '/images/logo-yoshimoto-new.svg' },
   { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', logo: '/images/logo-elife-new.svg' },
   { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', logo: '/images/logo-wellnessplus-new.webp' },
 ]
