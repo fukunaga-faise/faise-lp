@@ -146,7 +146,7 @@ export default function Founder() {
               className="flex flex-col gap-5"
             >
               <div className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]">
-                {/* Replace with: <img src="/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover" /> */}
+                <img src="/images/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover object-center" />
               </div>
               <div>
                 <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.25em] uppercase text-[#4d7fff]/70 mb-2">Haruto Fukunaga</p>
