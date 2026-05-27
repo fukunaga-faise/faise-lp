@@ -41,7 +41,7 @@ export function SplitText({
       animate={visible ? 'show' : 'hidden'}
       className={`inline-flex flex-wrap ${className ?? ''}`}
     >
-      {[...text].map((ch, i) => (
+      {Array.from(text).map((ch, i) => (
         <span key={i} className="inline-block overflow-hidden">
           <motion.span className="inline-block" variants={char}>
             {ch === ' ' ? ' ' : ch}
