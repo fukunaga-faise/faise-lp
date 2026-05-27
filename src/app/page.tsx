@@ -7,10 +7,12 @@ import Clients from '@/components/Clients'
 import Founder from '@/components/Founder'
 import Company from '@/components/Company'
 import CTA from '@/components/CTA'
+import PageCurtain from '@/components/PageCurtain'
 
 export default function Home() {
   return (
     <main className="bg-white text-[#0f0f0f]">
+      <PageCurtain />
       <Nav />
       <Hero />
       <Mission />

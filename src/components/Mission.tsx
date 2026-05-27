@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useInView } from 'framer-motion'
+import { LineReveal, BlurReveal } from './TextReveal'
 
 export default function Mission() {
   const ref = useRef(null)
@@ -16,53 +17,43 @@ export default function Mission() {
 
       <div className="relative max-w-7xl mx-auto" ref={ref}>
 
-        <div className="overflow-hidden mb-2">
-          <motion.p
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
-          >
+        {/* Large decorative label */}
+        <LineReveal className="mb-2" delay={0} inView={inView}>
+          <p className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none">
             Our Approach
-          </motion.p>
-        </div>
+          </p>
+        </LineReveal>
 
         <div className="max-w-3xl space-y-10">
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: 70, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep"
-            >
+
+          {/* Main heading — line reveal */}
+          <LineReveal delay={0.1} inView={inView}>
+            <h2 className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep">
               人は、論理だけでは<wbr />動かない。
-            </motion.h2>
-          </div>
+            </h2>
+          </LineReveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="flex items-start gap-4"
-          >
-            <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
-            <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium">
-              行きたくなる理由には、<br />
-              感情がある。
+          {/* Accent quote — blur reveal */}
+          <BlurReveal delay={0.35} inView={inView}>
+            <div className="flex items-start gap-4">
+              <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
+              <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium">
+                行きたくなる理由には、<br />
+                感情がある。
+              </p>
+            </div>
+          </BlurReveal>
+
+          {/* Body — line by line blur reveals */}
+          <BlurReveal delay={0.55} inView={inView}>
+            <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
+              Faiseは、<br />
+              感情が動く瞬間を設計し、<br />
+              人が動きたくなる体験を、<br />
+              クリエイティブとして形にします。
             </p>
-          </motion.div>
+          </BlurReveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5"
-          >
-            Faiseは、<br />
-            感情が動く瞬間を設計し、<br />
-            人が動きたくなる体験を、<br />
-            クリエイティブとして形にします。
-          </motion.p>
         </div>
       </div>
     </section>

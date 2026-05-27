@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { SplitText, LineReveal, BlurReveal } from './TextReveal'
 
 const blobs = [
   {
@@ -59,7 +60,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center gap-3"
           >
             <img
@@ -74,37 +75,42 @@ export default function Hero() {
         </div>
 
         <div className="relative max-w-7xl w-full">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="font-inter text-[clamp(12px,1.2vw,16px)] tracking-[0.3em] uppercase text-[#4d7fff]/80 mb-10 md:mb-14"
-          >
-            Faise Inc. — Experience Design Marketing
-          </motion.p>
+
+          {/* Eyebrow — character stagger */}
+          <div className="mb-10 md:mb-14 overflow-hidden">
+            <motion.div
+              initial={{ y: '105%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p className="font-inter text-[clamp(12px,1.2vw,16px)] tracking-[0.3em] uppercase text-[#4d7fff]/80">
+                Faise Inc. — Experience Design Marketing
+              </p>
+            </motion.div>
+          </div>
 
           {/* PC layout: h1 left + logo right */}
           <div className="md:inline-flex md:items-end md:gap-3">
             <div>
-              <div className="overflow-hidden">
-                <motion.h1
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white md:whitespace-nowrap"
-                >
+              {/* Line 1 */}
+              <LineReveal delay={1.25} duration={1.2}>
+                <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white md:whitespace-nowrap">
                   エンタメ発想で、
-                  <br />
+                </h1>
+              </LineReveal>
+              {/* Line 2 */}
+              <LineReveal delay={1.4} duration={1.2}>
+                <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white md:whitespace-nowrap">
                   人を動かす。
-                </motion.h1>
-              </div>
+                </h1>
+              </LineReveal>
             </div>
 
-            {/* PC logo — same height as h1 block */}
+            {/* PC logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.4, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
               className="hidden md:flex flex-col items-center gap-3 pb-1 shrink-0"
             >
               <img
@@ -123,7 +129,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 2.2, duration: 1 }}
           className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-3"
         >
           <span className="font-inter text-[9px] tracking-[0.3em] uppercase text-white/20 [writing-mode:vertical-rl]">Scroll</span>
