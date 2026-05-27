@@ -99,7 +99,7 @@ export default function Hero() {
             </LineReveal>
 
             {/* Line 2 + Logo side by side */}
-            <div className="flex items-end gap-8 md:gap-12">
+            <div className="flex items-end gap-8 md:gap-12 -mt-4 md:-mt-6">
               <LineReveal delay={1.4} duration={1.2} className="shrink-0">
                 <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
                   人を動かす。
