@@ -89,40 +89,41 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* PC layout: h1 left + logo right next to text */}
-          <div className="md:flex md:items-end md:gap-10">
-            <div className="shrink-0">
-              {/* Line 1 */}
-              <LineReveal delay={1.25} duration={1.2}>
-                <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
-                  エンタメ発想で、
-                </h1>
-              </LineReveal>
-              {/* Line 2 */}
-              <LineReveal delay={1.4} duration={1.2}>
+          {/* PC layout: line1 full / line2 + logo inline */}
+          <div>
+            {/* Line 1 — full width */}
+            <LineReveal delay={1.25} duration={1.2}>
+              <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
+                エンタメ発想で、
+              </h1>
+            </LineReveal>
+
+            {/* Line 2 + Logo side by side */}
+            <div className="flex items-end gap-8 md:gap-12">
+              <LineReveal delay={1.4} duration={1.2} className="shrink-0">
                 <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
                   人を動かす。
                 </h1>
               </LineReveal>
-            </div>
 
-            {/* PC logo — sits immediately right of text block */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.4, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden md:flex flex-col items-center gap-3 pb-1 shrink-0"
-            >
-              <img
-                src="/logo-fmark.png"
-                alt="Faise"
-                className="h-[clamp(90px,13vw,180px)] w-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
-              />
-              <div className="flex flex-col items-center leading-tight">
-                <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Faise</span>
-                <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Inc.</span>
-              </div>
-            </motion.div>
+              {/* PC logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.4, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="hidden md:flex flex-col items-center gap-3 pb-1 shrink-0"
+              >
+                <img
+                  src="/logo-fmark.png"
+                  alt="Faise"
+                  className="h-[clamp(70px,10vw,140px)] w-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
+                />
+                <div className="flex flex-col items-center leading-tight">
+                  <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Faise</span>
+                  <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Inc.</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
 
