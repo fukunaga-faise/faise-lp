@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue: #0050d0;
+  --ink: #101318;
+  --gray: #6d7480;
+  --hairline: #e7e9ee;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background: #fff;
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(0, 80, 208, 0.12);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #f5f6f8; }
+::-webkit-scrollbar-thumb { background: #0050d0; border-radius: 2px; }
+
+/* Faise brand gradient (blue → violet) */
+.grad-bg {
+  background: linear-gradient(135deg, #0047c2 0%, #4d7fff 55%, #7b5cff 100%);
+}
+
+.grad-text {
+  background: linear-gradient(120deg, #0050d0 0%, #4d7fff 60%, #7b5cff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hairline { border-color: var(--hairline); }
+
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
