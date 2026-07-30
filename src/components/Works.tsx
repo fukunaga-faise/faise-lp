@@ -1,13 +1,39 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const stats = [
-  { value: '¥1,000', label: 'CPA', sub: '体験予約 1件あたり' },
-  { value: '450', label: '体験予約数', sub: '広告運用開始から1ヶ月' },
-  { value: '+300', label: '入会者数', sub: '施策開始後の純増' },
+  { to: 1000, prefix: '¥', comma: true, label: 'CPA', sub: '体験予約 1件あたり' },
+  { to: 450,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から1ヶ月' },
+  { to: 300,  prefix: '+', comma: false, label: '入会者数', sub: '施策開始後の純増' },
 ]
+
+function CountUp({ to, prefix = '', comma = false, duration = 1.8, delay = 0, inView }: {
+  to: number; prefix?: string; comma?: boolean; duration?: number; delay?: number; inView: boolean
+}) {
+  const [val, setVal] = useState(0)
+  const started = useRef(false)
+
+  useEffect(() => {
+    if (!inView || started.current) return
+    started.current = true
+    const t = setTimeout(() => {
+      const start = performance.now()
+      const tick = (now: number) => {
+        const p = Math.min((now - start) / (duration * 1000), 1)
+        const eased = 1 - Math.pow(1 - p, 3)
+        setVal(Math.round(eased * to))
+        if (p < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, delay * 1000)
+    return () => clearTimeout(t)
+  }, [inView])
+
+  const formatted = comma ? val.toLocaleString() : val.toString()
+  return <>{prefix}{formatted}</>
+}
 
 
 export default function Works() {
@@ -15,11 +41,11 @@ export default function Works() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="works" className="relative bg-[#0a0a0a] border-t border-[#4d7fff]/20 overflow-hidden">
+    <section id="works" className="relative bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 overflow-hidden">
 
-      <div className="absolute inset-0 bg-[#0a0a0a]">
+      <div className="absolute inset-0">
         <img src="/images/works-bg-tiktok.png" alt="" aria-hidden="true" className="w-full h-full object-contain opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/40 to-[#0a0a0a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/50 via-[#0a0a0a]/30 to-[#0a0a0a]/70" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-8 md:px-20 py-32 md:py-52" ref={ref}>
@@ -64,7 +90,7 @@ export default function Works() {
             >
               <p className="font-inter text-[clamp(10px,0.9vw,12px)] tracking-[0.4em] uppercase text-[#4d7fff] mb-3">{s.label}</p>
               <p className="font-inter text-[clamp(48px,7vw,88px)] font-black text-white leading-none tracking-tight mb-3">
-                {s.value}
+                <CountUp to={s.to} prefix={s.prefix} comma={s.comma} delay={0.3 + i * 0.1} inView={inView} />
               </p>
               <p className="text-[clamp(12px,1vw,14px)] text-white/60 leading-relaxed">{s.sub}</p>
             </div>

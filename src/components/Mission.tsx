@@ -9,7 +9,7 @@ export default function Mission() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="mission" className="relative bg-[#0a0a0a] py-32 md:py-52 px-8 md:px-20 overflow-hidden">
+    <section id="mission" className="relative bg-[#0a0a0a]/80 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
 
       <div className="absolute top-1/2 right-[-6vw] -translate-y-1/2 pointer-events-none select-none">
         <span className="font-black text-[clamp(320px,40vw,560px)] leading-none text-white/[0.03]">F</span>

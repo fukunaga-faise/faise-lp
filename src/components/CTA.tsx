@@ -12,7 +12,7 @@ export default function CTA() {
   return (
     <>
       <section
-        className="relative bg-[#4d7fff] py-28 md:py-40 px-8 md:px-20 overflow-hidden"
+        className="relative bg-[#4d7fff]/90 py-28 md:py-40 px-8 md:px-20 overflow-hidden"
         ref={ref}
       >
         <div
@@ -67,7 +67,7 @@ export default function CTA() {
         </div>
       </section>
 
-      <footer className="bg-[#0a0a0a] border-t border-white/10 py-10 px-8 md:px-20">
+      <footer className="bg-[#0a0a0a]/85 border-t border-white/10 py-10 px-8 md:px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex flex-col gap-3">
             <a href="#" className="flex items-center gap-2">

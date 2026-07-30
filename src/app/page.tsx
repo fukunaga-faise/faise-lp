@@ -11,7 +11,7 @@ import PageCurtain from '@/components/PageCurtain'
 
 export default function Home() {
   return (
-    <main className="bg-white text-[#0f0f0f]">
+    <main className="text-[#0f0f0f]">
       <PageCurtain />
       <Nav />
       <Hero />

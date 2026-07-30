@@ -29,7 +29,7 @@ export default function Founder() {
 
   return (
     <>
-      <section id="founder" className="bg-[#0a0a0a] border-t border-[#4d7fff]/20 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
+      <section id="founder" className="bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto" ref={ref}>
 
           <div className="overflow-hidden mb-2">

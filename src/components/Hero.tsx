@@ -1,142 +1,103 @@
-'use client'
+// ファーストビュー。背景画像は使わず、AmbientBackground の上に文字だけを置きます。
+// 位置を微調整したいときは、下の3つの数字を書き換えてください。
 
-import { motion } from 'framer-motion'
-import { SplitText, LineReveal, BlurReveal } from './TextReveal'
+const LEFT = "5.4vw"; // 左端からの余白
+const BOTTOM = "7vh"; // 下端からの余白
+const HEIGHT = "100vh"; // ヒーローの高さ
 
-const blobs = [
-  {
-    className: 'w-[700px] h-[700px] top-[-15%] right-[0%]',
-    animate: { x: [0, 60, -30, 0], y: [0, -40, 30, 0] },
-    duration: 16,
-    color: 'rgba(77,127,255,0.22)',
-  },
-  {
-    className: 'w-[550px] h-[550px] bottom-[-10%] left-[-8%]',
-    animate: { x: [0, -40, 30, 0], y: [0, 40, -30, 0] },
-    duration: 20,
-    color: 'rgba(30,80,220,0.18)',
-  },
-  {
-    className: 'w-[400px] h-[400px] top-[35%] left-[25%]',
-    animate: { x: [0, 30, -20, 0], y: [0, -30, 40, 0] },
-    duration: 24,
-    color: 'rgba(77,127,255,0.12)',
-  },
-]
+const css = `
+.faise-hero{
+  position:relative;
+  min-height:${HEIGHT};
+  display:flex;
+  align-items:flex-end;
+}
+.faise-hero-copy{
+  padding:0 0 ${BOTTOM} ${LEFT};
+  max-width:min(860px,92vw);
+}
+.faise-hero-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:0 0 26px;
+  font-size:12px;
+  letter-spacing:.14em;
+  font-weight:600;
+  color:#5A5A6B;
+}
+.faise-hero-eyebrow::before{
+  content:"";
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#27CBCF;
+}
+.faise-hero h1{
+  margin:0;
+  font-size:clamp(30px,5.6vw,62px);
+  font-weight:700;
+  line-height:1.42;
+  letter-spacing:.005em;
+  color:#0B0B12;
+}
+.faise-hero-sub{
+  margin:26px 0 0;
+  font-size:12px;
+  letter-spacing:.1em;
+  color:#5A5A6B;
+}
+.faise-hero-scroll{
+  position:absolute;
+  right:${LEFT};
+  bottom:${BOTTOM};
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  letter-spacing:.2em;
+  color:#5A5A6B;
+}
+.faise-hero-scroll::after{
+  content:"";
+  width:1px;height:52px;
+  background:linear-gradient(#5A5A6B,rgba(90,90,107,0));
+}
+
+.faise-rise{
+  opacity:0;
+  transform:translateY(18px);
+  animation:faiseRise .9s cubic-bezier(.22,.7,.24,1) forwards;
+}
+.faise-d1{animation-delay:.05s}
+.faise-d2{animation-delay:.18s}
+.faise-d3{animation-delay:.34s}
+.faise-d4{animation-delay:.5s}
+@keyframes faiseRise{
+  to{opacity:1;transform:translateY(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .faise-rise{opacity:1;transform:none;animation:none}
+}
+`;
 
 export default function Hero() {
   return (
-    <>
-      <section className="relative min-h-[100dvh] flex flex-col justify-end bg-[#0a0a0a] px-8 md:px-20 pt-32 pb-20 md:pt-0 md:pb-28 overflow-hidden">
-
-        {/* Background image */}
-        <div className="absolute inset-0 pointer-events-none">
-          <img
-            src="/images/bg-candidate-k.jpg"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover opacity-40 select-none"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
-        </div>
-
-        {/* Animated blobs */}
-        {blobs.map((blob, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full pointer-events-none blur-[80px] ${blob.className}`}
-            style={{ background: blob.color }}
-            animate={blob.animate}
-            transition={{
-              duration: blob.duration,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-
-        {/* Mobile logo — centered upper */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pb-32 md:hidden pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-3"
-          >
-            <img
-              src="/logo-fmark.png"
-              alt="Faise"
-              className="w-40 h-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
-            />
-            <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[18px] uppercase">
-              Faise Inc.
-            </span>
-          </motion.div>
-        </div>
-
-        <div className="relative max-w-7xl w-full">
-
-          {/* Eyebrow — character stagger */}
-          <div className="mb-10 md:mb-14 overflow-hidden">
-            <motion.div
-              initial={{ y: '105%' }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <p className="font-inter text-[clamp(12px,1.2vw,16px)] tracking-[0.3em] uppercase text-[#4d7fff]/80">
-                Faise Inc. — Experience Design Marketing
-              </p>
-            </motion.div>
-          </div>
-
-          {/* PC layout: line1 full / line2 + logo inline */}
-          <div>
-            {/* Line 1 — full width */}
-            <LineReveal delay={1.25} duration={1.2}>
-              <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
-                エンタメ発想で、
-              </h1>
-            </LineReveal>
-
-            {/* Line 2 + Logo side by side */}
-            <div className="flex items-end gap-8 md:gap-12 -mt-4 md:-mt-6">
-              <LineReveal delay={1.4} duration={1.2} className="shrink-0">
-                <h1 className="text-[clamp(42px,6vw,88px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
-                  人を動かす。
-                </h1>
-              </LineReveal>
-
-              {/* PC logo */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.4, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                className="hidden md:flex flex-col items-center gap-3 pb-1 shrink-0"
-              >
-                <img
-                  src="/logo-fmark.png"
-                  alt="Faise"
-                  className="h-[clamp(70px,10vw,140px)] w-auto drop-shadow-[0_0_50px_rgba(77,127,255,0.7)]"
-                />
-                <div className="flex flex-col items-center leading-tight">
-                  <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Faise</span>
-                  <span className="font-inter font-black tracking-[0.35em] text-white/90 text-[clamp(12px,1.1vw,16px)] uppercase">Inc.</span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.2, duration: 1 }}
-          className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-3"
-        >
-          <span className="font-inter text-[9px] tracking-[0.3em] uppercase text-white/20 [writing-mode:vertical-rl]">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-[#4d7fff]/40 to-transparent" />
-        </motion.div>
-      </section>
-    </>
-  )
+    <section className="faise-hero" id="hero">
+      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <div className="faise-hero-copy">
+        <p className="faise-hero-eyebrow faise-rise faise-d1">
+          Experience Design Marketing
+        </p>
+        <h1 className="faise-rise faise-d2">
+          エンタメ発想で、
+          <br />
+          人を動かす。
+        </h1>
+        <p className="faise-hero-sub faise-rise faise-d3">Faise Inc.</p>
+      </div>
+      <div className="faise-hero-scroll faise-rise faise-d4" aria-hidden="true">
+        Scroll
+      </div>
+    </section>
+  );
 }

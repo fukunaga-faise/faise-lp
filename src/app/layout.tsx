@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google'
+import AmbientBackground from '@/components/AmbientBackground'
 import './globals.css'
 
 const inter = Inter({
@@ -73,11 +74,23 @@ export default function RootLayout({
     <html lang="ja" className={`${inter.variable} ${noto.variable}`}>
       <head>
         <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8N1V5BVY4K"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8N1V5BVY4K');`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <AmbientBackground />
+        {children}
+      </body>
     </html>
   )
 }
