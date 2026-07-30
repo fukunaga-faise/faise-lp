@@ -4,9 +4,9 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const stats = [
-  { to: 1000, prefix: '¥', comma: true, label: 'CPA', sub: '体験予約 1件あたり' },
-  { to: 450,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から1ヶ月' },
-  { to: 300,  prefix: '+', comma: false, label: '入会者数', sub: '施策開始後の純増' },
+  { to: 558,  prefix: '¥', comma: true, label: 'CPA', sub: '体験予約 1件あたり' },
+  { to: 530,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から1ヶ月' },
+  { to: 300,  prefix: '',  comma: false, label: '会員数', sub: '施策開始後の純増' },
 ]
 
 function CountUp({ to, prefix = '', comma = false, duration = 1.8, delay = 0, inView }: {
@@ -118,7 +118,7 @@ export default function Works() {
           {/* Body */}
           <div className="space-y-7 text-[clamp(15px,1.5vw,20px)] text-white/80 leading-[2.1]">
             <p>
-              某都内パーソナルジムにて、出演者の魅力設計から動画構成・広告クリエイティブ・運用までを一気通貫で支援。
+              吉本興業運営のクリスタルジムにて、出演者の魅力設計から動画構成・広告クリエイティブ・運用までを一気通貫で支援。
             </p>
             <p>
               単にサービス内容を伝えるのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、コンテンツ設計・感情設計をベースに、<em className="not-italic text-white font-semibold">"行きたくなる理由"</em>を企画段階から構築。
