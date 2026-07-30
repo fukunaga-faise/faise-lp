@@ -38,7 +38,7 @@ export default function Nav() {
             alt="Faise"
             className="h-8 w-auto"
           />
-          <span className="font-inter font-black tracking-[0.12em] text-white text-[15px] uppercase">Faise</span>
+          <span className={`font-inter font-black tracking-[0.12em] text-[15px] uppercase transition-colors duration-300 ${scrolled ? 'text-white' : 'text-[#0B0B12]'}`}>Faise</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-10">
@@ -46,7 +46,7 @@ export default function Nav() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="text-[14px] font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white transition-colors duration-300"
+                className={`text-[14px] font-bold tracking-[0.12em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'}`}
               >
                 {l.label}
               </a>
@@ -56,7 +56,11 @@ export default function Nav() {
 
         <button
           onClick={() => setModalOpen(true)}
-          className="hidden md:inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 text-white border border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
+          className={`hidden md:inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 border transition-all duration-300 ${
+            scrolled
+              ? 'text-white border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a]'
+              : 'text-[#0B0B12] border-[#0B0B12]/40 hover:border-[#0B0B12] hover:bg-[#0B0B12] hover:text-white'
+          }`}
         >
           問い合わせ
         </button>
@@ -66,9 +70,9 @@ export default function Nav() {
           className="md:hidden flex flex-col gap-1.5 p-1"
           aria-label="menu"
         >
-          <span className={`block h-px w-6 bg-white transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block h-px w-6 bg-white transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-px w-6 bg-white transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </motion.nav>
 

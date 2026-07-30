@@ -97,7 +97,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="services" className="bg-[#0a0a0a] border-t border-[#4d7fff]/20">
+    <section id="services" className="bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20">
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="px-8 md:px-20 pt-20 md:pt-28 pb-12 md:pb-16">
           <div className="overflow-hidden mb-2">
