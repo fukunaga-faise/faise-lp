@@ -1,9 +1,10 @@
 // ファーストビュー。背景画像は使わず、AmbientBackground の上に文字だけを置きます。
-// 位置を微調整したいときは、下の3つの数字を書き換えてください。
+// 位置を微調整したいときは、下の4つの数字を書き換えてください。
 
 const LEFT = "5.4vw"; // 左端からの余白
 const BOTTOM = "7vh"; // 下端からの余白
-const HEIGHT = "100vh"; // ヒーローの高さ
+const HEIGHT = "100svh"; // ヒーローの高さ(PC)
+const HEIGHT_MOBILE = "72svh"; // ヒーローの高さ(スマホ)。スクロールを短くしたいときはここを下げる
 
 const css = `
 .faise-hero{
@@ -11,6 +12,11 @@ const css = `
   min-height:${HEIGHT};
   display:flex;
   align-items:flex-end;
+}
+@media (max-width:767px){
+  .faise-hero{
+    min-height:${HEIGHT_MOBILE};
+  }
 }
 .faise-hero-copy{
   padding:0 0 ${BOTTOM} ${LEFT};
