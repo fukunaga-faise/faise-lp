@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 
 const stats = [
   { to: 558,  prefix: '¥', comma: true, label: 'CPA', sub: '体験予約 1件あたり' },
-  { to: 530,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から1ヶ月' },
+  { to: 530,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から3ヶ月' },
   { to: 300,  prefix: '',  comma: false, label: '会員数', sub: '施策開始後の純増' },
 ]
 
