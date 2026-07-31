@@ -3,7 +3,7 @@
 
 const LEFT = "5.4vw"; // 左端からの余白
 const BOTTOM = "7vh"; // 下端からの余白
-const HEIGHT = "100svh"; // ヒーローの高さ(PC)
+const HEIGHT = "78svh"; // ヒーローの高さ(PC)
 const HEIGHT_MOBILE = "72svh"; // ヒーローの高さ(スマホ)。スクロールを短くしたいときはここを下げる
 
 const css = `
