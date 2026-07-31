@@ -41,12 +41,12 @@ export default function Nav() {
           <span className={`font-inter font-black tracking-[0.12em] text-[15px] uppercase transition-colors duration-300 ${scrolled ? 'text-white' : 'text-[#0B0B12]'}`}>Faise</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-12">
           {links.map((l) => (
             <li key={l.label}>
               <a
                 href={l.href}
-                className={`text-[16px] font-bold tracking-[0.1em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'}`}
+                className={`text-[19px] font-bold tracking-[0.04em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/80 hover:text-white' : 'text-[#0B0B12]/80 hover:text-[#0B0B12]'}`}
               >
                 {l.label}
               </a>
