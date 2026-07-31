@@ -46,7 +46,7 @@ export default function Nav() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className={`text-[14px] font-bold tracking-[0.12em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'}`}
+                className={`text-[16px] font-bold tracking-[0.1em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'}`}
               >
                 {l.label}
               </a>

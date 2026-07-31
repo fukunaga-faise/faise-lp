@@ -40,7 +40,7 @@ const css = `
 }
 .faise-hero h1{
   margin:0;
-  font-size:clamp(30px,5.6vw,62px);
+  font-size:clamp(30px,5.6vw,88px);
   font-weight:700;
   line-height:1.42;
   letter-spacing:.005em;
