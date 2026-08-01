@@ -6,29 +6,29 @@ import { motion, useInView } from 'framer-motion'
 const services = [
   {
     num: '01',
-    en: 'Personal Gym',
-    title: 'パーソナルジム\nプロモーション',
-    copy: '人と空間の魅力を、\n予約につながる体験へ。',
-    body: 'トレーナーの人柄と施設の空気感を、"会いに行きたい"という感情へ変換する。ブランディング設計から動画・広告・体験予約導線まで、一気通貫でご支援します。',
-    tags: ['#トレーナーブランディング', '#SNS動画企画', '#広告運用', '#体験予約導線設計'],
-    img: '/images/service-gym.jpg',
-  },
-  {
-    num: '02',
-    en: 'Beauty Clinic',
-    title: '美容クリニック\nプロモーション',
-    copy: '価格ではなく、\n"選ばれる理由"をつくる。',
-    body: '安心感と上質感を、来院動機として言語化・映像化する。クリニックの世界観を、SNS・広告・LP全体で一貫したブランド体験として設計します。',
-    tags: ['#世界観設計', '#SNS広告クリエイティブ', '#来院導線設計', '#ブランディング支援'],
+    en: 'Concept Design',
+    title: 'コンセプト設計',
+    copy: '誰に選ばれる場所かを、\n先に決める。',
+    body: '集客が伸びない原因の多くは、施策ではなく前提にあります。誰の、どんな欲求に応える場所なのか。競合ではなく自社が選ばれる理由はどこにあるのか。市場と顧客の構造からポジショニングを定義し、すべての施策が向かう一点をつくります。',
+    tags: ['#市場・競合分析', '#ターゲット定義', '#ポジショニング設計', '#ブランドコンセプト策定'],
     img: '/images/service-clinic.jpg',
   },
   {
+    num: '02',
+    en: 'Experience Design',
+    title: '体験設計',
+    copy: '「行きたい」が生まれる\n瞬間を、つくる。',
+    body: '認知から来店、そして再訪まで。顧客が触れるすべての接点を一本の流れとして設計します。何を見て興味を持ち、何で不安が消え、何が予約の決め手になるのか。感情が動く順序を定義し、必要な体験と接点に落とし込みます。',
+    tags: ['#カスタマージャーニー設計', '#来店動機の言語化', '#接点・導線設計', '#世界観設計'],
+    img: '/images/service-gym.jpg',
+  },
+  {
     num: '03',
-    en: 'Video & Casting',
-    title: '動画広告制作・\nキャスティング',
-    copy: '広告ではなく、\n"見たくなるコンテンツ"を。',
-    body: '思わず止まり、続きが見たくなる。エンタメ発想でショート動画・広告クリエイティブを企画・制作。キャスティングからSNS施策まで対応します。',
-    tags: ['#ショート動画制作', '#広告クリエイティブ', '#キャスティング', '#SNS施策'],
+    en: 'Growth Execution',
+    title: '集客戦略・実行',
+    copy: '設計を、\n数字に変える。',
+    body: '設計した体験を、実際に人が動く形へ。SNS・広告・動画クリエイティブ・キャスティングを、チャネル単位ではなく設計図に沿って組み立て、運用します。数値を見ながら改善し、来店と予約が続く状態をつくります。',
+    tags: ['#SNS運用', '#広告運用', '#ショート動画制作', '#キャスティング', '#予約導線設計', '#効果測定・改善'],
     img: '/images/service-casting.jpg',
   },
 ]
@@ -118,11 +118,22 @@ export default function Services() {
               transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-[clamp(28px,4.5vw,54px)] font-black leading-[1.2] tracking-tight text-white"
             >
-              人が行きたくなる設計を、
+              設計から、実行まで。
               <br />
-              <span className="text-white/50">すべての施設へ。</span>
+              <span className="text-white/50">分断せずに、つなぐ。</span>
             </motion.h2>
           </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.25 }}
+            className="text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[1.9] mt-8"
+          >
+            コンセプトの定義、体験の設計、集客の実行。
+            <br />
+            この3つを別々の会社に分けないことが、成果の再現性をつくります。
+          </motion.p>
         </div>
 
         {services.map((s, i) => (
