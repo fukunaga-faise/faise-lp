@@ -2,7 +2,8 @@
 // 位置を微調整したいときは、下の4つの数字を書き換えてください。
 
 const LEFT = "5.4vw"; // 左端からの余白
-const BOTTOM = "7vh"; // 下端からの余白
+const BOTTOM = "7vh"; // 下端からの余白(PC)
+const BOTTOM_MOBILE = "15vh"; // 下端からの余白(スマホ)。サブコピーが2行になりScrollと重なるため広げてある
 const HEIGHT = "78svh"; // ヒーローの高さ(PC)
 const HEIGHT_MOBILE = "72svh"; // ヒーローの高さ(スマホ)。スクロールを短くしたいときはここを下げる
 
@@ -13,14 +14,17 @@ const css = `
   display:flex;
   align-items:flex-end;
 }
+.faise-hero-copy{
+  padding:0 0 ${BOTTOM} ${LEFT};
+  max-width:min(860px,92vw);
+}
 @media (max-width:767px){
   .faise-hero{
     min-height:${HEIGHT_MOBILE};
   }
-}
-.faise-hero-copy{
-  padding:0 0 ${BOTTOM} ${LEFT};
-  max-width:min(860px,92vw);
+  .faise-hero-copy{
+    padding-bottom:${BOTTOM_MOBILE};
+  }
 }
 .faise-hero-eyebrow{
   display:flex;
@@ -50,7 +54,8 @@ const css = `
 .faise-hero-sub{
   margin:26px 0 0;
   font-size:12px;
-  letter-spacing:.1em;
+  line-height:1.8;
+  letter-spacing:.06em;
   color:#5A5A6B;
 }
 .faise-hero-scroll{
@@ -96,11 +101,15 @@ export default function Hero() {
           Experience Design Marketing
         </p>
         <h1 className="faise-rise faise-d2">
-          エンタメ発想で、
+          人が集まる場所を、
           <br />
-          人を動かす。
+          設計する。
         </h1>
-        <p className="faise-hero-sub faise-rise faise-d3">Faise Inc.</p>
+        <p className="faise-hero-sub faise-rise faise-d3">
+          コンセプト設計から、集客の実行まで。
+          <br />
+          来店で成り立つビジネスに特化した、マーケティングパートナー。
+        </p>
       </div>
       <div className="faise-hero-scroll faise-rise faise-d4" aria-hidden="true">
         Scroll
