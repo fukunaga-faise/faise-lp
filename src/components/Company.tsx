@@ -8,7 +8,7 @@ const rows = [
   { label: '代表取締役', value: '福永 遥斗' },
   { label: '設立',       value: '2025年12月' },
   { label: '所在地',     value: '〒140-0014\n東京都品川区大井4-18-25' },
-  { label: '事業内容',   value: '集客施設向けマーケティング支援\n動画広告制作・キャスティング' },
+  { label: '事業内容',   value: '集客施設向けマーケティング支援\n（コンセプト設計・体験設計・集客戦略）' },
 ]
 
 export default function Company() {
