@@ -121,7 +121,7 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="mt-4 md:mt-6 text-[clamp(15px,1.4vw,19px)] text-white/70 leading-[1.9] max-w-xl"
+        className="mt-4 md:mt-6 text-[clamp(15px,1.4vw,19px)] text-white/85 leading-[1.9] max-w-xl"
       >
         {s.description}
       </motion.p>
@@ -133,7 +133,7 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
             initial={reduceMotion ? false : { opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.4, delay: 0.25 + idx * 0.03 }}
-            className="font-inter text-[12px] md:text-[13px] tracking-wide text-white/40 border border-white/10 px-2.5 py-1"
+            className="font-inter text-[12px] md:text-[13px] tracking-wide text-white/75 border border-white/25 px-2.5 py-1"
           >
             {item}
           </motion.span>
