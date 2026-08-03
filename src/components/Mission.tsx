@@ -30,7 +30,7 @@ export default function Mission() {
           <LineReveal delay={0.1} inView={inView}>
             <h2 className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep">
               人が集まる<wbr />理由は、<br />
-              つくることができる。
+              設計できる。
             </h2>
           </LineReveal>
 
@@ -38,9 +38,9 @@ export default function Mission() {
           <BlurReveal delay={0.35} inView={inView}>
             <div className="flex items-start gap-4">
               <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
-              <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium">
-                「行きたい」と思われた時点で、<br />
-                集客のほとんどは終わっています。
+              <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium break-keep">
+                「行きたい」と<wbr />思う理由は、<br />
+                偶然生まれるものではありません。
               </p>
             </div>
           </BlurReveal>
@@ -49,12 +49,22 @@ export default function Mission() {
           <BlurReveal delay={0.55} inView={inView}>
             <div className="space-y-6">
               <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
-                Faiseは、広告会社でも、SNS運用会社でもありません。<br />
-                その「理由」そのものを設計する会社です。
+                Faiseは広告会社でも、<br />
+                SNS運用会社でもありません。
               </p>
               <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
-                誰が、何を見て、なぜ「行く」と決めるのか。<br />
-                感情が動く構造を分解し、表現に変え、届け、検証します。
+                誰が、<br />
+                何に価値を感じ、<br />
+                なぜ選ぶのか。
+              </p>
+              <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
+                その理由を考え、<br />
+                形にし、<br />
+                届ける。
+              </p>
+              <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
+                事業が選ばれる仕組みを、<br />
+                戦略から実行まで一貫して設計します。
               </p>
             </div>
           </BlurReveal>
