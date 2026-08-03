@@ -29,8 +29,8 @@ export default function Mission() {
           {/* Main heading — line reveal */}
           <LineReveal delay={0.1} inView={inView}>
             <h2 className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep">
-              事業成長に<wbr />必要なものを、<br />
-              一つの戦略として。
+              人が集まる<wbr />理由は、<br />
+              つくることができる。
             </h2>
           </LineReveal>
 
@@ -39,8 +39,8 @@ export default function Mission() {
             <div className="flex items-start gap-4">
               <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
               <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium">
-                Faiseは、広告会社でも、<br />
-                SNS運用会社でもありません。
+                「行きたい」と思われた時点で、<br />
+                集客のほとんどは終わっています。
               </p>
             </div>
           </BlurReveal>
@@ -49,12 +49,12 @@ export default function Mission() {
           <BlurReveal delay={0.55} inView={inView}>
             <div className="space-y-6">
               <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
-                事業のコンセプト設計から、<br />
-                マーケティングの実行、継続的な改善まで。
+                Faiseは、広告会社でも、SNS運用会社でもありません。<br />
+                その「理由」そのものを設計する会社です。
               </p>
               <p className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
-                事業成長に必要なプロセスを、<br />
-                一つの戦略として設計します。
+                誰が、何を見て、なぜ「行く」と決めるのか。<br />
+                感情が動く構造を分解し、表現に変え、届け、検証します。
               </p>
             </div>
           </BlurReveal>
