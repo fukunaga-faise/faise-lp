@@ -16,7 +16,7 @@ const css = `
 }
 .faise-hero-copy{
   padding:0 0 ${BOTTOM} ${LEFT};
-  max-width:min(860px,92vw);
+  max-width:min(970px,92vw);
 }
 @media (max-width:767px){
   .faise-hero{
@@ -101,14 +101,14 @@ export default function Hero() {
           Experience Design Marketing
         </p>
         <h1 className="faise-rise faise-d2">
-          人が集まる場所を、
+          人が集まる理由を、
           <br />
           設計する。
         </h1>
         <p className="faise-hero-sub faise-rise faise-d3">
-          コンセプト設計から、集客の実行まで。
+          ブランド、体験、マーケティング。
           <br />
-          来店で成り立つビジネスに特化した、マーケティングパートナー。
+          集客施設の成長を、一気通貫で支援します。
         </p>
       </div>
       <div className="faise-hero-scroll faise-rise faise-d4" aria-hidden="true">
