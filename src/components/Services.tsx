@@ -157,7 +157,7 @@ export default function Services() {
   const arcProgress = useTransform(lineProgress, [0.75, 1], [0, 1])
 
   return (
-    <section id="services" className="relative bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 py-20 md:py-32 px-8 md:px-20 overflow-hidden">
+    <section id="services" className="relative bg-[#0a0a0a] border-t border-[#4d7fff]/20 py-20 md:py-32 px-8 md:px-20 overflow-hidden">
       <div className="max-w-5xl mx-auto">
 
         <div className="overflow-hidden mb-2">
