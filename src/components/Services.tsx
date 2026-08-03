@@ -6,88 +6,74 @@ import { motion, useInView } from 'framer-motion'
 const services = [
   {
     num: '01',
-    en: 'Concept Design',
-    title: 'コンセプト設計',
-    copy: '誰に選ばれる場所かを、\n先に決める。',
-    body: '集客が伸びない原因の多くは、施策ではなく前提にあります。誰の、どんな欲求に応える場所なのか。競合ではなく自社が選ばれる理由はどこにあるのか。市場と顧客の構造からポジショニングを定義し、すべての施策が向かう一点をつくります。',
-    tags: ['#市場・競合分析', '#ターゲット定義', '#ポジショニング設計', '#ブランドコンセプト策定'],
-    img: '/images/service-clinic.jpg',
+    en: 'Strategy',
+    title: '事業戦略・コンセプト設計',
+    copy: '市場、競合、顧客を分析し、\n誰に、何を、どのような価値として届けるのかを明確にします。',
+    body: '事業の「選ばれる理由」を整理し、マーケティングの土台となる戦略を設計します。',
+    tags: ['市場分析', '競合分析', '顧客分析', 'ポジショニング設計', 'コンセプト設計', 'ブランド戦略', '価格、商品設計'],
   },
   {
     num: '02',
-    en: 'Experience Design',
-    title: '体験設計',
-    copy: '「行きたい」が生まれる\n瞬間を、つくる。',
-    body: '認知から来店、そして再訪まで。顧客が触れるすべての接点を一本の流れとして設計します。何を見て興味を持ち、何で不安が消え、何が予約の決め手になるのか。感情が動く順序を定義し、必要な体験と接点に落とし込みます。',
-    tags: ['#カスタマージャーニー設計', '#来店動機の言語化', '#接点・導線設計', '#世界観設計'],
-    img: '/images/service-gym.jpg',
+    en: 'Growth Marketing',
+    title: '集客戦略・マーケティング実行',
+    copy: '事業の課題やターゲットに合わせて、\n最適なチャネルと施策を組み合わせます。',
+    body: '広告、SNS、インフルエンサー、LINEなどを個別に運用するのではなく、成果につながる一つの集客戦略として設計・実行します。',
+    tags: ['マーケティング戦略', 'Meta広告運用', 'Google広告運用', 'Instagram、TikTok運用', 'インフルエンサーマーケティング', 'LINEマーケティング', 'CRM施策', 'キャンペーン企画'],
   },
   {
     num: '03',
-    en: 'Growth Execution',
-    title: '集客戦略・実行',
-    copy: '設計を、\n数字に変える。',
-    body: '設計した体験を、実際に人が動く形へ。SNS・広告・動画クリエイティブ・キャスティングを、チャネル単位ではなく設計図に沿って組み立て、運用します。数値を見ながら改善し、来店と予約が続く状態をつくります。',
-    tags: ['#SNS運用', '#広告運用', '#ショート動画制作', '#キャスティング', '#予約導線設計', '#効果測定・改善'],
-    img: '/images/service-casting.jpg',
+    en: 'Creative',
+    title: 'クリエイティブ・顧客体験設計',
+    copy: '事業戦略を、\n顧客に伝わる体験や表現へ落とし込みます。',
+    body: '目を引くだけではなく、ブランドの価値が正しく伝わり、顧客の行動につながるクリエイティブを制作します。',
+    tags: ['クリエイティブ企画', '動画制作', '写真撮影', '広告クリエイティブ制作', 'LP制作', 'Webサイト制作', 'SNSコンテンツ制作', '顧客体験設計'],
+  },
+  {
+    num: '04',
+    en: 'Growth Optimization',
+    title: '分析・改善・事業成長支援',
+    copy: '施策を実行して終わりにせず、\n数値と顧客行動をもとに継続的な改善を行います。',
+    body: '新規顧客の獲得だけでなく、継続率やLTVまで含めて、事業の成長を支援します。',
+    tags: ['KPI設計', 'データ分析', '施策の効果検証', 'コンバージョン改善', 'LTV改善', 'CRM改善', 'リピート施策', 'レポーティング、改善提案'],
   },
 ]
 
-function ServiceRow({ s, i }: { s: typeof services[0]; i: number }) {
+function ServicePanel({ s, i }: { s: typeof services[0]; i: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const reverse = i % 2 === 1
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.8 }}
-      className="grid md:grid-cols-2 gap-0 border-b border-white/10"
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.1 + (i % 2) * 0.08 }}
+      className="bg-[#0a0a0a] p-8 md:p-12 lg:p-14 flex flex-col"
     >
-      <div className={`py-16 md:py-24 px-8 md:px-16 flex flex-col justify-center order-2 ${reverse ? 'md:order-2' : 'md:order-1'}`}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.1 }}
-        >
-          <div className="flex items-baseline gap-3 mb-8">
-            <span className="font-inter text-[clamp(36px,5vw,56px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/25">{s.num}</span>
-            <span className="font-inter text-[clamp(12px,1vw,15px)] tracking-[0.25em] uppercase text-[#4d7fff]/80">{s.en}</span>
-          </div>
-
-          <h3 className="text-[clamp(26px,3.5vw,48px)] font-black leading-[1.2] tracking-tight text-white mb-6 whitespace-pre-line">
-            {s.title}
-          </h3>
-
-          <p className="text-[clamp(18px,2.4vw,32px)] font-medium text-white/80 leading-[1.8] mb-6 whitespace-pre-line">
-            {s.copy}
-          </p>
-
-          <p className="text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[2] mb-8">
-            {s.body}
-          </p>
-
-          <div className="flex flex-wrap gap-2">
-            {s.tags.map((tag) => (
-              <span key={tag} className="font-inter text-[clamp(13px,1.1vw,16px)] tracking-wide text-white border border-white/30 bg-[#4d7fff]/20 px-4 py-2 hover:bg-[#4d7fff]/40 transition-colors duration-200">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+      <div className="flex items-baseline gap-3 mb-6">
+        <span className="font-inter text-[clamp(32px,4vw,48px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/25">{s.num}</span>
+        <span className="font-inter text-[clamp(12px,1vw,15px)] tracking-[0.25em] uppercase text-[#4d7fff]/80">{s.en}</span>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 1.02 }}
-        animate={inView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 1, delay: 0.15 }}
-        className={`relative min-h-[300px] md:min-h-[500px] overflow-hidden order-1 ${reverse ? 'md:order-1' : 'md:order-2'}`}
-      >
-        <img src={s.img} alt={s.en} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/30" />
-      </motion.div>
+      <h3 className="text-[clamp(22px,2.6vw,34px)] font-black leading-[1.3] tracking-tight text-white mb-5">
+        {s.title}
+      </h3>
+
+      <p className="text-[clamp(16px,1.6vw,20px)] font-medium text-white/80 leading-[1.8] mb-4 whitespace-pre-line">
+        {s.copy}
+      </p>
+
+      <p className="text-[clamp(14px,1.3vw,17px)] text-white/60 leading-[1.9] mb-8">
+        {s.body}
+      </p>
+
+      <div className="flex flex-wrap gap-2 mt-auto">
+        {s.tags.map((tag) => (
+          <span key={tag} className="font-inter text-[clamp(12px,1vw,14px)] tracking-wide text-white/90 border border-white/20 bg-[#4d7fff]/10 px-3 py-1.5 hover:bg-[#4d7fff]/30 transition-colors duration-200">
+            {tag}
+          </span>
+        ))}
+      </div>
     </motion.div>
   )
 }
@@ -118,9 +104,9 @@ export default function Services() {
               transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-[clamp(28px,4.5vw,54px)] font-black leading-[1.2] tracking-tight text-white"
             >
-              設計から、実行まで。
+              事業成長に必要な、
               <br />
-              <span className="text-white/50">分断せずに、つなぐ。</span>
+              <span className="text-white/50">すべてを。</span>
             </motion.h2>
           </div>
 
@@ -130,15 +116,22 @@ export default function Services() {
             transition={{ duration: 1, delay: 0.25 }}
             className="text-[clamp(15px,1.6vw,22px)] text-white/70 leading-[1.9] mt-8"
           >
-            コンセプトの定義、体験の設計、集客の実行。
+            事業の戦略設計から、マーケティングの実行、
             <br />
-            この3つを別々の会社に分けないことが、成果の再現性をつくります。
+            クリエイティブ制作、データをもとにした改善まで。
+            <br />
+            <br />
+            事業成長に必要な支援を、
+            <br />
+            一つのチームで一気通貫して提供します。
           </motion.p>
         </div>
 
-        {services.map((s, i) => (
-          <ServiceRow key={i} s={s} i={i} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#4d7fff]/10 border-t border-[#4d7fff]/20">
+          {services.map((s, i) => (
+            <ServicePanel key={i} s={s} i={i} />
+          ))}
+        </div>
       </div>
     </section>
   )
