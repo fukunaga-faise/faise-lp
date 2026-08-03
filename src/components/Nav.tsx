@@ -7,7 +7,7 @@ import ContactModal from './ContactModal'
 const links = [
   { label: 'Approach', href: '#mission' },
   { label: 'Services', href: '#services' },
-  { label: 'Works', href: '#works' },
+  // { label: 'Works', href: '#works' }, // Worksセクション非表示中。復活させる場合はこの行を戻す
   { label: 'Message', href: '#founder' },
 ]
 

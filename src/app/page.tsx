@@ -2,7 +2,7 @@ import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
-import Works from '@/components/Works'
+// import Works from '@/components/Works' // 非表示中。復活させる場合はこの行と下の <Works /> を戻す
 import Clients from '@/components/Clients'
 import Founder from '@/components/Founder'
 import Company from '@/components/Company'
@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Services />
-      <Works />
+      {/* <Works /> */}
       <Clients />
       <Founder />
       <Company />
