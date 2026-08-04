@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ContactModal from './ContactModal'
 
 const links = [
-  { label: 'Approach', href: '#mission' },
+  { label: 'What We Do', href: '#mission' },
   { label: 'Services', href: '#services' },
   // { label: 'Works', href: '#works' }, // Worksセクション非表示中。復活させる場合はこの行を戻す
   { label: 'Message', href: '#founder' },
