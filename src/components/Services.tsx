@@ -6,7 +6,6 @@ import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform
 type Service = {
   number: string
   verb: string
-  functionName: string
   description: string
   items: string[]
 }
@@ -14,31 +13,27 @@ type Service = {
 const services: Service[] = [
   {
     number: '01',
-    verb: '見つける',
-    functionName: '戦略・コンセプト設計',
-    description: 'その事業が「選ばれる理由」を見つけて、一つに絞ります。',
-    items: ['市場調査', '競合分析', '顧客分析', 'ポジショニング設計', 'コンセプト設計', '商品・価格設計'],
+    verb: '選ばれる理由をつくる',
+    description: 'その事業ならではの強みを整理し、\nお客様から選ばれる理由を明確にします。',
+    items: ['市場・競合分析', '顧客分析', 'ポジショニング設計', 'コンセプト設計', 'ブランド戦略', '商品・価格設計'],
   },
   {
     number: '02',
-    verb: '形にする',
-    functionName: 'クリエイティブ・体験設計',
-    description: '決めた理由が伝わるように、映像や写真、言葉に落とし込みます。',
-    items: ['動画制作', '写真撮影', '広告クリエイティブ制作', 'LP・Webサイト制作', '来店体験の設計'],
+    verb: '伝わる形にする',
+    description: '決めたコンセプトを、\n伝わる体験やクリエイティブへ落とし込みます。',
+    items: ['動画制作', '写真撮影', '広告クリエイティブ制作', 'LP・Webサイト制作', 'SNSコンテンツ制作', '来店体験設計'],
   },
   {
     number: '03',
-    verb: '届ける',
-    functionName: '集客戦略・マーケティング実行',
-    description: '誰に、どの順番で見せるかを設計して、実行します。',
-    items: ['集客戦略設計', 'インフルエンサーキャスティング', 'Meta・Google広告運用', 'Instagram・TikTok運用', 'LINE・CRM'],
+    verb: '人を集める',
+    description: '最適な手段を組み合わせ、\n人が集まる仕組みをつくります。',
+    items: ['Meta広告運用', 'Google広告運用', 'Instagram・TikTok運用', 'インフルエンサーマーケティング', 'LINEマーケティング', 'キャンペーン企画'],
   },
   {
     number: '04',
-    verb: '確かめる',
-    functionName: '分析・改善',
-    description: '効いていたのかを数字で確認して、次に反映します。',
-    items: ['KPI設計', 'データ分析', '効果検証', 'CVR改善', 'LTV・リピート改善', 'レポーティング'],
+    verb: '成果を伸ばす',
+    description: '数字をもとに改善を重ね、\n継続的な事業成長につなげます。',
+    items: ['KPI設計', 'データ分析', '効果検証', 'コンバージョン改善', 'CRM改善', 'LTV改善'],
   },
 ]
 
@@ -112,21 +107,27 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
         <h3 className="text-[clamp(30px,4.5vw,60px)] font-black leading-[1.15] tracking-tight text-white">
           {s.verb}
         </h3>
-        <p className="mt-2 md:mt-3 font-inter text-[12px] md:text-[14px] tracking-[0.2em] uppercase text-[#4d7fff]">
-          {s.functionName}
-        </p>
       </motion.div>
 
       <motion.p
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="mt-4 md:mt-6 text-[clamp(15px,1.4vw,19px)] text-white/85 leading-[1.9] max-w-xl"
+        className="mt-4 md:mt-6 text-[clamp(15px,1.4vw,19px)] text-white/85 leading-[1.9] max-w-xl whitespace-pre-line"
       >
         {s.description}
       </motion.p>
 
-      <div className="mt-5 md:mt-7 flex flex-wrap gap-2">
+      <motion.p
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.22 }}
+        className="mt-6 md:mt-8 font-inter text-[11px] md:text-[12px] font-bold tracking-[0.15em] uppercase text-white/40"
+      >
+        できること
+      </motion.p>
+
+      <div className="mt-3 flex flex-wrap gap-2">
         {s.items.map((item, idx) => (
           <motion.span
             key={item}
