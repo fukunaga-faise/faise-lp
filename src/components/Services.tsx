@@ -95,11 +95,11 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
 
       {/* Number — large, low-contrast, decorative */}
       <motion.span
-        initial={reduceMotion ? false : { opacity: 0, x: -20 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6 }}
+        initial={reduceMotion ? false : { opacity: 0, x: -20, scale: 0.85 }}
+        animate={inView ? { opacity: 1, x: 0, scale: 1 } : {}}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         aria-hidden="true"
-        className="block font-inter font-black leading-none tracking-[-0.03em] text-[56px] md:text-[90px] lg:text-[120px] text-[#4d7fff]/10 select-none -mb-3 md:-mb-6 lg:-mb-9 transition-colors duration-300 group-hover:text-[#4d7fff]/20"
+        className="block font-inter font-black leading-none tracking-[-0.03em] text-[56px] md:text-[90px] lg:text-[120px] text-[#4d7fff]/30 select-none -mb-3 md:-mb-6 lg:-mb-9 transition-colors duration-300 group-hover:text-[#4d7fff]/50"
       >
         {String(count).padStart(2, '0')}
       </motion.span>
