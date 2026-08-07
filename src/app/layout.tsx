@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'ZJwBSJHA3cQnOMN3sZvgRCI4nJJMGVRw2fnw1ZNoJvU',
   },
-  title: '株式会社Faise | 人が集まる場所を、設計する。',
+  title: '株式会社Faise | 人が集まる理由を、設計する。',
   description:
-    '集客施設に特化したマーケティング支援。コンセプト設計・体験設計・集客戦略を一気通貫で。パーソナルジム、美容クリニック、店舗型ビジネスの来店と予約を設計します。',
+    'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
   metadataBase: new URL('https://faise-inc.com'),
   alternates: {
     canonical: 'https://faise-inc.com',
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     apple: '/icon.png',
   },
   openGraph: {
-    title: '株式会社Faise | 人が集まる場所を、設計する。',
+    title: '株式会社Faise | 人が集まる理由を、設計する。',
     description:
-      'コンセプト設計から集客実行まで。集客施設に特化したマーケティングパートナー。',
+      'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
     type: 'website',
     locale: 'ja_JP',
     url: 'https://faise-inc.com',
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '株式会社Faise | 人が集まる場所を、設計する。',
-    description: 'コンセプト設計から集客実行まで。集客施設に特化したマーケティングパートナー。',
+    title: '株式会社Faise | 人が集まる理由を、設計する。',
+    description: 'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
   },
 }
 
@@ -62,7 +62,7 @@ const jsonLd = {
     addressCountry: 'JP',
   },
   description:
-    '体験設計型マーケティング。パーソナルジム・美容クリニック・店舗型ビジネスの集客・予約・成約を一気通貫で支援。',
+    'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
 }
 
 export default function RootLayout({
