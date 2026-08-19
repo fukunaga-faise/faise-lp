@@ -1,5 +1,22 @@
+'use client'
+
 // ファーストビュー。背景画像は使わず、AmbientBackground の上に文字だけを置きます。
 // 位置を微調整したいときは、下の4つの数字を書き換えてください。
+
+import { useLanguage } from '@/lib/language';
+
+const t = {
+  h1: {
+    ja: ["人が集まる理由を、", "設計する。"],
+    en: ["The reason people gather,", "we design it."],
+  },
+  sub: {
+    ja: ["ブランド、体験、マーケティング。", "集客施設の成長を、一気通貫で支援します。"],
+    en: ["Brand, experience, marketing.", "End-to-end growth support for footfall-driven businesses."],
+  },
+  eyebrow: { ja: "Experience Design Marketing", en: "Experience Design Marketing" },
+  scroll: { ja: "Scroll", en: "Scroll" },
+};
 
 const LEFT = "5.4vw"; // 左端からの余白
 const BOTTOM = "7vh"; // 下端からの余白(PC)
@@ -44,7 +61,6 @@ const css = `
 }
 .faise-hero h1{
   margin:0;
-  white-space:nowrap;
   font-size:clamp(30px,5.6vw,88px);
   font-weight:700;
   line-height:1.42;
@@ -93,26 +109,27 @@ const css = `
 `;
 
 export default function Hero() {
+  const { lang } = useLanguage();
   return (
     <section className="faise-hero" id="hero">
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <div className="faise-hero-copy">
         <p className="faise-hero-eyebrow faise-rise faise-d1">
-          Experience Design Marketing
+          {t.eyebrow[lang]}
         </p>
-        <h1 className="faise-rise faise-d2">
-          人が集まる理由を、
+        <h1 className={`faise-rise faise-d2 ${lang === "ja" ? "whitespace-nowrap" : ""}`}>
+          {t.h1[lang][0]}
           <br />
-          設計する。
+          {t.h1[lang][1]}
         </h1>
         <p className="faise-hero-sub faise-rise faise-d3">
-          ブランド、体験、マーケティング。
+          {t.sub[lang][0]}
           <br />
-          集客施設の成長を、一気通貫で支援します。
+          {t.sub[lang][1]}
         </p>
       </div>
       <div className="faise-hero-scroll faise-rise faise-d4" aria-hidden="true">
-        Scroll
+        {t.scroll[lang]}
       </div>
     </section>
   );

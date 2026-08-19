@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ContactModal from './ContactModal'
+import { useLanguage } from '@/lib/language'
 
 const links = [
   { label: 'What We Do', href: '#mission' },
@@ -11,10 +12,16 @@ const links = [
   { label: 'Message', href: '#founder' },
 ]
 
+const t = {
+  contact: { ja: '問い合わせ', en: 'Contact' },
+  mobileCta: { ja: '集客について相談する', en: 'Talk to us' },
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const { lang, toggleLang } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -54,16 +61,28 @@ export default function Nav() {
           ))}
         </ul>
 
-        <button
-          onClick={() => setModalOpen(true)}
-          className={`hidden md:inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 border transition-all duration-300 ${
-            scrolled
-              ? 'text-white border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a]'
-              : 'text-[#0B0B12] border-[#0B0B12]/40 hover:border-[#0B0B12] hover:bg-[#0B0B12] hover:text-white'
-          }`}
-        >
-          問い合わせ
-        </button>
+        <div className="hidden md:flex items-center gap-5">
+          <button
+            onClick={toggleLang}
+            aria-label="Switch language"
+            className={`text-[13px] font-bold tracking-[0.1em] uppercase transition-colors duration-300 ${
+              scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'
+            }`}
+          >
+            {lang === 'ja' ? 'EN' : '日本語'}
+          </button>
+
+          <button
+            onClick={() => setModalOpen(true)}
+            className={`inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 border transition-all duration-300 ${
+              scrolled
+                ? 'text-white border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a]'
+                : 'text-[#0B0B12] border-[#0B0B12]/40 hover:border-[#0B0B12] hover:bg-[#0B0B12] hover:text-white'
+            }`}
+          >
+            {t.contact[lang]}
+          </button>
+        </div>
 
         <button
           onClick={() => setOpen(!open)}
@@ -105,7 +124,17 @@ export default function Nav() {
               onClick={() => { setOpen(false); setModalOpen(true) }}
               className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-white border border-white/30 px-10 py-4 hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
             >
-              集客について相談する
+              {t.mobileCta[lang]}
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.42 }}
+              onClick={toggleLang}
+              className="text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors duration-300"
+            >
+              {lang === 'ja' ? 'English' : '日本語'}
             </motion.button>
           </motion.div>
         )}

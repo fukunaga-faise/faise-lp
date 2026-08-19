@@ -3,11 +3,20 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import ContactModal from './ContactModal'
+import { useLanguage } from '@/lib/language'
+
+const t = {
+  eyebrow: { ja: 'お問い合わせ', en: 'Contact' },
+  lead: { ja: '各種お問い合わせはこちらから。', en: 'Get in touch for any inquiries.' },
+  ariaLabel: { ja: '無料相談を申し込む', en: 'Request a free consultation' },
+  address: { ja: '株式会社Faise　東京都品川区大井4-18-25', en: 'Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo' },
+}
 
 export default function CTA() {
   const [modalOpen, setModalOpen] = useState(false)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const { lang } = useLanguage()
 
   return (
     <>
@@ -29,7 +38,7 @@ export default function CTA() {
             transition={{ duration: 0.8 }}
             className="font-inter text-[11px] tracking-[0.4em] uppercase text-white/70 mb-6"
           >
-            お問い合わせ
+            {t.eyebrow[lang]}
           </motion.p>
 
           <div className="overflow-hidden mb-8">
@@ -49,7 +58,7 @@ export default function CTA() {
             transition={{ duration: 1, delay: 0.25 }}
             className="text-[clamp(13px,1.5vw,16px)] text-white/80 leading-[1.9] mb-14"
           >
-            各種お問い合わせはこちらから。
+            {t.lead[lang]}
           </motion.p>
 
           <motion.button
@@ -60,7 +69,7 @@ export default function CTA() {
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center justify-center w-20 h-20 rounded-full border-2 border-white/60 hover:border-white hover:bg-white/10 text-white text-2xl transition-colors duration-300"
-            aria-label="無料相談を申し込む"
+            aria-label={t.ariaLabel[lang]}
           >
             →
           </motion.button>
@@ -75,7 +84,7 @@ export default function CTA() {
               <span className="font-inter font-black tracking-[0.15em] text-white/70 text-[14px] uppercase">Faise</span>
             </a>
             <p className="text-[11px] text-white/30 tracking-wide">
-              株式会社Faise　東京都品川区大井4-18-25
+              {t.address[lang]}
             </p>
           </div>
           <p className="text-[10px] text-white/20 tracking-wide">

@@ -2,16 +2,26 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useLanguage } from '@/lib/language'
 
 const clients = [
-  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', logo: '/images/logo-yoshimoto-new.svg' },
-  { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', logo: '/images/logo-elife-new.svg' },
-  { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', logo: '/images/logo-wellnessplus-new.webp' },
+  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', categoryEn: 'Entertainment', logo: '/images/logo-yoshimoto-new.svg' },
+  { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', categoryEn: 'Healthcare', logo: '/images/logo-elife-new.svg' },
+  { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', categoryEn: 'Fitness & Wellness', logo: '/images/logo-wellnessplus-new.webp' },
 ]
+
+const t = {
+  h2: { ja: '取引実績', en: 'Our Clients' },
+  lead: {
+    ja: '業界を問わず、集客に課題を持つ施設をご支援しています。',
+    en: 'We support footfall-driven businesses across every industry.',
+  },
+}
 
 export default function Clients() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const { lang } = useLanguage()
 
   return (
     <section className="bg-[#0f0f0f] border-t border-[#4d7fff]/20 py-24 md:py-40 px-8 md:px-20 overflow-hidden">
@@ -35,7 +45,7 @@ export default function Clients() {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(26px,4vw,48px)] font-black leading-[1.1] tracking-tight text-white mb-3"
           >
-            取引実績
+            {t.h2[lang]}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -43,7 +53,7 @@ export default function Clients() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-[clamp(14px,1.5vw,18px)] text-white/50"
           >
-            業界を問わず、集客に課題を持つ施設をご支援しています。
+            {t.lead[lang]}
           </motion.p>
         </div>
 
@@ -62,9 +72,9 @@ export default function Clients() {
                   <img src={c.logo} alt={c.name} className="h-7 w-auto object-contain max-w-[130px]" />
                 </div>
               )}
-              <p className="text-[clamp(20px,2.2vw,30px)] font-black text-white leading-tight">{c.name}</p>
+              <p className="text-[clamp(20px,2.2vw,30px)] font-black text-white leading-tight">{lang === 'ja' ? c.name : c.nameEn}</p>
               <span className="self-start text-[clamp(11px,1vw,13px)] font-medium text-[#4d7fff] border border-[#4d7fff]/50 px-3 py-1 mt-auto">
-                {c.category}
+                {lang === 'ja' ? c.category : c.categoryEn}
               </span>
             </motion.div>
           ))}

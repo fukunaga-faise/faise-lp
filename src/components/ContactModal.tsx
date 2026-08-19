@@ -3,15 +3,40 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Loader2, CheckCircle } from 'lucide-react'
+import { useLanguage } from '@/lib/language'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
 }
 
+const t = {
+  successTitle: { ja: '送信完了しました', en: 'Message sent' },
+  successBody: {
+    ja: ['お問い合わせありがとうございます。', '2営業日以内にご連絡いたします。'],
+    en: ['Thank you for reaching out.', 'We’ll get back to you within 2 business days.'],
+  },
+  close: { ja: '閉じる', en: 'Close' },
+  heading: { ja: '無料相談する', en: 'Free consultation' },
+  intro: { ja: '内容を確認の上、2営業日以内にご連絡いたします。', en: 'We’ll review your message and respond within 2 business days.' },
+  name: { ja: 'お名前', en: 'Name' },
+  namePlaceholder: { ja: '山田 太郎', en: 'John Smith' },
+  company: { ja: '会社名・店舗名', en: 'Company / business name' },
+  companyPlaceholder: { ja: '株式会社〇〇', en: 'e.g. Acme Inc.' },
+  email: { ja: 'メールアドレス', en: 'Email' },
+  phone: { ja: '電話番号', en: 'Phone number' },
+  phonePlaceholder: { ja: '090-0000-0000', en: 'e.g. +81 90-0000-0000' },
+  message: { ja: 'お問い合わせ内容', en: 'Message' },
+  messagePlaceholder: { ja: '現在の課題やご相談内容をお聞かせください', en: 'Tell us about your current challenges or what you’d like to discuss' },
+  error: { ja: '送信に失敗しました。時間をおいて再度お試しください。', en: 'Something went wrong. Please try again in a moment.' },
+  sending: { ja: '送信中...', en: 'Sending...' },
+  send: { ja: '送信する', en: 'Send' },
+}
+
 export default function ContactModal({ isOpen, onClose }: Props) {
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const { lang } = useLanguage()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -63,35 +88,35 @@ export default function ContactModal({ isOpen, onClose }: Props) {
             {status === 'success' ? (
               <div className="flex flex-col items-center justify-center py-10 text-center gap-4">
                 <CheckCircle size={40} className="text-[#0050d0]" />
-                <h3 className="text-lg font-bold text-[#0f0f0f]">送信完了しました</h3>
+                <h3 className="text-lg font-bold text-[#0f0f0f]">{t.successTitle[lang]}</h3>
                 <p className="text-sm text-[#666] leading-relaxed">
-                  お問い合わせありがとうございます。<br />
-                  2営業日以内にご連絡いたします。
+                  {t.successBody[lang][0]}<br />
+                  {t.successBody[lang][1]}
                 </p>
                 <button
                   onClick={onClose}
                   className="mt-2 text-xs text-[#bbb] hover:text-[#555] transition-colors"
                 >
-                  閉じる
+                  {t.close[lang]}
                 </button>
               </div>
             ) : (
               <>
                 <p className="font-inter text-[11px] tracking-[0.3em] uppercase text-[#4d7fff] mb-3">Contact</p>
-                <h2 className="text-3xl font-black mb-2 text-[#0f0f0f]">無料相談する</h2>
+                <h2 className="text-3xl font-black mb-2 text-[#0f0f0f]">{t.heading[lang]}</h2>
                 <p className="text-sm text-[#999] mb-8 leading-relaxed">
-                  内容を確認の上、2営業日以内にご連絡いたします。
+                  {t.intro[lang]}
                 </p>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="text-[12px] text-[#999] mb-1.5 block tracking-wide">
-                        お名前 <span className="text-[#0050d0]">*</span>
+                        {t.name[lang]} <span className="text-[#0050d0]">*</span>
                       </label>
                       <input
                         required
-                        placeholder="山田 太郎"
+                        placeholder={t.namePlaceholder[lang]}
                         value={form.name}
                         onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                         className={inputClass}
@@ -99,10 +124,10 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     </div>
                     <div>
                       <label className="text-[12px] text-[#999] mb-1.5 block tracking-wide">
-                        会社名・店舗名
+                        {t.company[lang]}
                       </label>
                       <input
-                        placeholder="株式会社〇〇"
+                        placeholder={t.companyPlaceholder[lang]}
                         value={form.company}
                         onChange={e => setForm(p => ({ ...p, company: e.target.value }))}
                         className={inputClass}
@@ -111,7 +136,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   </div>
                   <div>
                     <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">
-                      メールアドレス <span className="text-[#0050d0]">*</span>
+                      {t.email[lang]} <span className="text-[#0050d0]">*</span>
                     </label>
                     <input
                       required
@@ -123,9 +148,9 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">電話番号</label>
+                    <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">{t.phone[lang]}</label>
                     <input
-                      placeholder="090-0000-0000"
+                      placeholder={t.phonePlaceholder[lang]}
                       value={form.phone}
                       onChange={e => setForm(p => ({ ...p, phone: e.target.value }))}
                       className={inputClass}
@@ -133,12 +158,12 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   </div>
                   <div>
                     <label className="text-[10px] text-[#999] mb-1.5 block tracking-wide">
-                      お問い合わせ内容 <span className="text-[#0050d0]">*</span>
+                      {t.message[lang]} <span className="text-[#0050d0]">*</span>
                     </label>
                     <textarea
                       required
                       rows={4}
-                      placeholder="現在の課題やご相談内容をお聞かせください"
+                      placeholder={t.messagePlaceholder[lang]}
                       value={form.message}
                       onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                       className={`${inputClass} resize-none`}
@@ -146,7 +171,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   </div>
 
                   {status === 'error' && (
-                    <p className="text-xs text-red-500">送信に失敗しました。時間をおいて再度お試しください。</p>
+                    <p className="text-xs text-red-500">{t.error[lang]}</p>
                   )}
 
                   <button
@@ -155,9 +180,9 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                     className="group mt-1 inline-flex items-center justify-center gap-3 bg-[#0050d0] hover:bg-[#003fa8] disabled:opacity-60 text-white text-sm font-bold tracking-[0.1em] uppercase px-8 py-4 rounded-sm transition-colors duration-200"
                   >
                     {status === 'loading' ? (
-                      <><Loader2 size={14} className="animate-spin" /> 送信中...</>
+                      <><Loader2 size={14} className="animate-spin" /> {t.sending[lang]}</>
                     ) : (
-                      <>送信する <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" /></>
+                      <>{t.send[lang]} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" /></>
                     )}
                   </button>
                 </form>

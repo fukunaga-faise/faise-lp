@@ -2,32 +2,62 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useLanguage, type Lang } from '@/lib/language'
 
 const career = [
-  { period: '2021–2023', company: 'ソニー株式会社' },
-  { period: '2023–2025', company: '株式会社刀' },
-  { period: '2025–', company: '株式会社Faise' },
+  { period: '2021–2023', company: { ja: 'ソニー株式会社', en: 'Sony Corporation' } },
+  { period: '2023–2025', company: { ja: '株式会社刀', en: 'Katana Inc.' } },
+  { period: '2025–', company: { ja: '株式会社Faise', en: 'Faise Inc.' } },
 ]
 
-const phrases = [
-  '「ここに行ってみたい。」',
-  '「この体験をしてみたい。」',
-]
+const phrasesByLang: Record<Lang, string[]> = {
+  ja: ['「ここに行ってみたい。」', '「この体験をしてみたい。」'],
+  en: ['“I want to go here.”', '“I want to try this experience.”'],
+}
 
-const fullMessage = [
-  'これまで私は、テーマパークや集客施設のマーケティングに携わってきました。',
-  'その中で何度も感じたのは、どれだけ魅力のある施設でも、その魅力が正しく伝わらなければ、人は集まらないということです。',
-  '一方で、伝え方やコンセプトを少し見直すだけで、施設の魅力が伝わり、驚くほど人の流れが変わる瞬間も何度も見てきました。',
-  '私は、すべての施設には、それぞれの魅力があると信じています。',
-  '大切なのは、その魅力を見つけ、誰に、どのように届けるかを設計することです。',
-  '人が集まれば、施設はもっと活気づき、街も地域も少しずつ豊かになっていく。',
-  '私たちは、一つでも多くの施設が、その魅力にふさわしく選ばれる世界をつくっていきたいと考えています。',
-]
+const fullMessageByLang: Record<Lang, string[]> = {
+  ja: [
+    'これまで私は、テーマパークや集客施設のマーケティングに携わってきました。',
+    'その中で何度も感じたのは、どれだけ魅力のある施設でも、その魅力が正しく伝わらなければ、人は集まらないということです。',
+    '一方で、伝え方やコンセプトを少し見直すだけで、施設の魅力が伝わり、驚くほど人の流れが変わる瞬間も何度も見てきました。',
+    '私は、すべての施設には、それぞれの魅力があると信じています。',
+    '大切なのは、その魅力を見つけ、誰に、どのように届けるかを設計することです。',
+    '人が集まれば、施設はもっと活気づき、街も地域も少しずつ豊かになっていく。',
+    '私たちは、一つでも多くの施設が、その魅力にふさわしく選ばれる世界をつくっていきたいと考えています。',
+  ],
+  en: [
+    'I’ve spent my career in marketing for theme parks and footfall-driven businesses.',
+    'Time and again, I saw that no matter how appealing a place is, people won’t gather if that appeal isn’t communicated properly.',
+    'At the same time, I’ve also seen how a small shift in messaging or concept can get that appeal across and change the flow of people dramatically.',
+    'I believe every place has its own appeal.',
+    'What matters is finding that appeal and designing who to reach with it, and how.',
+    'When people gather, a place gains more energy — and its town, its community, grows a little richer too.',
+    'We want to help build a world where as many places as possible are chosen in a way that matches their true appeal.',
+  ],
+}
+
+const t = {
+  blockquote: {
+    ja: ['良い施設が、', '正しく選ばれる世界へ。'],
+    en: ['Toward a world where great places', 'get chosen for the right reasons.'],
+  },
+  summary: {
+    ja: ['そう思われる理由をつくること。', 'それが、Faiseの仕事です。'],
+    en: ['Creating the reason people feel that way —', 'that’s Faise’s work.'],
+  },
+  readMore: { ja: '全文を読む', en: 'Read more' },
+  close: { ja: '閉じる', en: 'Close' },
+  founderName: { ja: '福永 遥斗', en: 'Haruto Fukunaga' },
+  founderTitle: { ja: '株式会社Faise 代表取締役', en: 'CEO, Faise Inc.' },
+}
 
 export default function Founder() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [expanded, setExpanded] = useState(false)
+  const { lang } = useLanguage()
+  const phrases = phrasesByLang[lang]
+  const fullMessage = fullMessageByLang[lang]
 
   return (
     <>
@@ -53,8 +83,8 @@ export default function Founder() {
             >
               {/* Core quote */}
               <blockquote className="text-[clamp(22px,3.2vw,40px)] font-black leading-[1.7] tracking-tight text-white mb-10">
-                良い施設が、<br />
-                正しく選ばれる世界へ。
+                {t.blockquote[lang][0]}<br />
+                {t.blockquote[lang][1]}
               </blockquote>
 
               {/* Key phrases — large typography */}
@@ -79,8 +109,8 @@ export default function Founder() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-6"
               >
-                そう思われる理由をつくること。<br />
-                それが、Faiseの仕事です。
+                {t.summary[lang][0]}<br />
+                {t.summary[lang][1]}
               </motion.p>
 
               {/* Expand button */}
@@ -91,7 +121,7 @@ export default function Founder() {
                 onClick={() => setExpanded(v => !v)}
                 className="group flex items-center gap-3 text-[clamp(11px,1vw,13px)] font-semibold tracking-[0.2em] uppercase text-[#4d7fff]/70 hover:text-[#4d7fff] transition-colors duration-300 mb-10"
               >
-                <span>{expanded ? '閉じる' : '全文を読む'}</span>
+                <span>{expanded ? t.close[lang] : t.readMore[lang]}</span>
                 <motion.span
                   animate={{ rotate: expanded ? 45 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -134,7 +164,7 @@ export default function Founder() {
                     >
                       <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
                       <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.3em] text-[#4d7fff]/80 mb-2">{c.period}</p>
-                      <p className="text-[clamp(15px,1.4vw,20px)] font-bold text-white">{c.company}</p>
+                      <p className="text-[clamp(15px,1.4vw,20px)] font-bold text-white">{c.company[lang]}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -148,12 +178,12 @@ export default function Founder() {
               className="flex flex-col gap-5"
             >
               <div className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]">
-                <img src="/images/founder.jpg" alt="福永 遥斗" className="w-full h-full object-cover object-center" />
+                <img src="/images/founder.jpg" alt={t.founderName[lang]} className="w-full h-full object-cover object-center" />
               </div>
               <div>
                 <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.25em] uppercase text-[#4d7fff]/70 mb-2">Haruto Fukunaga</p>
-                <p className="text-[clamp(22px,2.5vw,32px)] font-black text-white">福永 遥斗</p>
-                <p className="text-[clamp(13px,1.2vw,16px)] text-white/90 mt-1">株式会社Faise 代表取締役</p>
+                <p className="text-[clamp(22px,2.5vw,32px)] font-black text-white">{t.founderName[lang]}</p>
+                <p className="text-[clamp(13px,1.2vw,16px)] text-white/90 mt-1">{t.founderTitle[lang]}</p>
               </div>
 
               {/* Career timeline — mobile only */}
@@ -170,7 +200,7 @@ export default function Founder() {
                     >
                       <div className="absolute left-0 top-0 w-px h-full bg-[#4d7fff]/40" />
                       <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-1">{c.period}</p>
-                      <p className="text-[14px] font-bold text-white/80">{c.company}</p>
+                      <p className="text-[14px] font-bold text-white/80">{c.company[lang]}</p>
                     </motion.div>
                   ))}
                 </div>

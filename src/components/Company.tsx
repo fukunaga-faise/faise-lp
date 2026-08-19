@@ -2,18 +2,32 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useLanguage, type Lang } from '@/lib/language'
 
-const rows = [
-  { label: '会社名',     value: '株式会社Faise' },
-  { label: '代表取締役', value: '福永 遥斗' },
-  { label: '設立',       value: '2025年12月' },
-  { label: '所在地',     value: '〒140-0014\n東京都品川区大井4-18-25' },
-  { label: '事業内容',   value: '集客施設向けマーケティング支援\n（コンセプト設計・体験設計・集客戦略）' },
-]
+const rowsByLang: Record<Lang, { label: string; value: string }[]> = {
+  ja: [
+    { label: '会社名', value: '株式会社Faise' },
+    { label: '代表取締役', value: '福永 遥斗' },
+    { label: '設立', value: '2025年12月' },
+    { label: '所在地', value: '〒140-0014\n東京都品川区大井4-18-25' },
+    { label: '事業内容', value: '集客施設向けマーケティング支援\n（コンセプト設計・体験設計・集客戦略）' },
+  ],
+  en: [
+    { label: 'Company name', value: 'Faise Inc.' },
+    { label: 'CEO', value: 'Haruto Fukunaga' },
+    { label: 'Founded', value: 'December 2025' },
+    { label: 'Address', value: '4-18-25 Oi, Shinagawa-ku,\nTokyo 140-0014, Japan' },
+    { label: 'Business', value: 'Marketing support for footfall-driven businesses\n(concept design, experience design, growth strategy)' },
+  ],
+}
+
+const t = { h2: { ja: '会社概要', en: 'Company Profile' } }
 
 export default function Company() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
+  const { lang } = useLanguage()
+  const rows = rowsByLang[lang]
 
   return (
     <section className="bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 py-24 md:py-40 px-8 md:px-20 overflow-hidden">
@@ -36,7 +50,7 @@ export default function Company() {
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(24px,3.5vw,44px)] font-black text-white mb-14 tracking-tight"
         >
-          会社概要
+          {t.h2[lang]}
         </motion.h2>
 
         <div className="max-w-3xl">

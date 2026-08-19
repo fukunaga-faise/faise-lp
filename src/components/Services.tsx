@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { useLanguage, type Lang } from '@/lib/language'
 
 type Service = {
   number: string
@@ -10,39 +11,85 @@ type Service = {
   items: string[]
 }
 
-const services: Service[] = [
-  {
-    number: '01',
-    verb: '選ばれる理由をつくる',
-    description: 'その事業ならではの強みを整理し、\nお客様から選ばれる理由を明確にします。',
-    items: ['市場・競合分析', '顧客分析', 'ポジショニング設計', 'コンセプト設計', 'ブランド戦略', '商品・価格設計'],
-  },
-  {
-    number: '02',
-    verb: '伝わる形にする',
-    description: '決めたコンセプトを、\n伝わる体験やクリエイティブへ落とし込みます。',
-    items: ['動画制作', '写真撮影', '広告クリエイティブ制作', 'LP・Webサイト制作', 'SNSコンテンツ制作', '来店体験設計'],
-  },
-  {
-    number: '03',
-    verb: '人を集める',
-    description: '最適な手段を組み合わせ、\n人が集まる仕組みをつくります。',
-    items: ['Meta広告運用', 'Google広告運用', 'Instagram・TikTok運用', 'インフルエンサーマーケティング', 'LINEマーケティング', 'キャンペーン企画'],
-  },
-  {
-    number: '04',
-    verb: '成果を伸ばす',
-    description: '数字をもとに改善を重ね、\n継続的な事業成長につなげます。',
-    items: ['KPI設計', 'データ分析', '効果検証', 'コンバージョン改善', 'CRM改善', 'LTV改善'],
-  },
-]
+const servicesByLang: Record<Lang, Service[]> = {
+  ja: [
+    {
+      number: '01',
+      verb: '選ばれる理由をつくる',
+      description: 'その事業ならではの強みを整理し、\nお客様から選ばれる理由を明確にします。',
+      items: ['市場・競合分析', '顧客分析', 'ポジショニング設計', 'コンセプト設計', 'ブランド戦略', '商品・価格設計'],
+    },
+    {
+      number: '02',
+      verb: '伝わる形にする',
+      description: '決めたコンセプトを、\n伝わる体験やクリエイティブへ落とし込みます。',
+      items: ['動画制作', '写真撮影', '広告クリエイティブ制作', 'LP・Webサイト制作', 'SNSコンテンツ制作', '来店体験設計'],
+    },
+    {
+      number: '03',
+      verb: '人を集める',
+      description: '最適な手段を組み合わせ、\n人が集まる仕組みをつくります。',
+      items: ['Meta広告運用', 'Google広告運用', 'Instagram・TikTok運用', 'インフルエンサーマーケティング', 'LINEマーケティング', 'キャンペーン企画'],
+    },
+    {
+      number: '04',
+      verb: '成果を伸ばす',
+      description: '数字をもとに改善を重ね、\n継続的な事業成長につなげます。',
+      items: ['KPI設計', 'データ分析', '効果検証', 'コンバージョン改善', 'CRM改善', 'LTV改善'],
+    },
+  ],
+  en: [
+    {
+      number: '01',
+      verb: 'Give people a reason to choose you',
+      description: 'We organize what makes the business unique\nand define a clear reason customers choose it.',
+      items: ['Market & competitor analysis', 'Customer analysis', 'Positioning design', 'Concept design', 'Brand strategy', 'Product & pricing design'],
+    },
+    {
+      number: '02',
+      verb: 'Turn it into something people feel',
+      description: 'We translate the concept we’ve defined\ninto experiences and creative people connect with.',
+      items: ['Video production', 'Photography', 'Ad creative production', 'LP / website production', 'SNS content production', 'In-store experience design'],
+    },
+    {
+      number: '03',
+      verb: 'Bring people in',
+      description: 'We combine the right channels\nand build a system that brings people in.',
+      items: ['Meta ads', 'Google ads', 'Instagram / TikTok management', 'Influencer marketing', 'LINE marketing', 'Campaign planning'],
+    },
+    {
+      number: '04',
+      verb: 'Grow the results',
+      description: 'We keep improving based on the numbers,\ndriving continuous business growth.',
+      items: ['KPI design', 'Data analysis', 'Performance verification', 'Conversion optimization', 'CRM improvement', 'LTV improvement'],
+    },
+  ],
+}
 
-const faqs = [
-  'インフルエンサーを使いたいが、誰を起用すべきか分からない',
-  '広告のCPAが上がり続けている',
-  '動画は出しているが、予約につながらない',
-  '開業したが、認知が広がらない',
-]
+const faqsByLang: Record<Lang, string[]> = {
+  ja: [
+    'インフルエンサーを使いたいが、誰を起用すべきか分からない',
+    '広告のCPAが上がり続けている',
+    '動画は出しているが、予約につながらない',
+    '開業したが、認知が広がらない',
+  ],
+  en: [
+    'I want to use influencers, but I don’t know who to cast.',
+    'My ad CPA keeps rising.',
+    'We post videos, but they don’t lead to bookings.',
+    'We’ve opened, but awareness isn’t growing.',
+  ],
+}
+
+const t = {
+  h2: { ja: 'やっているのは、この4つです。', en: 'Here’s what we actually do.' },
+  itemsLabel: { ja: 'できること', en: 'What’s included' },
+  belowList: {
+    ja: ['「動画だけ」「広告だけ」のご相談もお受けしています。', 'ただ、理由が決まっていないまま進めると成果が出にくいので、', 'その場合は01からご提案します。'],
+    en: ['We’re happy to help with just video, or just ads.', 'But without a clear reason in place first, results tend to be weak —', 'so in that case, we’ll suggest starting from 01.'],
+  },
+  faqHeading: { ja: 'よくいただくご相談', en: 'Questions we hear often' },
+}
 
 function useCountUp(target: number, inView: boolean, reduceMotion: boolean, duration = 0.6) {
   const [value, setValue] = useState(reduceMotion ? target : 0)
@@ -72,6 +119,7 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
   const reduceMotion = useReducedMotion()
   const count = useCountUp(Number(s.number), inView, !!reduceMotion)
+  const { lang } = useLanguage()
 
   return (
     <motion.div
@@ -124,7 +172,7 @@ function ServiceStep({ s, isLast }: { s: Service; isLast: boolean }) {
         transition={{ duration: 0.5, delay: 0.22 }}
         className="mt-6 md:mt-8 font-inter text-[11px] md:text-[12px] font-bold tracking-[0.15em] uppercase text-white/40"
       >
-        できること
+        {t.itemsLabel[lang]}
       </motion.p>
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -148,6 +196,9 @@ export default function Services() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const reduceMotion = useReducedMotion()
+  const { lang } = useLanguage()
+  const services = servicesByLang[lang]
+  const faqs = faqsByLang[lang]
 
   const timelineRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -179,7 +230,7 @@ export default function Services() {
             transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(28px,4.5vw,54px)] font-black leading-[1.2] tracking-tight text-white"
           >
-            やっているのは、この4つです。
+            {t.h2[lang]}
           </motion.h2>
         </div>
 
@@ -226,16 +277,17 @@ export default function Services() {
 
         {/* Below the list */}
         <p className="mt-20 md:mt-28 text-[clamp(15px,1.4vw,19px)] text-white/70 leading-[1.9] max-w-xl">
-          「動画だけ」「広告だけ」のご相談もお受けしています。
-          <br />
-          ただ、理由が決まっていないまま進めると成果が出にくいので、
-          <br />
-          その場合は01からご提案します。
+          {t.belowList[lang].map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < t.belowList[lang].length - 1 && <br />}
+            </span>
+          ))}
         </p>
 
         <div className="mt-16 md:mt-20">
           <h3 className="text-[clamp(18px,2vw,24px)] font-black text-white mb-6">
-            よくいただくご相談
+            {t.faqHeading[lang]}
           </h3>
           <div className="space-y-3">
             {faqs.map((faq) => (
