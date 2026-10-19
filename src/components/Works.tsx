@@ -1,138 +1,156 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'framer-motion'
+import { useLanguage, type Lang } from '@/lib/language'
+import { Label, Reveal, container } from './ui'
 
-const stats = [
-  { to: 558,  prefix: '¥', comma: true, label: 'CPA', sub: '体験予約 1件あたり' },
-  { to: 530,  prefix: '',  comma: false, label: '体験予約数', sub: '広告運用開始から3ヶ月' },
-  { to: 300,  prefix: '',  comma: false, label: '会員数', sub: '施策開始後の純増' },
+const industries: { img: string; label: Record<Lang, string> }[] = [
+  { img: 'works-fitness', label: { ja: 'フィットネス', en: 'Fitness' } },
+  { img: 'beauty-clinic', label: { ja: '美容・ヘルスケア', en: 'Beauty & Healthcare' } },
+  { img: 'hero-leisure', label: { ja: 'エンタメ・レジャー', en: 'Entertainment & Leisure' } },
+  { img: 'hero-mall', label: { ja: '商業施設', en: 'Commercial Facilities' } },
+  { img: 'hero-resort', label: { ja: 'ホテル・観光', en: 'Hotels & Tourism' } },
 ]
 
-function CountUp({ to, prefix = '', comma = false, duration = 1.8, delay = 0, inView }: {
-  to: number; prefix?: string; comma?: boolean; duration?: number; delay?: number; inView: boolean
-}) {
+const stats = [
+  { to: 558, prefix: '¥', comma: true, label: { ja: 'CPA', en: 'CPA' }, sub: { ja: '体験予約 1件あたり', en: 'Per trial booking' } },
+  { to: 530, prefix: '', comma: false, label: { ja: '体験予約数', en: 'Trial bookings' }, sub: { ja: '広告運用開始から3ヶ月', en: 'In the first 3 months of ad operations' } },
+  { to: 300, prefix: '', comma: false, label: { ja: '会員数', en: 'Members' }, sub: { ja: '施策開始後の純増', en: 'Net increase since launch' } },
+]
+
+const t = {
+  h2: { ja: ['さまざまな業界で、', '確かな成果を。'], en: ['Solid results', 'across many industries.'] },
+  lead: {
+    ja: '美容・ヘルスケア領域をはじめ、さまざまな業界での支援実績をご紹介します。',
+    en: 'Focusing on beauty and healthcare, here are examples of our work across industries.',
+  },
+  caseLabel: { ja: 'Case — Personal Fitness Studio / Tokyo', en: 'Case — Personal Fitness Studio / Tokyo' },
+  caseTitle: {
+    ja: ['広告ではなく、', '"続きが見たくなるコンテンツ"として届ける。'],
+    en: ['Not as an ad,', 'but as content people want to keep watching.'],
+  },
+  body: {
+    ja: [
+      '吉本興業運営のクリスタルジムにて、出演者の魅力設計から動画構成・広告クリエイティブ・運用までを一気通貫で支援。',
+      '単にサービス内容を伝えるのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、コンテンツ設計・感情設計をベースに、"行きたくなる理由"を企画段階から構築。',
+      '実際のレッスン風景や指導シーンを活用し、SNS投稿と広告配信を連動。広告としてではなく、ファン心理を活かした体験価値の伝達として機能させることで、自然な予約導線を形成しました。',
+    ],
+    en: [
+      'At Crystal Gym, operated by Yoshimoto Kogyo, we supported everything end to end — from designing the appeal of the on-screen talent to video structure, ad creative, and operations.',
+      'Rather than simply describing the service, we built the reason to visit from the planning stage — grounded in content and emotional design — so people would feel “I want to meet this person” and “I want to experience this space.”',
+      'Using real lesson and coaching footage, we linked social posts with ad delivery. By having it work not as advertising but as a way to convey experiential value that taps into fan psychology, we created a natural path to booking.',
+    ],
+  },
+  disclaimer: {
+    ja: '※実績の一例です。成果を保証するものではありません。',
+    en: '※This is one example and does not guarantee results.',
+  },
+  industryNote: { ja: '対応業種の一例', en: 'Examples of industries we support' },
+}
+
+function CountUp({ to, prefix = '', comma = false, inView }: { to: number; prefix?: string; comma?: boolean; inView: boolean }) {
   const [val, setVal] = useState(0)
   const started = useRef(false)
 
   useEffect(() => {
     if (!inView || started.current) return
     started.current = true
-    const t = setTimeout(() => {
-      const start = performance.now()
-      const tick = (now: number) => {
-        const p = Math.min((now - start) / (duration * 1000), 1)
-        const eased = 1 - Math.pow(1 - p, 3)
-        setVal(Math.round(eased * to))
-        if (p < 1) requestAnimationFrame(tick)
-      }
-      requestAnimationFrame(tick)
-    }, delay * 1000)
-    return () => clearTimeout(t)
-  }, [inView])
-
-  const formatted = comma ? val.toLocaleString() : val.toString()
-  return <>{prefix}{formatted}</>
-}
-
-
-export default function Works() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+    const start = performance.now()
+    const duration = 1600
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / duration, 1)
+      setVal(Math.round((1 - Math.pow(1 - p, 3)) * to))
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [inView, to])
 
   return (
-    <section id="works" className="relative bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 overflow-hidden">
+    <>
+      {prefix}
+      {comma ? val.toLocaleString() : val.toString()}
+    </>
+  )
+}
 
-      <div className="absolute inset-0">
-        <img src="/images/works-bg-tiktok.png" alt="" aria-hidden="true" className="w-full h-full object-contain opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/50 via-[#0a0a0a]/30 to-[#0a0a0a]/70" />
-      </div>
+export default function Works() {
+  const { lang } = useLanguage()
+  const caseRef = useRef(null)
+  const caseInView = useInView(caseRef, { once: true, margin: '-80px' })
 
-      <div className="relative max-w-7xl mx-auto px-8 md:px-20 py-32 md:py-52" ref={ref}>
+  return (
+    <section id="works" className="border-t border-[#ecebe7] bg-white py-20 md:py-28">
+      <div className={container}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+          <Reveal>
+            <Label>Works</Label>
+            <h2 className="mt-6 text-[clamp(22px,1.9vw,28px)] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">
+              {t.h2[lang][0]}
+              <br />
+              {t.h2[lang][1]}
+            </h2>
+            <p className="mt-6 max-w-[22em] text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
+          </Reveal>
 
-        {/* Section label */}
-        <div className="overflow-hidden mb-2">
-          <motion.p
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
-          >
-            Our Works
-          </motion.p>
-        </div>
-
-        {/* Headline */}
-        <div className="overflow-hidden mb-16 md:mb-20">
-          <motion.h2
-            initial={{ y: 60, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(28px,4vw,56px)] font-black leading-[1.25] tracking-tight text-white"
-          >
-            &ldquo;会いたくなる理由&rdquo;を
-            <br />
-            つくった結果。
-          </motion.h2>
-        </div>
-
-        {/* KPI stats — maintained as-is */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="flex flex-col md:flex-row gap-0 border-t border-[#4d7fff]/30 mb-16 md:mb-24"
-        >
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              className="flex-1 py-10 md:py-14 border-b md:border-b-0 md:border-r border-[#4d7fff]/20 last:border-r-0 md:px-10 first:md:pl-0 last:md:pr-0"
-            >
-              <p className="font-inter text-[clamp(10px,0.9vw,12px)] tracking-[0.4em] uppercase text-[#4d7fff] mb-3">{s.label}</p>
-              <p className="font-inter text-[clamp(48px,7vw,88px)] font-black text-white leading-none tracking-tight mb-3">
-                <CountUp to={s.to} prefix={s.prefix} comma={s.comma} delay={0.3 + i * 0.1} inView={inView} />
-              </p>
-              <p className="text-[clamp(12px,1vw,14px)] text-white/60 leading-relaxed">{s.sub}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Narrative */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.35 }}
-          className="max-w-3xl"
-        >
-          {/* Context line */}
-          <p className="font-inter text-[clamp(10px,0.9vw,12px)] tracking-[0.3em] uppercase text-[#4d7fff] mb-8">
-            Case — Personal Fitness Studio / Tokyo
-          </p>
-
-          {/* Lead copy */}
-          <p className="text-[clamp(18px,2.2vw,30px)] font-bold text-white leading-[1.8] mb-10">
-            広告ではなく、<br />
-            <span className="text-[#4d7fff]">"続きが見たくなるコンテンツ"</span>として届ける。
-          </p>
-
-          {/* Body */}
-          <div className="space-y-7 text-[clamp(15px,1.5vw,20px)] text-white/80 leading-[2.1]">
-            <p>
-              吉本興業運営のクリスタルジムにて、出演者の魅力設計から動画構成・広告クリエイティブ・運用までを一気通貫で支援。
-            </p>
-            <p>
-              単にサービス内容を伝えるのではなく、「この人に会ってみたい」「この空間を体験してみたい」と感じてもらえるよう、コンテンツ設計・感情設計をベースに、<em className="not-italic text-white font-semibold">"行きたくなる理由"</em>を企画段階から構築。
-            </p>
-            <p>
-              実際のレッスン風景や指導シーンを活用し、SNS投稿と広告配信を連動。広告としてではなく、ファン心理を活かした体験価値の伝達として機能させることで、自然な予約導線を形成しました。
-            </p>
+          <div>
+            <p className="mb-4 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-[#999]">{t.industryNote[lang]}</p>
+            <ul className="no-scrollbar -mx-6 flex snap-x gap-4 overflow-x-auto px-6 md:-mx-10 md:px-10 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-x-4 sm:gap-y-8 sm:overflow-visible sm:px-0 lg:grid-cols-5 lg:gap-x-5">
+              {industries.map((it, i) => (
+                <li key={it.img} className="w-[58%] shrink-0 snap-start sm:w-auto">
+                  <Reveal delay={i * 0.07}>
+                    <div className="aspect-[4/3] overflow-hidden bg-[#f1f0ec] lg:aspect-[3/4]">
+                      <img
+                        src={`/images/redesign/${it.img}.jpg`}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                      />
+                    </div>
+                    <p className="mt-3 text-[12.5px] md:text-[13px] font-medium tracking-[0.06em] text-[#111]">{it.label[lang]}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
 
-<p className="mt-8 text-[clamp(10px,0.85vw,12px)] text-white/25 leading-relaxed">
-            ※実績の一例です。成果を保証するものではありません。
-          </p>
-        </motion.div>
+        {/* Featured case (existing content) */}
+        <div ref={caseRef} className="mt-20 grid gap-10 border-t border-[#ecebe7] pt-14 md:mt-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+          <Reveal>
+            <Label className="!text-[10px] md:!text-[11px] !leading-[1.9] !tracking-[0.2em]">{t.caseLabel[lang]}</Label>
+          </Reveal>
 
+          <div>
+            <Reveal>
+              <h3 className="text-[clamp(20px,2vw,28px)] font-medium leading-[1.7] tracking-[0.03em] text-[#111]">
+                {t.caseTitle[lang][0]}
+                <br />
+                {t.caseTitle[lang][1]}
+              </h3>
+            </Reveal>
+
+            <ul className="mt-10 grid divide-y divide-[#ecebe7] border-y border-[#ecebe7] md:grid-cols-3 md:divide-x md:divide-y-0">
+              {stats.map((s, i) => (
+                <li key={i} className="py-7 md:px-8 md:first:pl-0">
+                  <p className="font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-[#999]">{s.label[lang]}</p>
+                  <p className="mt-3 font-inter text-[clamp(38px,4vw,56px)] font-light leading-none tracking-[0.01em] text-[#111]">
+                    <CountUp to={s.to} prefix={s.prefix} comma={s.comma} inView={caseInView} />
+                  </p>
+                  <p className="mt-3 text-[12px] leading-[1.8] tracking-[0.03em] text-[#666]">{s.sub[lang]}</p>
+                </li>
+              ))}
+            </ul>
+
+            <Reveal className="mt-10 max-w-3xl space-y-5 text-[13px] md:text-[14px] leading-[2.05] tracking-[0.04em] text-[#555]">
+              {t.body[lang].map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+              <p className="pt-2 text-[11px] text-[#999]">{t.disclaimer[lang]}</p>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,9 +1,12 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import Image from 'next/image'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useLanguage, type Lang } from '@/lib/language'
+import { Label, container } from './ui'
 
+// 代表メッセージの文章・経歴・写真は現行サイトのまま（デザインのみ変更）
 const career = [
   { period: '2021–2023', company: { ja: 'ソニー株式会社', en: 'Sony Corporation' } },
   { period: '2023–2025', company: { ja: '株式会社刀', en: 'Katana Inc.' } },
@@ -37,6 +40,7 @@ const fullMessageByLang: Record<Lang, string[]> = {
 }
 
 const t = {
+  h2: { ja: '代表メッセージ', en: 'Message from the CEO' },
   blockquote: {
     ja: ['良い施設が、', '正しく選ばれる世界へ。'],
     en: ['Toward a world where great places', 'get chosen for the right reasons.'],
@@ -60,156 +64,100 @@ export default function Founder() {
   const fullMessage = fullMessageByLang[lang]
 
   return (
-    <>
-      <section id="founder" className="bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto" ref={ref}>
+    <section id="founder" className="border-t border-[#ecebe7] bg-white py-20 md:py-28">
+      <div className={container} ref={ref}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Label>Message</Label>
+            <h2 className="mt-6 text-[clamp(24px,2.3vw,34px)] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">{t.h2[lang]}</h2>
 
-          <div className="overflow-hidden mb-2">
-            <motion.p
-              initial={{ y: 40, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/60 select-none"
+            <blockquote className="mt-8 text-[clamp(18px,1.7vw,24px)] font-medium leading-[1.9] tracking-[0.03em] text-[#111]">
+              {t.blockquote[lang][0]}
+              <br />
+              {t.blockquote[lang][1]}
+            </blockquote>
+
+            <div className="mt-8 space-y-2 border-l border-[#111] pl-5">
+              {phrases.map((phrase) => (
+                <p key={phrase} className="text-[14px] md:text-[15px] font-medium leading-[1.9] tracking-[0.04em] text-[#333]">
+                  {phrase}
+                </p>
+              ))}
+            </div>
+
+            <p className="mt-8 text-[13px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#666]">
+              {t.summary[lang][0]}
+              <br />
+              {t.summary[lang][1]}
+            </p>
+
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="group mt-8 inline-flex items-center gap-3 font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-[#111]"
             >
-              Message
-            </motion.p>
-          </div>
+              <span>{expanded ? t.close[lang] : t.readMore[lang]}</span>
+              <motion.span animate={{ rotate: expanded ? 45 : 0 }} transition={{ duration: 0.3 }} className="text-lg leading-none">
+                +
+              </motion.span>
+            </button>
 
-          <div className="grid md:grid-cols-[1fr_320px] gap-16 md:gap-28 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.1 }}
-            >
-              {/* Core quote */}
-              <blockquote className="text-[clamp(22px,3.2vw,40px)] font-black leading-[1.7] tracking-tight text-white mb-10">
-                {t.blockquote[lang][0]}<br />
-                {t.blockquote[lang][1]}
-              </blockquote>
-
-              {/* Key phrases — large typography */}
-              <div className="space-y-3 mb-10 pl-4 border-l-2 border-[#4d7fff]/60">
-                {phrases.map((phrase, i) => (
-                  <motion.p
-                    key={i}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.7, delay: 0.3 + i * 0.1 }}
-                    className="text-[clamp(16px,2vw,26px)] font-bold text-white/90 leading-[1.6]"
-                  >
-                    {phrase}
-                  </motion.p>
-                ))}
-              </div>
-
-              {/* Summary — always visible */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-6"
-              >
-                {t.summary[lang][0]}<br />
-                {t.summary[lang][1]}
-              </motion.p>
-
-              {/* Expand button */}
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                onClick={() => setExpanded(v => !v)}
-                className="group flex items-center gap-3 text-[clamp(11px,1vw,13px)] font-semibold tracking-[0.2em] uppercase text-[#4d7fff]/70 hover:text-[#4d7fff] transition-colors duration-300 mb-10"
-              >
-                <span>{expanded ? t.close[lang] : t.readMore[lang]}</span>
-                <motion.span
-                  animate={{ rotate: expanded ? 45 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-lg leading-none"
+            <AnimatePresence initial={false}>
+              {expanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
                 >
-                  +
-                </motion.span>
-              </motion.button>
+                  <div className="mt-6 space-y-5 border-t border-[#ecebe7] pt-6 text-[13px] md:text-[14px] leading-[2.05] tracking-[0.04em] text-[#555]">
+                    {fullMessage.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
-              {/* Full message — expandable */}
-              <AnimatePresence>
-                {expanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="space-y-5 text-[clamp(14px,1.5vw,19px)] text-white/60 leading-[2] mb-12 border-t border-[#4d7fff]/20 pt-8">
-                      {fullMessage.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Career timeline — desktop only */}
-              <div className="relative pt-8 hidden md:block">
-                <div className="absolute top-0 left-0 right-0 h-px bg-[#4d7fff]/30" />
-                <div className="flex flex-row gap-0">
-                  {career.map((c, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
-                      className="flex-1 pr-8 last:pr-0 relative"
-                    >
-                      <div className="absolute -top-[calc(2rem+1px)] left-0 w-px h-4 bg-[#4d7fff]" />
-                      <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.3em] text-[#4d7fff]/80 mb-2">{c.period}</p>
-                      <p className="text-[clamp(15px,1.4vw,20px)] font-bold text-white">{c.company[lang]}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.25 }}
-              className="flex flex-col gap-5"
-            >
-              <div className="w-full aspect-[3/4] overflow-hidden bg-[#1a1a1a]">
-                <img src="/images/founder.jpg" alt={t.founderName[lang]} className="w-full h-full object-cover object-center" />
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#f1f0ec] md:aspect-[4/3]">
+              <Image
+                src="/images/founder.jpg"
+                alt={t.founderName[lang]}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover object-center"
+              />
+            </div>
+            <div className="mt-5 flex items-baseline justify-between gap-4">
               <div>
-                <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.25em] uppercase text-[#4d7fff]/70 mb-2">Haruto Fukunaga</p>
-                <p className="text-[clamp(22px,2.5vw,32px)] font-black text-white">{t.founderName[lang]}</p>
-                <p className="text-[clamp(13px,1.2vw,16px)] text-white/90 mt-1">{t.founderTitle[lang]}</p>
+                <p className="text-[18px] font-medium tracking-[0.06em] text-[#111]">{t.founderName[lang]}</p>
+                <p className="mt-1 text-[12.5px] tracking-[0.04em] text-[#666]">{t.founderTitle[lang]}</p>
               </div>
+              <p className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-[#999]">Haruto Fukunaga</p>
+            </div>
 
-              {/* Career timeline — mobile only */}
-              <div className="relative pt-6 md:hidden">
-                <div className="absolute top-0 left-0 right-0 h-px bg-[#4d7fff]/30" />
-                <div className="flex flex-col gap-5">
-                  {career.map((c, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.7, delay: 0.4 + i * 0.12 }}
-                      className="relative pl-4"
-                    >
-                      <div className="absolute left-0 top-0 w-px h-full bg-[#4d7fff]/40" />
-                      <p className="font-inter text-[10px] tracking-[0.3em] text-[#4d7fff]/60 mb-1">{c.period}</p>
-                      <p className="text-[14px] font-bold text-white/80">{c.company[lang]}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
+            <ul className="mt-8 grid grid-cols-3 gap-4 border-t border-[#ecebe7] pt-6">
+              {career.map((c) => (
+                <li key={c.period}>
+                  <p className="font-inter text-[11px] tracking-[0.16em] text-[#999]">{c.period}</p>
+                  <p className="mt-1.5 text-[12.5px] md:text-[13px] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">{c.company[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

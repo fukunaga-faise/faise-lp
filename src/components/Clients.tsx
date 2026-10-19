@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { useLanguage } from '@/lib/language'
+import { Label, Reveal, container } from './ui'
 
+// 既存クライアント（掲載順・表記・ロゴは現行サイトのまま）
 const clients = [
   { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', categoryEn: 'Entertainment', logo: '/images/logo-yoshimoto-new.svg' },
   { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', categoryEn: 'Healthcare', logo: '/images/logo-elife-new.svg' },
@@ -11,7 +11,7 @@ const clients = [
 ]
 
 const t = {
-  h2: { ja: '取引実績', en: 'Our Clients' },
+  h2: { ja: ['多様な業界の', 'クライアントとともに。'], en: ['With clients across', 'many industries.'] },
   lead: {
     ja: '業界を問わず、集客に課題を持つ施設をご支援しています。',
     en: 'We support footfall-driven businesses across every industry.',
@@ -19,67 +19,36 @@ const t = {
 }
 
 export default function Clients() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
   const { lang } = useLanguage()
 
   return (
-    <section className="bg-[#0f0f0f] border-t border-[#4d7fff]/20 py-24 md:py-40 px-8 md:px-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto" ref={ref}>
+    <section id="clients" className="border-t border-[#ecebe7] bg-white py-20 md:py-24">
+      <div className={container}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:items-center lg:gap-14">
+          <Reveal>
+            <Label>Clients</Label>
+            <h2 className="mt-6 text-[clamp(22px,1.9vw,28px)] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">
+              {t.h2[lang][0]}
+              <br />
+              {t.h2[lang][1]}
+            </h2>
+            <p className="mt-5 max-w-[22em] text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
+          </Reveal>
 
-        <div className="overflow-hidden mb-2">
-          <motion.p
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none"
-          >
-            Clients
-          </motion.p>
+          <ul className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
+            {clients.map((c, i) => (
+              <li key={c.name} className="flex flex-col items-start sm:items-center">
+                <Reveal delay={i * 0.08} className="flex flex-col items-start sm:items-center">
+                  <div className="flex h-16 items-center">
+                    <img src={c.logo} alt={lang === 'ja' ? c.name : c.nameEn} loading="lazy" decoding="async" className="h-10 w-auto max-w-[180px] object-contain md:h-11" />
+                  </div>
+                  <p className="mt-5 text-[14px] font-medium tracking-[0.05em] text-[#111]">{lang === 'ja' ? c.name : c.nameEn}</p>
+                  <p className="mt-1.5 text-[11.5px] tracking-[0.06em] text-[#999]">{lang === 'ja' ? c.category : c.categoryEn}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <div className="overflow-hidden mb-14">
-          <motion.h2
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[clamp(26px,4vw,48px)] font-black leading-[1.1] tracking-tight text-white mb-3"
-          >
-            {t.h2[lang]}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[clamp(14px,1.5vw,18px)] text-white/50"
-          >
-            {t.lead[lang]}
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#4d7fff]/10">
-          {clients.map((c, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              className="bg-[#0f0f0f] p-7 md:p-10 flex flex-col gap-3"
-            >
-              {c.logo && (
-                <div className="mb-2 inline-flex items-center bg-white rounded px-3 py-1.5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.logo} alt={c.name} className="h-7 w-auto object-contain max-w-[130px]" />
-                </div>
-              )}
-              <p className="text-[clamp(20px,2.2vw,30px)] font-black text-white leading-tight">{lang === 'ja' ? c.name : c.nameEn}</p>
-              <span className="self-start text-[clamp(11px,1vw,13px)] font-medium text-[#4d7fff] border border-[#4d7fff]/50 px-3 py-1 mt-auto">
-                {lang === 'ja' ? c.category : c.categoryEn}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-
       </div>
     </section>
   )

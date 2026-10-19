@@ -15,7 +15,7 @@ export default function PageCurtain() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] origin-top pointer-events-none"
+          className="fixed inset-0 z-[9999] bg-white origin-top pointer-events-none"
           initial={{ scaleY: 1 }}
           exit={{ scaleY: 0 }}
           transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}

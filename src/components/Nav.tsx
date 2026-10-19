@@ -2,18 +2,21 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import ContactModal from './ContactModal'
 import { useLanguage } from '@/lib/language'
 
 const links = [
-  { label: 'What We Do', href: '#mission' },
-  { label: 'Services', href: '#services' },
-  // { label: 'Works', href: '#works' }, // Worksセクション非表示中。復活させる場合はこの行を戻す
+  { label: 'About', href: '#mission' },
+  { label: 'Service', href: '#service' },
+  { label: 'Works', href: '#works' },
   { label: 'Message', href: '#founder' },
+  { label: 'News', href: '#news' },
+  { label: 'Company', href: '#company' },
 ]
 
 const t = {
-  contact: { ja: '問い合わせ', en: 'Contact' },
+  contact: { ja: 'Contact', en: 'Contact' },
   mobileCta: { ja: '集客について相談する', en: 'Talk to us' },
 }
 
@@ -24,7 +27,8 @@ export default function Nav() {
   const { lang, toggleLang } = useLanguage()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -34,26 +38,22 @@ export default function Nav() {
       <motion.nav
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-20 h-20 transition-all duration-500 ${
-          scrolled ? 'bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
+        transition={{ duration: 0.8, delay: 0.1 }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-14 h-16 md:h-[76px] transition-all duration-500 ${
+          scrolled || open ? 'bg-white/90 backdrop-blur-md border-b border-[#ecebe7]' : 'bg-gradient-to-b from-white/90 via-white/45 to-transparent'
         }`}
       >
-        <a href="#" className="flex items-center gap-2">
-          <img
-            src="/logo-fmark.png"
-            alt="Faise"
-            className="h-8 w-auto"
-          />
-          <span className={`font-inter font-black tracking-[0.12em] text-[15px] uppercase transition-colors duration-300 ${scrolled ? 'text-white' : 'text-[#0B0B12]'}`}>Faise</span>
+        <a href="#" className="flex items-center gap-2.5" aria-label="Faise">
+          <img src="/logo-mark.png" alt="" className="h-7 md:h-8 w-auto" />
+          <span className="font-inter font-semibold tracking-[0.14em] text-[18px] md:text-[20px] text-[#111]">Faise</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-12">
+        <ul className="hidden xl:flex items-center gap-9 2xl:gap-12">
           {links.map((l) => (
             <li key={l.label}>
               <a
                 href={l.href}
-                className={`text-[19px] font-bold tracking-[0.04em] uppercase transition-colors duration-300 ${scrolled ? 'text-white/80 hover:text-white' : 'text-[#0B0B12]/80 hover:text-[#0B0B12]'}`}
+                className="font-inter text-[14px] 2xl:text-[15px] font-medium tracking-[0.18em] uppercase text-[#111]/75 hover:text-[#111] transition-colors duration-300"
               >
                 {l.label}
               </a>
@@ -61,37 +61,33 @@ export default function Nav() {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden xl:flex items-center gap-6">
           <button
             onClick={toggleLang}
             aria-label="Switch language"
-            className={`text-[13px] font-bold tracking-[0.1em] uppercase transition-colors duration-300 ${
-              scrolled ? 'text-white/70 hover:text-white' : 'text-[#0B0B12]/70 hover:text-[#0B0B12]'
-            }`}
+            className="font-inter text-[13px] font-medium tracking-[0.2em] uppercase text-[#111]/60 hover:text-[#111] transition-colors duration-300"
           >
-            {lang === 'ja' ? 'EN' : '日本語'}
+            {lang === 'ja' ? 'EN' : 'JA'}
           </button>
 
           <button
             onClick={() => setModalOpen(true)}
-            className={`inline-flex items-center text-[14px] font-bold tracking-[0.12em] uppercase px-9 py-3.5 border transition-all duration-300 ${
-              scrolled
-                ? 'text-white border-white/50 hover:border-white hover:bg-white hover:text-[#0a0a0a]'
-                : 'text-[#0B0B12] border-[#0B0B12]/40 hover:border-[#0B0B12] hover:bg-[#0B0B12] hover:text-white'
-            }`}
+            className="group inline-flex items-center gap-3 rounded-full bg-[#111] text-white font-inter text-[12px] 2xl:text-[13px] font-medium tracking-[0.22em] uppercase pl-7 pr-6 py-3.5 hover:bg-[#333] transition-colors duration-300"
           >
             {t.contact[lang]}
+            <ArrowRight size={15} strokeWidth={1.25} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
 
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden flex flex-col gap-1.5 p-1"
+          className="xl:hidden flex flex-col gap-1.5 p-2 -mr-2"
           aria-label="menu"
+          aria-expanded={open}
         >
-          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? 'opacity-0' : ''}`} />
-          <span className={`block h-px w-6 transition-all duration-300 ${scrolled || open ? 'bg-white' : 'bg-[#0B0B12]'} ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block h-px w-6 bg-[#111] transition-all duration-300 ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
+          <span className={`block h-px w-6 bg-[#111] transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
+          <span className={`block h-px w-6 bg-[#111] transition-all duration-300 ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
         </button>
       </motion.nav>
 
@@ -102,17 +98,17 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#0a0a0a] flex flex-col items-center justify-center gap-10 md:hidden"
+            className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-7 xl:hidden"
           >
             {links.map((l, i) => (
               <motion.a
                 key={l.label}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07 }}
-                className="text-[28px] font-black tracking-tight text-white/70 hover:text-white transition-colors"
+                transition={{ delay: i * 0.05 }}
+                className="font-inter text-[22px] font-medium tracking-[0.18em] uppercase text-[#111]/80 hover:text-[#111] transition-colors"
               >
                 {l.label}
               </motion.a>
@@ -122,9 +118,10 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.35 }}
               onClick={() => { setOpen(false); setModalOpen(true) }}
-              className="mt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-white border border-white/30 px-10 py-4 hover:bg-white hover:text-[#0a0a0a] transition-all duration-300"
+              className="mt-4 inline-flex items-center gap-3 rounded-full bg-[#111] text-white font-inter text-[12px] font-medium tracking-[0.2em] uppercase px-9 py-4"
             >
               {t.mobileCta[lang]}
+              <ArrowRight size={15} strokeWidth={1.25} />
             </motion.button>
 
             <motion.button
@@ -132,7 +129,7 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.42 }}
               onClick={toggleLang}
-              className="text-[12px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors duration-300"
+              className="font-inter text-[12px] font-medium uppercase tracking-[0.2em] text-[#111]/50 hover:text-[#111] transition-colors duration-300"
             >
               {lang === 'ja' ? 'English' : '日本語'}
             </motion.button>

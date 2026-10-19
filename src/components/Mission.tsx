@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import { LineReveal, BlurReveal } from './TextReveal'
 import { useLanguage } from '@/lib/language'
+import { Label, container } from './ui'
 
 const t = {
   body: {
@@ -28,53 +29,58 @@ export default function Mission() {
   const { lang } = useLanguage()
 
   return (
-    <section id="mission" className="relative bg-[#0a0a0a]/80 py-32 md:py-52 px-8 md:px-20 overflow-hidden">
+    <section id="mission" className="border-t border-[#ecebe7] bg-white py-20 md:py-28 overflow-hidden">
+      <div className={container} ref={ref}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+          <div>
+            <LineReveal delay={0} inView={inView}>
+              <Label>What We Do</Label>
+            </LineReveal>
 
-      <div className="absolute top-1/2 right-[-6vw] -translate-y-1/2 pointer-events-none select-none">
-        <span className="font-black text-[clamp(320px,40vw,560px)] leading-none text-white/[0.03]">F</span>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto" ref={ref}>
-
-        {/* Large decorative label */}
-        <LineReveal className="mb-2" delay={0} inView={inView}>
-          <p className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/50 select-none">
-            What We Do
-          </p>
-        </LineReveal>
-
-        <div className="max-w-3xl space-y-10">
-
-          {/* Main heading — line reveal */}
-          <LineReveal delay={0.1} inView={inView}>
-            <h2 className="text-[clamp(28px,4.5vw,58px)] font-black leading-[1.2] tracking-[-0.02em] text-white break-keep">
-              {lang === 'ja' ? (
-                <>人が集まる<wbr />理由は、<br />設計できる。</>
-              ) : (
-                <>The reason people gather<br />can be designed.</>
-              )}
-            </h2>
-          </LineReveal>
-
-          {/* Accent quote — blur reveal */}
-          <BlurReveal delay={0.35} inView={inView}>
-            <div className="flex items-start gap-4">
-              <div className="w-0.5 h-auto self-stretch bg-[#4d7fff]/80 shrink-0 mt-1" />
-              <p className="text-[clamp(20px,2.8vw,40px)] text-white/90 leading-[1.9] font-medium break-keep">
+            <LineReveal className="mt-6" delay={0.1} inView={inView}>
+              <h2 className="text-[clamp(26px,3vw,44px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111]">
                 {lang === 'ja' ? (
-                  <>「行きたい」と<wbr />思う理由は、<br />偶然生まれるものではありません。</>
+                  <>
+                    人が集まる理由は、
+                    <br />
+                    設計できる。
+                  </>
                 ) : (
-                  <>The reason someone wants to go<br />isn’t born by chance.</>
+                  <>
+                    The reason people gather
+                    <br />
+                    can be designed.
+                  </>
                 )}
-              </p>
-            </div>
-          </BlurReveal>
+              </h2>
+            </LineReveal>
 
-          {/* Body — line by line blur reveals */}
-          <BlurReveal delay={0.55} inView={inView}>
-            <div className="space-y-6">
+            <BlurReveal className="mt-10" delay={0.3} inView={inView}>
+              <div className="flex items-stretch gap-4">
+                <div className="w-px shrink-0 bg-[#111]" />
+                <p className="text-[clamp(16px,1.5vw,21px)] font-medium leading-[1.9] tracking-[0.03em] text-[#111]">
+                  {lang === 'ja' ? (
+                    <>
+                      「行きたい」と思う理由は、
+                      <br />
+                      偶然生まれるものではありません。
+                    </>
+                  ) : (
+                    <>
+                      The reason someone wants to go
+                      <br />
+                      isn’t born by chance.
+                    </>
+                  )}
+                </p>
+              </div>
+            </BlurReveal>
+          </div>
+
+          <BlurReveal delay={0.45} inView={inView}>
+            <div className="space-y-7 lg:pt-1">
               {t.body[lang].map((lines, i) => (
-                <p key={i} className="text-[clamp(16px,1.8vw,28px)] text-white/90 leading-[2.4] pl-5">
+                <p key={i} className="text-[14px] md:text-[15px] leading-[2.1] tracking-[0.04em] text-[#555]">
                   {lines.map((line, j) => (
                     <span key={j}>
                       {line}
@@ -85,7 +91,6 @@ export default function Mission() {
               ))}
             </div>
           </BlurReveal>
-
         </div>
       </div>
     </section>

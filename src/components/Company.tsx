@@ -1,9 +1,9 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
 import { useLanguage, type Lang } from '@/lib/language'
+import { Label, Reveal, container } from './ui'
 
+// 会社概要の内容は現行サイトのまま
 const rowsByLang: Record<Lang, { label: string; value: string }[]> = {
   ja: [
     { label: '会社名', value: '株式会社Faise' },
@@ -24,54 +24,29 @@ const rowsByLang: Record<Lang, { label: string; value: string }[]> = {
 const t = { h2: { ja: '会社概要', en: 'Company Profile' } }
 
 export default function Company() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
   const { lang } = useLanguage()
   const rows = rowsByLang[lang]
 
   return (
-    <section className="bg-[#0a0a0a]/80 border-t border-[#4d7fff]/20 py-24 md:py-40 px-8 md:px-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto" ref={ref}>
+    <section id="company" className="border-t border-[#ecebe7] bg-white py-20 md:py-24">
+      <div className={container}>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+          <Reveal>
+            <Label>Company</Label>
+            <h2 className="mt-5 text-[clamp(20px,1.9vw,26px)] font-medium leading-[1.7] tracking-[0.04em] text-[#111]">{t.h2[lang]}</h2>
+          </Reveal>
 
-        <div className="overflow-hidden mb-2">
-          <motion.p
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-inter text-[clamp(48px,10vw,120px)] font-black leading-none tracking-[-0.03em] text-[#4d7fff]/30 select-none"
-          >
-            Company
-          </motion.p>
+          <Reveal delay={0.08}>
+            <dl className="max-w-3xl border-t border-[#ecebe7]">
+              {rows.map((row) => (
+                <div key={row.label} className="grid grid-cols-[110px_1fr] gap-5 border-b border-[#ecebe7] py-5 md:grid-cols-[200px_1fr]">
+                  <dt className="text-[12px] md:text-[13px] tracking-[0.08em] text-[#999]">{row.label}</dt>
+                  <dd className="whitespace-pre-line text-[13px] md:text-[14px] leading-[1.95] tracking-[0.04em] text-[#111]">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(24px,3.5vw,44px)] font-black text-white mb-14 tracking-tight"
-        >
-          {t.h2[lang]}
-        </motion.h2>
-
-        <div className="max-w-3xl">
-          {rows.map((row, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 + i * 0.08 }}
-              className="grid grid-cols-[140px_1fr] md:grid-cols-[220px_1fr] gap-6 py-6 border-b border-white/10 first:border-t first:border-white/10"
-            >
-              <p className="font-inter text-[clamp(11px,1vw,13px)] tracking-[0.2em] uppercase text-[#4d7fff]/70 pt-0.5">
-                {row.label}
-              </p>
-              <p className="text-[clamp(14px,1.4vw,18px)] text-white/90 leading-[2] whitespace-pre-line">
-                {row.value}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
       </div>
     </section>
   )

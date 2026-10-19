@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google'
-import AmbientBackground from '@/components/AmbientBackground'
 import { LanguageProvider } from '@/lib/language'
 import './globals.css'
 
@@ -88,8 +87,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans">
-        <AmbientBackground />
+      <body className="font-sans bg-white text-[#111]">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
