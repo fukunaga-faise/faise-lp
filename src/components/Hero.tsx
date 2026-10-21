@@ -69,7 +69,7 @@ export default function Hero() {
                 <br />
                 {t.h1[lang][1]}
               </h1>
-              <p className="mt-6 md:mt-8 text-[13px] md:text-[14px] leading-[2] tracking-[0.06em] text-[#555]">
+              <p className="mt-6 md:mt-8 text-[12.5px] md:text-[14px] leading-[2] tracking-[0.03em] md:tracking-[0.06em] text-[#555]">
                 {t.sub[lang][0]}
                 <br />
                 {t.sub[lang][1]}
@@ -102,7 +102,7 @@ export default function Hero() {
               <img
                 src={`/images/redesign/${tile.src}.jpg`}
                 alt={tile.alt[lang]}
-                loading={i < 3 ? 'eager' : 'lazy'}
+                loading="eager"
                 decoding="async"
                 className="h-full w-full object-cover"
                 style={{ objectPosition: tile.pos ?? '50% 50%' }}

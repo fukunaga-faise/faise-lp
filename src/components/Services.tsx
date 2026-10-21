@@ -120,7 +120,7 @@ export default function Services() {
 
         {/* Existing guidance copy, kept as a quiet footer row */}
         <Reveal className="mt-16 grid gap-10 border-t border-[#ecebe7] pt-10 md:mt-20 lg:grid-cols-2 lg:gap-14">
-          <p className="text-[13px] md:text-[14px] leading-[2] tracking-[0.04em] text-[#555]">
+          <p className="text-[12px] sm:text-[13px] md:text-[14px] leading-[2] tracking-[0.02em] sm:tracking-[0.04em] text-[#555]">
             {t.note[lang].map((line, i) => (
               <span key={i}>
                 {line}

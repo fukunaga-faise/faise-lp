@@ -132,7 +132,7 @@ export default function Beauty() {
         <div className={`${container} relative py-14 md:py-24`}>
           <Reveal className="max-w-[640px]">
             <Label>Beauty &amp; Healthcare</Label>
-            <h2 className="mt-6 text-[clamp(26px,3vw,42px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111]">{t.h2[lang]}</h2>
+            <h2 className="mt-6 text-[21px] sm:text-[24px] md:text-[clamp(26px,3vw,42px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111]">{t.h2[lang]}</h2>
             <p className="mt-6 text-[13px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#555]">
               {t.body[lang][0]}
               <br className="hidden md:block" /> {t.body[lang][1]}
@@ -173,7 +173,7 @@ export default function Beauty() {
 
                   {c.price && (
                     <div className="mt-7 border-t border-[#ecebe7] pt-5">
-                      <p className="text-[13px] font-medium leading-[1.8] tracking-[0.03em] text-[#111]">{c.price.text[lang]}</p>
+                      <p className="text-[12px] md:text-[13px] font-medium leading-[1.8] tracking-[0.02em] text-[#111]">{c.price.text[lang]}</p>
                       <p className="mt-1.5 text-[11px] leading-[1.8] tracking-[0.03em] text-[#999]">{c.price.note[lang]}</p>
                     </div>
                   )}
