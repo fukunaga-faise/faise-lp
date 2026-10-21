@@ -53,7 +53,7 @@ export default function Nav() {
             <li key={l.label}>
               <a
                 href={l.href}
-                className="font-inter text-[14px] 2xl:text-[15px] font-medium tracking-[0.18em] uppercase text-[#111]/75 hover:text-[#111] transition-colors duration-300"
+                className="relative font-inter text-[14px] 2xl:text-[15px] font-medium tracking-[0.18em] uppercase text-[#111]/75 hover:text-brand transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-500 hover:after:scale-x-100"
               >
                 {l.label}
               </a>
@@ -65,15 +65,16 @@ export default function Nav() {
           <button
             onClick={toggleLang}
             aria-label="Switch language"
-            className="font-inter text-[13px] font-medium tracking-[0.2em] uppercase text-[#111]/60 hover:text-[#111] transition-colors duration-300"
+            className="font-inter text-[13px] font-medium tracking-[0.2em] uppercase text-[#111]/60 hover:text-brand transition-colors duration-300"
           >
             {lang === 'ja' ? 'EN' : 'JA'}
           </button>
 
           <button
             onClick={() => setModalOpen(true)}
-            className="group inline-flex items-center gap-3 rounded-full bg-[#111] text-white font-inter text-[12px] 2xl:text-[13px] font-medium tracking-[0.22em] uppercase pl-7 pr-6 py-3.5 hover:bg-[#333] transition-colors duration-300"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy bg-[length:140%_100%] bg-left text-white font-inter text-[12px] 2xl:text-[13px] font-medium tracking-[0.22em] uppercase pl-7 pr-6 py-3.5 transition-all duration-500 hover:bg-right hover:shadow-[0_10px_28px_-10px_rgba(37,99,214,0.7)]"
           >
+            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 bg-white/30 opacity-0 group-hover:opacity-100 group-hover:[animation:faiseShine_.9s_ease]" />
             {t.contact[lang]}
             <ArrowRight size={15} strokeWidth={1.25} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
@@ -108,7 +109,7 @@ export default function Nav() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="font-inter text-[22px] font-medium tracking-[0.18em] uppercase text-[#111]/80 hover:text-[#111] transition-colors"
+                className="font-inter text-[22px] font-medium tracking-[0.18em] uppercase text-[#111]/80 hover:text-brand transition-colors"
               >
                 {l.label}
               </motion.a>
@@ -118,7 +119,7 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.35 }}
               onClick={() => { setOpen(false); setModalOpen(true) }}
-              className="mt-4 inline-flex items-center gap-3 rounded-full bg-[#111] text-white font-inter text-[12px] font-medium tracking-[0.2em] uppercase px-9 py-4"
+              className="mt-4 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy text-white font-inter text-[12px] font-medium tracking-[0.2em] uppercase px-9 py-4"
             >
               {t.mobileCta[lang]}
               <ArrowRight size={15} strokeWidth={1.25} />

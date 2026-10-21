@@ -177,7 +177,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="group mt-1 inline-flex items-center justify-center gap-3 bg-[#0050d0] hover:bg-[#003fa8] disabled:opacity-60 text-white text-sm font-bold tracking-[0.1em] uppercase px-8 py-4 rounded-sm transition-colors duration-200"
+                    className="group mt-1 inline-flex items-center justify-center gap-3 bg-gradient-to-r from-brand-sky to-brand hover:from-brand hover:to-brand-navy disabled:opacity-60 text-white text-sm font-bold tracking-[0.1em] uppercase px-8 py-4 rounded-sm transition-colors duration-200"
                   >
                     {status === 'loading' ? (
                       <><Loader2 size={14} className="animate-spin" /> {t.sending[lang]}</>

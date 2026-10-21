@@ -4,6 +4,9 @@
 
 :root {
   --blue: #0050d0;
+  --brand-sky: #1face0;
+  --brand: #2563d6;
+  --brand-navy: #14185c;
 }
 
 html {
@@ -20,13 +23,13 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 80, 208, 0.12);
+  background: rgba(31, 172, 224, 0.22);
   color: #0f0f0f;
 }
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: #f5f5f5; }
-::-webkit-scrollbar-thumb { background: #0050d0; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#1face0, #2563d6); border-radius: 2px; }
 
 .text-gradient {
   background: linear-gradient(135deg, #0050d0 0%, #0088cc 100%);
@@ -41,3 +44,22 @@ body {
 
 .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Brand gradient text (logo blue: sky -> blue -> navy) */
+.text-brand-gradient {
+  background: linear-gradient(100deg, #1face0 0%, #2563d6 55%, #14185c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Hero ambient: slow drifting blue light + flowing outline text (transform only) */
+@keyframes faiseWashA { 0%,100%{transform:translate3d(0,0,0) scale(1)} 50%{transform:translate3d(-6vmax,4vmax,0) scale(1.1)} }
+@keyframes faiseWashB { 0%,100%{transform:translate3d(0,0,0) scale(1.05)} 50%{transform:translate3d(5vmax,-3vmax,0) scale(.94)} }
+@keyframes faiseMarqueeL { from{transform:translate3d(0,0,0)} to{transform:translate3d(-50%,0,0)} }
+@keyframes faiseMarqueeR { from{transform:translate3d(-50%,0,0)} to{transform:translate3d(0,0,0)} }
+@keyframes faiseShine { from{transform:translate3d(-120%,0,0) skewX(-18deg)} to{transform:translate3d(220%,0,0) skewX(-18deg)} }
+@media (prefers-reduced-motion: reduce) {
+  .faise-anim { animation: none !important; }
+}

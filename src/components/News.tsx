@@ -30,7 +30,7 @@ export default function News() {
             <ul className="divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
               {news.map((n) => (
                 <li key={n.date + n.text.ja} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-10">
-                  <time className="font-inter text-[12px] tracking-[0.12em] text-[#999]">{n.date}</time>
+                  <time className="font-inter text-[12px] font-medium tracking-[0.12em] text-brand">{n.date}</time>
                   <p className="text-[13px] md:text-[14px] tracking-[0.04em] text-[#333]">{n.text[lang]}</p>
                 </li>
               ))}

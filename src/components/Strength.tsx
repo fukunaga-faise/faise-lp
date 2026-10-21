@@ -1,18 +1,20 @@
 'use client'
 
 import { useLanguage } from '@/lib/language'
-import { Label, Reveal, container } from './ui'
+import { CountUp, Label, Reveal, container } from './ui'
 
 const t = {
   h2: { ja: ['数字で見る', 'Faiseの強み'], en: ['Faise’s strengths', 'by the numbers'] },
   items: [
     {
+      n: 5000, comma: true,
       big: { ja: ['5,000', '名以上'], en: ['5,000', '+'] },
       pre: { ja: '', en: '' },
       cap: { ja: '美容系インフルエンサーネットワーク', en: 'Beauty influencer network' },
       sub: { ja: '（美容領域）', en: '(beauty field)' },
     },
     {
+      n: 8, comma: false,
       big: { ja: ['8', '倍'], en: ['8', '×'] },
       pre: { ja: '最大', en: 'Up to' },
       cap: { ja: '広告活用による予約数増加事例', en: 'Booking increase from using ads' },
@@ -43,7 +45,7 @@ export default function Strength() {
   const { lang } = useLanguage()
 
   return (
-    <section id="strength" className="border-t border-[#ecebe7] bg-white py-16 md:py-20">
+    <section id="strength" className="border-t border-[#ecebe7] bg-brand-tint py-16 md:py-20">
       <div className={container}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
@@ -60,11 +62,13 @@ export default function Strength() {
               <li key={i} className="px-0 py-8 text-center first:pt-0 md:px-6 md:py-2 md:first:pt-2">
                 <Reveal delay={i * 0.08}>
                   {it.big[lang][1] === '' ? (
-                    <p className="font-medium text-[clamp(20px,2vw,28px)] leading-[1.5] tracking-[0.06em] text-[#111] md:pt-3">{it.big[lang][0]}</p>
+                    <p className="font-medium text-[clamp(20px,2vw,28px)] leading-[1.5] tracking-[0.06em] text-brand-navy md:pt-3">{it.big[lang][0]}</p>
                   ) : (
                     <p className="flex items-baseline justify-center gap-1.5 text-[#111]">
                       {it.pre[lang] && <span className="text-[13px] font-medium tracking-[0.06em]">{it.pre[lang]}</span>}
-                      <span className="font-inter text-[clamp(38px,4vw,56px)] font-light leading-none tracking-[0.01em]">{it.big[lang][0]}</span>
+                      <span className="font-inter text-[clamp(38px,4vw,56px)] font-light leading-none tracking-[0.01em] text-brand-gradient">
+                        {'n' in it && it.n ? <CountUp to={it.n as number} comma={!!(it as { comma?: boolean }).comma} /> : it.big[lang][0]}
+                      </span>
                       <span className="text-[14px] md:text-[16px] font-medium tracking-[0.06em]">{it.big[lang][1]}</span>
                     </p>
                   )}

@@ -39,21 +39,22 @@ export default function Works() {
           </Reveal>
 
           <div>
-            <p className="mb-4 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-[#999]">{t.industryNote[lang]}</p>
+            <p className="mb-4 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-brand-sky">{t.industryNote[lang]}</p>
             <ul className="no-scrollbar -mx-6 flex scroll-pl-6 md:scroll-pl-10 snap-x gap-4 overflow-x-auto px-6 md:-mx-10 md:px-10 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-x-4 sm:gap-y-8 sm:overflow-visible sm:px-0 lg:grid-cols-5 lg:gap-x-5">
               {industries.map((it, i) => (
-                <li key={it.img} className="w-[58%] shrink-0 snap-start sm:w-auto">
+                <li key={it.img} className="group w-[58%] shrink-0 snap-start sm:w-auto">
                   <Reveal delay={i * 0.07}>
-                    <div className="aspect-[4/3] overflow-hidden bg-[#f1f0ec] lg:aspect-[3/4]">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f0ec] lg:aspect-[3/4]">
+                      <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
                       <img
                         src={`/images/redesign/${it.img}.jpg`}
                         alt=""
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                       />
                     </div>
-                    <p className="mt-3 text-[12.5px] md:text-[13px] font-medium tracking-[0.06em] text-[#111]">{it.label[lang]}</p>
+                    <p className="mt-3 text-[12.5px] md:text-[13px] font-medium tracking-[0.06em] text-[#111] transition-colors duration-300 group-hover:text-brand">{it.label[lang]}</p>
                   </Reveal>
                 </li>
               ))}

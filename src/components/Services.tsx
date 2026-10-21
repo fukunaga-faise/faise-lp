@@ -96,19 +96,20 @@ export default function Services() {
 
           <ul className="grid grid-cols-2 gap-x-5 gap-y-10 md:gap-x-6 lg:grid-cols-4">
             {services.map((s, i) => (
-              <li key={s.num}>
+              <li key={s.num} className="group">
                 <Reveal delay={i * 0.08}>
-                  <div className="aspect-[4/3] overflow-hidden bg-[#f1f0ec]">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f0ec]">
+                    <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
                     <img
                       src={`/images/redesign/${s.img}.jpg`}
                       alt=""
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                     />
                   </div>
-                  <h3 className="mt-5 flex items-baseline gap-3 text-[15px] md:text-[16px] font-medium tracking-[0.06em] text-[#111]">
-                    <span className="font-inter text-[13px] font-normal tracking-[0.08em] text-[#999]">{s.num}</span>
+                  <h3 className="mt-5 flex items-baseline gap-3 text-[15px] md:text-[16px] font-medium tracking-[0.06em] text-[#111] transition-colors duration-300 group-hover:text-brand">
+                    <span className="font-inter text-[13px] font-medium tracking-[0.08em] text-brand-sky">{s.num}</span>
                     {s.title[lang]}
                   </h3>
                   <p className="mt-3 text-[12.5px] md:text-[13px] leading-[1.95] tracking-[0.03em] text-[#666]">{s.body[lang]}</p>
@@ -129,11 +130,11 @@ export default function Services() {
             ))}
           </p>
           <div>
-            <h3 className="font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-[#111]">{t.faq[lang]}</h3>
+            <h3 className="font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-brand">{t.faq[lang]}</h3>
             <ul className="mt-4 space-y-2.5">
               {faqs[lang].map((faq) => (
-                <li key={faq} className="text-[13px] leading-[1.9] tracking-[0.03em] text-[#666]">
-                  ・{faq}
+                <li key={faq} className="border-l-2 border-brand-sky/40 pl-3 text-[13px] leading-[1.9] tracking-[0.03em] text-[#666]">
+                  {faq}
                 </li>
               ))}
             </ul>

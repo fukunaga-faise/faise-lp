@@ -29,8 +29,9 @@ export default function Mission() {
   const { lang } = useLanguage()
 
   return (
-    <section id="mission" className="border-t border-[#ecebe7] bg-white py-20 md:py-28 overflow-hidden">
-      <div className={container} ref={ref}>
+    <section id="mission" className="relative border-t border-[#ecebe7] bg-brand-tint py-20 md:py-28 overflow-hidden">
+      <img src="/logo-mark.png" alt="" aria-hidden="true" className="pointer-events-none select-none absolute -right-[4%] top-1/2 hidden h-[110%] w-auto -translate-y-1/2 opacity-[0.07] md:block" />
+      <div className={`${container} relative`} ref={ref}>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <div>
             <LineReveal delay={0} inView={inView}>
@@ -57,7 +58,7 @@ export default function Mission() {
 
             <BlurReveal className="mt-10" delay={0.3} inView={inView}>
               <div className="flex items-stretch gap-4">
-                <div className="w-px shrink-0 bg-[#111]" />
+                <div className="w-[3px] shrink-0 rounded-full bg-gradient-to-b from-brand-sky to-brand" />
                 <p className="text-[clamp(16px,1.5vw,21px)] font-medium leading-[1.9] tracking-[0.03em] text-[#111]">
                   {lang === 'ja' ? (
                     <>

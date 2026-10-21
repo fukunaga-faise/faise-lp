@@ -37,10 +37,10 @@ export default function Company() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <dl className="max-w-3xl border-t border-[#ecebe7]">
+            <dl className="max-w-3xl border-t-2 border-brand-sky/40">
               {rows.map((row) => (
                 <div key={row.label} className="grid grid-cols-[110px_1fr] gap-5 border-b border-[#ecebe7] py-5 md:grid-cols-[200px_1fr]">
-                  <dt className="text-[12px] md:text-[13px] tracking-[0.08em] text-[#999]">{row.label}</dt>
+                  <dt className="text-[12px] md:text-[13px] tracking-[0.08em] text-brand">{row.label}</dt>
                   <dd className="whitespace-pre-line text-[13px] md:text-[14px] leading-[1.95] tracking-[0.04em] text-[#111]">{row.value}</dd>
                 </div>
               ))}

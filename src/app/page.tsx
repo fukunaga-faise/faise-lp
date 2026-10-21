@@ -11,11 +11,13 @@ import News from '@/components/News'
 import Company from '@/components/Company'
 import CTA from '@/components/CTA'
 import PageCurtain from '@/components/PageCurtain'
+import { ScrollProgress } from '@/components/ui'
 
 export default function Home() {
   return (
     <main className="bg-white text-[#111]">
       <PageCurtain />
+      <ScrollProgress />
       <Nav />
       <Hero />
       <Mission />

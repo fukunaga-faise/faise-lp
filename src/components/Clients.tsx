@@ -37,13 +37,13 @@ export default function Clients() {
 
           <ul className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6">
             {clients.map((c, i) => (
-              <li key={c.name} className="flex flex-col items-start sm:items-center">
+              <li key={c.name} className="group flex flex-col items-start sm:items-center">
                 <Reveal delay={i * 0.08} className="flex flex-col items-start sm:items-center">
                   <div className="flex h-16 items-center">
-                    <img src={c.logo} alt={lang === 'ja' ? c.name : c.nameEn} loading="lazy" decoding="async" className="h-10 w-auto max-w-[180px] object-contain md:h-11" />
+                    <img src={c.logo} alt={lang === 'ja' ? c.name : c.nameEn} loading="lazy" decoding="async" className="h-10 w-auto max-w-[180px] object-contain transition-transform duration-500 group-hover:scale-105 md:h-11" />
                   </div>
                   <p className="mt-5 text-[14px] font-medium tracking-[0.05em] text-[#111]">{lang === 'ja' ? c.name : c.nameEn}</p>
-                  <p className="mt-1.5 text-[11.5px] tracking-[0.06em] text-[#999]">{lang === 'ja' ? c.category : c.categoryEn}</p>
+                  <p className="mt-3 border border-brand/40 px-3 py-1 text-[11.5px] tracking-[0.06em] text-brand">{lang === 'ja' ? c.category : c.categoryEn}</p>
                 </Reveal>
               </li>
             ))}

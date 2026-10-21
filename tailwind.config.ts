@@ -9,6 +9,12 @@ const config: Config = {
         inter: ['var(--font-inter)', 'sans-serif'],
       },
       colors: {
+        brand: {
+          sky: '#1FACE0',
+          DEFAULT: '#2563D6',
+          navy: '#14185C',
+          tint: '#F2F7FD',
+        },
         blue: {
           500: '#3b82f6',
           600: '#2563eb',

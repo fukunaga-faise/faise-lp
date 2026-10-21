@@ -1,5 +1,6 @@
 'use client'
 
+import { motion, useReducedMotion } from 'framer-motion'
 import { useLanguage, type Lang } from '@/lib/language'
 import { ArrowLink, Label, Reveal, container } from './ui'
 
@@ -111,16 +112,21 @@ const t = {
 
 export default function Beauty() {
   const { lang } = useLanguage()
+  const reduce = useReducedMotion()
 
   return (
     <section id="beauty" className="border-t border-[#ecebe7] bg-white">
       {/* Banner */}
       <div className="relative overflow-hidden bg-[#f3f2ee]">
-        <img
+        <motion.img
           src="/images/redesign/beauty-banner.jpg"
           alt=""
           loading="lazy"
           decoding="async"
+          initial={reduce ? false : { scale: 1.1 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-y-0 right-0 hidden h-full w-[62%] object-cover object-[60%_50%] md:block"
         />
         <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-[#f3f2ee] from-[38%] via-[#f3f2ee]/70 to-transparent md:block" />
@@ -151,7 +157,7 @@ export default function Beauty() {
             <Reveal key={c.id} delay={i * 0.1} className={`h-full py-12 md:py-16 ${i === 0 ? 'md:pr-10 lg:pr-14' : 'md:pl-10 lg:pl-14'} ${i === 1 ? 'border-t border-[#ecebe7] md:border-t-0' : ''}`}>
               <div className="grid h-full gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:gap-8">
                 <div className="order-2 lg:order-1">
-                  <p className="font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-[#999]">{c.tag}</p>
+                  <p className="font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-brand-sky">{c.tag}</p>
                   <h3 className="mt-4 whitespace-pre-line text-[clamp(20px,1.7vw,24px)] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">
                     {c.title[lang]}
                   </h3>
@@ -161,19 +167,19 @@ export default function Beauty() {
                     ))}
                   </div>
 
-                  <p className="mt-7 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.22em] uppercase text-[#111]">{c.listTitle[lang]}</p>
+                  <p className="mt-7 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.22em] uppercase text-brand">{c.listTitle[lang]}</p>
                   <ul className="mt-3 space-y-1.5">
                     {c.list[lang].map((item) => (
                       <li key={item} className="flex gap-2.5 text-[12.5px] md:text-[13px] leading-[1.8] tracking-[0.03em] text-[#555]">
-                        <span className="mt-[0.75em] block h-[3px] w-[3px] shrink-0 rounded-full bg-[#111]" />
+                        <span className="mt-[0.75em] block h-[4px] w-[4px] shrink-0 rounded-full bg-gradient-to-br from-brand-sky to-brand" />
                         {item}
                       </li>
                     ))}
                   </ul>
 
                   {c.price && (
-                    <div className="mt-7 border-t border-[#ecebe7] pt-5">
-                      <p className="text-[12px] md:text-[13px] font-medium leading-[1.8] tracking-[0.02em] text-[#111]">{c.price.text[lang]}</p>
+                    <div className="mt-7 rounded-sm border-l-[3px] border-brand bg-brand-tint px-4 py-4">
+                      <p className="text-[12px] md:text-[13px] font-medium leading-[1.8] tracking-[0.02em] text-brand-navy">{c.price.text[lang]}</p>
                       <p className="mt-1.5 text-[11px] leading-[1.8] tracking-[0.03em] text-[#999]">{c.price.note[lang]}</p>
                     </div>
                   )}
@@ -183,13 +189,13 @@ export default function Beauty() {
                   </div>
                 </div>
 
-                <div className="order-1 aspect-[4/3] overflow-hidden bg-[#f1f0ec] lg:order-2 lg:aspect-auto lg:min-h-[320px]">
+                <div className="group order-1 aspect-[4/3] overflow-hidden bg-[#f1f0ec] lg:order-2 lg:aspect-auto lg:min-h-[320px]">
                   <img
                     src={`/images/redesign/${c.img}.jpg`}
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
                   />
                 </div>
               </div>

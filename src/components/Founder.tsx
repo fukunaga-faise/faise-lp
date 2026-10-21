@@ -81,7 +81,7 @@ export default function Founder() {
               {t.blockquote[lang][1]}
             </blockquote>
 
-            <div className="mt-8 space-y-2 border-l border-[#111] pl-5">
+            <div className="mt-8 space-y-2 border-l-[3px] border-brand pl-5">
               {phrases.map((phrase) => (
                 <p key={phrase} className="text-[14px] md:text-[15px] font-medium leading-[1.9] tracking-[0.04em] text-[#333]">
                   {phrase}
@@ -101,7 +101,7 @@ export default function Founder() {
               className="group mt-8 inline-flex items-center gap-3 font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-[#111]"
             >
               <span>{expanded ? t.close[lang] : t.readMore[lang]}</span>
-              <motion.span animate={{ rotate: expanded ? 45 : 0 }} transition={{ duration: 0.3 }} className="text-lg leading-none">
+              <motion.span animate={{ rotate: expanded ? 45 : 0 }} transition={{ duration: 0.3 }} className="text-lg leading-none text-brand">
                 +
               </motion.span>
             </button>
@@ -144,13 +144,13 @@ export default function Founder() {
                 <p className="text-[18px] font-medium tracking-[0.06em] text-[#111]">{t.founderName[lang]}</p>
                 <p className="mt-1 text-[12.5px] tracking-[0.04em] text-[#666]">{t.founderTitle[lang]}</p>
               </div>
-              <p className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-[#999]">Haruto Fukunaga</p>
+              <p className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-brand-sky">Haruto Fukunaga</p>
             </div>
 
-            <ul className="mt-8 grid grid-cols-3 gap-4 border-t border-[#ecebe7] pt-6">
+            <ul className="mt-8 grid grid-cols-3 gap-4 border-t-2 border-brand-sky/40 pt-6">
               {career.map((c) => (
                 <li key={c.period}>
-                  <p className="font-inter text-[11px] tracking-[0.16em] text-[#999]">{c.period}</p>
+                  <p className="font-inter text-[11px] tracking-[0.16em] text-brand-sky">{c.period}</p>
                   <p className="mt-1.5 text-[12.5px] md:text-[13px] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">{c.company[lang]}</p>
                 </li>
               ))}
