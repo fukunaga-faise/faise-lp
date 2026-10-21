@@ -95,7 +95,7 @@ export default function Works() {
 
           <div>
             <p className="mb-4 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.26em] uppercase text-[#999]">{t.industryNote[lang]}</p>
-            <ul className="no-scrollbar -mx-6 flex snap-x gap-4 overflow-x-auto px-6 md:-mx-10 md:px-10 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-x-4 sm:gap-y-8 sm:overflow-visible sm:px-0 lg:grid-cols-5 lg:gap-x-5">
+            <ul className="no-scrollbar -mx-6 flex scroll-pl-6 md:scroll-pl-10 snap-x gap-4 overflow-x-auto px-6 md:-mx-10 md:px-10 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-x-4 sm:gap-y-8 sm:overflow-visible sm:px-0 lg:grid-cols-5 lg:gap-x-5">
               {industries.map((it, i) => (
                 <li key={it.img} className="w-[58%] shrink-0 snap-start sm:w-auto">
                   <Reveal delay={i * 0.07}>
