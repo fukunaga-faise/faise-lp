@@ -2,6 +2,7 @@ import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
+import WhyFaise from '@/components/WhyFaise'
 import Beauty from '@/components/Beauty'
 import Strength from '@/components/Strength'
 import Works from '@/components/Works'
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <Mission />
       <Services />
+      <WhyFaise />
       <Beauty />
       <Strength />
       <Works />
