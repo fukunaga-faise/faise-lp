@@ -15,7 +15,7 @@ type Case = {
   alt: Record<Lang, string>
   category: string
   title: Record<Lang, string>
-  metric: { label: Record<Lang, string>; value: number; unit: Record<Lang, string> }
+  metric: { label: Record<Lang, string>; value: number; unit: Record<Lang, string>; sub?: Record<Lang, string> }
   body: Record<Lang, string>
   actions: Record<Lang, string[]>
 }
@@ -27,14 +27,14 @@ const cases: Case[] = [
     alt: { ja: 'プレミアムスキンケア商品のイメージ（仮画像）', en: 'Premium skincare products (placeholder image)' },
     category: 'BEAUTY EC',
     title: { ja: '美容オンラインEC', en: 'Beauty online store' },
-    metric: { label: { ja: '月間売上', en: 'Monthly sales' }, value: 10, unit: { ja: '倍', en: '×' } },
+    metric: { label: { ja: '1年間で', en: 'In one year' }, value: 10, unit: { ja: '倍', en: '×' }, sub: { ja: '月間売上の成長', en: 'growth in monthly sales' } },
     body: {
-      ja: 'SNS広告とインフルエンサー施策を組み合わせ、集客から購入までのマーケティングを改善。月間売上10倍の成長を実現。',
-      en: 'Combined social ads and influencer campaigns to improve marketing from acquisition through purchase, growing monthly sales 10×.',
+      ja: 'ECサイトの購入導線設計やブランディングの見直し、アップセル・クロスセル施策など、集客から購入までのマーケティングを改善。1年間で月間売上10倍の成長を実現しました。',
+      en: 'Improved marketing from acquisition through purchase — redesigning the store’s purchase flow, revisiting branding, and running upsell and cross-sell measures. Monthly sales grew 10× in one year.',
     },
     actions: {
-      ja: ['SNS広告運用', 'インフルエンサーマーケティング', '集客・購入導線の改善'],
-      en: ['Social ad operations', 'Influencer marketing', 'Improving the acquisition-to-purchase flow'],
+      ja: ['ECサイト・購入導線の設計', 'ブランディング・訴求改善', 'アップセル・クロスセル施策'],
+      en: ['Designing the online store and purchase flow', 'Branding and messaging improvements', 'Upsell and cross-sell measures'],
     },
   },
   {
@@ -59,14 +59,14 @@ const cases: Case[] = [
     alt: { ja: '美容クリニックの施術室のイメージ（仮画像）', en: 'A beauty clinic treatment room (placeholder image)' },
     category: 'BEAUTY CLINIC',
     title: { ja: '美容クリニック', en: 'Beauty clinic' },
-    metric: { label: { ja: '顧客獲得単価（CPA）', en: 'Cost per acquisition (CPA)' }, value: 35, unit: { ja: '%削減', en: '% lower' } },
+    metric: { label: { ja: '顧客獲得単価（CPA）平均', en: 'Cost per acquisition (CPA), average' }, value: 35, unit: { ja: '%削減', en: '% lower' } },
     body: {
-      ja: 'SNS広告の運用改善とクリエイティブの最適化により、顧客獲得単価（CPA）を平均35%削減。集客効率の改善を支援。',
-      en: 'Improved social ad operations and optimized creatives, cutting cost per acquisition (CPA) by 35% on average and improving acquisition efficiency.',
+      ja: '美容インフルエンサーを活用した広告クリエイティブの制作・配信と、SNS広告の運用改善を実施。ターゲットに合った訴求を検証し、顧客獲得単価（CPA）を平均35%削減しました。',
+      en: 'Produced and ran ad creatives featuring beauty influencers and improved social ad operations. By testing messages that fit the target, we cut cost per acquisition (CPA) by 35% on average.',
     },
     actions: {
-      ja: ['SNS広告運用', '広告クリエイティブ改善', 'CPA改善'],
-      en: ['Social ad operations', 'Ad creative improvement', 'CPA improvement'],
+      ja: ['美容インフルエンサーの起用', 'インフルエンサーコンテンツの広告活用', 'SNS広告運用・クリエイティブ改善'],
+      en: ['Casting beauty influencers', 'Using influencer content in ads', 'Social ad operations and creative improvement'],
     },
   },
 ]
@@ -121,7 +121,7 @@ export default function CaseStudies() {
                 </div>
                 <h3 className="mt-2 text-[19px] md:text-[20px] font-medium leading-[1.55] tracking-[0.04em] text-[#111]">{c.title[lang]}</h3>
 
-                <div className="mt-5 border-y border-[#ecebe7] py-5">
+                <div className="mt-5 border-y border-[#ecebe7] py-5 lg:min-h-[168px]">
                   <p className="text-[13px] md:text-[13.5px] font-medium tracking-[0.04em] text-[#555]">{c.metric.label[lang]}</p>
                   <p className="mt-1 flex items-baseline gap-1.5 whitespace-nowrap">
                     <span className="font-inter text-[56px] font-light leading-none tracking-[-0.01em] text-brand-gradient md:text-[64px]">
@@ -129,6 +129,7 @@ export default function CaseStudies() {
                     </span>
                     <span className="text-[20px] md:text-[22px] font-medium tracking-[0.04em] text-brand-navy">{c.metric.unit[lang]}</span>
                   </p>
+                  {c.metric.sub && <p className="mt-2 text-[13px] md:text-[13.5px] font-medium tracking-[0.04em] text-[#555]">{c.metric.sub[lang]}</p>}
                 </div>
 
                 <p className="mt-5 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{c.body[lang]}</p>
