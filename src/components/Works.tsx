@@ -25,7 +25,7 @@ export default function Works() {
   const { lang } = useLanguage()
 
   return (
-    <section id="works" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
+    <section id="industries" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
       <div className={container}>
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>

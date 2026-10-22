@@ -3,8 +3,7 @@ import Hero from '@/components/Hero'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
 import WhyFaise from '@/components/WhyFaise'
-import Beauty from '@/components/Beauty'
-import Strength from '@/components/Strength'
+import CaseStudies from '@/components/CaseStudies'
 import Works from '@/components/Works'
 import Clients from '@/components/Clients'
 import Founder from '@/components/Founder'
@@ -24,8 +23,7 @@ export default function Home() {
       <Mission />
       <Services />
       <WhyFaise />
-      <Beauty />
-      <Strength />
+      <CaseStudies />
       <Works />
       <Clients />
       <Founder />
