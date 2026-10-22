@@ -4,22 +4,33 @@ import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import { LineReveal, BlurReveal } from './TextReveal'
 import { useLanguage } from '@/lib/language'
-import { Label, container } from './ui'
+import { Label, Reveal, container } from './ui'
 
 const t = {
-  body: {
+  not: {
+    ja: ['Faiseは', '広告会社でも、', 'SNS運用会社でもありません。'],
+    en: ['Faise is', 'not an ad agency,', 'or a social media agency.'],
+  },
+  ask: {
     ja: [
-      ['Faiseは広告会社でも、', 'SNS運用会社でもありません。'],
-      ['誰が、', '何に価値を感じ、', 'なぜ選ぶのか。'],
-      ['その理由を考え、', '形にし、', '届ける。'],
-      ['事業が選ばれる仕組みを、', '戦略から実行まで一貫して設計します。'],
+      { k: '誰が、', d: 'Who' },
+      { k: '何に価値を感じ、', d: 'What' },
+      { k: 'なぜ選ぶのか。', d: 'Why' },
     ],
     en: [
-      ['Faise isn’t an ad agency,', 'or a social media agency.'],
-      ['Who,', 'sees value in what,', 'and chooses why.'],
-      ['We think it through,', 'shape it,', 'and deliver it.'],
-      ['We design the system behind being chosen,', 'from strategy through execution.'],
+      { k: 'Who,', d: 'Who' },
+      { k: 'sees value in what,', d: 'What' },
+      { k: 'and chooses why.', d: 'Why' },
     ],
+  },
+  stepLead: { ja: 'その理由を', en: 'The reason —' },
+  steps: {
+    ja: ['考え、', '形にし、', '届ける。'],
+    en: ['We think it through,', 'shape it,', 'and deliver it.'],
+  },
+  close: {
+    ja: ['事業が選ばれる仕組みを、', '戦略から実行まで一貫して設計します。'],
+    en: ['We design the system behind being chosen,', 'from strategy through execution.'],
   },
 }
 
@@ -78,20 +89,62 @@ export default function Mission() {
             </BlurReveal>
           </div>
 
-          <BlurReveal delay={0.45} inView={inView}>
-            <div className="space-y-7 lg:pt-1">
-              {t.body[lang].map((lines, i) => (
-                <p key={i} className="text-[15px] md:text-[15px] leading-[2.1] tracking-[0.04em] text-[#555]">
-                  {lines.map((line, j) => (
-                    <span key={j}>
-                      {line}
-                      {j < lines.length - 1 && <br />}
-                    </span>
-                  ))}
+          <div className="space-y-4 md:space-y-5 lg:pt-1">
+            {/* 1. What we are not */}
+            <Reveal>
+              <div className="relative overflow-hidden rounded-sm border border-brand/15 bg-white px-6 py-6 shadow-[0_18px_40px_-26px_rgba(37,99,214,0.45)] md:px-8 md:py-7">
+                <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[4px] bg-gradient-to-b from-brand-sky to-brand" />
+                <p className="font-inter text-[11px] font-medium tracking-[0.26em] text-brand-sky">{t.not[lang][0]}</p>
+                <p className="mt-3 text-[clamp(19px,1.8vw,26px)] font-bold leading-[1.7] tracking-[0.03em] text-[#111]">
+                  <span>{t.not[lang][1]}</span>
+                  <br />
+                  <span>{t.not[lang][2]}</span>
                 </p>
+              </div>
+            </Reveal>
+
+            {/* 2. The three questions */}
+            <ul className="space-y-2.5">
+              {t.ask[lang].map((q, i) => (
+                <li key={q.d}>
+                  <Reveal delay={0.05 + i * 0.08}>
+                    <div className={`group flex items-center gap-4 rounded-sm bg-white px-5 py-4 shadow-[0_14px_32px_-24px_rgba(20,24,92,0.5)] transition-transform duration-500 hover:translate-x-1 md:gap-6 md:px-7 md:py-5 ${["", "md:ml-6", "md:ml-12"][i]}`}>
+                      <span className="w-[3.4rem] shrink-0 font-inter text-[15px] font-bold tracking-[0.1em] text-brand-gradient md:w-20 md:text-[18px]">{q.d}</span>
+                      <span className="text-[clamp(17px,1.6vw,22px)] font-bold tracking-[0.03em] text-[#111]">{q.k}</span>
+                    </div>
+                  </Reveal>
+                </li>
               ))}
-            </div>
-          </BlurReveal>
+            </ul>
+
+            {/* 3. Think -> shape -> deliver */}
+            <Reveal delay={0.1}>
+              <div className="rounded-sm bg-white px-5 py-6 shadow-[0_14px_32px_-24px_rgba(20,24,92,0.5)] md:px-8 md:py-7">
+                <p className="mb-4 text-[14px] font-medium tracking-[0.06em] text-brand md:text-[15px]">{t.stepLead[lang]}</p>
+                <ol className="grid grid-cols-3 gap-2 md:gap-4">
+                  {t.steps[lang].map((st, i) => (
+                    <li key={st} className="relative border-t-2 border-brand-sky/50 pt-3">
+                      <span className="font-inter text-[28px] font-light leading-none text-brand-gradient md:text-[34px]">0{i + 1}</span>
+                      {i < 2 && <span aria-hidden="true" className="absolute -right-2 top-[-9px] text-[15px] leading-none text-brand md:-right-3">›</span>}
+                      <p className="mt-2 text-[clamp(15px,1.4vw,19px)] font-bold leading-[1.55] tracking-[0.02em] text-[#111]">{st}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Reveal>
+
+            {/* 4. Conclusion */}
+            <Reveal delay={0.15}>
+              <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-brand-sky via-brand to-brand-navy px-5 py-7 text-white md:px-8 md:py-9">
+                <span aria-hidden="true" className="pointer-events-none absolute -right-10 -top-16 h-52 w-52 rounded-full bg-white/10 blur-2xl" />
+                <p className="relative text-[clamp(14.5px,1.5vw,21px)] font-medium leading-[1.9] tracking-[0.02em] md:tracking-[0.04em]">
+                  {t.close[lang][0]}
+                  <br />
+                  <span className="font-bold">{t.close[lang][1]}</span>
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
