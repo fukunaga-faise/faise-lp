@@ -72,16 +72,16 @@ const services: Service[] = [
 
 const faqs: Record<Lang, string[]> = {
   ja: [
-    'インフルエンサーを使いたいが、誰を起用すべきか分からない',
+    'インフルエンサーを活用したいが、誰を起用すべきか分からない',
     '広告のCPAが上がり続けている',
-    '動画は出しているが、予約につながらない',
-    '開業したが、認知が広がらない',
+    'SNSや動画は出しているが、予約や購入につながらない',
+    '新規事業や新店舗の認知を広げたい',
   ],
   en: [
     'I want to use influencers, but I don’t know who to cast.',
     'My ad CPA keeps rising.',
-    'We post videos, but they don’t lead to bookings.',
-    'We’ve opened, but awareness isn’t growing.',
+    'We post on social and video, but it doesn’t lead to bookings or purchases.',
+    'I want to build awareness for a new business or a new store.',
   ],
 }
 
@@ -94,10 +94,13 @@ const t = {
   itemsLabel: { ja: '対応内容', en: 'What we cover' },
   clientsLabel: { ja: '想定クライアント', en: 'Typical clients' },
   note: {
-    ja: '各サービスは単体でもご相談いただけます。',
-    en: 'Each service is also available on its own.',
+    title: { ja: '必要な領域から、ご相談ください。', en: 'Start with the area you need.' },
+    body: {
+      ja: ['戦略設計からコンテンツ制作、広告運用まで。', 'すべてをまとめてではなく、課題やフェーズに応じたご相談にも対応しています。'],
+      en: ['From strategy to content production and ad operations.', 'You don’t need to take everything at once — we’re happy to discuss just what fits your challenge and stage.'],
+    },
   },
-  faq: { ja: 'よくいただくご相談', en: 'Questions we hear often' },
+  faq: { ja: 'このようなご相談をいただいています', en: 'Topics clients bring to us' },
 }
 
 export default function Services() {
@@ -167,16 +170,20 @@ export default function Services() {
           ))}
         </ul>
 
-        <Reveal className="mt-16 grid gap-10 border-t border-[#ecebe7] pt-10 md:mt-20 lg:grid-cols-2 lg:gap-14">
-          <p className="flex items-start gap-3 text-[15px] md:text-[16px] font-medium leading-[1.9] tracking-[0.04em] text-[#111]">
-            <span aria-hidden="true" className="mt-[0.8em] block h-px w-6 shrink-0 bg-gradient-to-r from-brand-sky to-brand" />
-            {t.note[lang]}
-          </p>
+        <Reveal className="mt-14 grid gap-8 border-t border-[#ecebe7] pt-9 md:mt-16 md:pt-11 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
           <div>
-            <h3 className="font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-brand">{t.faq[lang]}</h3>
+            <h3 className="text-[19px] md:text-[22px] font-medium leading-[1.6] tracking-[0.04em] text-[#111]">{t.note.title[lang]}</h3>
+            <p className="mt-4 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">
+              {t.note.body[lang][0]}
+              <br className="hidden md:block" />
+              {t.note.body[lang][1]}
+            </p>
+          </div>
+          <div>
+            <p className="text-[13.5px] md:text-[13px] font-medium tracking-[0.06em] text-brand">{t.faq[lang]}</p>
             <ul className="mt-4 space-y-2.5">
               {faqs[lang].map((faq) => (
-                <li key={faq} className="border-l-2 border-brand-sky/40 pl-3 text-[14.5px] md:text-[13px] leading-[1.9] tracking-[0.03em] text-[#555]">
+                <li key={faq} className="border-l-2 border-brand-sky/50 pl-4 text-[14.5px] md:text-[13.5px] leading-[1.8] tracking-[0.02em] text-[#333]">
                   {faq}
                 </li>
               ))}
