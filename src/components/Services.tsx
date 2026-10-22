@@ -16,8 +16,8 @@ type Service = {
 const services: Service[] = [
   {
     num: '01',
-    img: 'svc3-produce',
-    alt: { ja: '人が集まる観光・商業施設の遊歩道', en: 'A promenade in a tourist and commercial complex' },
+    img: 'svc4-produce',
+    alt: { ja: '大水槽の前に集まり、楽しむ来場者', en: 'Visitors gathering to enjoy a giant aquarium tank' },
     title: { ja: '集客戦略・事業プロデュース', en: 'Acquisition Strategy & Business Producing' },
     body: {
       ja: '新規施設の立ち上げから既存事業の集客改善まで。市場や顧客を分析し、商品・サービスの魅力を引き出す戦略の立案から実行までを支援します。',
@@ -34,9 +34,11 @@ const services: Service[] = [
   },
   {
     num: '02',
-    img: 'svc3-content',
-    alt: { ja: 'クリエイターによる縦型動画の撮影風景', en: 'A creator being filmed for a vertical video' },
-    title: { ja: 'インフルエンサー・コンテンツマーケティング', en: 'Influencer & Content Marketing' },
+    img: 'svc4-content',
+    alt: { ja: 'カフェでの縦型動画の撮影風景', en: 'Shooting a vertical video at a cafe' },
+    title: { ja: 'インフルエンサー・
+コンテンツマーケティング', en: 'Influencer &
+Content Marketing' },
     body: {
       ja: '商品やサービスの魅力を届けるインフルエンサーの起用から、SNSコンテンツの企画・制作、広告への活用までを一貫して支援します。',
       en: 'From casting influencers who can convey the appeal of your product or service, to planning and producing social content and putting it to work in ads.',
@@ -52,8 +54,8 @@ const services: Service[] = [
   },
   {
     num: '03',
-    img: 'svc3-ads',
-    alt: { ja: 'LPや広告のレイアウトを確認するマーケター', en: 'Marketers reviewing landing page and ad layouts' },
+    img: 'svc4-ads',
+    alt: { ja: '広告クリエイティブと分析資料を見ながら改善を進めるスタッフ', en: 'Staff improving ad creatives while reviewing performance data' },
     title: { ja: 'デジタル集客・広告運用', en: 'Digital Acquisition & Ad Operations' },
     body: {
       ja: 'Google・Metaなどのデジタル広告を活用し、認知獲得から予約・購入までの集客を支援。広告運用だけでなく、クリエイティブやLPの改善まで対応します。',
@@ -137,7 +139,7 @@ export default function Services() {
 
                 <div className="mt-6 flex items-start gap-4">
                   <span className="pt-[3px] font-inter text-[15px] font-medium tracking-[0.1em] text-brand-gradient">{s.num}</span>
-                  <h3 className="text-[19px] md:text-[20px] font-medium leading-[1.55] tracking-[0.04em] text-[#111] transition-colors duration-300 group-hover:text-brand lg:min-h-[3.1em]">
+                  <h3 className="whitespace-pre-line text-[19px] md:text-[20px] font-medium leading-[1.55] tracking-[0.04em] text-[#111] transition-colors duration-300 group-hover:text-brand lg:min-h-[3.1em]">
                     {s.title[lang]}
                   </h3>
                 </div>
