@@ -78,17 +78,13 @@ const t = {
     en: 'We have supported acquisition and sales improvement for a range of businesses, including beauty and fitness.',
   },
   actionsLabel: { ja: '実施施策', en: 'What we did' },
-  note: {
-    ja: '※代表者の過去の担当案件を含みます。数値は提供資料に基づく一例で、成果を保証するものではありません。画像はイメージ（仮画像）です。',
-    en: '※ Includes projects the representative handled earlier in their career. Figures are examples based on provided materials and are not a guarantee of results. Images are illustrative placeholders.',
-  },
 }
 
 export default function CaseStudies() {
   const { lang } = useLanguage()
 
   return (
-    <section id="works" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
+    <section id="works" className="border-t border-[#ecebe7] bg-brand-tint py-14 md:py-28">
       <div className={container}>
         <Reveal className="max-w-3xl">
           <Label>Works / Case Studies</Label>
@@ -150,9 +146,6 @@ export default function CaseStudies() {
           ))}
         </ul>
 
-        <Reveal>
-          <p className="mt-14 max-w-3xl text-[12px] leading-[1.9] tracking-[0.02em] text-[#777] md:mt-16">{t.note[lang]}</p>
-        </Reveal>
       </div>
     </section>
   )

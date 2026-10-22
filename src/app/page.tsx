@@ -2,7 +2,6 @@ import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
-import WhyFaise from '@/components/WhyFaise'
 import CaseStudies from '@/components/CaseStudies'
 import Works from '@/components/Works'
 import Clients from '@/components/Clients'
@@ -22,7 +21,6 @@ export default function Home() {
       <Hero />
       <Mission />
       <Services />
-      <WhyFaise />
       <CaseStudies />
       <Works />
       <Clients />
