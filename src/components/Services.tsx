@@ -36,9 +36,7 @@ const services: Service[] = [
     num: '02',
     img: 'svc4-content',
     alt: { ja: 'カフェでの縦型動画の撮影風景', en: 'Shooting a vertical video at a cafe' },
-    title: { ja: 'インフルエンサー・
-コンテンツマーケティング', en: 'Influencer &
-Content Marketing' },
+    title: { ja: 'インフルエンサー・\nコンテンツマーケティング', en: 'Influencer &\nContent Marketing' },
     body: {
       ja: '商品やサービスの魅力を届けるインフルエンサーの起用から、SNSコンテンツの企画・制作、広告への活用までを一貫して支援します。',
       en: 'From casting influencers who can convey the appeal of your product or service, to planning and producing social content and putting it to work in ads.',
@@ -139,7 +137,7 @@ export default function Services() {
 
                 <div className="mt-6 flex items-start gap-4">
                   <span className="pt-[3px] font-inter text-[15px] font-medium tracking-[0.1em] text-brand-gradient">{s.num}</span>
-                  <h3 className="whitespace-pre-line text-[19px] md:text-[20px] font-medium leading-[1.55] tracking-[0.04em] text-[#111] transition-colors duration-300 group-hover:text-brand lg:min-h-[3.1em]">
+                  <h3 className="whitespace-pre-line text-[17px] min-[360px]:text-[19px] md:text-[20px] font-medium leading-[1.55] tracking-[0.04em] text-[#111] transition-colors duration-300 group-hover:text-brand lg:min-h-[3.1em]">
                     {s.title[lang]}
                   </h3>
                 </div>
