@@ -19,7 +19,7 @@ export default function CTA() {
 
   return (
     <>
-      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-brand-sky via-brand to-brand-navy py-24 md:py-32">
+      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-brand-sky via-brand to-brand-navy py-16 md:py-32">
         {/* Slowly drifting light + brand mark (transform only) */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
@@ -41,7 +41,7 @@ export default function CTA() {
               <br />
               {t.h2[lang][1]}
             </h2>
-            <p className="mt-5 text-[13px] md:text-[14px] leading-[2] tracking-[0.05em] text-white/80">{t.lead[lang]}</p>
+            <p className="mt-5 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.05em] text-white/80">{t.lead[lang]}</p>
             <button
               onClick={() => setModalOpen(true)}
               className="group relative mt-10 inline-flex items-center gap-4 overflow-hidden rounded-full bg-white pl-9 pr-8 py-4 font-inter text-[12px] font-medium tracking-[0.22em] uppercase text-brand-navy transition-all duration-500 hover:shadow-[0_14px_36px_-12px_rgba(0,0,0,0.45)]"
@@ -61,9 +61,9 @@ export default function CTA() {
               <img src="/logo-mark.png" alt="" className="h-7 w-auto" />
               <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
             </a>
-            <p className="text-[11px] tracking-[0.04em] text-[#999]">{t.address[lang]}</p>
+            <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
           </div>
-          <p className="text-[10.5px] tracking-[0.04em] text-[#aaa]">© 2025 Faise Inc. All rights reserved.</p>
+          <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
         </div>
       </footer>
 

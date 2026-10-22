@@ -81,9 +81,9 @@ export default function Services() {
   const { lang } = useLanguage()
 
   return (
-    <section id="service" className="border-t border-[#ecebe7] bg-white py-20 md:py-28">
+    <section id="service" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
       <div className={container}>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
             <Label>Service</Label>
             <h2 className="mt-6 text-[clamp(22px,1.9vw,28px)] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">
@@ -91,14 +91,14 @@ export default function Services() {
               <br />
               {t.h2[lang][1]}
             </h2>
-            <p className="mt-6 max-w-[22em] text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
+            <p className="mt-6 max-w-[22em] text-[14.5px] md:text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
           </Reveal>
 
-          <ul className="grid grid-cols-2 gap-x-5 gap-y-10 md:gap-x-6 lg:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
               <li key={s.num} className="group">
                 <Reveal delay={i * 0.08}>
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f0ec]">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#f1f0ec] sm:aspect-[4/3]">
                     <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
                     <img
                       src={`/images/redesign/${s.img}.jpg`}
@@ -112,7 +112,7 @@ export default function Services() {
                     <span className="font-inter text-[13px] font-medium tracking-[0.08em] text-brand-sky">{s.num}</span>
                     {s.title[lang]}
                   </h3>
-                  <p className="mt-3 text-[12.5px] md:text-[13px] leading-[1.95] tracking-[0.03em] text-[#666]">{s.body[lang]}</p>
+                  <p className="mt-3 text-[14px] md:text-[13px] leading-[1.95] tracking-[0.03em] text-[#666]">{s.body[lang]}</p>
                 </Reveal>
               </li>
             ))}
@@ -121,7 +121,7 @@ export default function Services() {
 
         {/* Existing guidance copy, kept as a quiet footer row */}
         <Reveal className="mt-16 grid gap-10 border-t border-[#ecebe7] pt-10 md:mt-20 lg:grid-cols-2 lg:gap-14">
-          <p className="text-[12px] sm:text-[13px] md:text-[14px] leading-[2] tracking-[0.02em] sm:tracking-[0.04em] text-[#555]">
+          <p className="text-[13.5px] sm:text-[13px] md:text-[14px] leading-[2] tracking-[0.02em] sm:tracking-[0.04em] text-[#555]">
             {t.note[lang].map((line, i) => (
               <span key={i}>
                 {line}
@@ -133,7 +133,7 @@ export default function Services() {
             <h3 className="font-inter text-[11px] md:text-[12px] font-medium tracking-[0.22em] uppercase text-brand">{t.faq[lang]}</h3>
             <ul className="mt-4 space-y-2.5">
               {faqs[lang].map((faq) => (
-                <li key={faq} className="border-l-2 border-brand-sky/40 pl-3 text-[13px] leading-[1.9] tracking-[0.03em] text-[#666]">
+                <li key={faq} className="border-l-2 border-brand-sky/40 pl-3 text-[14.5px] md:text-[13px] leading-[1.9] tracking-[0.03em] text-[#666]">
                   {faq}
                 </li>
               ))}

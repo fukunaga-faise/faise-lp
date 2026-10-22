@@ -28,9 +28,9 @@ export default function Company() {
   const rows = rowsByLang[lang]
 
   return (
-    <section id="company" className="border-t border-[#ecebe7] bg-white py-20 md:py-24">
+    <section id="company" className="border-t border-[#ecebe7] bg-white py-14 md:py-24">
       <div className={container}>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+        <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
             <Label>Company</Label>
             <h2 className="mt-5 text-[clamp(20px,1.9vw,26px)] font-medium leading-[1.7] tracking-[0.04em] text-[#111]">{t.h2[lang]}</h2>
@@ -40,8 +40,8 @@ export default function Company() {
             <dl className="max-w-3xl border-t-2 border-brand-sky/40">
               {rows.map((row) => (
                 <div key={row.label} className="grid grid-cols-[110px_1fr] gap-5 border-b border-[#ecebe7] py-5 md:grid-cols-[200px_1fr]">
-                  <dt className="text-[12px] md:text-[13px] tracking-[0.08em] text-brand">{row.label}</dt>
-                  <dd className="whitespace-pre-line text-[13px] md:text-[14px] leading-[1.95] tracking-[0.04em] text-[#111]">{row.value}</dd>
+                  <dt className="text-[13.5px] md:text-[13px] tracking-[0.08em] text-brand">{row.label}</dt>
+                  <dd className="whitespace-pre-line text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.04em] text-[#111]">{row.value}</dd>
                 </div>
               ))}
             </dl>

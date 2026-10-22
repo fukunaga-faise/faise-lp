@@ -64,9 +64,9 @@ export default function Founder() {
   const fullMessage = fullMessageByLang[lang]
 
   return (
-    <section id="founder" className="border-t border-[#ecebe7] bg-white py-20 md:py-28">
+    <section id="founder" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
       <div className={container} ref={ref}>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -83,13 +83,13 @@ export default function Founder() {
 
             <div className="mt-8 space-y-2 border-l-[3px] border-brand pl-5">
               {phrases.map((phrase) => (
-                <p key={phrase} className="text-[14px] md:text-[15px] font-medium leading-[1.9] tracking-[0.04em] text-[#333]">
+                <p key={phrase} className="text-[15px] md:text-[15px] font-medium leading-[1.9] tracking-[0.04em] text-[#333]">
                   {phrase}
                 </p>
               ))}
             </div>
 
-            <p className="mt-8 text-[13px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#666]">
+            <p className="mt-8 text-[14.5px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#666]">
               {t.summary[lang][0]}
               <br />
               {t.summary[lang][1]}
@@ -115,7 +115,7 @@ export default function Founder() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-6 space-y-5 border-t border-[#ecebe7] pt-6 text-[13px] md:text-[14px] leading-[2.05] tracking-[0.04em] text-[#555]">
+                  <div className="mt-6 space-y-5 border-t border-[#ecebe7] pt-6 text-[14.5px] md:text-[14px] leading-[2.05] tracking-[0.04em] text-[#555]">
                     {fullMessage.map((p) => (
                       <p key={p}>{p}</p>
                     ))}
@@ -142,7 +142,7 @@ export default function Founder() {
             <div className="mt-5 flex items-baseline justify-between gap-4">
               <div>
                 <p className="text-[18px] font-medium tracking-[0.06em] text-[#111]">{t.founderName[lang]}</p>
-                <p className="mt-1 text-[12.5px] tracking-[0.04em] text-[#666]">{t.founderTitle[lang]}</p>
+                <p className="mt-1 text-[14px] md:text-[12.5px] tracking-[0.04em] text-[#666]">{t.founderTitle[lang]}</p>
               </div>
               <p className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-brand-sky">Haruto Fukunaga</p>
             </div>
@@ -151,7 +151,7 @@ export default function Founder() {
               {career.map((c) => (
                 <li key={c.period}>
                   <p className="font-inter text-[11px] tracking-[0.16em] text-brand-sky">{c.period}</p>
-                  <p className="mt-1.5 text-[12.5px] md:text-[13px] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">{c.company[lang]}</p>
+                  <p className="mt-1.5 text-[14px] md:text-[13px] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">{c.company[lang]}</p>
                 </li>
               ))}
             </ul>

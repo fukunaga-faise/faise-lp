@@ -139,7 +139,7 @@ export default function Beauty() {
           <Reveal className="max-w-[640px]">
             <Label>Beauty &amp; Healthcare</Label>
             <h2 className="mt-6 text-[21px] sm:text-[24px] md:text-[clamp(26px,3vw,42px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111]">{t.h2[lang]}</h2>
-            <p className="mt-6 text-[13px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#555]">
+            <p className="mt-6 text-[14.5px] md:text-[14px] leading-[2.1] tracking-[0.04em] text-[#555]">
               {t.body[lang][0]}
               <br className="hidden md:block" /> {t.body[lang][1]}
             </p>
@@ -161,7 +161,7 @@ export default function Beauty() {
                   <h3 className="mt-4 whitespace-pre-line text-[clamp(20px,1.7vw,24px)] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">
                     {c.title[lang]}
                   </h3>
-                  <div className="mt-5 space-y-3 text-[12.5px] md:text-[13px] leading-[2] tracking-[0.03em] text-[#666]">
+                  <div className="mt-5 space-y-3 text-[14px] md:text-[13px] leading-[2] tracking-[0.03em] text-[#666]">
                     {c.body[lang].map((p) => (
                       <p key={p}>{p}</p>
                     ))}
@@ -170,7 +170,7 @@ export default function Beauty() {
                   <p className="mt-7 font-inter text-[10px] md:text-[11px] font-medium tracking-[0.22em] uppercase text-brand">{c.listTitle[lang]}</p>
                   <ul className="mt-3 space-y-1.5">
                     {c.list[lang].map((item) => (
-                      <li key={item} className="flex gap-2.5 text-[12.5px] md:text-[13px] leading-[1.8] tracking-[0.03em] text-[#555]">
+                      <li key={item} className="flex gap-2.5 text-[14px] md:text-[13px] leading-[1.8] tracking-[0.03em] text-[#555]">
                         <span className="mt-[0.75em] block h-[4px] w-[4px] shrink-0 rounded-full bg-gradient-to-br from-brand-sky to-brand" />
                         {item}
                       </li>
@@ -179,8 +179,8 @@ export default function Beauty() {
 
                   {c.price && (
                     <div className="mt-7 rounded-sm border-l-[3px] border-brand bg-brand-tint px-4 py-4">
-                      <p className="text-[12px] md:text-[13px] font-medium leading-[1.8] tracking-[0.02em] text-brand-navy">{c.price.text[lang]}</p>
-                      <p className="mt-1.5 text-[11px] leading-[1.8] tracking-[0.03em] text-[#999]">{c.price.note[lang]}</p>
+                      <p className="text-[13.5px] md:text-[13px] font-medium leading-[1.8] tracking-[0.02em] text-brand-navy">{c.price.text[lang]}</p>
+                      <p className="mt-1.5 text-[11px] leading-[1.8] tracking-[0.03em] text-[#777]">{c.price.note[lang]}</p>
                     </div>
                   )}
 

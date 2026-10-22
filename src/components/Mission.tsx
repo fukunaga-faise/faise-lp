@@ -29,10 +29,10 @@ export default function Mission() {
   const { lang } = useLanguage()
 
   return (
-    <section id="mission" className="relative border-t border-[#ecebe7] bg-brand-tint py-20 md:py-28 overflow-hidden">
+    <section id="mission" className="relative border-t border-[#ecebe7] bg-brand-tint py-14 md:py-28 overflow-hidden">
       <img src="/logo-mark.png" alt="" aria-hidden="true" className="pointer-events-none select-none absolute -right-[4%] top-1/2 hidden h-[110%] w-auto -translate-y-1/2 opacity-[0.07] md:block" />
       <div className={`${container} relative`} ref={ref}>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <div>
             <LineReveal delay={0} inView={inView}>
               <Label>What We Do</Label>
@@ -81,7 +81,7 @@ export default function Mission() {
           <BlurReveal delay={0.45} inView={inView}>
             <div className="space-y-7 lg:pt-1">
               {t.body[lang].map((lines, i) => (
-                <p key={i} className="text-[14px] md:text-[15px] leading-[2.1] tracking-[0.04em] text-[#555]">
+                <p key={i} className="text-[15px] md:text-[15px] leading-[2.1] tracking-[0.04em] text-[#555]">
                   {lines.map((line, j) => (
                     <span key={j}>
                       {line}

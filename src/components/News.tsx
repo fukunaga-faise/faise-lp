@@ -18,7 +18,7 @@ export default function News() {
   if (news.length === 0) return null
 
   return (
-    <section id="news" className="border-t border-[#ecebe7] bg-white py-16 md:py-20">
+    <section id="news" className="border-t border-[#ecebe7] bg-white py-12 md:py-20">
       <div className={container}>
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
@@ -31,7 +31,7 @@ export default function News() {
               {news.map((n) => (
                 <li key={n.date + n.text.ja} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:gap-10">
                   <time className="font-inter text-[12px] font-medium tracking-[0.12em] text-brand">{n.date}</time>
-                  <p className="text-[13px] md:text-[14px] tracking-[0.04em] text-[#333]">{n.text[lang]}</p>
+                  <p className="text-[14.5px] md:text-[14px] tracking-[0.04em] text-[#333]">{n.text[lang]}</p>
                 </li>
               ))}
             </ul>

@@ -45,9 +45,9 @@ export default function Strength() {
   const { lang } = useLanguage()
 
   return (
-    <section id="strength" className="border-t border-[#ecebe7] bg-brand-tint py-16 md:py-20">
+    <section id="strength" className="border-t border-[#ecebe7] bg-brand-tint py-12 md:py-20">
       <div className={container}>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+        <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
             <Label>Strength</Label>
             <h2 className="mt-5 text-[clamp(20px,1.9vw,26px)] font-medium leading-[1.7] tracking-[0.04em] text-[#111]">
@@ -65,22 +65,22 @@ export default function Strength() {
                     <p className="font-medium text-[clamp(20px,2vw,28px)] leading-[1.5] tracking-[0.06em] text-brand-navy md:pt-3">{it.big[lang][0]}</p>
                   ) : (
                     <p className="flex items-baseline justify-center gap-1.5 text-[#111]">
-                      {it.pre[lang] && <span className="text-[13px] font-medium tracking-[0.06em]">{it.pre[lang]}</span>}
+                      {it.pre[lang] && <span className="text-[14.5px] md:text-[13px] font-medium tracking-[0.06em]">{it.pre[lang]}</span>}
                       <span className="font-inter text-[clamp(38px,4vw,56px)] font-light leading-none tracking-[0.01em] text-brand-gradient">
                         {'n' in it && it.n ? <CountUp to={it.n as number} comma={!!(it as { comma?: boolean }).comma} /> : it.big[lang][0]}
                       </span>
-                      <span className="text-[14px] md:text-[16px] font-medium tracking-[0.06em]">{it.big[lang][1]}</span>
+                      <span className="text-[15px] md:text-[16px] font-medium tracking-[0.06em]">{it.big[lang][1]}</span>
                     </p>
                   )}
-                  {it.cap[lang] && <p className="mt-4 text-[12px] md:text-[12.5px] leading-[1.8] tracking-[0.04em] text-[#666]">{it.cap[lang]}</p>}
-                  <p className="mt-1 text-[12px] leading-[1.8] tracking-[0.04em] text-[#999]">{it.sub[lang]}</p>
+                  {it.cap[lang] && <p className="mt-4 text-[13.5px] md:text-[12.5px] leading-[1.8] tracking-[0.04em] text-[#666]">{it.cap[lang]}</p>}
+                  <p className="mt-1 text-[13.5px] md:text-[12px] leading-[1.8] tracking-[0.04em] text-[#777]">{it.sub[lang]}</p>
                 </Reveal>
               </li>
             ))}
           </ul>
         </div>
 
-        <ul className="mt-10 space-y-1 text-[11px] leading-[1.9] tracking-[0.03em] text-[#999] lg:ml-[calc(25%+42px)]">
+        <ul className="mt-10 space-y-1 text-[11px] leading-[1.9] tracking-[0.03em] text-[#777] lg:ml-[calc(25%+42px)]">
           {t.notes[lang].map((n) => (
             <li key={n}>{n}</li>
           ))}

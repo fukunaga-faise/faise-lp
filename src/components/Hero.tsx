@@ -150,7 +150,7 @@ export default function Hero() {
                 <br />
                 <span className="text-brand-gradient">{t.h1[lang][1]}</span>
               </h1>
-              <p className="mt-6 md:mt-8 text-[12.5px] md:text-[14px] leading-[2] tracking-[0.03em] md:tracking-[0.06em] text-[#555]">
+              <p className="mt-6 md:mt-8 text-[14px] md:text-[14px] leading-[2] tracking-[0.03em] md:tracking-[0.06em] text-[#555]">
                 {t.sub[lang][0]}
                 <br />
                 {t.sub[lang][1]}

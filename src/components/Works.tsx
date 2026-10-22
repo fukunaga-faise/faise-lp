@@ -25,9 +25,9 @@ export default function Works() {
   const { lang } = useLanguage()
 
   return (
-    <section id="works" className="border-t border-[#ecebe7] bg-white py-20 md:py-28">
+    <section id="works" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
       <div className={container}>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:gap-14">
           <Reveal>
             <Label>Works</Label>
             <h2 className="mt-6 text-[clamp(22px,1.9vw,28px)] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">
@@ -35,7 +35,7 @@ export default function Works() {
               <br />
               {t.h2[lang][1]}
             </h2>
-            <p className="mt-6 max-w-[22em] text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
+            <p className="mt-6 max-w-[22em] text-[14.5px] md:text-[13px] leading-[2] tracking-[0.04em] text-[#666]">{t.lead[lang]}</p>
           </Reveal>
 
           <div>
@@ -54,7 +54,7 @@ export default function Works() {
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                       />
                     </div>
-                    <p className="mt-3 text-[12.5px] md:text-[13px] font-medium tracking-[0.06em] text-[#111] transition-colors duration-300 group-hover:text-brand">{it.label[lang]}</p>
+                    <p className="mt-3 text-[14px] md:text-[13px] font-medium tracking-[0.06em] text-[#111] transition-colors duration-300 group-hover:text-brand">{it.label[lang]}</p>
                   </Reveal>
                 </li>
               ))}

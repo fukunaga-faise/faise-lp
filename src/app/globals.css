@@ -10,6 +10,9 @@
 }
 
 html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 64px;
 }
@@ -17,7 +20,8 @@ html {
 body {
   background: #fff;
   color: #0f0f0f;
-  overflow-x: hidden;
+  overflow-x: clip;
+  min-width: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
