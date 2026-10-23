@@ -33,6 +33,16 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // faise-inc.com/#contact-form で問い合わせフォームを直接開く（PR TIMES等の外部リンク用）
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash === '#contact-form') setModalOpen(true)
+    }
+    openFromHash()
+    window.addEventListener('hashchange', openFromHash)
+    return () => window.removeEventListener('hashchange', openFromHash)
+  }, [])
+
   return (
     <>
       <motion.nav
