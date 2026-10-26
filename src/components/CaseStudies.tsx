@@ -1,14 +1,15 @@
 'use client'
 
 import { useLanguage, type Lang } from '@/lib/language'
+import { ArrowUpRight } from 'lucide-react'
 import { CountUp, Label, Reveal, container } from './ui'
 
 // 実績は提供資料に基づく3件。数値は変更・追加・推測しないこと。
 // TODO（公開前に確認）:
 //  - 実績の対象期間 / 数値の比較条件（何と何を比べた倍率・削減率か）
-//  - 公開可能な企業名・画像・ロゴ（現状は社名・ロゴ非掲載）
-//  - Faise法人の実績か、代表者の過去の担当実績か（現状は注記で「代表者の過去の担当案件を含みます」と明記）
-// 画像（public/images/redesign/case-*.jpg）はすべて AI 生成の仮素材。実案件の画像が用意できたら差し替える。
+//  - 公開可能な企業名・画像・ロゴ（CASE 02 はクリスタルジム様の名称・実写真・公式サイトリンクを掲載。写真の肖像・掲載許諾は要確認）
+//  - Faise法人の実績か、代表者の過去の担当実績か（注記は削除済み）
+// 画像: CASE 02 は提供された実写真（case-gym-crystal.jpg）。CASE 01・03（case-ec / case-clinic）は AI 生成の仮素材。実案件の画像が用意できたら差し替える。
 type Case = {
   num: string
   img: string
@@ -18,6 +19,7 @@ type Case = {
   metric: { label: Record<Lang, string>; value: number; unit: Record<Lang, string>; sub?: Record<Lang, string> }
   body: Record<Lang, string>
   actions: Record<Lang, string[]>
+  link?: { href: string; label: Record<Lang, string> }
 }
 
 const cases: Case[] = [
@@ -39,10 +41,10 @@ const cases: Case[] = [
   },
   {
     num: '02',
-    img: 'case-gym',
-    alt: { ja: 'パーソナルジムのトレーニング風景のイメージ（仮画像）', en: 'A personal gym training scene (placeholder image)' },
+    img: 'case-gym-crystal',
+    alt: { ja: 'クリスタルジムのウェア姿で力こぶのポーズを取る8名の集合写真', en: 'Eight people in Crystal Gym wear posing with flexed arms' },
     category: 'FITNESS',
-    title: { ja: 'パーソナルジム', en: 'Personal gym' },
+    title: { ja: 'クリスタルジム（パーソナルジム）', en: 'Crystal Gym (personal gym)' },
     metric: { label: { ja: '月間新規入会者数', en: 'Monthly new members' }, value: 4, unit: { ja: '倍', en: '×' } },
     body: {
       ja: '著名人のSNSを活用した広告施策を展開。ターゲット層への認知拡大と入会促進につなげ、月間新規入会者数を4倍に拡大。',
@@ -52,6 +54,7 @@ const cases: Case[] = [
       ja: ['SNS広告運用', '著名人のSNSコンテンツ活用', '新規入会促進'],
       en: ['Social ad operations', 'Using well-known figures’ social content', 'Driving new sign-ups'],
     },
+    link: { href: 'https://crystal-gym.jp/', label: { ja: 'クリスタルジム公式サイト', en: 'Crystal Gym official site' } },
   },
   {
     num: '03',
@@ -100,7 +103,7 @@ export default function CaseStudies() {
           {cases.map((c, i) => (
             <li key={c.num} className="group">
               <Reveal delay={i * 0.08} className="flex h-full flex-col">
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f0ec]">
+                <div className="relative aspect-[3/2] overflow-hidden bg-[#f1f0ec]">
                   <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
                   <img
                     src={`/images/redesign/${c.img}.jpg`}
@@ -141,6 +144,20 @@ export default function CaseStudies() {
                     ))}
                   </ul>
                 </div>
+
+                {c.link && (
+                  <div className="mt-auto pt-6">
+                    <a
+                      href={c.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link inline-flex items-center gap-2 text-[14px] md:text-[13.5px] font-medium tracking-[0.04em] text-brand transition-colors duration-300 hover:text-brand-navy"
+                    >
+                      <span className="border-b border-brand/40 pb-0.5 transition-colors duration-300 group-hover/link:border-brand-navy">{c.link.label[lang]}</span>
+                      <ArrowUpRight size={15} strokeWidth={1.5} className="transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                    </a>
+                  </div>
+                )}
               </Reveal>
             </li>
           ))}
