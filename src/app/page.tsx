@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
+import ClientStrip from '@/components/ClientStrip'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
 import CaseStudies from '@/components/CaseStudies'
@@ -19,6 +20,7 @@ export default function Home() {
       <ScrollProgress />
       <Nav />
       <Hero />
+      <ClientStrip />
       <Mission />
       <Services />
       <CaseStudies />

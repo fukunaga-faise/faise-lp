@@ -3,27 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/lib/language'
+import { clients } from '@/lib/clients'
 import { Label, Reveal, container } from './ui'
-
-// クライアント一覧（スライダー表示）。増やすときは clients に追記するだけでよい（新しいものを後ろに）。
-// 既存3社は掲載順・表記・ロゴとも現行サイトのまま。logoClass はロゴごとの表示サイズ調整用。
-type Client = {
-  name: string
-  nameEn: string
-  reading?: string
-  category: string
-  categoryEn: string
-  logo: string
-  logoClass?: string
-}
-
-const clients: Client[] = [
-  { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', categoryEn: 'Entertainment', logo: '/images/logo-yoshimoto-new.svg' },
-  { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', categoryEn: 'Healthcare', logo: '/images/logo-elife-new.svg' },
-  { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', categoryEn: 'Fitness & Wellness', logo: '/images/logo-wellnessplus-new.webp' },
-  { name: 'HALILON Oral Studio', nameEn: 'HALILON Oral Studio', reading: 'ハリロンオーラルスタジオ', category: '医療ホワイトニング', categoryEn: 'Medical Whitening Clinic', logo: '/images/logo-halilon.png', logoClass: 'h-[68px] md:h-[72px]' },
-  { name: 'AQUATECH', nameEn: 'AQUATECH', reading: 'アクアテック', category: 'エネルギー、生活・健康', categoryEn: 'Energy, Lifestyle & Health', logo: '/images/logo-aquatech.png', logoClass: 'h-[22px] md:h-[24px]' },
-]
 
 const t = {
   h2: { ja: ['多様な業界の', 'クライアントとともに。'], en: ['With clients across', 'many industries.'] },
