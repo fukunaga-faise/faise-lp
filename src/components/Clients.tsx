@@ -8,7 +8,7 @@ const clients = [
   { name: '吉本興業', nameEn: 'Yoshimoto Kogyo', category: 'エンタメ', categoryEn: 'Entertainment', logo: '/images/logo-yoshimoto-new.svg' },
   { name: 'eLife株式会社', nameEn: 'eLife Inc.', category: '医療・ヘルスケア', categoryEn: 'Healthcare', logo: '/images/logo-elife-new.svg' },
   { name: 'wellnessplus株式会社', nameEn: 'wellnessplus Inc.', category: 'フィットネス・ウェルネス', categoryEn: 'Fitness & Wellness', logo: '/images/logo-wellnessplus-new.webp' },
-  { name: 'HALILON', nameEn: 'HALILON', category: '医療ホワイトニング', categoryEn: 'Medical Whitening Clinic', logo: '/images/logo-halilon.png', logoClass: 'h-[68px] md:h-[72px]' },
+  { name: 'HALILON Oral Studio', nameEn: 'HALILON Oral Studio', reading: 'ハリロンオーラルスタジオ', category: '医療ホワイトニング', categoryEn: 'Medical Whitening Clinic', logo: '/images/logo-halilon.png', logoClass: 'h-[68px] md:h-[72px]' },
 ]
 
 const t = {
@@ -43,7 +43,10 @@ export default function Clients() {
                   <div className="flex h-[72px] items-center">
                     <img src={c.logo} alt={lang === 'ja' ? c.name : c.nameEn} loading="lazy" decoding="async" className={`${c.logoClass ?? 'h-10 md:h-11'} w-auto max-w-[180px] object-contain transition-transform duration-500 group-hover:scale-105`} />
                   </div>
-                  <p className="mt-5 text-[15px] md:text-[14px] font-medium tracking-[0.05em] text-[#111]">{lang === 'ja' ? c.name : c.nameEn}</p>
+                  <div className="mt-5 min-h-[3.2em] sm:text-center">
+                    <p className="text-[15px] md:text-[14px] font-medium tracking-[0.05em] text-[#111]">{lang === 'ja' ? c.name : c.nameEn}</p>
+                    {lang === 'ja' && c.reading && <p className="mt-0.5 text-[12px] tracking-[0.06em] text-[#777]">{c.reading}</p>}
+                  </div>
                   <p className="mt-3 border border-brand/40 px-3 py-1 text-[11.5px] tracking-[0.06em] text-brand">{lang === 'ja' ? c.category : c.categoryEn}</p>
                 </Reveal>
               </li>
