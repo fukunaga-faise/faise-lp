@@ -20,7 +20,7 @@ const t = {
   mobileCta: { ja: '集客について相談する', en: 'Talk to us' },
 }
 
-export default function Nav() {
+export default function Nav({ base = '' }: { base?: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -53,7 +53,7 @@ export default function Nav() {
           scrolled || open ? 'bg-white/90 backdrop-blur-md border-b border-[#ecebe7]' : 'bg-gradient-to-b from-white/90 via-white/45 to-transparent'
         }`}
       >
-        <a href="#" className="flex items-center gap-2.5" aria-label="Faise">
+        <a href={base || '#'} className="flex items-center gap-2.5" aria-label="Faise">
           <img src="/logo-mark.png" alt="" className="h-7 md:h-8 w-auto" />
           <span className="font-inter font-semibold tracking-[0.14em] text-[18px] md:text-[20px] text-[#111]">Faise</span>
         </a>
@@ -62,7 +62,7 @@ export default function Nav() {
           {links.map((l) => (
             <li key={l.label}>
               <a
-                href={l.href}
+                href={`${base}${l.href}`}
                 className="relative font-inter text-[14px] 2xl:text-[15px] font-medium tracking-[0.18em] uppercase text-[#111]/75 hover:text-brand transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-500 hover:after:scale-x-100"
               >
                 {l.label}
@@ -114,7 +114,7 @@ export default function Nav() {
             {links.map((l, i) => (
               <motion.a
                 key={l.label}
-                href={l.href}
+                href={`${base}${l.href}`}
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}

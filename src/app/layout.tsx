@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google'
 import { LanguageProvider } from '@/lib/language'
+import { SITE_URL, ORG_ID } from '@/lib/site'
 import './globals.css'
 
 const inter = Inter({
@@ -29,9 +30,9 @@ export const metadata: Metadata = {
   title: '株式会社Faise | 人が集まる理由を、設計する。',
   description:
     'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
-  metadataBase: new URL('https://faise-inc.com'),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: 'https://faise-inc.com',
+    canonical: '/',
   },
   icons: {
     icon: '/icon.png',
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
       'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
     type: 'website',
     locale: 'ja_JP',
-    url: 'https://faise-inc.com',
+    url: SITE_URL,
     siteName: '株式会社Faise',
   },
   twitter: {
@@ -56,18 +57,37 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: '株式会社Faise',
-  url: 'https://faise-inc.com',
-  email: 'fukunaga@faise-inc.com',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: '品川区大井4-18-25',
-    addressRegion: '東京都',
-    addressCountry: 'JP',
-  },
-  description:
-    'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: '株式会社Faise',
+      alternateName: 'Faise Inc.',
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo-mark.png`,
+      email: 'fukunaga@faise-inc.com',
+      foundingDate: '2025-12',
+      founder: { '@type': 'Person', name: '福永 遥斗', jobTitle: '代表取締役' },
+      address: {
+        '@type': 'PostalAddress',
+        postalCode: '140-0014',
+        addressLocality: '品川区',
+        streetAddress: '大井4-18-25',
+        addressRegion: '東京都',
+        addressCountry: 'JP',
+      },
+      description:
+        'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: '株式会社Faise',
+      inLanguage: 'ja',
+      publisher: { '@id': ORG_ID },
+    },
+  ],
 }
 
 export default function RootLayout({

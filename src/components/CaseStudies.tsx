@@ -1,6 +1,7 @@
 'use client'
 
 import { useLanguage, type Lang } from '@/lib/language'
+import Link from 'next/link'
 import { CountUp, Label, Reveal, container } from './ui'
 
 // 実績は提供資料に基づく3件。数値は変更・追加・推測しないこと。
@@ -18,6 +19,7 @@ type Case = {
   metric: { label: Record<Lang, string>; value: number; unit: Record<Lang, string>; sub?: Record<Lang, string> }
   body: Record<Lang, string>
   actions: Record<Lang, string[]>
+  detail?: { href: string; label: Record<Lang, string> }
 }
 
 const cases: Case[] = [
@@ -68,6 +70,7 @@ const cases: Case[] = [
       ja: ['美容インフルエンサーの起用', 'インフルエンサーコンテンツの広告活用', 'SNS広告運用・クリエイティブ改善'],
       en: ['Casting beauty influencers', 'Using influencer content in ads', 'Social ad operations and creative improvement'],
     },
+    detail: { href: '/clinic', label: { ja: '美容クリニックの集客支援を見る', en: 'Marketing support for beauty clinics' } },
   },
 ]
 
@@ -141,6 +144,18 @@ export default function CaseStudies() {
                     ))}
                   </ul>
                 </div>
+
+                {c.detail && (
+                  <div className="mt-auto pt-6">
+                    <Link
+                      href={c.detail.href}
+                      className="group/link inline-flex items-center gap-2 text-[14px] md:text-[13.5px] font-medium tracking-[0.04em] text-brand transition-colors duration-300 hover:text-brand-navy"
+                    >
+                      <span className="border-b border-brand/40 pb-0.5 transition-colors duration-300 group-hover/link:border-brand-navy">{c.detail.label[lang]}</span>
+                      <span aria-hidden="true" className="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+                    </Link>
+                  </div>
+                )}
               </Reveal>
             </li>
           ))}
