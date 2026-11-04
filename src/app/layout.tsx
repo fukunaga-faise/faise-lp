@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   title: '株式会社Faise | 人が集まる理由を、設計する。',
   description:
-    'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+    '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: '/',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: '株式会社Faise | 人が集まる理由を、設計する。',
     description:
-      'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+      '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
     type: 'website',
     locale: 'ja_JP',
     url: SITE_URL,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '株式会社Faise | 人が集まる理由を、設計する。',
-    description: 'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+    description: '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
   },
 }
 
@@ -77,7 +77,7 @@ const jsonLd = {
         addressCountry: 'JP',
       },
       description:
-        'ブランド、体験、マーケティング。集客施設の成長を、一気通貫で支援します。',
+        '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
     },
     {
       '@type': 'WebSite',
