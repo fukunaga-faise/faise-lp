@@ -19,6 +19,7 @@
 
 ## 美容クリニックの集客ガイド
 
+- [美容クリニックの集客方法10選と目的別の選び方](https://www.faise-inc.com/clinic/guide/acquisition-methods): SNS運用・短尺動画・インフルエンサー・SNS広告・検索広告・SEO・MEO・ポータル・LINE/CRM・オフラインの比較表、目的別の組み合わせ、医療広告ガイドラインの共通注意点。
 - [美容クリニックの集客でインフルエンサーを活用する方法](https://www.faise-inc.com/clinic/guide/influencer-marketing): 選び方、進め方、投稿の広告活用、ステマ規制・医療広告ガイドラインの注意点。
 - [美容クリニックの広告CPAが上がる原因と改善策](https://www.faise-inc.com/clinic/guide/reduce-cpa): クリエイティブ・ターゲット・LP・予約導線・計測の見直し方。
 - [美容クリニックの成果報酬型マーケティングとは](https://www.faise-inc.com/clinic/guide/performance-based): 仕組み、固定費型との違い、メリット、契約前の注意点。
