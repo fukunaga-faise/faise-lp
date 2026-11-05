@@ -104,6 +104,19 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           </p>
           <p className="mt-8 text-[15px] leading-[2.05] tracking-[0.03em] text-[#444]">{g.lead}</p>
 
+          {/* 結論を先に（AIの引用はページ上部に集中するため） */}
+          <section aria-labelledby="summary" className="mt-8 rounded-sm border border-brand/25 bg-white px-6 py-6 shadow-[0_14px_32px_-26px_rgba(20,24,92,0.5)]">
+            <h2 id="summary" className="text-[14px] font-medium tracking-[0.06em] text-brand">この記事の結論</h2>
+            <ul className="mt-3 space-y-2.5">
+              {g.summary.map((t) => (
+                <li key={t} className="flex gap-3 text-[15px] font-medium leading-[1.9] tracking-[0.02em] text-[#222]">
+                  <span aria-hidden="true" className="mt-[0.75em] h-[6px] w-[6px] shrink-0 rounded-full bg-gradient-to-br from-brand-sky to-brand" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </section>
+
           <nav aria-label="目次" className="mt-10 rounded-sm bg-brand-tint px-6 py-6">
             <p className="text-[13px] font-medium tracking-[0.06em] text-brand-navy">目次</p>
             <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-[14px] leading-[1.8] text-[#333] marker:text-brand">
@@ -139,6 +152,33 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                     ))}
                   </ul>
                 ))}
+              {s.table && (
+                <div className="mt-6 overflow-x-auto">
+                  <table className="w-full min-w-[560px] border-collapse text-left text-[14px] leading-[1.8]">
+                    <caption className="mb-2 text-left text-[13px] font-medium tracking-[0.04em] text-[#555]">{s.table.caption}</caption>
+                    <thead>
+                      <tr className="bg-brand-tint">
+                        {s.table.head.map((h) => (
+                          <th key={h} scope="col" className="border border-[#e3e2dd] px-4 py-3 font-medium text-brand-navy">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {s.table.rows.map((row) => (
+                        <tr key={row[0]}>
+                          {row.map((cell, k) =>
+                            k === 0 ? (
+                              <th key={k} scope="row" className="border border-[#e3e2dd] px-4 py-3 font-medium text-[#222]">{cell}</th>
+                            ) : (
+                              <td key={k} className="border border-[#e3e2dd] px-4 py-3 text-[#444]">{cell}</td>
+                            ),
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </section>
           ))}
 
