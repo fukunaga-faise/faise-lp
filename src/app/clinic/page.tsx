@@ -16,8 +16,9 @@ export const metadata: Metadata = {
     locale: 'ja_JP',
     url,
     siteName: '株式会社Faise',
+    images: [{ url: '/og/clinic.jpg', width: 1200, height: 630, alt: '美容クリニックの集客支援 | 株式会社Faise' }],
   },
-  twitter: { card: 'summary_large_image', title: clinicMeta.title, description: clinicMeta.description },
+  twitter: { card: 'summary_large_image', title: clinicMeta.title, description: clinicMeta.description, images: ['/og/clinic.jpg'] },
 }
 
 // 構造化データ（ページに表示している内容と同じ日本語テキストのみ）
