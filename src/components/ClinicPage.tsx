@@ -42,7 +42,7 @@ export default function ClinicPage() {
             </h1>
             <p className="mt-7 text-[14.5px] md:text-[15px] leading-[2.05] tracking-[0.03em] text-[#555]">{c.hero.lead[lang]}</p>
             <div className="mt-9">
-              <ArrowLink href="/#contact-form">{c.hero.cta[lang]}</ArrowLink>
+              <ArrowLink href="#contact-form">{c.hero.cta[lang]}</ArrowLink>
             </div>
           </Reveal>
         </div>
@@ -96,6 +96,13 @@ export default function ClinicPage() {
               </li>
             ))}
           </ol>
+          <Reveal className="mt-12 md:mt-16">
+            <div className="max-w-3xl rounded-sm border-l-[3px] border-brand bg-brand-tint px-5 py-5 md:px-7">
+              <p className="font-inter text-[11px] font-medium tracking-[0.24em] text-brand">{c.pricing.label}</p>
+              <p className="mt-2 text-[15px] md:text-[16px] font-medium leading-[1.8] tracking-[0.02em] text-brand-navy">{c.pricing.text[lang]}</p>
+              <p className="mt-1.5 text-[12px] leading-[1.8] tracking-[0.03em] text-[#777]">{c.pricing.note[lang]}</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 

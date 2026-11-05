@@ -5,6 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Loader2, CheckCircle } from 'lucide-react'
 import { useLanguage } from '@/lib/language'
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
 interface Props {
   isOpen: boolean
   onClose: () => void
@@ -42,13 +48,21 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     e.preventDefault()
     setStatus('loading')
     try {
+      // どのページから問い合わせたか（/clinic など）を記録し、メールとGA4の両方で分かるようにする
+      const page = window.location.pathname
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, page, referrer: document.referrer }),
       })
       if (res.ok) {
         setStatus('success')
+        // GA4 推奨イベント。管理画面で「キーイベント」に設定するとコンバージョンとして計測できる
+        window.gtag?.('event', 'generate_lead', {
+          form_name: 'contact',
+          lead_source_page: page,
+          lead_category: page.startsWith('/clinic') ? 'beauty_clinic' : 'general',
+        })
       } else {
         setStatus('error')
       }

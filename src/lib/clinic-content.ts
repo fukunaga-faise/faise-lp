@@ -7,7 +7,7 @@ type L = Record<Lang, string>
 export const clinicMeta = {
   title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
   description:
-    '美容インフルエンサーの起用、コンテンツ制作、SNS広告の運用、LP・予約導線の改善まで、美容クリニックの新規集客を支援します。事例：顧客獲得単価（CPA）平均35%削減。',
+    '美容インフルエンサーの施術体験を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。初期費用・月額固定費0円の成果報酬型プランあり。事例：CPA平均35%削減。',
 }
 
 export const clinicContent = {
@@ -57,8 +57,8 @@ export const clinicContent = {
       {
         title: { ja: 'インフルエンサーコンテンツの広告活用', en: 'Using influencer content in ads' } as L,
         body: {
-          ja: 'インフルエンサーの投稿や動画を、広告クリエイティブとして活用します。SNSコンテンツの企画・制作にも対応します。',
-          en: 'Influencer posts and videos are turned into ad creative. We also plan and produce social content.',
+          ja: 'インフルエンサーによる施術体験の投稿や動画を、広告クリエイティブとして活用します。施術体験コンテンツやSNSコンテンツの企画・制作にも対応します。',
+          en: 'Influencers’ treatment-experience posts and videos are turned into ad creative. We also plan and produce treatment-experience and social content.',
         } as L,
       },
       {
@@ -71,11 +71,16 @@ export const clinicContent = {
       {
         title: { ja: 'LP・予約導線の改善', en: 'Landing page and booking flow improvements' } as L,
         body: {
-          ja: '広告から予約までの導線を見直し、CPA・コンバージョンの改善につなげます。',
-          en: 'We review the path from ad to booking to improve CPA and conversion.',
+          ja: '広告から予約までの導線を見直し、LINE登録や予約の獲得、CPA・コンバージョンの改善につなげます。',
+          en: 'We review the path from ad to booking to win LINE sign-ups and bookings and improve CPA and conversion.',
         } as L,
       },
     ],
+  },
+  pricing: {
+    label: 'Pricing',
+    text: { ja: '初期費用・月額固定費0円の成果報酬型プランにも対応', en: 'Pay-for-performance plans available with ¥0 initial fee and ¥0 fixed monthly fee' } as L,
+    note: { ja: '※広告費は別途。成果地点・報酬額は個別設定。', en: '※Ad spend is separate. Conversion points and reward amounts are set individually.' } as L,
   },
   case: {
     label: 'Case Study',
@@ -119,10 +124,17 @@ export const clinicContent = {
         } as L,
       },
       {
+        q: { ja: '成果報酬型で依頼できますか？', en: 'Can we work on a pay-for-performance basis?' } as L,
+        a: {
+          ja: 'はい、初期費用・月額固定費0円の成果報酬型プランにも対応しています。広告費は別途必要で、成果地点・報酬額は個別に設定します。',
+          en: 'Yes. We offer pay-for-performance plans with ¥0 initial fee and ¥0 fixed monthly fee. Ad spend is separate, and conversion points and reward amounts are set individually.',
+        } as L,
+      },
+      {
         q: { ja: '費用はどのくらいかかりますか？', en: 'How much does it cost?' } as L,
         a: {
-          ja: '施策の内容や規模によって異なります。まずはお問い合わせください。',
-          en: 'It depends on the scope and scale of the work. Please get in touch first.',
+          ja: '施策の内容や規模によって異なります。初期費用・月額固定費0円の成果報酬型プランにも対応しています（広告費は別途。成果地点・報酬額は個別に設定します）。まずはお問い合わせください。',
+          en: 'It depends on the scope and scale of the work. Pay-for-performance plans with ¥0 initial fee and ¥0 fixed monthly fee are also available (ad spend is separate; conversion points and reward amounts are set individually). Please get in touch first.',
         } as L,
       },
     ],

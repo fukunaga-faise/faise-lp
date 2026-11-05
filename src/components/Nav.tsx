@@ -148,7 +148,16 @@ export default function Nav({ base = '' }: { base?: string }) {
         )}
       </AnimatePresence>
 
-      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <ContactModal
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false)
+          // #contact-form を外しておき、同じリンクで何度でもフォームを開けるようにする
+          if (window.location.hash === '#contact-form') {
+            history.replaceState(null, '', window.location.pathname + window.location.search)
+          }
+        }}
+      />
     </>
   )
 }

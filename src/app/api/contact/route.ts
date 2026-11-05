@@ -3,7 +3,10 @@ import { Resend } from 'resend'
 
 export async function POST(req: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const { name, company, email, phone, message } = await req.json()
+  const { name, company, email, phone, message, page, referrer } = await req.json()
+  const fromPage = typeof page === 'string' && page.startsWith('/') ? page.slice(0, 200) : '不明'
+  const ref = typeof referrer === 'string' && referrer ? referrer.slice(0, 300) : 'なし（直接・不明）'
+  const isClinic = fromPage.startsWith('/clinic')
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: '必須項目を入力してください' }, { status: 400 })
@@ -14,8 +17,11 @@ export async function POST(req: NextRequest) {
       from: 'Faise LP <onboarding@resend.dev>',
       to: 'fukunaga@faise-inc.com',
       replyTo: email,
-      subject: `【無料相談】${company || name} 様よりお問い合わせ`,
+      subject: `【無料相談${isClinic ? '・美容クリニック' : ''}】${company || name} 様よりお問い合わせ`,
       text: `
+問い合わせページ: ${fromPage}
+参照元: ${ref}
+
 お名前: ${name}
 会社名・店舗名: ${company || '未記入'}
 メールアドレス: ${email}

@@ -76,6 +76,11 @@ const jsonLd = {
         addressRegion: '東京都',
         addressCountry: 'JP',
       },
+      knowsAbout: ['美容クリニックの集客支援', '美容インフルエンサーのキャスティング', 'SNS広告運用', 'ブランド設計', '体験設計', 'マーケティング'],
+      makesOffer: {
+        '@type': 'Offer',
+        itemOffered: { '@id': `${SITE_URL}/clinic#service` },
+      },
       description:
         '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
     },
