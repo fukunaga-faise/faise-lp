@@ -23,11 +23,11 @@ const cards: Card[] = [
     title: { ja: '美容クリニック向け集客支援', en: 'Patient acquisition for beauty clinics' },
     body: {
       ja: [
-        'インフルエンサーによる施術体験を広告クリエイティブとして活用し、新規患者の獲得を支援します。',
+        'インフルエンサーが来院・施術の様子を紹介するコンテンツを、医療広告ガイドラインに沿って広告に活用し、新規患者の獲得を支援します。',
         'キャスティングからコンテンツ制作、広告運用、効果改善まで一貫して対応します。',
       ],
       en: [
-        'We turn influencers’ treatment experiences into ad creative to help win new patients.',
+        'We turn influencer content showing the clinic visit and treatment into guideline-compliant ads to help win new patients.',
         'We handle everything from casting and content production to ad operations and performance improvement.',
       ],
     },
@@ -35,14 +35,14 @@ const cards: Card[] = [
     list: {
       ja: [
         '美容インフルエンサーのキャスティング',
-        '施術体験コンテンツ制作',
+        '来院・施術の紹介コンテンツ制作',
         'インフルエンサー投稿の広告活用',
         'SNS広告運用・改善',
         'LINE登録・予約獲得',
       ],
       en: [
         'Casting beauty influencers',
-        'Treatment-experience content production',
+        'Clinic visit & treatment content production',
         'Using influencer posts as ads',
         'Social ad operations & optimization',
         'LINE sign-ups & booking acquisition',

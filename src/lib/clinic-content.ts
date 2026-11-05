@@ -7,7 +7,7 @@ type L = Record<Lang, string>
 export const clinicMeta = {
   title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
   description:
-    '美容インフルエンサーの施術体験を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
+    '美容インフルエンサーが来院・施術の様子を紹介する投稿を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
 }
 
 export const clinicContent = {
@@ -57,8 +57,8 @@ export const clinicContent = {
       {
         title: { ja: 'インフルエンサーコンテンツの広告活用', en: 'Using influencer content in ads' } as L,
         body: {
-          ja: 'インフルエンサーによる施術体験の投稿や動画を、広告クリエイティブとして活用します。施術体験コンテンツやSNSコンテンツの企画・制作にも対応します。',
-          en: 'Influencers’ treatment-experience posts and videos are turned into ad creative. We also plan and produce treatment-experience and social content.',
+          ja: 'インフルエンサーが来院・施術の様子を紹介する投稿や動画を、広告クリエイティブとして活用します。投稿は医療広告ガイドラインに沿って、効果の感想ではなくカウンセリングや施術の流れ、院内の様子など事実を中心に制作し、公開前に表現を確認します。',
+          en: 'Influencer posts and videos showing the clinic visit and treatment are turned into ad creative. Following Japan’s medical advertising guidelines, they focus on facts — the counseling, the procedure, the clinic — rather than claims about results, and we review the wording before anything is published.',
         } as L,
       },
       {
@@ -83,8 +83,8 @@ export const clinicContent = {
     name: 'バズクル',
     text: { ja: '成果報酬型集客サービス「バズクル」', en: 'Buzzkuru — a pay-for-performance acquisition service' } as L,
     lead: {
-      ja: 'インフルエンサーの施術体験投稿を広告として配信し、再生数ではなく予約の成果で評価します。固定費は0円で、費用は成果が出た分だけです。',
-      en: 'We run influencers’ treatment-experience posts as ads and measure results by bookings, not views. No fixed fees — you pay only for results.',
+      ja: 'インフルエンサーが来院・施術の様子を紹介する投稿を、医療広告ガイドラインに沿った表現で広告として配信し、再生数ではなく予約の成果で評価します。固定費は0円で、費用は成果が出た分だけです。',
+      en: 'We run influencer posts showing the clinic visit and treatment as ads, worded to follow medical advertising guidelines, and measure results by bookings, not views. No fixed fees — you pay only for results.',
     } as L,
     terms: [
       { k: { ja: '初期費用', en: 'Initial fee' } as L, v: { ja: '0円', en: '¥0' } as L },
@@ -173,6 +173,13 @@ export const clinicContent = {
         a: {
           ja: 'はい、成果報酬型集客サービス「バズクル」で対応しています。初期費用・キャスティング費・月額固定費は0円で、広告費はクリニック様のご負担です。成果報酬は成果1件ごとに個別に設定し、成果地点（LINE友だち追加、カウンセリング予約など）は予約導線に合わせて事前に決めます。',
           en: 'Yes, through our pay-for-performance service Buzzkuru. Initial, casting and fixed monthly fees are ¥0; ad spend is paid by the clinic. The fee per result is set individually, and the conversion point (such as LINE friend adds or counseling bookings) is agreed in advance.',
+        } as L,
+      },
+      {
+        q: { ja: '医療広告ガイドラインには対応していますか？', en: 'Do you follow medical advertising guidelines?' } as L,
+        a: {
+          ja: 'はい。インフルエンサーの投稿や広告は、効果に関する体験談や誇大な表現を使わず、カウンセリングや施術の流れ、院内の様子など事実を中心に制作し、公開前に表現を確認します。依頼した投稿には「PR」などの表記を入れます。',
+          en: 'Yes. Influencer posts and ads avoid testimonials about results and exaggerated claims, focus on facts such as the counseling, the procedure and the clinic, and are reviewed before publishing. Commissioned posts are labeled as PR.',
         } as L,
       },
       {
