@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react'
 import Nav from '@/components/Nav'
 import CTA from '@/components/CTA'
 import { GUIDE_AUTHOR, guideBySlug, guides } from '@/lib/clinic-guides'
-import { SITE_URL, ORG_ID } from '@/lib/site'
+import { SITE_URL, ORG_ID, FOUNDER_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 
 const container = 'mx-auto w-full max-w-[760px] px-6 md:px-10'
 
@@ -57,7 +57,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
         datePublished: g.published,
         dateModified: g.updated,
         image: `${SITE_URL}/og/clinic.jpg`,
-        author: { '@type': 'Person', name: GUIDE_AUTHOR.name, jobTitle: GUIDE_AUTHOR.jobTitle, worksFor: { '@id': ORG_ID } },
+        author: { '@type': 'Person', '@id': FOUNDER_ID, name: GUIDE_AUTHOR.name, jobTitle: GUIDE_AUTHOR.jobTitle, worksFor: { '@id': ORG_ID }, sameAs: [FOUNDER_LINKEDIN_URL] },
         publisher: { '@id': ORG_ID },
         about: { '@id': `${SITE_URL}/clinic#service` },
       },
@@ -100,7 +100,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           </p>
           <h1 className="mt-5 text-[clamp(24px,4.4vw,38px)] font-medium leading-[1.5] tracking-[0.02em]">{g.h1}</h1>
           <p className="mt-5 text-[12.5px] tracking-[0.04em] text-[#777]">
-            <time dateTime={g.updated}>{g.updated.replace(/-/g, '.')}</time> 更新　／　執筆：{GUIDE_AUTHOR.jobTitle} {GUIDE_AUTHOR.name}
+            <time dateTime={g.updated}>{g.updated.replace(/-/g, '.')}</time> 更新　／　執筆：{GUIDE_AUTHOR.jobTitle}{' '}
+            <a href={FOUNDER_LINKEDIN_URL} target="_blank" rel="noopener" className="underline decoration-[#ccc] underline-offset-4 hover:text-brand">{GUIDE_AUTHOR.name}</a>
           </p>
           <p className="mt-8 text-[15px] leading-[2.05] tracking-[0.03em] text-[#444]">{g.lead}</p>
 

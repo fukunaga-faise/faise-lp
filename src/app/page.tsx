@@ -10,12 +10,23 @@ import Founder from '@/components/Founder'
 import News from '@/components/News'
 import Company from '@/components/Company'
 import CTA from '@/components/CTA'
+import CompanyFaq from '@/components/CompanyFaq'
+import { companyFaq } from '@/lib/company-faq'
+import { SITE_URL } from '@/lib/site'
 import PageCurtain from '@/components/PageCurtain'
 import { ScrollProgress } from '@/components/ui'
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE_URL}/#faq`,
+  mainEntity: companyFaq.map((f) => ({ '@type': 'Question', name: f.q.ja, acceptedAnswer: { '@type': 'Answer', text: f.a.ja } })),
+}
 
 export default function Home() {
   return (
     <main className="bg-white text-[#111]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <PageCurtain />
       <ScrollProgress />
       <Nav />
@@ -28,6 +39,7 @@ export default function Home() {
       <Clients />
       <Founder />
       <News />
+      <CompanyFaq />
       <Company />
       <CTA />
     </main>

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useLanguage, type Lang } from '@/lib/language'
 import { Label, container } from './ui'
+import { FOUNDER_LINKEDIN_URL } from '@/lib/site'
 
 // 代表メッセージの文章・経歴・写真は現行サイトのまま（デザインのみ変更）
 const career = [
@@ -144,7 +145,14 @@ export default function Founder() {
                 <p className="text-[18px] font-medium tracking-[0.06em] text-[#111]">{t.founderName[lang]}</p>
                 <p className="mt-1 text-[14px] md:text-[12.5px] tracking-[0.04em] text-[#666]">{t.founderTitle[lang]}</p>
               </div>
-              <p className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-brand-sky">Haruto Fukunaga</p>
+              <a
+                href={FOUNDER_LINKEDIN_URL}
+                target="_blank"
+                rel="noopener"
+                className="font-inter text-[11px] font-medium tracking-[0.22em] uppercase text-brand-sky transition-colors hover:text-brand"
+              >
+                LinkedIn ↗
+              </a>
             </div>
 
             <ul className="mt-8 grid grid-cols-3 gap-4 border-t-2 border-brand-sky/40 pt-6">

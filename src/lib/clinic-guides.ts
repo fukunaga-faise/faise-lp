@@ -24,6 +24,7 @@ export type Guide = {
 }
 
 export const GUIDE_AUTHOR = { name: '福永 遥斗', jobTitle: '株式会社Faise 代表取締役' }
+// 記事の author は FOUNDER_ID（layout の Person）を参照する
 
 export const guides: Guide[] = [
   {
