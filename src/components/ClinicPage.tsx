@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { useLanguage } from '@/lib/language'
 import { clinicContent as c } from '@/lib/clinic-content'
+import { guides } from '@/lib/clinic-guides'
 import Nav from './Nav'
 import CTA from './CTA'
 import PageCurtain from './PageCurtain'
@@ -167,6 +168,33 @@ export default function ClinicPage() {
                 </div>
               ))}
             </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* 集客ガイド（解説記事への内部リンク） */}
+      <section className="border-t border-[#ecebe7] bg-brand-tint py-14 md:py-24">
+        <div className={container}>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+            <Reveal>
+              <Label>Guide</Label>
+              <h2 className="mt-6 text-[clamp(20px,5.6vw,26px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111] md:text-[clamp(24px,2.4vw,34px)]">
+                {lang === 'ja' ? '集客ガイド' : 'Guides (Japanese)'}
+              </h2>
+              <div className="mt-6">
+                <ArrowLink href="/clinic/guide">{lang === 'ja' ? 'すべて見る' : 'View all'}</ArrowLink>
+              </div>
+            </Reveal>
+            <ul className="divide-y divide-[#e3e2dd] border-y border-[#e3e2dd]">
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link href={`/clinic/guide/${g.slug}`} className="group flex items-center justify-between gap-4 py-5">
+                    <span className="text-[15.5px] font-medium leading-[1.7] tracking-[0.02em] text-[#222] group-hover:text-brand">{g.h1}</span>
+                    <ChevronRight size={16} strokeWidth={1.5} className="shrink-0 text-brand" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
