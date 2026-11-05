@@ -3,8 +3,9 @@
 import { useLanguage } from '@/lib/language'
 import { companyFaq } from '@/lib/company-faq'
 import { Label, Reveal, container } from './ui'
+import FaqList from '@/components/FaqList'
 
-// トップの FAQ（構造化データ FAQPage と同じ内容。常に展開して表示する）
+// トップの FAQ（構造化データ FAQPage と同じ内容。プルダウンで開閉）
 export default function CompanyFaq() {
   const { lang } = useLanguage()
 
@@ -18,22 +19,7 @@ export default function CompanyFaq() {
               {lang === 'ja' ? 'よくあるご質問' : 'Frequently asked questions'}
             </h2>
           </Reveal>
-          <dl className="divide-y divide-[#e3e2dd] border-y border-[#e3e2dd]">
-            {companyFaq.map((f, i) => (
-              <div key={f.q.ja} className="py-6">
-                <Reveal delay={i * 0.04}>
-                  <dt className="flex gap-3 text-[16px] font-medium leading-[1.7] tracking-[0.03em] text-[#111]">
-                    <span className="font-inter text-brand-sky">Q.</span>
-                    {f.q[lang]}
-                  </dt>
-                  <dd className="mt-3 flex gap-3 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">
-                    <span className="font-inter text-brand">A.</span>
-                    {f.a[lang]}
-                  </dd>
-                </Reveal>
-              </div>
-            ))}
-          </dl>
+          <FaqList items={companyFaq.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} divider="divide-[#e3e2dd] border-[#e3e2dd]" />
         </div>
       </div>
     </section>

@@ -10,6 +10,7 @@ import Nav from './Nav'
 import CTA from './CTA'
 import PageCurtain from './PageCurtain'
 import { ArrowLink, CountUp, Label, Reveal, ScrollProgress, container } from './ui'
+import FaqList from '@/components/FaqList'
 
 // 美容クリニックの集客支援（SEO用の専用ページ）。デザインは既存トップのデザインシステムに合わせる。
 export default function ClinicPage() {
@@ -228,7 +229,7 @@ export default function ClinicPage() {
         </div>
       </section>
 
-      {/* FAQ（構造化データの FAQPage と同じ内容。常に展開して表示する） */}
+      {/* FAQ（構造化データの FAQPage と同じ内容。プルダウンで開閉。回答は閉じていても HTML に含まれる） */}
       <section className="border-t border-[#ecebe7] bg-white py-14 md:py-24">
         <div className={container}>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
@@ -236,22 +237,7 @@ export default function ClinicPage() {
               <Label>{c.faq.label}</Label>
               <h2 className="mt-6 text-[clamp(20px,5.6vw,26px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111] md:text-[clamp(24px,2.4vw,34px)]">{c.faq.h2[lang]}</h2>
             </Reveal>
-            <dl className="divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
-              {c.faq.items.map((f, i) => (
-                <div key={i} className="py-6">
-                  <Reveal delay={i * 0.05}>
-                    <dt className="flex gap-3 text-[16px] md:text-[16px] font-medium leading-[1.7] tracking-[0.03em] text-[#111]">
-                      <span className="font-inter text-brand-sky">Q.</span>
-                      {f.q[lang]}
-                    </dt>
-                    <dd className="mt-3 flex gap-3 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">
-                      <span className="font-inter text-brand">A.</span>
-                      {f.a[lang]}
-                    </dd>
-                  </Reveal>
-                </div>
-              ))}
-            </dl>
+            <FaqList items={c.faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} />
           </div>
         </div>
       </section>

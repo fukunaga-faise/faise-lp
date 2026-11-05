@@ -6,6 +6,7 @@ import Nav from '@/components/Nav'
 import CTA from '@/components/CTA'
 import { GUIDE_AUTHOR, guideBySlug, guides } from '@/lib/clinic-guides'
 import { SITE_URL, ORG_ID, FOUNDER_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
+import FaqList from '@/components/FaqList'
 
 const container = 'mx-auto w-full max-w-[760px] px-6 md:px-10'
 
@@ -185,14 +186,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
           <section id="faq" className="mt-16 scroll-mt-28">
             <h2 className="border-l-[3px] border-brand pl-4 text-[clamp(19px,2.6vw,24px)] font-medium leading-[1.6] tracking-[0.02em]">よくあるご質問</h2>
-            <dl className="mt-6 divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
-              {g.faq.map((f) => (
-                <div key={f.q} className="py-5">
-                  <dt className="flex gap-3 text-[15.5px] font-medium leading-[1.7]"><span className="font-inter text-brand-sky">Q.</span>{f.q}</dt>
-                  <dd className="mt-2.5 flex gap-3 text-[14.5px] leading-[2] text-[#555]"><span className="font-inter text-brand">A.</span>{f.a}</dd>
-                </div>
-              ))}
-            </dl>
+            <FaqList items={g.faq} className="mt-6" />
           </section>
 
           <div className="mt-14 rounded-sm bg-brand-tint px-6 py-7 md:px-8">

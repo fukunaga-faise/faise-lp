@@ -9,6 +9,7 @@ import { guides } from '@/lib/clinic-guides'
 import { caseHref, casesForService, serviceGuides } from '@/lib/relations'
 import { localizePath, type Lang } from '@/lib/locale'
 import { SITE_URL, ORG_ID } from '@/lib/site'
+import FaqList from '@/components/FaqList'
 
 const container = 'mx-auto w-full max-w-[860px] px-6 md:px-10'
 export const findService = (slug: string) => services.find((s) => s.slug === slug)
@@ -198,14 +199,7 @@ export default function ServiceView({ slug, lang }: { slug: string; lang: Lang }
 
           <section className="mt-12">
             <h2 className="border-l-[3px] border-brand pl-4 text-[clamp(19px,2.6vw,24px)] font-medium leading-[1.6]">{L.faq[lang]}</h2>
-            <dl className="mt-6 divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
-              {faq.map((f) => (
-                <div key={f.q} className="py-5">
-                  <dt className="flex gap-3 text-[15.5px] font-medium leading-[1.7]"><span className="font-inter text-brand-sky">Q.</span>{f.q}</dt>
-                  <dd className="mt-2.5 flex gap-3 text-[14.5px] leading-[2] text-[#555]"><span className="font-inter text-brand">A.</span>{f.a}</dd>
-                </div>
-              ))}
-            </dl>
+            <FaqList items={faq} className="mt-6" />
           </section>
 
           {relatedGuides.length > 0 && (
