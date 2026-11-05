@@ -18,11 +18,11 @@ const contactPaths = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
-    return contactPaths.map((source) => ({
-      source,
-      destination: '/#contact-form',
-      permanent: true,
-    }))
+    // 英語版（/en/contact など）は英語トップのフォームへ
+    return contactPaths.flatMap((source) => [
+      { source, destination: '/#contact-form', permanent: true },
+      { source: `/en${source}`, destination: '/en#contact-form', permanent: true },
+    ])
   },
 }
 
