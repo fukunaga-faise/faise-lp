@@ -4,10 +4,17 @@ import type { Lang } from './language'
 // ※サイトに既に掲載している事実の範囲のみ。新しい数値・実績は追加しないこと。
 type L = Record<Lang, string>
 
-export const clinicMeta = {
-  title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
-  description:
-    '美容インフルエンサーが来院・施術の様子を紹介する投稿を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
+export const clinicMeta: Record<Lang, { title: string; description: string }> = {
+  ja: {
+    title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
+    description:
+      '美容インフルエンサーが来院・施術の様子を紹介する投稿を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
+  },
+  en: {
+    title: 'Marketing for Beauty Clinics in Japan | Influencers × Social Ads | Faise Inc.',
+    description:
+      'We help beauty clinics in Japan win new patients by running influencer posts that show the clinic visit and treatment as ads, from casting to ad operations and booking-flow improvements. Pay-for-performance service “Buzzkuru” (バズクル): ¥0 initial, casting and monthly fees. Case: CPA cut 35% on average.',
+  },
 }
 
 export const clinicContent = {

@@ -13,13 +13,13 @@ import { ArrowLink, CountUp, Label, Reveal, ScrollProgress, container } from './
 
 // 美容クリニックの集客支援（SEO用の専用ページ）。デザインは既存トップのデザインシステムに合わせる。
 export default function ClinicPage() {
-  const { lang } = useLanguage()
+  const { lang, localize } = useLanguage()
 
   return (
     <main className="bg-white text-[#111]">
       <PageCurtain />
       <ScrollProgress />
-      <Nav base="/" />
+      <Nav base={localize('/')} />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-white pt-28 pb-14 md:pt-40 md:pb-24">
@@ -31,7 +31,7 @@ export default function ClinicPage() {
         </div>
         <div className={`${container} relative`}>
           <nav aria-label="breadcrumb" className="mb-8 flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777]">
-            <Link href="/" className="transition-colors hover:text-brand">{c.breadcrumb.home[lang]}</Link>
+            <Link href={localize('/')} className="transition-colors hover:text-brand">{c.breadcrumb.home[lang]}</Link>
             <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
             <span aria-current="page" className="text-[#111]">{c.breadcrumb.here[lang]}</span>
           </nav>
@@ -256,8 +256,8 @@ export default function ClinicPage() {
         </div>
       </section>
 
-      {/* 集客ガイド（解説記事への内部リンク） */}
-      <section className="border-t border-[#ecebe7] bg-brand-tint py-14 md:py-24">
+      {/* 集客ガイド（解説記事への内部リンク。記事は日本語のみ） */}
+      {lang === 'ja' && <section className="border-t border-[#ecebe7] bg-brand-tint py-14 md:py-24">
         <div className={container}>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
             <Reveal>
@@ -281,7 +281,7 @@ export default function ClinicPage() {
             </ul>
           </div>
         </div>
-      </section>
+      </section>}
 
       <CTA />
     </main>

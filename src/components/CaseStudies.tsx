@@ -15,7 +15,7 @@ const t = {
 }
 
 export default function CaseStudies() {
-  const { lang } = useLanguage()
+  const { lang, localize } = useLanguage()
 
   return (
     <section id="works" className="border-t border-[#ecebe7] bg-brand-tint py-14 md:py-28">
@@ -79,7 +79,7 @@ export default function CaseStudies() {
                 {c.detail && (
                   <div className="mt-auto pt-6">
                     <Link
-                      href={c.detail.href}
+                      href={localize(c.detail.href)}
                       className="group/link inline-flex items-center gap-2 text-[14px] md:text-[13.5px] font-medium tracking-[0.04em] text-brand transition-colors duration-300 hover:text-brand-navy"
                     >
                       <span className="border-b border-brand/40 pb-0.5 transition-colors duration-300 group-hover/link:border-brand-navy">{c.detail.label[lang]}</span>

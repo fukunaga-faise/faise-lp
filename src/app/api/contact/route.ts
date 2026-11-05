@@ -6,7 +6,8 @@ export async function POST(req: NextRequest) {
   const { name, company, email, phone, message, page, referrer } = await req.json()
   const fromPage = typeof page === 'string' && page.startsWith('/') ? page.slice(0, 200) : '不明'
   const ref = typeof referrer === 'string' && referrer ? referrer.slice(0, 300) : 'なし（直接・不明）'
-  const isClinic = fromPage.startsWith('/clinic')
+  const isClinic = /^(\/en)?\/clinic/.test(fromPage)
+  const isEnglish = fromPage.startsWith('/en')
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: '必須項目を入力してください' }, { status: 400 })
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
       from: 'Faise LP <onboarding@resend.dev>',
       to: 'fukunaga@faise-inc.com',
       replyTo: email,
-      subject: `【無料相談${isClinic ? '・美容クリニック' : ''}】${company || name} 様よりお問い合わせ`,
+      subject: `【無料相談${isClinic ? '・美容クリニック' : ''}${isEnglish ? '・英語' : ''}】${company || name} 様よりお問い合わせ`,
       text: `
 問い合わせページ: ${fromPage}
 参照元: ${ref}

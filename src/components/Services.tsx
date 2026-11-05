@@ -39,7 +39,7 @@ const t = {
 }
 
 export default function Services() {
-  const { lang } = useLanguage()
+  const { lang, localize } = useLanguage()
 
   return (
     <section id="service" className="border-t border-[#ecebe7] bg-white py-14 md:py-28">
@@ -100,7 +100,7 @@ export default function Services() {
                     <p className="mt-2 text-[13.5px] md:text-[13px] leading-[1.85] tracking-[0.02em] text-[#555] lg:min-h-[3.7em]">{s.clients[lang]}</p>
                   </div>
                   <Link
-                    href={`/services/${s.slug}`}
+                    href={localize(`/services/${s.slug}`)}
                     className="group/link mt-5 inline-flex items-center gap-2 text-[14px] md:text-[13.5px] font-medium tracking-[0.04em] text-brand transition-colors duration-300 hover:text-brand-navy"
                   >
                     <span className="border-b border-brand/40 pb-0.5 group-hover/link:border-brand-navy">{lang === 'ja' ? '詳しく見る' : 'Learn more'}</span>

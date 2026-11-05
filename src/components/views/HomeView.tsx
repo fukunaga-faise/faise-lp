@@ -13,17 +13,20 @@ import CTA from '@/components/CTA'
 import CompanyFaq from '@/components/CompanyFaq'
 import { companyFaq } from '@/lib/company-faq'
 import { SITE_URL } from '@/lib/site'
+import type { Lang } from '@/lib/language'
 import PageCurtain from '@/components/PageCurtain'
 import { ScrollProgress } from '@/components/ui'
 
-const faqLd = {
+const faqLdFor = (lang: Lang) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': `${SITE_URL}/#faq`,
-  mainEntity: companyFaq.map((f) => ({ '@type': 'Question', name: f.q.ja, acceptedAnswer: { '@type': 'Answer', text: f.a.ja } })),
-}
+  '@id': `${SITE_URL}${lang === 'ja' ? '' : '/en'}/#faq`,
+  inLanguage: lang,
+  mainEntity: companyFaq.map((f) => ({ '@type': 'Question', name: f.q[lang], acceptedAnswer: { '@type': 'Answer', text: f.a[lang] } })),
+})
 
-export default function Home() {
+export default function HomeView({ lang }: { lang: Lang }) {
+  const faqLd = faqLdFor(lang)
   return (
     <main className="bg-white text-[#111]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />

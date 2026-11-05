@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import ContactModal from './ContactModal'
-import { useLanguage } from '@/lib/language'
+import { usePathname } from 'next/navigation'
+import { alternatePath, useLanguage } from '@/lib/language'
 
 const links = [
   { label: 'About', href: '#mission' },
@@ -24,7 +25,9 @@ export default function Nav({ base = '' }: { base?: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const { lang, toggleLang } = useLanguage()
+  const { lang } = useLanguage()
+  const pathname = usePathname() || '/'
+  const altHref = alternatePath(pathname, lang)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -72,13 +75,14 @@ export default function Nav({ base = '' }: { base?: string }) {
         </ul>
 
         <div className="hidden xl:flex items-center gap-6">
-          <button
-            onClick={toggleLang}
-            aria-label="Switch language"
+          <a
+            href={altHref}
+            hrefLang={lang === 'ja' ? 'en' : 'ja'}
+            aria-label={lang === 'ja' ? 'English' : '日本語'}
             className="font-inter text-[13px] font-medium tracking-[0.2em] uppercase text-[#111]/60 hover:text-brand transition-colors duration-300"
           >
             {lang === 'ja' ? 'EN' : 'JA'}
-          </button>
+          </a>
 
           <button
             onClick={() => setModalOpen(true)}
@@ -135,15 +139,16 @@ export default function Nav({ base = '' }: { base?: string }) {
               <ArrowRight size={15} strokeWidth={1.25} />
             </motion.button>
 
-            <motion.button
+            <motion.a
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.42 }}
-              onClick={toggleLang}
+              href={altHref}
+              hrefLang={lang === 'ja' ? 'en' : 'ja'}
               className="font-inter text-[12px] font-medium uppercase tracking-[0.2em] text-[#111]/50 hover:text-[#111] transition-colors duration-300"
             >
               {lang === 'ja' ? 'English' : '日本語'}
-            </motion.button>
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

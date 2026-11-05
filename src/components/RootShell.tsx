@@ -1,9 +1,12 @@
-import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Noto_Sans_JP } from 'next/font/google'
-import { LanguageProvider } from '@/lib/language'
+import type { ReactNode } from 'react'
+import { LanguageProvider, type Lang } from '@/lib/language'
 import { SITE_URL, ORG_ID, FOUNDER_ID, PRTIMES_COMPANY_URL, FOUNDER_LINKEDIN_URL } from '@/lib/site'
-import './globals.css'
+import '@/app/globals.css'
+
+// 日本語（/）と英語（/en）の2つのルートレイアウトで共通の <html> 骨組み。
+// GA4・会社の構造化データ・フォントはここで1回だけ読み込む。
 
 const inter = Inter({
   subsets: ['latin'],
@@ -17,45 +20,6 @@ const noto = Noto_Sans_JP({
   variable: '--font-noto',
   display: 'swap',
 })
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-}
-
-export const metadata: Metadata = {
-  verification: {
-    google: 'ZJwBSJHA3cQnOMN3sZvgRCI4nJJMGVRw2fnw1ZNoJvU',
-  },
-  title: '株式会社Faise | 人が集まる理由を、設計する。',
-  description:
-    '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
-  metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: '/',
-  },
-  icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
-  },
-  openGraph: {
-    title: '株式会社Faise | 人が集まる理由を、設計する。',
-    description:
-      '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
-    type: 'website',
-    locale: 'ja_JP',
-    url: SITE_URL,
-    siteName: '株式会社Faise',
-    images: [{ url: '/og/home.jpg', width: 1200, height: 630, alt: '株式会社Faise | 人が集まる理由を、設計する。' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    images: ['/og/home.jpg'],
-    title: '株式会社Faise | 人が集まる理由を、設計する。',
-    description: '人が集まる理由は、設計できる。誰が、何に価値を感じ、なぜ選ぶのか。株式会社Faiseは、ブランド・体験・マーケティングを通じて、事業が選ばれる仕組みを戦略から実行まで設計します。',
-  },
-}
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -104,36 +68,27 @@ const jsonLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: '株式会社Faise',
-      inLanguage: 'ja',
+      inLanguage: ['ja', 'en'],
       publisher: { '@id': ORG_ID },
     },
   ],
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+
+export default function RootShell({ lang, children }: { lang: Lang; children: ReactNode }) {
   return (
-    <html lang="ja" className={`${inter.variable} ${noto.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${noto.variable}`}>
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-8N1V5BVY4K"
-        />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N1V5BVY4K" />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8N1V5BVY4K');`,
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className="font-sans bg-white text-[#111]">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider lang={lang}>{children}</LanguageProvider>
       </body>
     </html>
   )

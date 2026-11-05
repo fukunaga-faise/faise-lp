@@ -27,11 +27,27 @@ const pages = [
     lines: ['美容クリニックの', '集客支援'],
     sub: ['インフルエンサー × SNS広告で新規患者を獲得。', '初期費用・月額固定費0円の成果報酬型プランあり。'],
   },
+  {
+    file: 'home-en.jpg',
+    photo: 'public/images/redesign/hero-building.jpg',
+    eyebrow: 'EXPERIENCE DESIGN MARKETING',
+    lines: ['The reason people', 'gather, designed.'],
+    sub: ['Brand, experience and marketing that', 'get businesses chosen. Tokyo, Japan.'],
+    company: 'Faise Inc.',
+  },
+  {
+    file: 'clinic-en.jpg',
+    photo: 'public/images/redesign/beauty-clinic.jpg',
+    eyebrow: 'FOR BEAUTY CLINIC',
+    lines: ['Marketing for', 'beauty clinics'],
+    sub: ['Influencers × social ads to win new patients.', 'Pay-for-performance plan available.'],
+    company: 'Faise Inc.',
+  },
 ]
 
 const PANEL = 700 // 左側の白いパネル幅
 
-function overlay({ eyebrow, lines, sub }) {
+function overlay({ eyebrow, lines, sub, company = '株式会社Faise' }) {
   const font = `'Noto Sans JP','Yu Gothic','Meiryo',sans-serif`
   const title = lines
     .map((l, i) => `<text x="72" y="${250 + i * 92}" font-family="${font}" font-size="68" font-weight="700" fill="${i === lines.length - 1 ? 'url(#g)' : '#111111'}">${esc(l)}</text>`)
@@ -47,7 +63,7 @@ function overlay({ eyebrow, lines, sub }) {
   <text x="72" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5" fill="#1FACE0">${esc(eyebrow)}</text>
   ${title}
   ${sub.map((t, i) => `<text x="72" y="${250 + lines.length * 92 + 6 + i * 40}" font-family="${font}" font-size="24" font-weight="500" fill="#555555">${esc(t)}</text>`).join('')}
-  <text x="72" y="560" font-family="${font}" font-size="26" font-weight="700" fill="#14185C">株式会社Faise</text>
+  <text x="72" y="560" font-family="${font}" font-size="26" font-weight="700" fill="#14185C">${esc(company)}</text>
 </svg>`)
 }
 

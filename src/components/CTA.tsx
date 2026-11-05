@@ -17,7 +17,7 @@ const t = {
 
 export default function CTA() {
   const [modalOpen, setModalOpen] = useState(false)
-  const { lang } = useLanguage()
+  const { lang, localize } = useLanguage()
 
   return (
     <>
@@ -66,7 +66,7 @@ export default function CTA() {
             <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link href="/clinic" className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+            <Link href={localize('/clinic')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
               {t.clinicLink[lang]}
             </Link>
             <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>

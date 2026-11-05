@@ -61,7 +61,8 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         window.gtag?.('event', 'generate_lead', {
           form_name: 'contact',
           lead_source_page: page,
-          lead_category: page.startsWith('/clinic') ? 'beauty_clinic' : 'general',
+          lead_category: /^(\/en)?\/clinic/.test(page) ? 'beauty_clinic' : 'general',
+          lead_language: page.startsWith('/en') ? 'en' : 'ja',
         })
       } else {
         setStatus('error')
