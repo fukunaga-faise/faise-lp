@@ -153,6 +153,74 @@ export default function ClinicPage() {
         </div>
       </section>
 
+      {/* バズクルの実績・体制（PR TIMES リリース記載の数値） */}
+      <section className="border-t border-[#ecebe7] bg-white py-14 md:py-24">
+        <div className={container}>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+            <Reveal>
+              <Label>{c.buzz.label}</Label>
+              <h2 className="mt-6 text-[clamp(20px,5.6vw,26px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111] md:text-[clamp(24px,2.4vw,34px)]">
+                {c.buzz.h2[lang][0]}
+                <br />
+                {c.buzz.h2[lang][1]}
+              </h2>
+              <p className="mt-6 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{c.buzz.lead[lang]}</p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="rounded-sm bg-brand-tint px-6 py-8 md:px-10 md:py-10">
+                <p className="text-[13px] md:text-[13.5px] font-medium tracking-[0.04em] text-[#555]">{c.buzz.metricLabel[lang]}</p>
+                <p className="mt-1 flex items-baseline gap-1.5 whitespace-nowrap">
+                  <span className="font-inter text-[64px] font-light leading-none tracking-[-0.01em] text-brand-gradient md:text-[84px]">
+                    <CountUp to={Number(c.buzz.value)} />
+                  </span>
+                  <span className="text-[22px] md:text-[26px] font-medium tracking-[0.04em] text-brand-navy">{c.buzz.unit[lang]}</span>
+                </p>
+                <p className="mt-2 text-[11.5px] leading-[1.8] tracking-[0.03em] text-[#777]">{c.buzz.note[lang]}</p>
+
+                <p className="mt-8 font-inter text-[11px] font-medium tracking-[0.24em] text-brand">{c.buzz.exampleLabel[lang]}</p>
+                <div className="mt-3 overflow-x-auto">
+                  <table className="w-full min-w-[360px] border-collapse bg-white text-left text-[14px]">
+                    <thead>
+                      <tr>
+                        {c.buzz.exampleHead[lang].map((h, i) => (
+                          <th key={i} scope="col" className="border border-[#e3e2dd] px-4 py-2.5 text-[12.5px] font-medium text-[#555]">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {c.buzz.examples.map((ex) => (
+                        <tr key={ex.name.ja}>
+                          <th scope="row" className="border border-[#e3e2dd] px-4 py-3 font-medium text-[#222]">{ex.name[lang]}</th>
+                          {ex.cells[lang].map((cell, i) => (
+                            <td key={i} className={`border border-[#e3e2dd] px-4 py-3 ${i === 2 ? 'font-medium text-brand-navy' : 'text-[#444]'}`}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="mt-8 border-t border-[#dfe6f0] pt-6">
+                  <p className="text-[13px] font-medium tracking-[0.04em] text-[#555]">{c.buzz.networkLabel[lang]}</p>
+                  <p className="mt-1 text-[26px] md:text-[30px] font-medium tracking-[0.02em] text-brand-navy">{c.buzz.network[lang]}</p>
+                  <p className="mt-3 text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{c.buzz.networkBody[lang]}</p>
+                </div>
+
+                <p className="mt-8 font-inter text-[11px] font-medium tracking-[0.24em] text-brand">{c.buzz.stepsLabel[lang]}</p>
+                <ol className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                  {c.buzz.steps[lang].map((s, i) => (
+                    <li key={s} className="flex items-center gap-2.5 rounded-sm bg-white px-3 py-2.5 text-[13.5px] leading-[1.6] text-[#222]">
+                      <span className="font-inter text-[12px] font-medium text-brand">0{i + 1}</span>
+                      {s}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ（構造化データの FAQPage と同じ内容。常に展開して表示する） */}
       <section className="border-t border-[#ecebe7] bg-white py-14 md:py-24">
         <div className={container}>

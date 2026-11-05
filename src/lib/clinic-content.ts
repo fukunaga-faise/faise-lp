@@ -113,6 +113,36 @@ export const clinicContent = {
       en: ['Casting beauty influencers', 'Using influencer content in ads', 'Social ad operations and creative improvement'],
     } as Record<Lang, string[]>,
   },
+  // 2026-10-27 PR TIMES リリース「バズクル」提供開始 に記載の実績・体制
+  buzz: {
+    label: 'Results',
+    h2: { ja: ['同じ投稿でも、', '広告にすると予約は最大8倍に。'], en: ['The same post,', 'up to 8x the bookings as an ad.'] } as Record<Lang, string[]>,
+    lead: {
+      ja: 'インフルエンサー投稿の反応を確認し、成果の良いクリエイティブを広告として配信したところ、投稿だけの期間と比べて予約数が最大8倍に増えました。',
+      en: 'After checking how influencer posts performed and running the best creatives as ads, bookings rose by up to 8x compared with the post-only period.',
+    } as L,
+    value: '8',
+    unit: { ja: '倍', en: 'x' } as L,
+    metricLabel: { ja: '予約数（最大）', en: 'Bookings (max)' } as L,
+    note: { ja: '※投稿のみの期間と、広告配信後の期間の予約数を比較', en: '※Compares bookings in the post-only period with the period after ads ran.' } as L,
+    exampleLabel: { ja: '都内の美容クリニック様の事例', en: 'Example: a beauty clinic in Tokyo' } as L,
+    exampleHead: { ja: ['', 'フォロワー', '再生', '予約'], en: ['', 'Followers', 'Views', 'Bookings'] } as Record<Lang, string[]>,
+    examples: [
+      { name: { ja: '投稿A', en: 'Post A' } as L, cells: { ja: ['1.4万人', '4.2万回', '21件'], en: ['14k', '42k', '21'] } as Record<Lang, string[]> },
+      { name: { ja: '投稿B', en: 'Post B' } as L, cells: { ja: ['4.2万人', '34.5万回', '86件'], en: ['42k', '345k', '86'] } as Record<Lang, string[]> },
+    ],
+    networkLabel: { ja: '美容系インフルエンサーのネットワーク', en: 'Beauty influencer network' } as L,
+    network: { ja: '約500名', en: 'About 500' } as L,
+    networkBody: {
+      ja: '施術内容とターゲットに合わせて、予約につながる可能性の高いインフルエンサーを選びます。配信後は広告ごとの予約単価・予約数を比べ、成果の良い広告に予算を集中させます。',
+      en: 'We choose the influencers most likely to drive bookings for your treatment and target, then compare cost per booking and bookings by ad and focus budget on the winners.',
+    } as L,
+    stepsLabel: { ja: 'クリニック様は、PRしたい施術を決めるだけ', en: 'You just pick the treatment to promote' } as L,
+    steps: {
+      ja: ['インフルエンサー選定', '来院・施術', 'コンテンツ制作', '広告配信', '効果検証・改善', '予約獲得'],
+      en: ['Influencer selection', 'Visit & treatment', 'Content production', 'Ad delivery', 'Measurement & improvement', 'Bookings'],
+    } as Record<Lang, string[]>,
+  },
   faq: {
     label: 'FAQ',
     h2: { ja: 'よくあるご質問', en: 'Frequently asked questions' } as L,
