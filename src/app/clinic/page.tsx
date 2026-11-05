@@ -29,6 +29,8 @@ const jsonLd = {
       '@type': 'Service',
       '@id': `${url}#service`,
       name: '美容クリニックの集客支援',
+      alternateName: '成果報酬型集客サービス「バズクル」',
+      brand: { '@type': 'Brand', name: 'バズクル' },
       serviceType: '美容クリニック向けマーケティング支援',
       description: clinicContent.hero.lead.ja,
       url,

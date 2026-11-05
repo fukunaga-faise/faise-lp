@@ -196,7 +196,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
           <div className="mt-14 rounded-sm bg-brand-tint px-6 py-7 md:px-8">
             <p className="text-[16px] font-medium leading-[1.7] text-brand-navy">美容クリニックの集客について相談する</p>
-            <p className="mt-2 text-[14px] leading-[1.9] text-[#555]">初期費用・月額固定費0円の成果報酬型プランにも対応しています（広告費は別途。成果地点・報酬額は個別設定）。</p>
+            <p className="mt-2 text-[14px] leading-[1.9] text-[#555]">成果報酬型集客サービス「バズクル」は、初期費用・キャスティング費・月額固定費0円（広告費はクリニック様負担。成果報酬は成果1件ごとに個別設定）。</p>
             <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-[13px] font-medium tracking-[0.06em]">
               <a href="#contact-form" className="text-brand hover:text-brand-navy">無料相談フォームを開く →</a>
               <Link href="/clinic" className="text-[#333] hover:text-brand">支援内容を見る →</Link>

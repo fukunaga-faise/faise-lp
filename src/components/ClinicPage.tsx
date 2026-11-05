@@ -98,10 +98,19 @@ export default function ClinicPage() {
             ))}
           </ol>
           <Reveal className="mt-12 md:mt-16">
-            <div className="max-w-3xl rounded-sm border-l-[3px] border-brand bg-brand-tint px-5 py-5 md:px-7">
+            <div id="buzzkuru" className="max-w-3xl scroll-mt-28 rounded-sm border-l-[3px] border-brand bg-brand-tint px-5 py-6 md:px-8 md:py-8">
               <p className="font-inter text-[11px] font-medium tracking-[0.24em] text-brand">{c.pricing.label}</p>
-              <p className="mt-2 text-[15px] md:text-[16px] font-medium leading-[1.8] tracking-[0.02em] text-brand-navy">{c.pricing.text[lang]}</p>
-              <p className="mt-1.5 text-[12px] leading-[1.8] tracking-[0.03em] text-[#777]">{c.pricing.note[lang]}</p>
+              <h3 className="mt-2 text-[18px] md:text-[20px] font-medium leading-[1.7] tracking-[0.02em] text-brand-navy">{c.pricing.text[lang]}</h3>
+              <p className="mt-2 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.03em] text-[#555]">{c.pricing.lead[lang]}</p>
+              <dl className="mt-5 divide-y divide-[#dfe6f0] border-y border-[#dfe6f0] bg-white/60">
+                {c.pricing.terms.map((t) => (
+                  <div key={t.k.ja} className="grid gap-1 px-4 py-3 sm:grid-cols-[9.5em_1fr] sm:gap-4">
+                    <dt className="text-[13px] font-medium tracking-[0.03em] text-[#555]">{t.k[lang]}</dt>
+                    <dd className="text-[14px] font-medium leading-[1.8] tracking-[0.02em] text-[#111]">{t.v[lang]}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-3 text-[12px] leading-[1.8] tracking-[0.03em] text-[#777]">{c.pricing.note[lang]}</p>
             </div>
           </Reveal>
         </div>

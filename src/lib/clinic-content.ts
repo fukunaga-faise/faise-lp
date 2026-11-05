@@ -7,7 +7,7 @@ type L = Record<Lang, string>
 export const clinicMeta = {
   title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
   description:
-    '美容インフルエンサーの施術体験を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。初期費用・月額固定費0円の成果報酬型プランあり。事例：CPA平均35%削減。',
+    '美容インフルエンサーの施術体験を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
 }
 
 export const clinicContent = {
@@ -79,8 +79,23 @@ export const clinicContent = {
   },
   pricing: {
     label: 'Pricing',
-    text: { ja: '初期費用・月額固定費0円の成果報酬型プランにも対応', en: 'Pay-for-performance plans available with ¥0 initial fee and ¥0 fixed monthly fee' } as L,
-    note: { ja: '※広告費は別途。成果地点・報酬額は個別設定。', en: '※Ad spend is separate. Conversion points and reward amounts are set individually.' } as L,
+    // 2026-10-27 PR TIMES リリース「バズクル」提供開始 に記載の条件
+    name: 'バズクル',
+    text: { ja: '成果報酬型集客サービス「バズクル」', en: 'Buzzkuru — a pay-for-performance acquisition service' } as L,
+    lead: {
+      ja: 'インフルエンサーの施術体験投稿を広告として配信し、再生数ではなく予約の成果で評価します。固定費は0円で、費用は成果が出た分だけです。',
+      en: 'We run influencers’ treatment-experience posts as ads and measure results by bookings, not views. No fixed fees — you pay only for results.',
+    } as L,
+    terms: [
+      { k: { ja: '初期費用', en: 'Initial fee' } as L, v: { ja: '0円', en: '¥0' } as L },
+      { k: { ja: 'キャスティング費', en: 'Casting fee' } as L, v: { ja: '0円', en: '¥0' } as L },
+      { k: { ja: '月額固定費', en: 'Fixed monthly fee' } as L, v: { ja: '0円', en: '¥0' } as L },
+      { k: { ja: '広告費', en: 'Ad spend' } as L, v: { ja: 'クリニック様負担', en: 'Paid by the clinic' } as L },
+      { k: { ja: '成果報酬', en: 'Performance fee' } as L, v: { ja: '成果1件ごとに個別設定', en: 'Set individually per result' } as L },
+      { k: { ja: '成果地点の例', en: 'Example conversion points' } as L, v: { ja: 'LINE友だち追加、カウンセリング予約など（予約導線に合わせて事前に設定）', en: 'LINE friend adds, counseling bookings, etc. (agreed in advance to fit your booking flow)' } as L },
+      { k: { ja: '成果の対象外', en: 'Not counted' } as L, v: { ja: '重複予約、既存患者様、虚偽または明らかに対象外の予約など', en: 'Duplicate bookings, existing patients, false or clearly ineligible bookings, etc.' } as L },
+    ],
+    note: { ja: '※提供内容：インフルエンサー選定、来院・施術調整、コンテンツ制作、広告配信、効果検証・改善', en: '※Includes influencer selection, visit and treatment coordination, content production, ad delivery, and measurement and improvement.' } as L,
   },
   case: {
     label: 'Case Study',
@@ -126,15 +141,15 @@ export const clinicContent = {
       {
         q: { ja: '成果報酬型で依頼できますか？', en: 'Can we work on a pay-for-performance basis?' } as L,
         a: {
-          ja: 'はい、初期費用・月額固定費0円の成果報酬型プランにも対応しています。広告費は別途必要で、成果地点・報酬額は個別に設定します。',
-          en: 'Yes. We offer pay-for-performance plans with ¥0 initial fee and ¥0 fixed monthly fee. Ad spend is separate, and conversion points and reward amounts are set individually.',
+          ja: 'はい、成果報酬型集客サービス「バズクル」で対応しています。初期費用・キャスティング費・月額固定費は0円で、広告費はクリニック様のご負担です。成果報酬は成果1件ごとに個別に設定し、成果地点（LINE友だち追加、カウンセリング予約など）は予約導線に合わせて事前に決めます。',
+          en: 'Yes, through our pay-for-performance service Buzzkuru. Initial, casting and fixed monthly fees are ¥0; ad spend is paid by the clinic. The fee per result is set individually, and the conversion point (such as LINE friend adds or counseling bookings) is agreed in advance.',
         } as L,
       },
       {
         q: { ja: '費用はどのくらいかかりますか？', en: 'How much does it cost?' } as L,
         a: {
-          ja: '施策の内容や規模によって異なります。初期費用・月額固定費0円の成果報酬型プランにも対応しています（広告費は別途。成果地点・報酬額は個別に設定します）。まずはお問い合わせください。',
-          en: 'It depends on the scope and scale of the work. Pay-for-performance plans with ¥0 initial fee and ¥0 fixed monthly fee are also available (ad spend is separate; conversion points and reward amounts are set individually). Please get in touch first.',
+          ja: '施策の内容や規模によって異なります。成果報酬型集客サービス「バズクル」なら、初期費用・キャスティング費・月額固定費は0円です（広告費はクリニック様負担。成果報酬は成果1件ごとに個別設定）。まずはお問い合わせください。',
+          en: 'It depends on the scope and scale of the work. With our pay-for-performance service Buzzkuru, initial, casting and fixed monthly fees are ¥0 (ad spend is paid by the clinic; the fee per result is set individually). Please get in touch first.',
         } as L,
       },
     ],

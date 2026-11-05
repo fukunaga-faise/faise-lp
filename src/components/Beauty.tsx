@@ -50,12 +50,12 @@ const cards: Card[] = [
     },
     price: {
       text: {
-        ja: '初期費用・月額固定費0円の成果報酬型プランにも対応',
-        en: 'Pay-for-performance plans available with ¥0 initial fee and ¥0 fixed monthly fee',
+        ja: '成果報酬型集客サービス「バズクル」：初期費用・キャスティング費・月額固定費0円',
+        en: 'Buzzkuru, our pay-for-performance service: ¥0 initial, casting and fixed monthly fees',
       },
       note: {
-        ja: '※広告費は別途。成果地点・報酬額は個別設定。',
-        en: '※Ad spend is separate. Conversion points and reward amounts are set individually.',
+        ja: '※広告費はクリニック様負担。成果報酬は成果1件ごとに個別設定。',
+        en: '※Ad spend is paid by the clinic. The fee per result is set individually.',
       },
     },
   },
