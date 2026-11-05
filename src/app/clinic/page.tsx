@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import ClinicPage from '@/components/ClinicPage'
 import { clinicContent, clinicMeta } from '@/lib/clinic-content'
 import { SITE_URL, ORG_ID } from '@/lib/site'
+import { BUZZKURU_RELEASE } from '@/lib/press'
 
 const url = `${SITE_URL}/clinic`
 
@@ -31,6 +32,14 @@ const jsonLd = {
       name: '美容クリニックの集客支援',
       alternateName: '成果報酬型集客サービス「バズクル」',
       brand: { '@type': 'Brand', name: 'バズクル' },
+      subjectOf: {
+        '@type': 'NewsArticle',
+        headline: BUZZKURU_RELEASE.headline,
+        url: BUZZKURU_RELEASE.url,
+        datePublished: BUZZKURU_RELEASE.date,
+        publisher: { '@type': 'Organization', name: BUZZKURU_RELEASE.publisher },
+        about: { '@id': ORG_ID },
+      },
       serviceType: '美容クリニック向けマーケティング支援',
       description: clinicContent.hero.lead.ja,
       url,

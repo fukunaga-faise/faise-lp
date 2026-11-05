@@ -5,6 +5,7 @@ import { ChevronRight } from 'lucide-react'
 import { useLanguage } from '@/lib/language'
 import { clinicContent as c } from '@/lib/clinic-content'
 import { guides } from '@/lib/clinic-guides'
+import { BUZZKURU_RELEASE } from '@/lib/press'
 import Nav from './Nav'
 import CTA from './CTA'
 import PageCurtain from './PageCurtain'
@@ -165,6 +166,12 @@ export default function ClinicPage() {
                 {c.buzz.h2[lang][1]}
               </h2>
               <p className="mt-6 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{c.buzz.lead[lang]}</p>
+              <p className="mt-5 text-[12.5px] leading-[1.8] tracking-[0.03em] text-[#777]">
+                {lang === 'ja' ? '出典：' : 'Source: '}
+                <a href={BUZZKURU_RELEASE.url} target="_blank" rel="noopener" className="text-brand underline decoration-brand/30 underline-offset-4 hover:text-brand-navy">
+                  {lang === 'ja' ? 'プレスリリース（PR TIMES、2026年10月27日）' : 'Press release (PR TIMES, Oct 27, 2026)'}
+                </a>
+              </p>
             </Reveal>
             <Reveal delay={0.08}>
               <div className="rounded-sm bg-brand-tint px-6 py-8 md:px-10 md:py-10">
