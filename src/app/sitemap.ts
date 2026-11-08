@@ -17,11 +17,23 @@ function bilingual(path: string, priority: number, lastModified: Date): Entry[] 
   ]
 }
 
+// Japan Launch は英語版がメイン（x-default も英語）
+function japanLaunch(lastModified: Date): Entry[] {
+  const ja = `${SITE_URL}/japan-launch`
+  const en = `${SITE_URL}/en/japan-launch`
+  const alternates = { languages: { en, ja, 'x-default': en } }
+  return [
+    { url: en, lastModified, changeFrequency: 'monthly', priority: 0.8, alternates },
+    { url: ja, lastModified, changeFrequency: 'monthly', priority: 0.6, alternates },
+  ]
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
   return [
     ...bilingual('/', 1, now),
     ...bilingual('/clinic', 0.8, now),
+    ...japanLaunch(now),
     ...services.flatMap((s) => bilingual(`/services/${s.slug}`, 0.7, now)),
     ...cases.filter((c) => c.slug !== 'beauty-clinic').flatMap((c) => bilingual(`/works/${c.slug}`, 0.7, now)),
     { url: `${SITE_URL}/clinic/guide`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },

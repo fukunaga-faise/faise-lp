@@ -36,6 +36,15 @@ const t = {
     },
   },
   faq: { ja: 'このようなご相談をいただいています', en: 'Topics clients bring to us' },
+  jl: {
+    label: { ja: 'New — Japan Launch', en: 'New — Japan Launch' },
+    title: { ja: '海外ブランドの日本上陸支援', en: 'Bring your product to Japan' },
+    body: {
+      ja: '海外で実績のある商品を、検証からローンチ、販売拡大まで一気通貫で日本市場へ。',
+      en: 'For overseas brands with proven traction — from market validation to launch and scale in Japan.',
+    },
+    cta: { ja: '詳しく見る', en: 'Learn more' },
+  },
 }
 
 export default function Services() {
@@ -111,6 +120,24 @@ export default function Services() {
             </li>
           ))}
         </ul>
+
+        <Reveal className="mt-14 md:mt-16">
+          <Link
+            href={localize('/japan-launch')}
+            className="group relative flex flex-col gap-5 overflow-hidden rounded-sm bg-gradient-to-br from-brand-sky via-brand to-brand-navy px-6 py-7 text-white md:flex-row md:items-center md:justify-between md:px-10 md:py-9"
+          >
+            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 bg-white/15 opacity-0 group-hover:opacity-100 group-hover:[animation:faiseShine_.9s_ease]" />
+            <div>
+              <p className="font-inter text-[11px] font-medium uppercase tracking-[0.26em] text-white/80">{t.jl.label[lang]}</p>
+              <p className="mt-2 text-[19px] md:text-[22px] font-medium leading-[1.55] tracking-[0.03em]">{t.jl.title[lang]}</p>
+              <p className="mt-2 text-[14px] leading-[1.9] tracking-[0.03em] text-white/85">{t.jl.body[lang]}</p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-white px-6 py-3 text-[13px] font-bold tracking-[0.06em] text-brand-navy md:self-auto">
+              {t.jl.cta[lang]}
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          </Link>
+        </Reveal>
 
         <Reveal className="mt-14 grid gap-8 border-t border-[#ecebe7] pt-9 md:mt-16 md:pt-11 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
           <div>

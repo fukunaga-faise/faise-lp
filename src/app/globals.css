@@ -67,3 +67,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .faise-anim { animation: none !important; }
 }
+
+/* Japan Launch: flowing dashed arcs (overseas -> Japan) */
+@keyframes faiseDash { to { stroke-dashoffset: -28; } }

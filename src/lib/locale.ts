@@ -8,7 +8,7 @@ export type Lang = 'ja' | 'en'
 // 英語版があるページ（それ以外の日本語ページから英語に切り替えると /en トップへ）
 export function hasEnglish(path: string) {
   const p = path.split('#')[0].split('?')[0]
-  return p === '/' || p === '' || p === '/clinic' || p.startsWith('/services/') || p.startsWith('/works/')
+  return p === '/' || p === '' || p === '/clinic' || p === '/japan-launch' || p.startsWith('/services/') || p.startsWith('/works/')
 }
 
 // 日本語のパス → 表示中の言語のパス

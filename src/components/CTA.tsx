@@ -12,12 +12,13 @@ const t = {
   lead: { ja: '各種お問い合わせはこちらから。', en: 'Get in touch for any inquiries.' },
   button: { ja: 'お問い合わせフォーム', en: 'Contact form' },
   clinicLink: { ja: '美容クリニックの集客支援', en: 'Marketing support for beauty clinics' },
+  japanLaunchLink: { ja: 'Japan Launch（海外ブランドの日本上陸支援）', en: 'Japan Launch — bring your product to Japan' },
   address: { ja: '株式会社Faise　東京都品川区大井4-18-25', en: 'Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo' },
 }
 
 export default function CTA() {
   const [modalOpen, setModalOpen] = useState(false)
-  const { lang, localize } = useLanguage()
+  const { lang } = useLanguage()
 
   return (
     <>
@@ -56,25 +57,35 @@ export default function CTA() {
         </div>
       </section>
 
-      <footer className="bg-white py-10">
-        <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
-          <div className="flex flex-col gap-3">
-            <a href="#" className="flex items-center gap-2.5" aria-label="Faise">
-              <img src="/logo-mark.png" alt="" className="h-7 w-auto" />
-              <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
-            </a>
-            <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
-          </div>
-          <div className="flex flex-col gap-3 md:items-end">
-            <Link href={localize('/clinic')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
-              {t.clinicLink[lang]}
-            </Link>
-            <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
+  )
+}
+
+export function Footer() {
+  const { lang, localize } = useLanguage()
+  return (
+    <footer className="bg-white py-10">
+      <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
+        <div className="flex flex-col gap-3">
+          <a href="#" className="flex items-center gap-2.5" aria-label="Faise">
+            <img src="/logo-mark.png" alt="" className="h-7 w-auto" />
+            <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
+          </a>
+          <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
+        </div>
+        <div className="flex flex-col gap-3 md:items-end">
+          <Link href={localize('/clinic')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+            {t.clinicLink[lang]}
+          </Link>
+          <Link href={localize('/japan-launch')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+            {t.japanLaunchLink[lang]}
+          </Link>
+          <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   )
 }
