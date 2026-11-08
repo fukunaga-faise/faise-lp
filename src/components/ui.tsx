@@ -77,7 +77,9 @@ export function ArrowLink({
   )
 }
 
-// Number that counts up from 0 when it scrolls into view
+// Number that counts up from 0 when it scrolls into view.
+// SSR / 初回描画では最終値を出す（クローラーやJS無効環境で「0」に見えないように）。
+// 画面に入った瞬間にだけ 0 から数え直す（その時点では Reveal のフェードで隠れているので、ちらつかない）。
 export function CountUp({
   to,
   prefix = '',
@@ -96,14 +98,13 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   const reduce = useReducedMotion()
-  const [val, setVal] = useState(reduce ? to : 0)
+  const [val, setVal] = useState(to)
 
   useEffect(() => {
-    if (reduce) {
+    if (reduce || !inView) {
       setVal(to)
       return
     }
-    if (!inView) return
     const start = performance.now()
     let raf = 0
     const tick = (now: number) => {
