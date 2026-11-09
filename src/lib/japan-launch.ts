@@ -46,6 +46,62 @@ export const hero = {
   originsJa: ['Kickstarter', 'Indiegogo', '自国EC・小売'],
 }
 
+// 画像（public/images/japan-launch/*.jpg）は AI 生成のイメージ素材（実在の商品・ブランドではない）。
+// 生成: scripts/generate-japan-launch-images.mjs。実案件の写真ができたら差し替える。
+type Img = { src: string; w: number; h: number; alt: L }
+export const images: Record<'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoot' | 'founder', Img> = {
+  gadgets: {
+    src: '/images/japan-launch/gadgets.jpg', w: 1536, h: 1024,
+    alt: { en: 'Minimal wireless earbuds case and a smart device on a desk overlooking Tokyo', ja: '東京の街を望むデスクに置かれた、ワイヤレスイヤホンのケースとスマートデバイス' },
+  },
+  lifestyle: {
+    src: '/images/japan-launch/lifestyle.jpg', w: 1536, h: 1024,
+    alt: { en: 'An insulated bottle, a canvas backpack and a small lantern on a café table in Japan', ja: '日本のカフェのテーブルに並ぶ、保温ボトル・キャンバス地のリュック・小型ランタン' },
+  },
+  beauty: {
+    src: '/images/japan-launch/beauty.jpg', w: 1536, h: 1024,
+    alt: { en: 'Skincare tube, serum, lotion and cream jar on white stone by the water', ja: '水辺の白い石の上に並ぶ、チューブ・美容液・化粧水・クリームのスキンケア製品' },
+  },
+  tokyo: {
+    src: '/images/japan-launch/tokyo.jpg', w: 1536, h: 864,
+    alt: { en: 'Shoppers walking along a tree-lined shopping street in Tokyo at dusk', ja: '夕暮れの東京の並木道の商店街を歩く買い物客' },
+  },
+  shoot: {
+    src: '/images/japan-launch/shoot.jpg', w: 1536, h: 1024,
+    alt: { en: 'A creator presenting a gadget to a smartphone on a ring-light tripod for a short video', ja: 'リングライト付きの三脚に固定したスマートフォンに向けて、ガジェットを紹介するショート動画の撮影風景' },
+  },
+  founder: {
+    src: '/images/founder.jpg', w: 2752, h: 1536,
+    alt: { en: 'Haruto Fukunaga, CEO of Faise Inc.', ja: '株式会社Faise 代表取締役 福永 遥斗' },
+  },
+}
+
+export const audience = {
+  label: 'Who it’s for',
+  h2: { en: ['Built for brands that', 'already sell abroad.'], ja: ['海外ですでに売れている', 'ブランドのために。'] } as LL,
+  lead: {
+    en: 'Brands with traction on Kickstarter, Indiegogo, or in their home market — mainly in these categories.',
+    ja: 'Kickstarter・Indiegogo や自国市場で実績のあるブランドが対象です。主に次のカテゴリを支援します。',
+  } as L,
+  items: [
+    {
+      img: 'gadgets' as const,
+      title: { en: 'Gadgets & hardware', ja: 'ガジェット・ハードウェア' },
+      body: { en: 'Consumer electronics and smart devices that need clear, detailed explanation for Japanese buyers.', ja: '機能や仕様を、日本の買い手に分かりやすく伝える必要がある家電・スマートデバイス。' },
+    },
+    {
+      img: 'lifestyle' as const,
+      title: { en: 'Lifestyle', ja: 'ライフスタイル' },
+      body: { en: 'Everyday goods, outdoor and home products with a story worth telling.', ja: '日用品・アウトドア・インテリアなど、語れるストーリーのある商品。' },
+    },
+    {
+      img: 'beauty' as const,
+      title: { en: 'Beauty', ja: '美容' },
+      body: { en: 'Skincare and beauty products for consumers who read ingredients and reviews closely.', ja: '成分やレビューをしっかり確認する消費者に向けた、スキンケア・美容商品。' },
+    },
+  ],
+}
+
 export const problems = {
   label: 'The challenge',
   h2: { en: ['Selling well abroad', 'doesn’t mean selling in Japan.'], ja: ['海外で売れても、', '日本でそのまま売れるとは限らない。'] } as LL,

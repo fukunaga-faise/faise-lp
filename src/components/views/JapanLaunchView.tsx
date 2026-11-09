@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, ChevronRight, Handshake } from 'lucide-react'
 import Nav from '@/components/Nav'
@@ -16,7 +17,9 @@ import {
   JAPAN_LAUNCH_PATH,
   JAPAN_LAUNCH_PATH_EN,
   SERVICE_NAME,
+  audience,
   breadcrumb,
+  images,
   faq,
   form,
   hero,
@@ -36,8 +39,8 @@ const languages = { en: JAPAN_LAUNCH_PATH_EN, ja: JAPAN_LAUNCH_PATH, 'x-default'
 export function japanLaunchMetadata(lang: Lang): Metadata {
   const m = meta[lang]
   const path = pathFor(lang)
-  // TODO: 要確認 — 専用のOG画像（現状はトップのOG画像を流用）
-  const og = lang === 'ja' ? '/og/home.jpg' : '/og/home-en.jpg'
+  // 生成: node scripts/generate-og.mjs japan-launch.jpg japan-launch-en.jpg
+  const og = lang === 'ja' ? '/og/japan-launch.jpg' : '/og/japan-launch-en.jpg'
   return {
     title: m.title,
     description: m.description,
@@ -171,6 +174,41 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
+      {/* Who it's for */}
+      <section className={`${section} bg-white`}>
+        <div className={container}>
+          <Reveal className="max-w-3xl">
+            <Label>{audience.label}</Label>
+            <H2 lines={audience.h2[lang]} />
+            <p className={`mt-6 ${bodyClass}`}>{audience.lead[lang]}</p>
+          </Reveal>
+          <ul className="mt-10 grid gap-10 md:mt-14 md:grid-cols-3 md:gap-8">
+            {audience.items.map((a, i) => {
+              const img = images[a.img]
+              return (
+                <li key={a.img} className="group">
+                  <Reveal delay={i * 0.06}>
+                    <div className="relative aspect-[3/2] overflow-hidden bg-[#f1f0ec]">
+                      <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
+                      <Image
+                        src={img.src}
+                        alt={img.alt[lang]}
+                        width={img.w}
+                        height={img.h}
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <h3 className="mt-5 text-[18px] md:text-[19px] font-medium leading-[1.55] tracking-[0.03em] text-[#111]">{a.title[lang]}</h3>
+                    <p className="mt-2.5 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{a.body[lang]}</p>
+                  </Reveal>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
+
       {/* 2. Problem */}
       <section className={`${section} bg-brand-tint`}>
         <div className={container}>
@@ -200,6 +238,16 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
             <Reveal>
               <Label>{whyJapan.label}</Label>
               <H2 lines={whyJapan.h2[lang]} />
+              <div className="mt-8 aspect-[16/9] overflow-hidden bg-[#f1f0ec]">
+                <Image
+                  src={images.tokyo.src}
+                  alt={images.tokyo.alt[lang]}
+                  width={images.tokyo.w}
+                  height={images.tokyo.h}
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </Reveal>
             <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
               {whyJapan.items.map((w, i) => (
@@ -328,20 +376,45 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
             <H2 lines={track.h2[lang]} />
           </Reveal>
 
-          <ul className="mt-10 grid gap-8 md:mt-14 md:grid-cols-3">
-            {track.strengths.map((s, i) => (
-              <li key={i} className="border-t border-[#ecebe7] pt-6">
-                <Reveal delay={i * 0.06}>
-                  <h3 className="text-[17px] md:text-[18px] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">{s.title[lang]}</h3>
-                  <p className="mt-3 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{s.body[lang]}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-10 grid items-center gap-8 md:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+            <Reveal>
+              <div className="aspect-[3/2] overflow-hidden bg-[#f1f0ec]">
+                <Image
+                  src={images.shoot.src}
+                  alt={images.shoot.alt[lang]}
+                  width={images.shoot.w}
+                  height={images.shoot.h}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+            <ul className="grid gap-6">
+              {track.strengths.map((s, i) => (
+                <li key={i} className="border-t border-[#ecebe7] pt-5 first:border-t-0 first:pt-0 lg:first:border-t lg:first:pt-5">
+                  <Reveal delay={i * 0.06}>
+                    <h3 className="text-[17px] md:text-[18px] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">{s.title[lang]}</h3>
+                    <p className="mt-2 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{s.body[lang]}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
             <Reveal>
-              <div className="h-full rounded-sm border border-[#ecebe7] px-6 py-7 md:px-8">
+              {/* 写真は中央寄りで正方形〜4:3に切り抜く（元画像右下のマークが入らないように） */}
+              <div className="h-full overflow-hidden rounded-sm border border-[#ecebe7] sm:flex">
+                <div className="relative aspect-[4/3] bg-[#f1f0ec] sm:aspect-auto sm:min-h-[260px] sm:w-[42%] sm:shrink-0">
+                  <Image
+                    src={images.founder.src}
+                    alt={images.founder.alt[lang]}
+                    fill
+                    sizes="(min-width: 640px) 25vw, 100vw"
+                    className="object-cover object-[50%_25%]"
+                  />
+                </div>
+                <div className="px-6 py-7 md:px-8">
                 <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-brand">Founder</p>
                 <p className="mt-2 text-[17px] font-medium text-[#111]">{track.founder.name[lang]}</p>
                 <ol className="mt-5 space-y-3">
@@ -352,6 +425,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                     </li>
                   ))}
                 </ol>
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.08}>
