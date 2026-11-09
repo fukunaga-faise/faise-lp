@@ -9,25 +9,25 @@ import path from 'node:path'
 const API_KEY = process.env.GEMINI_API_KEY
 if (!API_KEY && process.env.IMAGE_PROVIDER !== 'openai') throw new Error('GEMINI_API_KEY is not set')
 
-const common = 'no text, no logos, no brand names, no watermark, photorealistic editorial photography, soft natural light, clean bright composition, subtle cool blue accents'
+// トンマナ：ヒーロー（海外の部屋 | 日本の和室 の対比）に合わせ、温かい自然光・木・障子・畳・和紙・陶器の質感で統一する
+const common = 'no text, no letters, no logos, no brand names, no watermark, photorealistic high-end editorial photography, warm soft natural daylight, natural materials (wood, paper, ceramic, linen), muted warm palette with deep red accents, calm and refined'
 
 const images = [
-  { file: 'gadgets', ratio: '4:3', prompt: `A sleek minimalist consumer electronics gadget (unbranded wireless earbuds case and a small smart device) on a light wooden desk in a bright modern Tokyo apartment, ${common}` },
-  { file: 'lifestyle', ratio: '4:3', prompt: `Unbranded lifestyle products: a matte insulated bottle, a minimal canvas backpack and a compact camping lantern arranged on a cafe table near a window in Tokyo, ${common}` },
-  { file: 'beauty', ratio: '4:3', prompt: `Unbranded minimalist skincare bottles and a jar on smooth light stone with water reflections, Japanese aesthetic, ${common}` },
-  { file: 'tokyo', ratio: '16:9', prompt: `A lively shopping street in Tokyo at early evening, people browsing stores, shallow depth of field, faces not identifiable, ${common}` },
-  { file: 'shoot', ratio: '4:3', prompt: `Behind the scenes of a short-form vertical video shoot: a smartphone on a small tripod with a ring light filming an unbranded gadget held by a young Japanese creator's hands at a desk, face out of frame, ${common}` },
-  { file: 'launch', ratio: '16:9', prompt: `An unbranded premium product shipping box being opened on a white table, with a soft-focus Tokyo skyline at dusk through a large window behind, sense of arrival, ${common}` },
+  {
+    file: 'hero-split',
+    ratio: '3:2',
+    prompt: `A split-screen diptych photograph divided exactly in the middle by a thin vertical line. Left half: an unbranded white cylindrical smart speaker on a pale desk in a moody western loft studio with dark brick wall and steel-framed window, dim light, the product placed near the center line, the left part of the left half mostly dark empty wall. Right half: the exact same product, same size and same camera angle, on a low dark wooden table in a bright Japanese tatami room with shoji screens, a cast-iron teapot and a ceramic tea cup beside it, soft warm daylight. ${common}`,
+  },
+  { file: 'gadgets', ratio: '3:2', prompt: `An unbranded white wireless earbuds case and a small minimal smart device on a low wooden table in a Japanese room with shoji screens behind, a ceramic tea cup nearby, ${common}` },
+  { file: 'lifestyle', ratio: '3:2', prompt: `Unbranded lifestyle products — a matte insulated bottle, a linen tote bag and a compact lantern — on the wooden engawa veranda of a Japanese house facing a small moss garden, ${common}` },
+  { file: 'beauty', ratio: '3:2', prompt: `Unbranded frosted skincare bottles and a cream jar on a hinoki wood tray beside a Japanese washi paper lamp and a small ikebana branch, ${common}` },
+  { file: 'tokyo', ratio: '16:9', prompt: `Inside a refined Japanese select shop with wooden shelves and noren curtain, a few shoppers browsing unbranded modern gadgets and lifestyle goods, faces not identifiable, shallow depth of field, ${common}` },
+  { file: 'shoot', ratio: '3:2', prompt: `Behind the scenes of a short-form vertical video shoot in a Japanese room with shoji screens: a smartphone on a small tripod with a soft light filming an unbranded gadget held by a creator's hands on a low wooden table, face out of frame, ${common}` },
 ]
 
 // 背景透過の切り抜き素材（ヒーロー用）。OpenAI のみ・PNG のまま保存する
-const cutouts = [
-  {
-    file: 'hero-torii',
-    prompt:
-      'Real documentary photograph of an authentic wooden Japanese shrine torii gate freshly maintained with smooth satin vermilion lacquer (deep red-orange, slightly muted), faint wood grain visible under the paint, like a well-kept city shrine in Tokyo, black kasagi top beam, photographed straight-on with a 50mm lens, and in front of it on the ground a small arranged group of unbranded overseas products: a premium white product shipping box, a sleek white wireless earbuds case, a minimal smart speaker and a frosted skincare bottle. Isolated cutout on a fully transparent background, no ground plane, only a very soft contact shadow under the objects, no text, no logos, no brand names, high-end editorial product photography, natural materials and real textures (not a 3D render), crisp clean edges, soft even daylight, centered, the whole gate visible with margin around it',
-  },
-]
+// 例: { file: 'hero-xxx', prompt: '... isolated cutout on a fully transparent background ...' }
+const cutouts = []
 
 async function generateCutout(prompt) {
   const res = await fetch('https://api.openai.com/v1/images/generations', {
@@ -78,16 +78,20 @@ async function generate(prompt, aspectRatio) {
 const only = process.argv.slice(2)
 const out = path.resolve(import.meta.dirname, '..', 'public', 'images', 'japan-launch')
 await mkdir(out, { recursive: true })
-for (const img of images.filter((i) => !only.length || only.includes(i.file))) {
-  process.stdout.write(`→ ${img.file} ... `)
-  try {
-    const raw = await generate(img.prompt, img.ratio)
-    await sharp(raw).resize({ width: 1600, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(path.join(out, `${img.file}.jpg`))
-    console.log('ok')
-  } catch (e) {
-    console.log(`failed: ${e.message}`)
-  }
-}
+// 並列に生成する
+await Promise.all(
+  images
+    .filter((i) => !only.length || only.includes(i.file))
+    .map(async (img) => {
+      try {
+        const raw = await generate(img.prompt, img.ratio)
+        await sharp(raw).resize({ width: 1600, withoutEnlargement: true }).jpeg({ quality: img.file.startsWith('hero') ? 86 : 80, mozjpeg: true }).toFile(path.join(out, `${img.file}.jpg`))
+        console.log(`→ ${img.file} ok`)
+      } catch (e) {
+        console.log(`→ ${img.file} failed: ${e.message}`)
+      }
+    }),
+)
 
 // 切り抜き素材は余白をトリムして WebP（透過）で保存する
 for (const c of cutouts.filter((i) => only.includes(i.file))) {

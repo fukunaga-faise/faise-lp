@@ -33,15 +33,17 @@ export const hero = {
   label: SERVICE_NAME,
   // 縦書きのアクセント（装飾）
   vertical: '日本上陸支援',
+  // 左右分割の写真：左が海外の部屋、右が日本の和室に置かれた同じ商品（AI生成のイメージ素材）
   image: {
-    src: '/images/japan-launch/hero-torii.webp',
-    w: 1087,
-    h: 872,
+    src: '/images/japan-launch/hero-split.jpg',
+    w: 1536,
+    h: 1024,
     alt: {
-      en: 'A vermilion torii gate with unbranded overseas products — a box, earbuds, a smart speaker and a skincare bottle — placed beneath it',
-      ja: '朱色の鳥居と、その下に並ぶ海外の商品（箱・イヤホン・スマートスピーカー・スキンケアボトル）',
+      en: 'The same smart speaker shown twice: on the left in a brick-walled loft abroad, on the right on a low table in a Japanese tatami room with shoji screens',
+      ja: '同じスマートスピーカーを左右で比較した写真。左は海外のレンガ壁のロフト、右は障子のある日本の和室の座卓の上',
     } as L,
   },
+  split: { abroad: { en: 'Abroad', ja: '海外' } as L, japan: { en: 'Japan', ja: '日本' } as L },
   h1: { en: ['Proven abroad.', 'Launched in Japan.'], ja: ['海外で売れた商品を、', '日本でも売れる商品に。'] } as LL,
   sub: {
     en: 'We take products that already sell overseas to Japanese consumers — from market validation and crowdfunding launch to influencer marketing and retail.',
@@ -63,23 +65,23 @@ type Img = { src: string; w: number; h: number; alt: L }
 export const images: Record<'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoot' | 'founder', Img> = {
   gadgets: {
     src: '/images/japan-launch/gadgets.jpg', w: 1536, h: 1024,
-    alt: { en: 'Minimal wireless earbuds case and a smart device on a desk overlooking Tokyo', ja: '東京の街を望むデスクに置かれた、ワイヤレスイヤホンのケースとスマートデバイス' },
+    alt: { en: 'Wireless earbuds and a small smart device on a low wooden table by shoji screens, next to a cup of tea', ja: '障子のそばの座卓に置かれたワイヤレスイヤホンと小型スマートデバイス、湯のみ' },
   },
   lifestyle: {
     src: '/images/japan-launch/lifestyle.jpg', w: 1536, h: 1024,
-    alt: { en: 'An insulated bottle, a canvas backpack and a small lantern on a café table in Japan', ja: '日本のカフェのテーブルに並ぶ、保温ボトル・キャンバス地のリュック・小型ランタン' },
+    alt: { en: 'An insulated bottle, a linen tote and a small lantern on the wooden veranda of a Japanese house facing a moss garden', ja: '苔庭に面した縁側に置かれた保温ボトル・リネンのトートバッグ・小型ランタン' },
   },
   beauty: {
     src: '/images/japan-launch/beauty.jpg', w: 1536, h: 1024,
-    alt: { en: 'Skincare tube, serum, lotion and cream jar on white stone by the water', ja: '水辺の白い石の上に並ぶ、チューブ・美容液・化粧水・クリームのスキンケア製品' },
+    alt: { en: 'Skincare bottles and a cream jar on a hinoki wood tray beside a washi paper lamp and a maple branch', ja: '和紙の照明ともみじの枝のそば、ひのきのトレーに並ぶスキンケアボトルとクリーム' },
   },
   tokyo: {
     src: '/images/japan-launch/tokyo.jpg', w: 1536, h: 864,
-    alt: { en: 'Shoppers walking along a tree-lined shopping street in Tokyo at dusk', ja: '夕暮れの東京の並木道の商店街を歩く買い物客' },
+    alt: { en: 'Shoppers browsing gadgets and lifestyle goods on wooden shelves in a Japanese select shop with a red noren curtain', ja: '赤い暖簾のある日本のセレクトショップで、木の棚の雑貨やガジェットを見る買い物客' },
   },
   shoot: {
     src: '/images/japan-launch/shoot.jpg', w: 1536, h: 1024,
-    alt: { en: 'A creator presenting a gadget to a smartphone on a ring-light tripod for a short video', ja: 'リングライト付きの三脚に固定したスマートフォンに向けて、ガジェットを紹介するショート動画の撮影風景' },
+    alt: { en: 'A creator presenting a product to a smartphone on a tripod for a short video, in a Japanese room with shoji screens', ja: '障子のある和室で、三脚に固定したスマートフォンに向けて商品を紹介するショート動画の撮影風景' },
   },
   founder: {
     src: '/images/founder.jpg', w: 2752, h: 1536,

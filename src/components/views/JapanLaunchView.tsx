@@ -158,56 +158,46 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       <ScrollProgress />
       <Nav base={loc('/')} />
 
-      {/* 1. Hero：巨大な「JAPAN」×鳥居と海外の商品（参考PDFのトンマナ） */}
-      <section className="relative overflow-hidden bg-washi pt-24 pb-14 md:pt-32 md:pb-20">
-        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-x-0 bottom-0 h-1/3 opacity-70 [mask-image:linear-gradient(to_top,black,transparent)]" />
-        <p aria-hidden="true" className="writing-vertical absolute right-5 top-32 hidden font-mincho text-[15px] font-bold tracking-[0.5em] text-beni/80 lg:right-8 lg:block">
-          {hero.vertical}
-        </p>
-        <div className={`${container} relative`}>
-          <nav aria-label="breadcrumb" className="flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777]">
-            <Link href={loc('/')} className="transition-colors hover:text-beni">{breadcrumb.home[lang]}</Link>
-            <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
-            <span aria-current="page" className="text-sumi">{breadcrumb.here[lang]}</span>
-          </nav>
-          <p className="mt-6 font-inter text-[11px] font-medium uppercase tracking-[0.3em] text-beni md:text-[12px]">{hero.label}</p>
-
-          <div className="relative mt-4 md:mt-2">
-            <p aria-hidden="true" className="select-none text-center font-display text-[min(35vw,500px)] uppercase leading-[0.84] text-beni">
-              Japan
-            </p>
-            <div className="relative z-10 mx-auto -mt-[12vw] w-[70%] max-w-[640px] md:-mt-[min(20vw,286px)] md:w-[50%]">
-              <Image
-                src={hero.image.src}
-                alt={hero.image.alt[lang]}
-                width={hero.image.w}
-                height={hero.image.h}
-                priority
-                sizes="(min-width: 768px) 48vw, 80vw"
-                className="h-auto w-full drop-shadow-[0_24px_30px_rgba(29,27,26,0.18)]"
-              />
+      {/* 1. Hero：同じ商品を「海外の部屋｜日本の和室」で見せる左右分割の写真 */}
+      <section className="relative bg-washi pt-16 md:pt-[76px]">
+        <div className="lg:grid lg:min-h-[min(calc(100svh-76px),860px)] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+          {/* 写真（モバイルは上、デスクトップは右） */}
+          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/9] lg:order-2 lg:aspect-auto">
+            <Image src={hero.image.src} alt={hero.image.alt[lang]} fill priority sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover object-center" />
+            {/* 分割線の左右に「海外 → 日本」のラベル */}
+            <div aria-hidden="true" className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 md:bottom-8">
+              <span className="rounded-full bg-black/55 px-3.5 py-1.5 font-mincho text-[13px] font-bold tracking-[0.12em] text-white backdrop-blur-sm md:px-4 md:text-[15px]">{hero.split.abroad[lang]}</span>
+              <span className="text-[16px] font-bold text-white drop-shadow">→</span>
+              <span className="rounded-full bg-beni px-3.5 py-1.5 font-mincho text-[13px] font-bold tracking-[0.12em] text-white md:px-4 md:text-[15px]">{hero.split.japan[lang]}</span>
             </div>
           </div>
 
-          <div className="mt-8 grid gap-8 md:mt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end lg:gap-14">
-            <Reveal>
-              <h1 className={`font-mincho ${lang === 'ja' ? 'text-[clamp(25px,7vw,46px)]' : 'text-[clamp(30px,8vw,52px)]'} font-bold leading-[1.35] tracking-[0.02em] text-sumi`}>
+          <div className="relative flex flex-col justify-center px-6 py-10 md:px-10 md:py-14 lg:order-1 lg:py-20 lg:pl-14 lg:pr-12 xl:pl-[max(56px,calc((100vw-1360px)/2+56px))]">
+            <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-x-0 bottom-0 h-1/3 opacity-70 [mask-image:linear-gradient(to_top,black,transparent)]" />
+            <nav aria-label="breadcrumb" className="relative flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777] lg:absolute lg:top-8">
+              <Link href={loc('/')} className="transition-colors hover:text-beni">{breadcrumb.home[lang]}</Link>
+              <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
+              <span aria-current="page" className="text-sumi">{breadcrumb.here[lang]}</span>
+            </nav>
+            <Reveal className="relative mt-6 max-w-[620px] lg:mt-0">
+              <p className="flex items-center gap-4 text-beni">
+                <Hanko />
+                <span className="font-inter text-[11px] font-medium uppercase tracking-[0.3em] md:text-[12px]">{hero.label}</span>
+              </p>
+              <h1 className={`mt-6 font-mincho ${lang === 'ja' ? 'text-[clamp(26px,7vw,40px)] lg:text-[clamp(30px,2.7vw,44px)]' : 'text-[clamp(32px,8vw,52px)] lg:text-[clamp(36px,3.3vw,56px)]'} font-bold leading-[1.3] tracking-[0.02em] text-sumi`}>
                 {hero.h1[lang][0]}
                 <br />
                 <span className="text-beni">{hero.h1[lang][1]}</span>
               </h1>
-              <p className={`mt-6 max-w-[40em] ${bodyClass}`}>{hero.sub[lang]}</p>
-            </Reveal>
-            <Reveal delay={0.08} className="flex flex-col items-start gap-4 lg:items-end lg:text-right">
-              <Hanko />
+              <p className={`mt-6 ${bodyClass}`}>{hero.sub[lang]}</p>
               <a
                 href={`#${FORM_ANCHOR}`}
-                className="group inline-flex items-center gap-3 rounded-sm bg-beni px-7 py-4 text-[14px] font-bold tracking-[0.06em] text-white transition-colors hover:bg-beni-deep"
+                className="group mt-8 inline-flex items-center gap-3 rounded-sm bg-beni px-7 py-4 text-[14px] font-bold tracking-[0.06em] text-white transition-colors hover:bg-beni-deep"
               >
                 {hero.cta[lang]}
                 <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
               </a>
-              <p className="max-w-[26em] text-[12.5px] leading-[1.8] tracking-[0.03em] text-[#6b625e]">{hero.note[lang]}</p>
+              <p className="mt-4 max-w-[30em] text-[12.5px] leading-[1.8] tracking-[0.03em] text-[#6b625e]">{hero.note[lang]}</p>
             </Reveal>
           </div>
         </div>
