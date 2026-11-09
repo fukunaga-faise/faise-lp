@@ -396,7 +396,6 @@ export const track = {
       alt: { en: 'Cyspera by scientis, a white skincare tube', ja: 'scientis の「シスペラ」（白いチューブのスキンケア製品）' } as L,
     },
   },
-  casesLabel: { en: 'Results from our marketing work in Japan', ja: '国内でのマーケティング実績' } as L,
 }
 
 export const faq = {

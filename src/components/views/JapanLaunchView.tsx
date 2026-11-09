@@ -7,9 +7,8 @@ import { Footer } from '@/components/CTA'
 import FaqList from '@/components/FaqList'
 import PageCurtain from '@/components/PageCurtain'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
-import { CountUp, Reveal, ScrollProgress } from '@/components/ui'
+import { Reveal, ScrollProgress } from '@/components/ui'
 import { display, mincho } from '@/lib/jl-fonts'
-import { cases } from '@/lib/cases'
 import { localizePath, type Lang } from '@/lib/locale'
 import { SITE_URL, ORG_ID } from '@/lib/site'
 import {
@@ -519,24 +518,6 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </div>
             </Reveal>
           </div>
-
-          <p className="mt-12 text-[13px] font-medium tracking-[0.06em] text-[#777]">{track.casesLabel[lang]}</p>
-          <ul className="mt-4 grid gap-4 md:grid-cols-3">
-            {cases.map((c) => (
-              <li key={c.slug} className="rounded-sm bg-washi px-5 py-6">
-                <p className="font-inter text-[11px] font-medium tracking-[0.22em] text-beni">{c.category}</p>
-                <p className="mt-1.5 text-[15px] font-medium">{c.title[lang]}</p>
-                <p className="mt-3 text-[12.5px] text-[#555]">{c.metric.label[lang]}</p>
-                <p className="mt-1 flex items-baseline gap-1 whitespace-nowrap">
-                  <span className="font-display text-[52px] leading-none text-beni">
-                    <CountUp to={c.metric.value} />
-                  </span>
-                  <span className="text-[17px] font-medium text-sumi">{c.metric.unit[lang]}</span>
-                </p>
-                {c.metric.sub && <p className="mt-1.5 text-[12.5px] text-[#555]">{c.metric.sub[lang]}</p>}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
