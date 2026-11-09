@@ -398,6 +398,34 @@ export const track = {
   },
 }
 
+// 代表の想い。事実は「幼少期にアメリカで7年間過ごした」のみ代表者から提供（2026-11-09）。情景描写は文章表現として作成。
+// TODO: 要確認 — 文面の最終確認（エピソードの具体性・言い回し）
+export const message = {
+  label: 'Message',
+  kanji: '想い',
+  h2: {
+    en: ['Great things from abroad,', 'for everyday life in Japan.'],
+    ja: ['海外の“いいもの”を、', '日本の暮らしへ。'],
+  } as LL,
+  body: {
+    ja: [
+      '私は幼少期の7年間を、アメリカで過ごしました。',
+      '言葉も習慣も違う場所で、毎日のように新しいものに出会いました。見たことのない道具や商品、その使い方。そこには、使う人の毎日を少しでも良くしようとする、つくり手の工夫と情熱がありました。',
+      '日本に戻ってから、何度も「あれは、日本にはないんだ」と感じました。世界には、まだ日本に届いていない素晴らしい商品がたくさんあります。',
+      '一方で、日本の消費者は品質や細部にとても厳しく、ただ翻訳して並べるだけでは選ばれません。だからこそ、商品の魅力を日本の言葉と文化で伝え直す役割が必要だと考えています。',
+      '海外で愛されているものを、日本でも愛されるものに。二つの国で育った私だからこそできる橋渡しで、つくり手と日本の生活者の両方に、新しい出会いを届けていきます。',
+    ],
+    en: [
+      'I spent seven years of my childhood in the United States.',
+      'In a place with a different language and different habits, I discovered something new almost every day — products, tools and ways of living I had never seen. Behind each of them was a maker’s care and passion to make someone’s day a little better.',
+      'After coming back to Japan, I kept thinking, “That doesn’t exist here.” There are so many wonderful products in the world that still haven’t reached Japan.',
+      'At the same time, Japanese consumers are demanding about quality and detail. Translating a product page is never enough. A brand’s story has to be retold in Japanese words and Japanese culture — and that is the role we take on.',
+      'To make what is loved abroad loved in Japan too. Having grown up between two countries, I want to be the bridge that brings new encounters to both the makers and the people of Japan.',
+    ],
+  } as LL,
+  signature: { en: 'Haruto Fukunaga, CEO, Faise Inc.', ja: '株式会社Faise 代表取締役　福永 遥斗' } as L,
+}
+
 export const faq = {
   label: 'FAQ',
   h2: { en: 'Frequently asked questions', ja: 'よくあるご質問' } as L,

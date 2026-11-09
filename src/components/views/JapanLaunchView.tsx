@@ -22,6 +22,7 @@ import {
   images,
   kanji,
   kanjiNumerals,
+  message,
   roles,
   faq,
   form,
@@ -466,56 +467,71 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
             </ul>
           </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            <Reveal>
-              {/* 写真は中央寄りで正方形〜4:3に切り抜く（元画像右下のマークが入らないように） */}
-              <div className="h-full overflow-hidden rounded-sm border border-[#e6e1da] sm:flex">
-                <div className="relative aspect-[4/3] bg-washi sm:aspect-auto sm:min-h-[260px] sm:w-[42%] sm:shrink-0">
-                  <Image src={images.founder.src} alt={images.founder.alt[lang]} fill sizes="(min-width: 640px) 25vw, 100vw" className="object-cover object-[50%_25%]" />
-                </div>
-                <div className="px-6 py-7 md:px-8">
-                  <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-beni">Founder</p>
-                  <p className="mt-2 font-mincho text-[19px] font-bold">{track.founder.name[lang]}</p>
-                  <ol className="mt-5 space-y-3">
-                    {track.founder.career.map((c) => (
-                      <li key={c.period} className="grid grid-cols-[6.5em_1fr] gap-3 text-[14.5px] leading-[1.7]">
-                        <span className="font-inter text-[13px] tracking-[0.06em] text-[#888]">{c.period}</span>
-                        <span className="text-[#222]">{c.org[lang]}</span>
-                      </li>
+          {/* 実績：海外ブランドの日本展開（シスペラ） */}
+          <Reveal className="mt-12">
+            <div className="overflow-hidden rounded-sm bg-beni text-white sm:flex">
+              <div className="flex items-center justify-center bg-white px-6 py-6 sm:w-[32%] sm:shrink-0 lg:w-[26%]">
+                <Image
+                  src={track.featured.image.src}
+                  alt={track.featured.image.alt[lang]}
+                  width={track.featured.image.w}
+                  height={track.featured.image.h}
+                  sizes="160px"
+                  className="h-[220px] w-auto object-contain sm:h-[260px]"
+                />
+              </div>
+              <div className="relative flex items-center px-6 py-8 md:px-10">
+                <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+                <div className="relative max-w-[640px]">
+                  <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">
+                    {track.featured.label[lang]} — {track.featured.brand}
+                  </p>
+                  <h3 className="mt-2 font-mincho text-[21px] font-bold leading-[1.5] md:text-[24px]">{track.featured.title[lang]}</h3>
+                  <p className="mt-3 text-[14.5px] leading-[1.95] text-white/90">{track.featured.body[lang]}</p>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {track.featured.tags.map((t) => (
+                      <li key={t.en} className="rounded-full border border-white/40 px-3 py-1 text-[12px] tracking-[0.04em] text-white">{t[lang]}</li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 代表の想い */}
+      <section className={`${section} relative bg-washi`}>
+        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-50" overlay="bg-gradient-to-r from-washi via-washi/80 to-washi/60" />
+        <div className={`${container} relative`}>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
+            <Reveal>
+              {/* 写真は中央寄りに縦長で切り抜く（元画像右下のマークが入らないように） */}
+              <div className="relative aspect-[4/5] max-w-[440px] overflow-hidden bg-white">
+                <Image src={images.founder.src} alt={images.founder.alt[lang]} fill sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover object-[50%_30%]" />
+              </div>
+              <div className="mt-6 max-w-[440px]">
+                <p className="font-mincho text-[19px] font-bold">{track.founder.name[lang]}</p>
+                <ol className="mt-4 space-y-2.5">
+                  {track.founder.career.map((c) => (
+                    <li key={c.period} className="grid grid-cols-[6.5em_1fr] gap-3 text-[14px] leading-[1.7]">
+                      <span className="font-inter text-[13px] tracking-[0.06em] text-[#888]">{c.period}</span>
+                      <span className="text-[#222]">{c.org[lang]}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              {/* 実績：海外ブランドの日本展開（シスペラ） */}
-              <div className="h-full overflow-hidden rounded-sm bg-beni text-white sm:flex">
-                <div className="flex items-center justify-center bg-white px-6 py-6 sm:w-[38%] sm:shrink-0">
-                  <Image
-                    src={track.featured.image.src}
-                    alt={track.featured.image.alt[lang]}
-                    width={track.featured.image.w}
-                    height={track.featured.image.h}
-                    sizes="160px"
-                    className="h-[220px] w-auto object-contain sm:h-[240px]"
-                  />
-                </div>
-                <div className="relative px-6 py-7 md:px-8">
-                  <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
-                  <div className="relative">
-                    <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">
-                      {track.featured.label[lang]} — {track.featured.brand}
-                    </p>
-                    <h3 className="mt-2 font-mincho text-[20px] font-bold leading-[1.5]">{track.featured.title[lang]}</h3>
-                    <p className="mt-3 text-[14.5px] leading-[1.9] text-white/90">{track.featured.body[lang]}</p>
-                    <ul className="mt-5 flex flex-wrap gap-2">
-                      {track.featured.tags.map((t) => (
-                        <li key={t.en} className="rounded-full border border-white/40 px-3 py-1 text-[12px] tracking-[0.04em] text-white">{t[lang]}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+              <SecHead label={message.label} kanji={message.kanji} lines={message.h2[lang]} />
+              <div className="mt-8 space-y-5">
+                {message.body[lang].map((p, i) => (
+                  <p key={i} className={`${i === 0 ? 'font-mincho text-[18px] font-bold leading-[1.9] text-sumi md:text-[20px]' : 'text-[15px] leading-[2.1] tracking-[0.03em] text-[#444]'}`}>
+                    {p}
+                  </p>
+                ))}
               </div>
+              <p className="mt-8 text-right font-mincho text-[15px] font-bold tracking-[0.06em] text-sumi">{message.signature[lang]}</p>
             </Reveal>
           </div>
         </div>
