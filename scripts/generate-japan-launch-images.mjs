@@ -22,6 +22,12 @@ const images = [
   { file: 'lifestyle', ratio: '3:2', prompt: `Unbranded lifestyle products — a matte insulated bottle, a linen tote bag and a compact lantern — on the wooden engawa veranda of a Japanese house facing a small moss garden, ${common}` },
   { file: 'beauty', ratio: '3:2', prompt: `Unbranded frosted skincare bottles and a cream jar on a hinoki wood tray beside a Japanese washi paper lamp and a small ikebana branch, ${common}` },
   { file: 'tokyo', ratio: '16:9', prompt: `Inside a refined Japanese select shop with wooden shelves and noren curtain, a few shoppers browsing unbranded modern gadgets and lifestyle goods, faces not identifiable, shallow depth of field, ${common}` },
+  // セクション背景用（ページ上では半透明で重ねる）。低コントラスト・余白多め・人物なし
+  { file: 'bg-shoji', ratio: '3:2', prompt: `Soft shadows of bamboo leaves falling on a large white shoji paper screen, gentle morning light, very low contrast, mostly empty paper texture, subtle, suitable as a faint website background, no people, ${common}` },
+  { file: 'bg-path', ratio: '3:2', prompt: `A Japanese sumi-e ink wash painting of misty layered mountains and a winding path leading into the distance, on warm off-white washi paper, very sparse and airy with large empty areas, soft grey ink, subtle, suitable as a faint website background, no people` },
+  { file: 'bg-street', ratio: '3:2', prompt: `A traditional Japanese shopping street at dusk with indigo and red noren curtains and glowing paper lanterns, heavily out of focus with soft bokeh, low contrast, no readable signs, no people in focus, suitable as a faint website background, ${common}` },
+  { file: 'bg-garden', ratio: '3:2', prompt: `A quiet Japanese garden with a small arched wooden bridge over a pond in soft morning mist, muted tones, very low contrast, calm and spacious, no people, suitable as a faint website background, ${common}` },
+  { file: 'bg-torii', ratio: '3:2', prompt: `A long tunnel of vermilion torii gates in soft light, slightly out of focus, depth receding into the distance, no people, no writing on the gates, suitable as a faint website background, ${common}` },
   { file: 'shoot', ratio: '3:2', prompt: `Behind the scenes of a short-form vertical video shoot in a Japanese room with shoji screens: a smartphone on a small tripod with a soft light filming an unbranded gadget held by a creator's hands on a low wooden table, face out of frame, ${common}` },
 ]
 

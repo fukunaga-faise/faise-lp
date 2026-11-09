@@ -137,6 +137,16 @@ function SecHead({ label, kanji: k, lines, light = false, className = '' }: { la
   )
 }
 
+// セクション背景：和の写真を半透明で敷き、上から色のグラデーションを重ねて文字の読みやすさを保つ
+function SectionBg({ src, imgClass = '', overlay = '' }: { src: string; imgClass?: string; overlay?: string }) {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <Image src={src} alt="" fill sizes="100vw" className={`object-cover ${imgClass}`} />
+      {overlay && <div className={`absolute inset-0 ${overlay}`} />}
+    </div>
+  )
+}
+
 // 落款（はんこ）風のマーク
 function Hanko({ text = '上陸', className = '' }: { text?: string; className?: string }) {
   return (
@@ -235,7 +245,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 2. Problem */}
       <section className={`${section} relative bg-washi`}>
-        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-0 opacity-60" />
+        <SectionBg src="/images/japan-launch/bg-shoji.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-washi/80 via-washi/45 to-washi/85" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={problems.label} kanji={kanji.problems} lines={problems.h2[lang]} />
@@ -283,8 +293,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 4. How it works */}
-      <section className={`${section} bg-washi`}>
-        <div className={container}>
+      <section className={`${section} relative bg-washi`}>
+        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-70" overlay="bg-gradient-to-r from-washi via-washi/75 to-washi/45" />
+        <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={steps.label} kanji={kanji.steps} lines={steps.h2[lang]} />
             {steps.timeline && (
@@ -314,14 +325,15 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 5. Channels（販路） */}
-      <section className={`${section} bg-white`}>
-        <div className={container}>
+      <section className={`${section} relative bg-sumi`}>
+        <SectionBg src="/images/japan-launch/bg-street.jpg" imgClass="opacity-90" overlay="bg-gradient-to-b from-sumi/80 via-sumi/40 to-sumi/80" />
+        <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
-            <SecHead label={channels.label} kanji={kanji.channels} lines={channels.h2[lang]} />
+            <SecHead label={channels.label} kanji={kanji.channels} lines={channels.h2[lang]} light />
           </Reveal>
-          <ul className="mt-10 grid gap-px overflow-hidden rounded-sm border border-[#e6e1da] bg-[#e6e1da] md:mt-14 md:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-px overflow-hidden rounded-sm border border-white/15 bg-white/15 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
             {channels.items.map((c, i) => (
-              <li key={i} className="bg-white px-6 py-7">
+              <li key={i} className="bg-white/[0.94] px-6 py-7 backdrop-blur-sm">
                 <Reveal delay={i * 0.05}>
                   <p aria-hidden="true" className="font-mincho text-[15px] font-bold text-beni">{kanjiNumerals[i]}</p>
                   <h3 className="mt-2 font-mincho text-[19px] font-bold leading-[1.5]">{c.title[lang]}</h3>
@@ -405,7 +417,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 8. Partnership models */}
       <section className={`${section} relative bg-washi`}>
-        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-0 opacity-60" />
+        <SectionBg src="/images/japan-launch/bg-garden.jpg" imgClass="opacity-50" overlay="bg-gradient-to-b from-washi/85 via-washi/50 to-washi/80" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
@@ -536,7 +548,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 11. CTA + Form */}
       <section id={FORM_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-beni py-16 md:py-28">
-        <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+        <SectionBg src="/images/japan-launch/bg-torii.jpg" imgClass="opacity-80 mix-blend-multiply" overlay="bg-gradient-to-r from-beni-deep/80 via-beni/35 to-beni/55" />
         <p aria-hidden="true" className="pointer-events-none absolute -bottom-[0.12em] left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-display text-[clamp(120px,26vw,360px)] uppercase leading-none text-white/[0.06]">
           Japan
         </p>
