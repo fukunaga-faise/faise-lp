@@ -40,8 +40,8 @@ const t = {
     label: { ja: 'New — Japan Launch', en: 'New — Japan Launch' },
     title: { ja: '海外ブランドの日本上陸支援', en: 'Bring your product to Japan' },
     body: {
-      ja: '海外で実績のある商品を、検証からローンチ、販売拡大まで一気通貫で日本市場へ。',
-      en: 'For overseas brands with proven traction — from market validation to launch and scale in Japan.',
+      ja: '海外ブランドの日本展開を、ローカライズからインフルエンサー施策、販売拡大までマーケティングで支えます。',
+      en: 'We help overseas brands grow in Japan — localization, influencer promotion and sales expansion.',
     },
     cta: { ja: '詳しく見る', en: 'Learn more' },
   },

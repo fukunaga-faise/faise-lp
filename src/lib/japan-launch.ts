@@ -18,12 +18,12 @@ export const meta: Record<Lang, { title: string; description: string }> = {
   en: {
     title: 'Japan Launch | Bring Your Product to Japan — Faise Inc.',
     description:
-      'Japan Launch by Faise takes products that already sell overseas to Japanese consumers — market validation, localization, crowdfunding launch on Makuake and CAMPFIRE, influencer marketing, and e-commerce and retail expansion.',
+      'Japan Launch by Faise helps overseas brands grow in Japan. A team of Japan marketing specialists and working influencers handles localization, influencer promotion through our domestic network, and e-commerce and retail expansion — as your exclusive partner or your marketing agency.',
   },
   ja: {
     title: '海外ブランドの日本上陸支援 Japan Launch | 株式会社Faise',
     description:
-      '海外で実績のある商品を、日本の消費者に届ける。市場適合性の評価からローカライズ、Makuake・CAMPFIREでのクラウドファンディング、インフルエンサー施策、EC・小売展開までを一気通貫で支援します。',
+      '海外ブランドの日本展開を、マーケティングで支えます。日本市場のマーケティングに強いメンバーと現役インフルエンサーが在籍し、国内インフルエンサーのネットワークを活かしたプロモーションからEC・小売展開まで。独占契約・マーケティング代理の2つの形で支援します。',
   },
 }
 
@@ -39,24 +39,21 @@ export const hero = {
     w: 1536,
     h: 1024,
     alt: {
-      en: 'The same smart speaker shown twice: on the left in a brick-walled loft abroad, on the right on a low table in a Japanese tatami room with shoji screens',
-      ja: '同じスマートスピーカーを左右で比較した写真。左は海外のレンガ壁のロフト、右は障子のある日本の和室の座卓の上',
+      en: 'The same white skincare tube shown twice: on the left in a brick-walled loft abroad, on the right on a low table in a Japanese tatami room with shoji screens',
+      ja: '同じ白いスキンケアのチューブを左右で比較した写真。左は海外のレンガ壁のロフト、右は障子のある日本の和室の座卓の上',
     } as L,
   },
   split: { abroad: { en: 'Abroad', ja: '海外' } as L, japan: { en: 'Japan', ja: '日本' } as L },
   h1: { en: ['Proven abroad.', 'Launched in Japan.'], ja: ['海外で売れた商品を、', '日本でも売れる商品に。'] } as LL,
   sub: {
-    en: 'We take products that already sell overseas to Japanese consumers — from market validation and crowdfunding launch to influencer marketing and retail.',
-    ja: '海外で実績のある商品を、日本の消費者に届けるまでを一気通貫で。市場との相性の見極めから、クラウドファンディングでのローンチ、インフルエンサー施策、EC・小売への展開まで支援します。',
+    en: 'We help overseas brands grow in Japan. Our team of Japan marketing specialists and working influencers localizes your brand, gets it in front of Japanese consumers, and builds lasting sales.',
+    ja: '海外ブランドの日本展開を、マーケティングで支えます。日本市場のマーケティングに強いメンバーと現役インフルエンサーのチームが、ブランドの魅力を日本の消費者に届け、売上につなげます。',
   } as L,
   cta: { en: 'Get a free Japan Fit Check', ja: '無料で Japan Fit Check' } as L,
   note: {
-    en: 'For brands with traction on Kickstarter, Indiegogo, or their home market.',
-    ja: 'Kickstarter・Indiegogo や自国市場で販売実績のある海外ブランドが対象です。',
+    en: 'For overseas brands in beauty, lifestyle and gadgets.',
+    ja: '美容・ライフスタイル・ガジェットなど、海外ブランドの日本展開を支援しています。',
   } as L,
-  // ヒーロー図の出発点（海外）ラベル。プラットフォーム名のみでブランドロゴは使わない
-  origins: ['Kickstarter', 'Indiegogo', 'Home market'],
-  originsJa: ['Kickstarter', 'Indiegogo', '自国EC・小売'],
 }
 
 // 画像（public/images/japan-launch/*.jpg）は AI 生成のイメージ素材（実在の商品・ブランドではない）。
@@ -91,16 +88,16 @@ export const images: Record<'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoo
 
 export const audience = {
   label: 'Who it’s for',
-  h2: { en: ['Built for brands that', 'already sell abroad.'], ja: ['海外ですでに売れている', 'ブランドのために。'] } as LL,
+  h2: { en: ['For overseas brands', 'ready to grow in Japan.'], ja: ['日本で、ブランドを', '育てたい海外企業へ。'] } as LL,
   lead: {
-    en: 'Brands with traction on Kickstarter, Indiegogo, or in their home market — mainly in these categories.',
-    ja: 'Kickstarter・Indiegogo や自国市場で実績のあるブランドが対象です。主に次のカテゴリを支援します。',
+    en: 'We work with overseas brands that want to build their presence in Japan — mainly in these categories.',
+    ja: '日本でブランドを広げたい海外企業を支援しています。主に次のカテゴリの商品が対象です。',
   } as L,
   items: [
     {
-      img: 'gadgets' as const,
-      title: { en: 'Gadgets & hardware', ja: 'ガジェット・ハードウェア' },
-      body: { en: 'Consumer electronics and smart devices that need clear, detailed explanation for Japanese buyers.', ja: '機能や仕様を、日本の買い手に分かりやすく伝える必要がある家電・スマートデバイス。' },
+      img: 'beauty' as const,
+      title: { en: 'Beauty & skincare', ja: '美容・スキンケア' },
+      body: { en: 'Skincare and beauty brands for consumers who read ingredients and reviews closely.', ja: '成分やレビューをしっかり確認する日本の消費者に向けた、スキンケア・美容ブランド。' },
     },
     {
       img: 'lifestyle' as const,
@@ -108,9 +105,9 @@ export const audience = {
       body: { en: 'Everyday goods, outdoor and home products with a story worth telling.', ja: '日用品・アウトドア・インテリアなど、語れるストーリーのある商品。' },
     },
     {
-      img: 'beauty' as const,
-      title: { en: 'Beauty', ja: '美容' },
-      body: { en: 'Skincare and beauty products for consumers who read ingredients and reviews closely.', ja: '成分やレビューをしっかり確認する消費者に向けた、スキンケア・美容商品。' },
+      img: 'gadgets' as const,
+      title: { en: 'Gadgets & hardware', ja: 'ガジェット・ハードウェア' },
+      body: { en: 'Consumer electronics and smart devices that need clear, detailed explanation for Japanese buyers.', ja: '機能や仕様を、日本の買い手に分かりやすく伝える必要がある家電・スマートデバイス。' },
     },
   ],
 }
@@ -138,9 +135,9 @@ export const channels = {
   h2: { en: ['Where your product', 'can be sold in Japan.'], ja: ['日本で、あなたの商品が', '並ぶ場所。'] } as LL,
   items: [
     {
-      title: { en: 'Crowdfunding', ja: 'クラウドファンディング' },
-      names: 'Makuake / CAMPFIRE / Kibidango',
-      body: { en: 'Test demand, take pre-orders and build early reviews before you commit to inventory.', ja: '在庫を抱える前に需要を確かめ、先行予約と初期レビューを集めます。' },
+      title: { en: 'Influencers & social', ja: 'インフルエンサー・SNS' },
+      names: 'Instagram / TikTok / YouTube / X',
+      body: { en: 'Japanese creators from our own network introduce your brand in a way that feels native.', ja: '自社ネットワークの日本のクリエイターが、ブランドを自然なかたちで紹介します。' },
     },
     {
       title: { en: 'E-commerce marketplaces', ja: 'ECモール' },
@@ -153,9 +150,9 @@ export const channels = {
       body: { en: 'Using your Japanese sales record to open doors with retailers and wholesalers.', ja: '日本での販売実績をもとに、小売店・卸への展開を進めます。' },
     },
     {
-      title: { en: 'Influencers & social', ja: 'インフルエンサー・SNS' },
-      names: 'Instagram / TikTok / YouTube / X',
-      body: { en: 'Japanese creators and short-form video that spread the launch.', ja: '日本のクリエイターとショート動画で、ローンチを広げます。' },
+      title: { en: 'Crowdfunding', ja: 'クラウドファンディング' },
+      names: 'Makuake / CAMPFIRE',
+      body: { en: 'When it fits the product, a launch platform to build early buzz and reviews.', ja: '商品に合う場合は、話題づくりと初期レビューのためのローンチの場として活用します。' },
     },
   ] as { title: L; names: string | L; body: L }[],
 }
@@ -178,8 +175,8 @@ export const roles = {
     items: [
       { en: 'Japan Fit Check and launch strategy', ja: 'Japan Fit Check とローンチ戦略' },
       { en: 'Japanese concept, product pages and video', ja: '日本向けのコンセプト・商品ページ・動画' },
-      { en: 'Crowdfunding launch and operations', ja: 'クラウドファンディングの立ち上げ・運営' },
-      { en: 'Influencers, ads and expansion to e-commerce and retail', ja: 'インフルエンサー・広告、EC・小売への展開' },
+      { en: 'Influencer promotion through our domestic network', ja: '国内インフルエンサーのネットワークを活かしたプロモーション' },
+      { en: 'Ads and expansion to e-commerce and retail', ja: '広告運用、EC・小売への展開' },
       { en: 'Coordinating import, certification and logistics with partners', ja: '輸入・認証・物流のパートナー連携' },
     ] as L[],
   },
@@ -226,10 +223,10 @@ export const whyJapan = {
     {
       stat: undefined as string | undefined,
       source: undefined as string | undefined,
-      title: { en: 'Launch platforms built for new products', ja: '新商品のためのローンチの場がある' },
+      title: { en: 'Discovery driven by creators', ja: 'クリエイター発で、商品が見つかる' },
       body: {
-        en: 'Crowdfunding platforms such as Makuake, CAMPFIRE and Kibidango let you test demand and take pre-orders before committing to inventory.',
-        ja: 'Makuake・CAMPFIRE・Kibidango などのクラウドファンディングで、在庫を抱える前に需要を確かめ、先行予約を集められます。',
+        en: 'Japanese consumers often discover new products through Instagram, TikTok and YouTube creators they trust.',
+        ja: '日本の消費者は、信頼するクリエイターのInstagram・TikTok・YouTubeを通じて新しい商品に出会っています。',
       },
     },
     {
@@ -246,7 +243,7 @@ export const whyJapan = {
 
 export const steps = {
   label: 'How it works',
-  h2: { en: ['From overseas traction', 'to a Japan launch, in five steps.'], ja: ['海外での実績を、', '5つのステップで日本の売上に。'] } as LL,
+  h2: { en: ['From your brand abroad', 'to sales in Japan, in five steps.'], ja: ['海外のブランドを、', '5つのステップで日本の売上に。'] } as LL,
   // TODO: 要確認 — タイムラインの目安（例：「最初のローンチまで約90日」）。確定するまで表示しない場合は null にする
   timeline: { en: 'First launch in ~90 days', ja: '最初のローンチまで約90日が目安' } as L | null,
   items: [
@@ -265,17 +262,17 @@ export const steps = {
       },
     },
     {
-      title: { en: 'Crowdfunding Launch', ja: 'クラウドファンディングでローンチ' },
+      title: { en: 'Influencer & Content', ja: 'インフルエンサー・コンテンツ' },
       body: {
-        en: 'We launch on Makuake, CAMPFIRE or Kibidango to test sales and secure pre-orders.',
-        ja: 'Makuake・CAMPFIRE・Kibidango でテスト販売を行い、先行予約を獲得します。',
+        en: 'Creators from our network — including influencers on our own team — show your product the way Japanese consumers respond to.',
+        ja: 'チームの現役インフルエンサーを含む自社ネットワークのクリエイターが、日本の消費者に響く見せ方で商品を紹介します。',
       },
     },
     {
-      title: { en: 'Influencer & Content', ja: 'インフルエンサー・コンテンツ' },
+      title: { en: 'Launch', ja: 'ローンチ' },
       body: {
-        en: 'We cast Japanese influencers and produce short-form video to spread the launch.',
-        ja: '日本のインフルエンサー起用とショート動画で、ローンチを広げます。',
+        en: 'We launch in the channel that fits — e-commerce, select retail, or a launch platform — and turn buzz into first sales.',
+        ja: 'EC・小売・ローンチ向けプラットフォームなど、商品に合う場所で販売を始め、話題を最初の売上につなげます。',
       },
     },
     {
@@ -303,7 +300,7 @@ export const scope = {
     { name: { en: 'Localization of concept & messaging', ja: 'コンセプト・訴求のローカライズ' }, by: 'faise' },
     { name: { en: 'Content & video production', ja: 'コンテンツ・動画制作' }, by: 'faise' },
     { name: { en: 'Influencer casting', ja: 'インフルエンサーのキャスティング' }, by: 'faise' },
-    { name: { en: 'Crowdfunding page & operations', ja: 'クラウドファンディングのページ制作・運営' }, by: 'faise' },
+    { name: { en: 'Promotion through our influencer network', ja: '自社ネットワークのインフルエンサーによるプロモーション' }, by: 'faise' },
     { name: { en: 'Ads', ja: '広告運用' }, by: 'faise' },
     { name: { en: 'E-commerce & retail expansion', ja: 'EC・小売への展開' }, by: 'faise' },
     { name: { en: 'Import', ja: '輸入' }, by: 'partner' },
@@ -313,47 +310,39 @@ export const scope = {
   ] as ScopeItem[],
 }
 
-// 契約形態。TODO: 要確認 — 名称・内容とも仮。価格は表示しない
+// 協業の形は2つ（独占契約／マーケティング代理）。価格は表示しない
+// TODO: 要確認 — 独占契約で Faise が在庫の仕入れまで行うかどうか（現状は「販売とマーケティングを担う」とだけ記載）
 export const models = {
-  label: 'Partnership models',
-  h2: { en: ['Choose how', 'we work together.'], ja: ['ブランドの状況に合わせて、', '組み方を選べます。'] } as LL,
+  label: 'Ways to work together',
+  h2: { en: ['Two ways', 'to work together.'], ja: ['協業の形は、', '2つから選べます。'] } as LL,
   note: {
     en: 'Terms are tailored to each brand. Tell us about your product and we’ll suggest the best fit.',
     ja: '条件はブランドごとに個別にご提案します。まずは商品についてお聞かせください。',
   } as L,
   items: [
     {
-      name: 'Launch Partner',
-      title: { en: 'We run your launch, you own the business', ja: 'ローンチを代行し、事業はブランドが保有' },
+      name: 'Exclusive Partnership',
+      title: { en: 'Faise as your exclusive partner in Japan', ja: '独占契約：日本での展開をFaiseに一任' },
       body: {
-        en: 'Faise plans and runs the Japan launch for you on a service-fee basis.',
-        ja: 'Faiseが日本でのローンチを企画・実行します。代行報酬型の契約です。',
+        en: 'We take exclusive responsibility for your brand in Japan and drive both sales and marketing as a long-term partner.',
+        ja: '日本におけるブランド展開をFaiseが独占的に担い、販売とマーケティングの両面から長期的に育てます。',
       },
     },
     {
-      name: 'Exclusive Distributor',
-      title: { en: 'Faise buys and sells in Japan', ja: 'Faiseが日本で仕入れ・販売' },
+      name: 'Marketing Agency',
+      title: { en: 'Faise as your marketing team in Japan', ja: 'マーケティング代理：日本の集客をFaiseが代行' },
       body: {
-        en: 'Faise becomes your exclusive distributor in Japan, purchasing inventory and selling it locally.',
-        ja: 'Faiseが日本の独占販売代理店として、商品を仕入れて販売します。',
-      },
-    },
-    {
-      name: 'Revenue Share',
-      title: { en: 'Shared upside', ja: '成果を分け合う' },
-      body: {
-        en: 'We share in the revenue we help generate in Japan, aligning our incentives with yours.',
-        ja: '日本で生まれた売上をシェアする形で、ブランドと同じ目標に向かいます。',
+        en: 'You keep your current sales setup. We plan and run your marketing in Japan — localization, influencers, content and ads.',
+        ja: '販売体制はそのままに、日本でのマーケティング（ローカライズ・インフルエンサー・コンテンツ・広告）をFaiseが企画・実行します。',
       },
     },
   ] as { name: string; title: L; body: L }[],
 }
 
-// 実績・Why Faise。既存サイト掲載の事実と、依頼時に提供された事実のみ。ロゴ・お客様の声・架空の事例は入れない。
-// TODO: 要確認 — 海外ブランドの日本上陸の実績（事例・ロゴ・お客様の声）ができたら追加する
+// 実績・Why Faise。既存サイト掲載の事実と、代表者から提供された事実のみ。ロゴ・お客様の声・架空の事例は入れない。
 export const track = {
   label: 'Why Faise',
-  h2: { en: ['Japanese consumer marketing,', 'from people who’ve done it.'], ja: ['日本の消費者を動かしてきた', 'チームが、ローンチを担います。'] } as LL,
+  h2: { en: ['A team built for marketing', 'to Japanese consumers.'], ja: ['日本の消費者に届ける、', 'マーケティングのチーム。'] } as LL,
   founder: {
     name: { en: 'Haruto Fukunaga, CEO', ja: '代表取締役 福永 遥斗' } as L,
     career: [
@@ -362,31 +351,51 @@ export const track = {
       { period: '2025–', org: { en: 'Founded Faise Inc.', ja: '株式会社Faiseを設立' } },
     ] as { period: string; org: L }[],
   },
-  // TODO: 要確認 — イマーシブ・フォート東京の実績を「代表個人（刀在籍時）の経験」と「Faiseとしての実績」のどちらとして書くか、および表記の可否
-  launch: {
-    title: { en: 'Launch of Immersive Fort Tokyo', ja: 'イマーシブ・フォート東京のローンチ・集客' } as L,
-    points: [
-      { en: 'Collaborated with 100+ influencers for the launch', ja: '100名以上のインフルエンサーと協業' },
-      {
-        en: 'Partnered with travel platforms including Trip.com and Klook to bring in visitors from Japan and overseas',
-        ja: 'Trip.com・Klook など旅行プラットフォームと連携し、国内外から集客',
-      },
-    ] as L[],
-  },
   strengths: [
     {
-      title: { en: 'Japanese consumer marketing', ja: '日本の消費者向けマーケティング' },
-      body: { en: 'Marketing built at Sony and Katana Inc., focused on what makes Japanese consumers choose.', ja: 'ソニー、株式会社刀で培った、日本の消費者に選ばれるためのマーケティング。' },
+      title: { en: 'Japan marketing specialists', ja: '日本市場のマーケティングに強いメンバー' },
+      body: {
+        en: 'Our team is made up of marketers who specialize in Japanese consumers — what they look for, and what makes them choose.',
+        ja: '日本の消費者が何を見て、何を決め手に選ぶのか。日本市場のマーケティングを得意とするメンバーが多数在籍しています。',
+      },
     },
     {
-      title: { en: 'Influencers & short-form video', ja: 'インフルエンサー・ショート動画の制作力' },
-      body: { en: 'Casting, content production and ad use of influencer content, in-house.', ja: 'キャスティングからコンテンツ制作、広告活用までを自社で。' },
+      title: { en: 'Working influencers on the team', ja: '現役インフルエンサーが在籍' },
+      body: {
+        en: 'Some of our team are active influencers themselves, so we catch trends early and know how to show a product on Japanese social.',
+        ja: 'チームには現役で活動するインフルエンサーも在籍。トレンドの早いキャッチや、SNSで映える商品の見せ方を得意としています。',
+      },
     },
     {
-      title: { en: 'Launches that draw crowds', ja: '人を集めるローンチの実績' },
-      body: { en: 'From a new immersive theme park to beauty and fitness brands.', ja: '新しいイマーシブ・テーマパークから、美容・フィットネスまで。' },
+      title: { en: 'A wide domestic influencer network', ja: '国内インフルエンサーとの幅広いつながり' },
+      body: {
+        en: 'Through the team’s own connections we work with many influencers across Japan — ideal for promoting products like yours.',
+        ja: 'メンバー自身のつながりを含め、多くの国内インフルエンサーと連携。海外ブランドの商品プロモーションを得意としています。',
+      },
     },
   ] as { title: L; body: L }[],
+  // 海外ブランドの日本展開の実績（2026-11-09 代表者から提供）。
+  // TODO: 要確認 — Faiseの担当範囲・開始時期・契約形態・成果、ブランド名とロゴ/商品画像の掲載許諾、scientis の本社国（スイスと記載）
+  featured: {
+    label: { en: 'Case', ja: '実績' } as L,
+    brand: 'scientis',
+    product: { en: 'Cyspera', ja: 'Cyspera（シスペラ）' } as L,
+    title: { en: 'Bringing Cyspera by scientis to Japan', ja: 'scientis「シスペラ」の日本展開' } as L,
+    body: {
+      en: 'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis — bringing the brand to Japanese consumers through localization and influencer promotion.',
+      ja: 'スイスのスキンケアブランド scientis の「シスペラ」の日本展開を支援。ローカライズとインフルエンサーによるプロモーションで、日本の消費者にブランドを届けています。',
+    } as L,
+    tags: [
+      { en: 'Beauty & skincare', ja: '美容・スキンケア' },
+      { en: 'Japan expansion', ja: '日本展開' },
+    ] as L[],
+    image: {
+      src: '/images/japan-launch/case-cyspera.jpg',
+      w: 292,
+      h: 801,
+      alt: { en: 'Cyspera by scientis, a white skincare tube', ja: 'scientis の「シスペラ」（白いチューブのスキンケア製品）' } as L,
+    },
+  },
   casesLabel: { en: 'Results from our marketing work in Japan', ja: '国内でのマーケティング実績' } as L,
 }
 
@@ -413,8 +422,8 @@ export const faq = {
     {
       q: { en: 'Which product categories do you work with?', ja: 'どんな商品カテゴリに対応していますか？' },
       a: {
-        en: 'Mainly gadgets and hardware, lifestyle products and beauty. If your product is in another category, feel free to ask.',
-        ja: '主にガジェット・ハードウェア、ライフスタイル、美容の商品です。そのほかのカテゴリもお気軽にご相談ください。',
+        en: 'Mainly beauty and skincare, lifestyle products, and gadgets. If your product is in another category, feel free to ask.',
+        ja: '主に美容・スキンケア、ライフスタイル、ガジェットの商品です。そのほかのカテゴリもお気軽にご相談ください。',
       },
     },
     {
@@ -456,7 +465,7 @@ export const form = {
     email: { en: 'Email', ja: 'メールアドレス' },
     website: { en: 'Website', ja: 'Webサイト' },
     category: { en: 'Product category', ja: '商品カテゴリ' },
-    storeUrl: { en: 'Crowdfunding or store URL', ja: 'クラウドファンディング・ストアのURL' },
+    storeUrl: { en: 'Product or store URL', ja: '商品・ストアのURL' },
     markets: { en: 'Current markets', ja: '現在の販売国・地域' },
     timing: { en: 'Target launch timing', ja: '日本でのローンチ希望時期' },
     message: { en: 'Message', ja: 'ご相談内容' },
@@ -466,9 +475,9 @@ export const form = {
     message: { en: 'Anything we should know about your product or goals in Japan', ja: '商品の特徴や、日本での目標などをお聞かせください' },
   } as Record<string, L>,
   categories: [
-    { value: 'gadgets', label: { en: 'Gadgets & hardware', ja: 'ガジェット・ハードウェア' } },
+    { value: 'beauty', label: { en: 'Beauty & skincare', ja: '美容・スキンケア' } },
     { value: 'lifestyle', label: { en: 'Lifestyle', ja: 'ライフスタイル' } },
-    { value: 'beauty', label: { en: 'Beauty', ja: '美容' } },
+    { value: 'gadgets', label: { en: 'Gadgets & hardware', ja: 'ガジェット・ハードウェア' } },
     { value: 'other', label: { en: 'Other', ja: 'その他' } },
   ],
   timings: [

@@ -80,7 +80,7 @@ const buildLd = (lang: Lang) => {
         areaServed: { '@type': 'Country', name: lang === 'ja' ? '日本' : 'Japan' },
         audience: {
           '@type': 'BusinessAudience',
-          name: lang === 'ja' ? '海外で販売実績のある消費者向けブランド' : 'Overseas consumer brands with proven traction',
+          name: lang === 'ja' ? '日本展開を目指す海外の消費者向けブランド' : 'Overseas consumer brands expanding into Japan',
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
@@ -410,7 +410,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
           <Reveal className="max-w-3xl">
             <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
           </Reveal>
-          <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-6">
+          <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 md:gap-6">
             {models.items.map((m, i) => (
               <li key={m.name}>
                 <Reveal delay={i * 0.06} className="h-full">
@@ -475,19 +475,32 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="relative h-full overflow-hidden rounded-sm bg-beni px-6 py-7 text-white md:px-8">
-                <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
-                <div className="relative">
-                  <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">Launch</p>
-                  <p className="mt-2 font-mincho text-[19px] font-bold">{track.launch.title[lang]}</p>
-                  <ul className="mt-5 space-y-3">
-                    {track.launch.points.map((p) => (
-                      <li key={p.en} className="flex gap-3 text-[14.5px] leading-[1.8] text-white/95">
-                        <Check size={17} strokeWidth={2} aria-hidden="true" className="mt-[0.25em] shrink-0" />
-                        {p[lang]}
-                      </li>
-                    ))}
-                  </ul>
+              {/* 実績：海外ブランドの日本展開（シスペラ） */}
+              <div className="h-full overflow-hidden rounded-sm bg-beni text-white sm:flex">
+                <div className="flex items-center justify-center bg-white px-6 py-6 sm:w-[38%] sm:shrink-0">
+                  <Image
+                    src={track.featured.image.src}
+                    alt={track.featured.image.alt[lang]}
+                    width={track.featured.image.w}
+                    height={track.featured.image.h}
+                    sizes="160px"
+                    className="h-[220px] w-auto object-contain sm:h-[240px]"
+                  />
+                </div>
+                <div className="relative px-6 py-7 md:px-8">
+                  <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+                  <div className="relative">
+                    <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">
+                      {track.featured.label[lang]} — {track.featured.brand}
+                    </p>
+                    <h3 className="mt-2 font-mincho text-[20px] font-bold leading-[1.5]">{track.featured.title[lang]}</h3>
+                    <p className="mt-3 text-[14.5px] leading-[1.9] text-white/90">{track.featured.body[lang]}</p>
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {track.featured.tags.map((t) => (
+                        <li key={t.en} className="rounded-full border border-white/40 px-3 py-1 text-[12px] tracking-[0.04em] text-white">{t[lang]}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </Reveal>
