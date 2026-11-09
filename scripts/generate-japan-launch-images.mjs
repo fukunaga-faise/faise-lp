@@ -20,6 +20,25 @@ const images = [
   { file: 'launch', ratio: '16:9', prompt: `An unbranded premium product shipping box being opened on a white table, with a soft-focus Tokyo skyline at dusk through a large window behind, sense of arrival, ${common}` },
 ]
 
+// 背景透過の切り抜き素材（ヒーロー用）。OpenAI のみ・PNG のまま保存する
+const cutouts = [
+  {
+    file: 'hero-torii',
+    prompt:
+      'Real documentary photograph of an authentic wooden Japanese shrine torii gate freshly maintained with smooth satin vermilion lacquer (deep red-orange, slightly muted), faint wood grain visible under the paint, like a well-kept city shrine in Tokyo, black kasagi top beam, photographed straight-on with a 50mm lens, and in front of it on the ground a small arranged group of unbranded overseas products: a premium white product shipping box, a sleek white wireless earbuds case, a minimal smart speaker and a frosted skincare bottle. Isolated cutout on a fully transparent background, no ground plane, only a very soft contact shadow under the objects, no text, no logos, no brand names, high-end editorial product photography, natural materials and real textures (not a 3D render), crisp clean edges, soft even daylight, centered, the whole gate visible with margin around it',
+  },
+]
+
+async function generateCutout(prompt) {
+  const res = await fetch('https://api.openai.com/v1/images/generations', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
+    body: JSON.stringify({ model: 'gpt-image-1.5', prompt, size: '1536x1024', quality: 'high', background: 'transparent', output_format: 'png', n: 1 }),
+  })
+  if (!res.ok) throw new Error(`${res.status}: ${(await res.text()).slice(0, 300)}`)
+  return Buffer.from((await res.json()).data[0].b64_json, 'base64')
+}
+
 // OpenAI（IMAGE_PROVIDER=openai）。横長は 1536x1024 で生成してから切り抜く
 async function generateOpenAI(prompt) {
   const res = await fetch('https://api.openai.com/v1/images/generations', {
@@ -64,6 +83,18 @@ for (const img of images.filter((i) => !only.length || only.includes(i.file))) {
   try {
     const raw = await generate(img.prompt, img.ratio)
     await sharp(raw).resize({ width: 1600, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(path.join(out, `${img.file}.jpg`))
+    console.log('ok')
+  } catch (e) {
+    console.log(`failed: ${e.message}`)
+  }
+}
+
+// 切り抜き素材は余白をトリムして WebP（透過）で保存する
+for (const c of cutouts.filter((i) => only.includes(i.file))) {
+  process.stdout.write(`→ ${c.file} (cutout) ... `)
+  try {
+    const raw = await generateCutout(c.prompt)
+    await sharp(raw).trim().resize({ width: 1400, withoutEnlargement: true }).webp({ quality: 86, alphaQuality: 90 }).toFile(path.join(out, `${c.file}.webp`))
     console.log('ok')
   } catch (e) {
     console.log(`failed: ${e.message}`)

@@ -10,7 +10,7 @@ const empty = { name: '', company: '', email: '', website: '', category: '', sto
 type Key = keyof typeof empty
 
 const inputClass =
-  'w-full rounded-sm border border-[#e3e6ec] bg-white px-4 py-3.5 text-base text-[#0f0f0f] placeholder:text-[#aab] transition-colors focus:border-brand focus:outline-none'
+  'w-full rounded-sm border border-[#e3e6ec] bg-white px-4 py-3.5 text-base text-[#0f0f0f] placeholder:text-[#aab] transition-colors focus:border-beni focus:outline-none'
 const labelClass = 'mb-1.5 block text-[12.5px] font-medium tracking-[0.03em] text-[#555]'
 
 export default function JapanLaunchForm({ lang }: { lang: Lang }) {
@@ -45,14 +45,14 @@ export default function JapanLaunchForm({ lang }: { lang: Lang }) {
   if (status === 'success') {
     return (
       <div role="status" className="flex flex-col items-center gap-4 rounded-sm bg-white px-6 py-14 text-center">
-        <CheckCircle size={40} className="text-brand" aria-hidden="true" />
+        <CheckCircle size={40} className="text-beni" aria-hidden="true" />
         <p className="text-lg font-bold text-[#111]">{f.successTitle[lang]}</p>
         <p className="text-sm leading-relaxed text-[#666]">{f.successBody[lang]}</p>
       </div>
     )
   }
 
-  const req = <span className="text-brand"> *</span>
+  const req = <span className="text-beni"> *</span>
   const text = (k: Key, type = 'text', required = false, placeholder?: string, autoComplete?: string) => (
     <div>
       <label htmlFor={`jl-${k}`} className={labelClass}>
@@ -92,7 +92,7 @@ export default function JapanLaunchForm({ lang }: { lang: Lang }) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="group mt-1 inline-flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy px-8 py-4 text-[14px] font-bold tracking-[0.06em] text-white transition-shadow hover:shadow-[0_10px_28px_-10px_rgba(37,99,214,0.7)] disabled:opacity-60 sm:col-span-2"
+        className="group mt-1 inline-flex items-center justify-center gap-3 rounded-sm bg-beni px-8 py-4 text-[14px] font-bold tracking-[0.06em] text-white transition-colors hover:bg-beni-deep disabled:opacity-60 sm:col-span-2"
       >
         {status === 'loading' ? (
           <><Loader2 size={15} className="animate-spin" aria-hidden="true" /> {f.sending[lang]}</>

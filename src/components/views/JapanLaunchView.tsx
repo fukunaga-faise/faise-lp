@@ -7,8 +7,8 @@ import { Footer } from '@/components/CTA'
 import FaqList from '@/components/FaqList'
 import PageCurtain from '@/components/PageCurtain'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
-import JapanLaunchVisual from '@/components/JapanLaunchVisual'
-import { CountUp, Label, Reveal, ScrollProgress } from '@/components/ui'
+import { CountUp, Reveal, ScrollProgress } from '@/components/ui'
+import { display, mincho } from '@/lib/jl-fonts'
 import { cases } from '@/lib/cases'
 import { localizePath, type Lang } from '@/lib/locale'
 import { SITE_URL, ORG_ID } from '@/lib/site'
@@ -19,7 +19,11 @@ import {
   SERVICE_NAME,
   audience,
   breadcrumb,
+  channels,
   images,
+  kanji,
+  kanjiNumerals,
+  roles,
   faq,
   form,
   hero,
@@ -39,7 +43,7 @@ const languages = { en: JAPAN_LAUNCH_PATH_EN, ja: JAPAN_LAUNCH_PATH, 'x-default'
 export function japanLaunchMetadata(lang: Lang): Metadata {
   const m = meta[lang]
   const path = pathFor(lang)
-  // 生成: node scripts/generate-og.mjs japan-launch.jpg japan-launch-en.jpg
+  // 生成: node scripts/generate-og-japan-launch.mjs
   const og = lang === 'ja' ? '/og/japan-launch.jpg' : '/og/japan-launch-en.jpg'
   return {
     title: m.title,
@@ -107,17 +111,38 @@ const buildLd = (lang: Lang) => {
 // ui.tsx の container と同じ値。ui.tsx は 'use client' のため、サーバーコンポーネントから文字列定数を import すると
 // クライアント参照オブジェクトになってしまう。ここで同じ値を持つ
 const container = 'mx-auto w-full max-w-[1360px] px-6 md:px-10 lg:px-14'
-const h2Class ='mt-6 text-[clamp(22px,6vw,28px)] font-medium leading-[1.55] tracking-[0.02em] text-[#111] md:text-[clamp(26px,2.8vw,38px)]'
 const bodyClass = 'text-[14.5px] md:text-[15px] leading-[2] tracking-[0.03em] text-[#555]'
-const section = 'border-t border-[#ecebe7] py-14 md:py-24'
+const section = 'py-16 md:py-28'
+const cardShadow = 'shadow-[0_18px_40px_-30px_rgba(78,29,27,0.55)]'
 
-function H2({ lines }: { lines: string[] }) {
+// 和のトーンのセクション見出し：漢字（明朝・えんじ）＋英字ラベル＋明朝の見出し
+function SecHead({ label, kanji: k, lines, light = false, className = '' }: { label: string; kanji: string; lines: string[]; light?: boolean; className?: string }) {
   return (
-    <h2 className={h2Class}>
-      {lines[0]}
-      <br />
-      {lines[1]}
-    </h2>
+    <div className={className}>
+      <p className={`flex items-center gap-4 ${light ? 'text-white' : 'text-beni'}`}>
+        <span aria-hidden="true" className="font-mincho text-[30px] font-bold leading-none md:text-[36px]">{k}</span>
+        <span className={`h-px w-8 ${light ? 'bg-white/60' : 'bg-beni/50'}`} />
+        <span className="font-inter text-[11px] font-medium uppercase tracking-[0.28em] md:text-[12px]">{label}</span>
+      </p>
+      <h2 className={`mt-6 font-mincho text-[clamp(23px,6.2vw,30px)] font-bold leading-[1.55] tracking-[0.03em] md:text-[clamp(28px,3vw,42px)] ${light ? 'text-white' : 'text-sumi'}`}>
+        {lines[0]}
+        {lines[1] && (
+          <>
+            <br />
+            {lines[1]}
+          </>
+        )}
+      </h2>
+    </div>
+  )
+}
+
+// 落款（はんこ）風のマーク
+function Hanko({ text = '上陸', className = '' }: { text?: string; className?: string }) {
+  return (
+    <span aria-hidden="true" className={`inline-flex h-12 w-12 items-center justify-center rounded-[3px] border-2 border-shu font-mincho text-[14px] font-bold leading-[1.05] text-shu writing-vertical ${className}`}>
+      {text}
+    </span>
   )
 }
 
@@ -127,48 +152,62 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
   const partner = scope.items.filter((i) => i.by === 'partner')
 
   return (
-    <main className="bg-white text-[#111]">
+    <main className={`${display.variable} ${mincho.variable} bg-white text-sumi`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLd(lang)) }} />
       <PageCurtain />
       <ScrollProgress />
       <Nav base={loc('/')} />
 
-      {/* 1. Hero */}
-      <section className="relative overflow-hidden bg-white pt-28 pb-14 md:pt-40 md:pb-24">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div
-            className="faise-anim absolute -right-[18vmax] -top-[24vmax] h-[60vmax] w-[60vmax] rounded-full will-change-transform"
-            style={{ background: 'radial-gradient(circle at 50% 50%, rgba(31,172,224,.22) 0%, rgba(31,172,224,.08) 36%, rgba(31,172,224,0) 70%)', animation: 'faiseWashA 30s ease-in-out infinite' }}
-          />
-        </div>
+      {/* 1. Hero：巨大な「JAPAN」×鳥居と海外の商品（参考PDFのトンマナ） */}
+      <section className="relative overflow-hidden bg-washi pt-24 pb-14 md:pt-32 md:pb-20">
+        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-x-0 bottom-0 h-1/3 opacity-70 [mask-image:linear-gradient(to_top,black,transparent)]" />
+        <p aria-hidden="true" className="writing-vertical absolute right-5 top-32 hidden font-mincho text-[15px] font-bold tracking-[0.5em] text-beni/80 lg:right-8 lg:block">
+          {hero.vertical}
+        </p>
         <div className={`${container} relative`}>
-          <nav aria-label="breadcrumb" className="mb-8 flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777]">
-            <Link href={loc('/')} className="transition-colors hover:text-brand">{breadcrumb.home[lang]}</Link>
+          <nav aria-label="breadcrumb" className="flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777]">
+            <Link href={loc('/')} className="transition-colors hover:text-beni">{breadcrumb.home[lang]}</Link>
             <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
-            <span aria-current="page" className="text-[#111]">{breadcrumb.here[lang]}</span>
+            <span aria-current="page" className="text-sumi">{breadcrumb.here[lang]}</span>
           </nav>
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14">
+          <p className="mt-6 font-inter text-[11px] font-medium uppercase tracking-[0.3em] text-beni md:text-[12px]">{hero.label}</p>
+
+          <div className="relative mt-4 md:mt-2">
+            <p aria-hidden="true" className="select-none text-center font-display text-[min(35vw,500px)] uppercase leading-[0.84] text-beni">
+              Japan
+            </p>
+            <div className="relative z-10 mx-auto -mt-[12vw] w-[70%] max-w-[640px] md:-mt-[min(20vw,286px)] md:w-[50%]">
+              <Image
+                src={hero.image.src}
+                alt={hero.image.alt[lang]}
+                width={hero.image.w}
+                height={hero.image.h}
+                priority
+                sizes="(min-width: 768px) 48vw, 80vw"
+                className="h-auto w-full drop-shadow-[0_24px_30px_rgba(29,27,26,0.18)]"
+              />
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-8 md:mt-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end lg:gap-14">
             <Reveal>
-              <Label>{hero.label}</Label>
-              <h1 className={`mt-6 ${lang === 'ja' ? 'text-[clamp(25px,7.3vw,40px)]' : 'text-[clamp(30px,8.4vw,40px)]'} font-medium leading-[1.4] tracking-[0.01em] text-[#111] md:text-[clamp(40px,4.8vw,62px)]`}>
+              <h1 className={`font-mincho ${lang === 'ja' ? 'text-[clamp(25px,7vw,46px)]' : 'text-[clamp(30px,8vw,52px)]'} font-bold leading-[1.35] tracking-[0.02em] text-sumi`}>
                 {hero.h1[lang][0]}
                 <br />
-                <span className="text-brand-gradient">{hero.h1[lang][1]}</span>
+                <span className="text-beni">{hero.h1[lang][1]}</span>
               </h1>
-              <p className={`mt-7 max-w-[38em] ${bodyClass}`}>{hero.sub[lang]}</p>
+              <p className={`mt-6 max-w-[40em] ${bodyClass}`}>{hero.sub[lang]}</p>
+            </Reveal>
+            <Reveal delay={0.08} className="flex flex-col items-start gap-4 lg:items-end lg:text-right">
+              <Hanko />
               <a
                 href={`#${FORM_ANCHOR}`}
-                className="group mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy px-7 py-4 text-[14px] font-bold tracking-[0.04em] text-white transition-shadow hover:shadow-[0_10px_28px_-10px_rgba(37,99,214,0.7)]"
+                className="group inline-flex items-center gap-3 rounded-sm bg-beni px-7 py-4 text-[14px] font-bold tracking-[0.06em] text-white transition-colors hover:bg-beni-deep"
               >
                 {hero.cta[lang]}
                 <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
               </a>
-              <p className="mt-4 text-[12.5px] leading-[1.8] tracking-[0.03em] text-[#777]">{hero.note[lang]}</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="rounded-sm border border-[#ecebe7] bg-white/70 p-3 shadow-[0_24px_60px_-40px_rgba(20,24,92,0.5)] md:p-5">
-                <JapanLaunchVisual lang={lang} />
-              </div>
+              <p className="max-w-[26em] text-[12.5px] leading-[1.8] tracking-[0.03em] text-[#6b625e]">{hero.note[lang]}</p>
             </Reveal>
           </div>
         </div>
@@ -178,8 +217,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       <section className={`${section} bg-white`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <Label>{audience.label}</Label>
-            <H2 lines={audience.h2[lang]} />
+            <SecHead label={audience.label} kanji={kanji.audience} lines={audience.h2[lang]} />
             <p className={`mt-6 ${bodyClass}`}>{audience.lead[lang]}</p>
           </Reveal>
           <ul className="mt-10 grid gap-10 md:mt-14 md:grid-cols-3 md:gap-8">
@@ -188,18 +226,14 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               return (
                 <li key={a.img} className="group">
                   <Reveal delay={i * 0.06}>
-                    <div className="relative aspect-[3/2] overflow-hidden bg-[#f1f0ec]">
-                      <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-brand-sky to-brand transition-transform duration-500 group-hover:scale-x-100" />
-                      <Image
-                        src={img.src}
-                        alt={img.alt[lang]}
-                        width={img.w}
-                        height={img.h}
-                        sizes="(min-width: 768px) 33vw, 100vw"
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      />
+                    <div className="relative aspect-[3/2] overflow-hidden bg-washi">
+                      <span className="absolute bottom-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 bg-beni transition-transform duration-500 group-hover:scale-x-100" />
+                      <Image src={img.src} alt={img.alt[lang]} width={img.w} height={img.h} sizes="(min-width: 768px) 33vw, 100vw" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                     </div>
-                    <h3 className="mt-5 text-[18px] md:text-[19px] font-medium leading-[1.55] tracking-[0.03em] text-[#111]">{a.title[lang]}</h3>
+                    <p className="mt-5 flex items-baseline gap-3">
+                      <span aria-hidden="true" className="font-mincho text-[20px] font-bold text-beni">{kanjiNumerals[i]}</span>
+                      <span className="font-mincho text-[19px] font-bold leading-[1.55] tracking-[0.03em]">{a.title[lang]}</span>
+                    </p>
                     <p className="mt-2.5 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{a.body[lang]}</p>
                   </Reveal>
                 </li>
@@ -210,18 +244,18 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 2. Problem */}
-      <section className={`${section} bg-brand-tint`}>
-        <div className={container}>
+      <section className={`${section} relative bg-washi`}>
+        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-0 opacity-60" />
+        <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
-            <Label>{problems.label}</Label>
-            <H2 lines={problems.h2[lang]} />
+            <SecHead label={problems.label} kanji={kanji.problems} lines={problems.h2[lang]} />
           </Reveal>
           <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
             {problems.items.map((p, i) => (
               <li key={i}>
                 <Reveal delay={i * 0.06} className="h-full">
-                  <div className="h-full rounded-sm border-t-[3px] border-brand-sky bg-white px-5 py-6 shadow-[0_14px_32px_-26px_rgba(20,24,92,0.5)]">
-                    <p className="font-inter text-[28px] font-light leading-none text-brand-gradient">0{i + 1}</p>
+                  <div className={`h-full rounded-sm border-t-[3px] border-beni bg-white px-5 py-6 ${cardShadow}`}>
+                    <p aria-hidden="true" className="font-mincho text-[34px] font-bold leading-none text-beni">{kanjiNumerals[i]}</p>
                     <p className="mt-4 text-[15px] font-medium leading-[1.85] tracking-[0.02em] text-[#222]">{p[lang]}</p>
                   </div>
                 </Reveal>
@@ -236,28 +270,18 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         <div className={container}>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
             <Reveal>
-              <Label>{whyJapan.label}</Label>
-              <H2 lines={whyJapan.h2[lang]} />
-              <div className="mt-8 aspect-[16/9] overflow-hidden bg-[#f1f0ec]">
-                <Image
-                  src={images.tokyo.src}
-                  alt={images.tokyo.alt[lang]}
-                  width={images.tokyo.w}
-                  height={images.tokyo.h}
-                  sizes="(min-width: 1024px) 33vw, 100vw"
-                  className="h-full w-full object-cover"
-                />
+              <SecHead label={whyJapan.label} kanji={kanji.whyJapan} lines={whyJapan.h2[lang]} />
+              <div className="mt-8 aspect-[16/9] overflow-hidden bg-washi">
+                <Image src={images.tokyo.src} alt={images.tokyo.alt[lang]} width={images.tokyo.w} height={images.tokyo.h} sizes="(min-width: 1024px) 33vw, 100vw" className="h-full w-full object-cover" />
               </div>
             </Reveal>
             <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
               {whyJapan.items.map((w, i) => (
-                <li key={i} className="border-t border-[#ecebe7] pt-6">
+                <li key={i} className="border-t-2 border-beni/70 pt-6">
                   <Reveal delay={i * 0.06}>
                     {/* TODO: 出典確認 — 数字は出典付きで whyJapan.items[].stat / source に入れたときだけ表示する */}
-                    {w.stat && (
-                      <p className="font-inter text-[40px] font-light leading-none text-brand-gradient">{w.stat}</p>
-                    )}
-                    <h3 className="text-[17px] md:text-[18px] font-medium leading-[1.6] tracking-[0.03em] text-[#111]">{w.title[lang]}</h3>
+                    {w.stat && <p className="font-display text-[48px] leading-none text-beni">{w.stat}</p>}
+                    <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.6] tracking-[0.03em]">{w.title[lang]}</h3>
                     <p className="mt-3 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{w.body[lang]}</p>
                     {w.source && <p className="mt-2 text-[11.5px] text-[#888]">{w.source}</p>}
                   </Reveal>
@@ -269,32 +293,28 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 4. How it works */}
-      <section className={`${section} bg-brand-tint`}>
+      <section className={`${section} bg-washi`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <Label>{steps.label}</Label>
-            <H2 lines={steps.h2[lang]} />
+            <SecHead label={steps.label} kanji={kanji.steps} lines={steps.h2[lang]} />
             {steps.timeline && (
-              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-white px-4 py-1.5 text-[13px] font-medium tracking-[0.03em] text-brand-navy">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-brand-sky" />
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-beni/30 bg-white px-4 py-1.5 text-[13px] font-medium tracking-[0.03em] text-beni">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-shu" />
                 {steps.timeline[lang]}
               </p>
             )}
           </Reveal>
           <ol className="relative mt-10 grid gap-0 md:mt-14 lg:grid-cols-5 lg:gap-6">
-            {/* desktop connector */}
-            <span aria-hidden="true" className="absolute left-[22px] right-[calc(20%-22px)] top-[22px] hidden h-[2px] bg-gradient-to-r from-brand-sky via-brand to-brand-navy lg:block" />
+            <span aria-hidden="true" className="absolute left-[24px] right-[calc(20%-24px)] top-[24px] hidden h-[2px] bg-beni/40 lg:block" />
             {steps.items.map((s, i) => (
               <li key={i} className="relative flex gap-5 pb-8 last:pb-0 lg:block lg:pb-0">
-                {/* mobile connector */}
-                {i < steps.items.length - 1 && (
-                  <span aria-hidden="true" className="absolute bottom-0 left-[21px] top-[44px] w-[2px] bg-gradient-to-b from-brand-sky to-brand lg:hidden" />
-                )}
-                <span className="relative z-10 flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full border-2 border-brand bg-white font-inter text-[15px] font-semibold text-brand">
-                  {i + 1}
+                {i < steps.items.length - 1 && <span aria-hidden="true" className="absolute bottom-0 left-[23px] top-[48px] w-[2px] bg-beni/40 lg:hidden" />}
+                <span className="relative z-10 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[4px] bg-beni font-mincho text-[20px] font-bold text-white">
+                  <span aria-hidden="true">{kanjiNumerals[i]}</span>
+                  <span className="sr-only">{`Step ${i + 1}`}</span>
                 </span>
-                <Reveal delay={i * 0.06} className="pt-1.5 lg:pt-6">
-                  <h3 className="text-[17px] md:text-[18px] font-medium leading-[1.55] tracking-[0.02em] text-[#111]">{s.title[lang]}</h3>
+                <Reveal delay={i * 0.06} className="pt-2 lg:pt-6">
+                  <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.5] tracking-[0.02em]">{s.title[lang]}</h3>
                   <p className="mt-2.5 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{s.body[lang]}</p>
                 </Reveal>
               </li>
@@ -303,21 +323,41 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 5. What we handle */}
+      {/* 5. Channels（販路） */}
       <section className={`${section} bg-white`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <Label>{scope.label}</Label>
-            <H2 lines={scope.h2[lang]} />
+            <SecHead label={channels.label} kanji={kanji.channels} lines={channels.h2[lang]} />
+          </Reveal>
+          <ul className="mt-10 grid gap-px overflow-hidden rounded-sm border border-[#e6e1da] bg-[#e6e1da] md:mt-14 md:grid-cols-2 lg:grid-cols-4">
+            {channels.items.map((c, i) => (
+              <li key={i} className="bg-white px-6 py-7">
+                <Reveal delay={i * 0.05}>
+                  <p aria-hidden="true" className="font-mincho text-[15px] font-bold text-beni">{kanjiNumerals[i]}</p>
+                  <h3 className="mt-2 font-mincho text-[19px] font-bold leading-[1.5]">{c.title[lang]}</h3>
+                  <p className="mt-2 font-inter text-[12.5px] font-medium tracking-[0.04em] text-beni">{typeof c.names === 'string' ? c.names : c.names[lang]}</p>
+                  <p className="mt-3 text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{c.body[lang]}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 6. What we handle */}
+      <section className={`${section} bg-washi`}>
+        <div className={container}>
+          <Reveal className="max-w-3xl">
+            <SecHead label={scope.label} kanji={kanji.scope} lines={scope.h2[lang]} />
           </Reveal>
           <div className="mt-10 grid gap-5 md:mt-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
             <Reveal>
-              <div className="h-full rounded-sm bg-brand-tint px-5 py-6 md:px-8 md:py-8">
-                <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-brand">{scope.legend.faise[lang]}</p>
+              <div className={`h-full rounded-sm bg-white px-5 py-6 md:px-8 md:py-8 ${cardShadow}`}>
+                <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-beni">{scope.legend.faise[lang]}</p>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {faise.map((it) => (
                     <li key={it.name.en} className="flex gap-3 text-[15px] font-medium leading-[1.7] text-[#222]">
-                      <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0 text-brand" />
+                      <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0 text-beni" />
                       {it.name[lang]}
                     </li>
                   ))}
@@ -325,15 +365,15 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="h-full rounded-sm border border-dashed border-brand/40 px-5 py-6 md:px-8 md:py-8">
+              <div className="h-full rounded-sm border border-dashed border-beni/40 px-5 py-6 md:px-8 md:py-8">
                 <p className="flex items-center gap-2 font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-[#555]">
-                  <Handshake size={16} strokeWidth={1.5} aria-hidden="true" className="text-brand" />
+                  <Handshake size={16} strokeWidth={1.5} aria-hidden="true" className="text-beni" />
                   {scope.legend.partner[lang]}
                 </p>
                 <ul className="mt-5 grid gap-3">
                   {partner.map((it) => (
                     <li key={it.name.en} className="flex gap-3 text-[15px] leading-[1.7] text-[#333]">
-                      <span aria-hidden="true" className="mt-[0.7em] h-[6px] w-[6px] shrink-0 rounded-full border border-brand" />
+                      <span aria-hidden="true" className="mt-[0.7em] h-[6px] w-[6px] shrink-0 rounded-full border border-beni" />
                       {it.name[lang]}
                     </li>
                   ))}
@@ -344,56 +384,78 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 6. Partnership models */}
-      <section className={`${section} bg-brand-tint`}>
+      {/* 7. Roles（役割分担） */}
+      <section className={`${section} bg-white`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <Label>{models.label}</Label>
-            <H2 lines={models.h2[lang]} />
+            <SecHead label={roles.label} kanji={kanji.roles} lines={roles.h2[lang]} />
+          </Reveal>
+          <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-2">
+            {[roles.brand, roles.faise].map((r, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className={`relative h-full overflow-hidden rounded-sm px-6 py-7 md:px-8 ${i === 0 ? 'border border-[#e6e1da] bg-white' : 'bg-beni text-white'}`}>
+                  {i === 1 && <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />}
+                  <div className="relative">
+                    <h3 className={`font-mincho text-[20px] font-bold ${i === 0 ? 'text-sumi' : 'text-white'}`}>{r.title[lang]}</h3>
+                    <ul className="mt-5 space-y-3">
+                      {r.items.map((it) => (
+                        <li key={it.en} className={`flex gap-3 text-[15px] leading-[1.75] ${i === 0 ? 'text-[#333]' : 'text-white/95'}`}>
+                          <Check size={18} strokeWidth={2} aria-hidden="true" className={`mt-[0.2em] shrink-0 ${i === 0 ? 'text-beni' : 'text-white'}`} />
+                          {it[lang]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Partnership models */}
+      <section className={`${section} relative bg-washi`}>
+        <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-0 opacity-60" />
+        <div className={`${container} relative`}>
+          <Reveal className="max-w-3xl">
+            <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
           </Reveal>
           <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-6">
             {models.items.map((m, i) => (
               <li key={m.name}>
                 <Reveal delay={i * 0.06} className="h-full">
-                  <div className="flex h-full flex-col rounded-sm bg-white px-6 py-7 shadow-[0_18px_40px_-28px_rgba(20,24,92,0.5)]">
-                    <p className="font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-brand">{m.name}</p>
-                    <h3 className="mt-3 text-[18px] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">{m.title[lang]}</h3>
+                  <div className={`flex h-full flex-col rounded-sm border-t-[3px] border-beni bg-white px-6 py-7 ${cardShadow}`}>
+                    <p className="font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-beni">{m.name}</p>
+                    <h3 className="mt-3 font-mincho text-[19px] font-bold leading-[1.55] tracking-[0.02em]">{m.title[lang]}</h3>
                     <p className="mt-3 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{m.body[lang]}</p>
                   </div>
                 </Reveal>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-[13px] leading-[1.9] tracking-[0.03em] text-[#666]">{models.note[lang]}</p>
+          <p className="mt-6 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e]">{models.note[lang]}</p>
         </div>
       </section>
 
-      {/* 7. Why Faise / Track record */}
+      {/* 9. Why Faise / Track record */}
       <section className={`${section} bg-white`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <Label>{track.label}</Label>
-            <H2 lines={track.h2[lang]} />
+            <SecHead label={track.label} kanji={kanji.track} lines={track.h2[lang]} />
           </Reveal>
 
           <div className="mt-10 grid items-center gap-8 md:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
             <Reveal>
-              <div className="aspect-[3/2] overflow-hidden bg-[#f1f0ec]">
-                <Image
-                  src={images.shoot.src}
-                  alt={images.shoot.alt[lang]}
-                  width={images.shoot.w}
-                  height={images.shoot.h}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="h-full w-full object-cover"
-                />
+              <div className="aspect-[3/2] overflow-hidden bg-washi">
+                <Image src={images.shoot.src} alt={images.shoot.alt[lang]} width={images.shoot.w} height={images.shoot.h} sizes="(min-width: 1024px) 50vw, 100vw" className="h-full w-full object-cover" />
               </div>
             </Reveal>
             <ul className="grid gap-6">
               {track.strengths.map((s, i) => (
-                <li key={i} className="border-t border-[#ecebe7] pt-5 first:border-t-0 first:pt-0 lg:first:border-t lg:first:pt-5">
+                <li key={i} className="flex gap-4 border-t border-[#ece6df] pt-5 first:border-t-0 first:pt-0 lg:first:border-t lg:first:pt-5">
+                  <span aria-hidden="true" className="font-mincho text-[22px] font-bold leading-[1.3] text-beni">{kanjiNumerals[i]}</span>
                   <Reveal delay={i * 0.06}>
-                    <h3 className="text-[17px] md:text-[18px] font-medium leading-[1.6] tracking-[0.02em] text-[#111]">{s.title[lang]}</h3>
+                    <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.55] tracking-[0.02em]">{s.title[lang]}</h3>
                     <p className="mt-2 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{s.body[lang]}</p>
                   </Reveal>
                 </li>
@@ -404,42 +466,39 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
             <Reveal>
               {/* 写真は中央寄りで正方形〜4:3に切り抜く（元画像右下のマークが入らないように） */}
-              <div className="h-full overflow-hidden rounded-sm border border-[#ecebe7] sm:flex">
-                <div className="relative aspect-[4/3] bg-[#f1f0ec] sm:aspect-auto sm:min-h-[260px] sm:w-[42%] sm:shrink-0">
-                  <Image
-                    src={images.founder.src}
-                    alt={images.founder.alt[lang]}
-                    fill
-                    sizes="(min-width: 640px) 25vw, 100vw"
-                    className="object-cover object-[50%_25%]"
-                  />
+              <div className="h-full overflow-hidden rounded-sm border border-[#e6e1da] sm:flex">
+                <div className="relative aspect-[4/3] bg-washi sm:aspect-auto sm:min-h-[260px] sm:w-[42%] sm:shrink-0">
+                  <Image src={images.founder.src} alt={images.founder.alt[lang]} fill sizes="(min-width: 640px) 25vw, 100vw" className="object-cover object-[50%_25%]" />
                 </div>
                 <div className="px-6 py-7 md:px-8">
-                <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-brand">Founder</p>
-                <p className="mt-2 text-[17px] font-medium text-[#111]">{track.founder.name[lang]}</p>
-                <ol className="mt-5 space-y-3">
-                  {track.founder.career.map((c) => (
-                    <li key={c.period} className="grid grid-cols-[6.5em_1fr] gap-3 text-[14.5px] leading-[1.7]">
-                      <span className="font-inter text-[13px] tracking-[0.06em] text-[#888]">{c.period}</span>
-                      <span className="text-[#222]">{c.org[lang]}</span>
-                    </li>
-                  ))}
-                </ol>
+                  <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-beni">Founder</p>
+                  <p className="mt-2 font-mincho text-[19px] font-bold">{track.founder.name[lang]}</p>
+                  <ol className="mt-5 space-y-3">
+                    {track.founder.career.map((c) => (
+                      <li key={c.period} className="grid grid-cols-[6.5em_1fr] gap-3 text-[14.5px] leading-[1.7]">
+                        <span className="font-inter text-[13px] tracking-[0.06em] text-[#888]">{c.period}</span>
+                        <span className="text-[#222]">{c.org[lang]}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </div>
               </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <div className="h-full rounded-sm bg-gradient-to-br from-brand-sky via-brand to-brand-navy px-6 py-7 text-white md:px-8">
-                <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">Launch</p>
-                <p className="mt-2 text-[17px] font-medium">{track.launch.title[lang]}</p>
-                <ul className="mt-5 space-y-3">
-                  {track.launch.points.map((p) => (
-                    <li key={p.en} className="flex gap-3 text-[14.5px] leading-[1.8] text-white/95">
-                      <Check size={17} strokeWidth={2} aria-hidden="true" className="mt-[0.25em] shrink-0" />
-                      {p[lang]}
-                    </li>
-                  ))}
-                </ul>
+              <div className="relative h-full overflow-hidden rounded-sm bg-beni px-6 py-7 text-white md:px-8">
+                <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+                <div className="relative">
+                  <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">Launch</p>
+                  <p className="mt-2 font-mincho text-[19px] font-bold">{track.launch.title[lang]}</p>
+                  <ul className="mt-5 space-y-3">
+                    {track.launch.points.map((p) => (
+                      <li key={p.en} className="flex gap-3 text-[14.5px] leading-[1.8] text-white/95">
+                        <Check size={17} strokeWidth={2} aria-hidden="true" className="mt-[0.25em] shrink-0" />
+                        {p[lang]}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -447,15 +506,15 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
           <p className="mt-12 text-[13px] font-medium tracking-[0.06em] text-[#777]">{track.casesLabel[lang]}</p>
           <ul className="mt-4 grid gap-4 md:grid-cols-3">
             {cases.map((c) => (
-              <li key={c.slug} className="rounded-sm bg-brand-tint px-5 py-6">
-                <p className="font-inter text-[11px] font-medium tracking-[0.22em] text-brand">{c.category}</p>
-                <p className="mt-1.5 text-[15px] font-medium text-[#111]">{c.title[lang]}</p>
+              <li key={c.slug} className="rounded-sm bg-washi px-5 py-6">
+                <p className="font-inter text-[11px] font-medium tracking-[0.22em] text-beni">{c.category}</p>
+                <p className="mt-1.5 text-[15px] font-medium">{c.title[lang]}</p>
                 <p className="mt-3 text-[12.5px] text-[#555]">{c.metric.label[lang]}</p>
                 <p className="mt-1 flex items-baseline gap-1 whitespace-nowrap">
-                  <span className="font-inter text-[44px] font-light leading-none text-brand-gradient">
+                  <span className="font-display text-[52px] leading-none text-beni">
                     <CountUp to={c.metric.value} />
                   </span>
-                  <span className="text-[17px] font-medium text-brand-navy">{c.metric.unit[lang]}</span>
+                  <span className="text-[17px] font-medium text-sumi">{c.metric.unit[lang]}</span>
                 </p>
                 {c.metric.sub && <p className="mt-1.5 text-[12.5px] text-[#555]">{c.metric.sub[lang]}</p>}
               </li>
@@ -464,32 +523,34 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 8. FAQ */}
-      <section id="faq" className={`${section} bg-white`}>
+      {/* 10. FAQ */}
+      <section id="faq" className={`${section} bg-washi`}>
         <div className="mx-auto w-full max-w-[860px] px-6 md:px-10">
-          <Label>{faq.label}</Label>
-          <h2 className={h2Class}>{faq.h2[lang]}</h2>
-          <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" />
+          <SecHead label={faq.label} kanji={kanji.faq} lines={[faq.h2[lang]]} />
+          <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" divider="divide-[#ddd6cd] border-[#ddd6cd]" />
         </div>
       </section>
 
-      {/* 9. CTA + Form */}
-      <section id={FORM_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-gradient-to-br from-brand-sky via-brand to-brand-navy py-16 md:py-28">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div
-            className="faise-anim absolute -right-[10vmax] -top-[18vmax] h-[56vmax] w-[56vmax] rounded-full will-change-transform"
-            style={{ background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,.2) 0%, rgba(255,255,255,.06) 40%, rgba(255,255,255,0) 70%)', animation: 'faiseWashA 32s ease-in-out infinite' }}
-          />
-        </div>
-        <div className="relative mx-auto w-full max-w-[900px] px-4 md:px-10">
-          <div className="px-2 text-center">
-            <Label tone="light" className="justify-center">{form.label}</Label>
-            <h2 className="mt-6 text-[clamp(24px,6.4vw,30px)] font-medium leading-[1.5] tracking-[0.02em] text-white md:text-[clamp(28px,3vw,40px)]">{form.h2[lang]}</h2>
-            <p className="mx-auto mt-4 max-w-[34em] text-[14.5px] leading-[1.95] tracking-[0.03em] text-white/85">{form.lead[lang]}</p>
+      {/* 11. CTA + Form */}
+      <section id={FORM_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-beni py-16 md:py-28">
+        <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+        <p aria-hidden="true" className="pointer-events-none absolute -bottom-[0.12em] left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-display text-[clamp(120px,26vw,360px)] uppercase leading-none text-white/[0.06]">
+          Japan
+        </p>
+        <div className="relative mx-auto grid w-full max-w-[1120px] gap-10 px-4 md:px-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14">
+          <div className="px-2">
+            <SecHead label={form.label} kanji={kanji.form} lines={[form.h2[lang]]} light />
+            <p className="mt-4 max-w-[34em] text-[14.5px] leading-[1.95] tracking-[0.03em] text-white/85">{form.lead[lang]}</p>
+            <ul className="mt-8 space-y-3">
+              {form.assurances.map((a) => (
+                <li key={a.en} className="flex gap-3 text-[14.5px] leading-[1.7] text-white">
+                  <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0 text-white" />
+                  {a[lang]}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="mt-10">
-            <JapanLaunchForm lang={lang} />
-          </div>
+          <JapanLaunchForm lang={lang} />
         </div>
       </section>
 

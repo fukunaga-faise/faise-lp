@@ -31,6 +31,17 @@ export const breadcrumb = { home: { ja: 'ホーム', en: 'Home' }, here: { ja: '
 
 export const hero = {
   label: SERVICE_NAME,
+  // 縦書きのアクセント（装飾）
+  vertical: '日本上陸支援',
+  image: {
+    src: '/images/japan-launch/hero-torii.webp',
+    w: 1087,
+    h: 872,
+    alt: {
+      en: 'A vermilion torii gate with unbranded overseas products — a box, earbuds, a smart speaker and a skincare bottle — placed beneath it',
+      ja: '朱色の鳥居と、その下に並ぶ海外の商品（箱・イヤホン・スマートスピーカー・スキンケアボトル）',
+    } as L,
+  },
   h1: { en: ['Proven abroad.', 'Launched in Japan.'], ja: ['海外で売れた商品を、', '日本でも売れる商品に。'] } as LL,
   sub: {
     en: 'We take products that already sell overseas to Japanese consumers — from market validation and crowdfunding launch to influencer marketing and retail.',
@@ -100,6 +111,76 @@ export const audience = {
       body: { en: 'Skincare and beauty products for consumers who read ingredients and reviews closely.', ja: '成分やレビューをしっかり確認する消費者に向けた、スキンケア・美容商品。' },
     },
   ],
+}
+
+// 和のアクセント：各セクション見出しの英字ラベルに添える漢字（装飾。読み上げ対象外）
+export const kanji = {
+  audience: '対象',
+  problems: '課題',
+  whyJapan: '市場',
+  steps: '流れ',
+  scope: '範囲',
+  channels: '販路',
+  roles: '役割',
+  models: '契約',
+  track: '実績',
+  faq: '問答',
+  form: '相談',
+}
+export const kanjiNumerals = ['一', '二', '三', '四', '五', '六', '七', '八']
+
+// 販路（LEAGUE 等の競合LPを参考に追加）。プラットフォーム名は一般名称として記載。数字は出典付きのものだけ。
+// TODO: 要確認 — 各チャネルで実際に対応可能か（特に百貨店・専門店、展示会）
+export const channels = {
+  label: 'Channels',
+  h2: { en: ['Where your product', 'can be sold in Japan.'], ja: ['日本で、あなたの商品が', '並ぶ場所。'] } as LL,
+  items: [
+    {
+      title: { en: 'Crowdfunding', ja: 'クラウドファンディング' },
+      names: 'Makuake / CAMPFIRE / Kibidango',
+      body: { en: 'Test demand, take pre-orders and build early reviews before you commit to inventory.', ja: '在庫を抱える前に需要を確かめ、先行予約と初期レビューを集めます。' },
+    },
+    {
+      title: { en: 'E-commerce marketplaces', ja: 'ECモール' },
+      names: 'Amazon / Rakuten',
+      body: { en: 'Japanese product pages, reviews and ads to keep selling after the launch.', ja: '日本向けの商品ページ・レビュー・広告で、ローンチ後も売れ続ける状態をつくります。' },
+    },
+    {
+      title: { en: 'Retail & wholesale', ja: '小売・卸' },
+      names: { en: 'Specialty & lifestyle stores', ja: '専門店・ライフスタイルショップ' },
+      body: { en: 'Using your Japanese sales record to open doors with retailers and wholesalers.', ja: '日本での販売実績をもとに、小売店・卸への展開を進めます。' },
+    },
+    {
+      title: { en: 'Influencers & social', ja: 'インフルエンサー・SNS' },
+      names: 'Instagram / TikTok / YouTube / X',
+      body: { en: 'Japanese creators and short-form video that spread the launch.', ja: '日本のクリエイターとショート動画で、ローンチを広げます。' },
+    },
+  ] as { title: L; names: string | L; body: L }[],
+}
+
+// 役割分担。TODO: 要確認 — 契約形態（models）によって変わるため、確定したら内容を調整する
+export const roles = {
+  label: 'Roles',
+  h2: { en: ['You make it.', 'We take it to Japan.'], ja: ['つくるのは、ブランド。', '日本に届けるのは、Faise。'] } as LL,
+  brand: {
+    title: { en: 'Your side', ja: 'ブランドの役割' } as L,
+    items: [
+      { en: 'Product development and manufacturing', ja: '商品の開発・製造' },
+      { en: 'Supplying products for Japan', ja: '日本向けの商品供給' },
+      { en: 'Product information, specs and existing assets (images, video)', ja: '商品情報・仕様・既存素材（画像・動画）の提供' },
+      { en: 'Final decisions on pricing and brand', ja: '価格・ブランドに関する最終判断' },
+    ] as L[],
+  },
+  faise: {
+    title: { en: 'Faise’s side', ja: 'Faiseの役割' } as L,
+    items: [
+      { en: 'Japan Fit Check and launch strategy', ja: 'Japan Fit Check とローンチ戦略' },
+      { en: 'Japanese concept, product pages and video', ja: '日本向けのコンセプト・商品ページ・動画' },
+      { en: 'Crowdfunding launch and operations', ja: 'クラウドファンディングの立ち上げ・運営' },
+      { en: 'Influencers, ads and expansion to e-commerce and retail', ja: 'インフルエンサー・広告、EC・小売への展開' },
+      { en: 'Coordinating import, certification and logistics with partners', ja: '輸入・認証・物流のパートナー連携' },
+    ] as L[],
+  },
 }
 
 export const problems = {
@@ -394,6 +475,13 @@ export const form = {
     { value: '6-12m', label: { en: 'In 6–12 months', ja: '6〜12か月以内' } },
     { value: 'exploring', label: { en: 'Just exploring', ja: '情報収集中' } },
   ],
+  // フォーム横の安心材料。TODO: 要確認 — NDA締結の可否・英語対応の可否
+  assurances: [
+    { en: 'The Japan Fit Check is free', ja: 'Japan Fit Check は無料です' },
+    { en: 'NDA available on request', ja: 'ご希望に応じてNDAを締結します' },
+    { en: 'English is fine', ja: '英語でのやりとりも可能です' },
+    { en: 'A product link and a short overview are enough to start', ja: '商品URLと簡単な概要だけで始められます' },
+  ] as L[],
   select: { en: 'Select', ja: '選択してください' } as L,
   send: { en: 'Request my Japan Fit Check', ja: '申し込む' } as L,
   sending: { en: 'Sending...', ja: '送信中...' } as L,

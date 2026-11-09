@@ -14,21 +14,6 @@ const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 
 const pages = [
   {
-    file: 'japan-launch.jpg',
-    photo: 'public/images/japan-launch/launch.jpg',
-    eyebrow: 'JAPAN LAUNCH BY FAISE',
-    lines: ['海外ブランドの', '日本上陸支援'],
-    sub: ['検証からクラウドファンディング、', 'インフルエンサー、EC・小売展開まで。'],
-  },
-  {
-    file: 'japan-launch-en.jpg',
-    photo: 'public/images/japan-launch/launch.jpg',
-    eyebrow: 'JAPAN LAUNCH BY FAISE',
-    lines: ['Bring your product', 'to Japan.'],
-    sub: ['Proven abroad, launched in Japan — from', 'crowdfunding to influencers and retail.'],
-    company: 'Faise Inc.',
-  },
-  {
     file: 'home.jpg',
     photo: 'public/images/redesign/hero-building.jpg',
     eyebrow: 'EXPERIENCE DESIGN MARKETING',
@@ -83,7 +68,7 @@ function overlay({ eyebrow, lines, sub, company = '株式会社Faise' }) {
 }
 
 await mkdir(out, { recursive: true })
-// 引数でファイル名を指定すると、その画像だけ作り直す（例: node scripts/generate-og.mjs japan-launch.jpg）
+// 引数でファイル名を指定すると、その画像だけ作り直す（例: node scripts/generate-og.mjs home.jpg）
 const only = process.argv.slice(2)
 for (const p of pages.filter((x) => !only.length || only.includes(x.file))) {
   const photo = await sharp(path.join(root, p.photo))
