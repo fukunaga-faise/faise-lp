@@ -40,7 +40,7 @@ function overlay(p) {
 }
 
 // 分割線（元画像の中央）が写真エリアの中央に来るように切り抜く
-const photo = await sharp(path.join(root, 'public/images/japan-launch/hero-split.jpg')).resize(W - PANEL, H, { fit: 'cover', position: 'centre' }).toBuffer()
+const photo = await sharp(path.join(root, 'public/images/japan-launch/hero-abroad-japan.jpg')).resize(W - PANEL, H, { fit: 'cover', position: 'centre' }).toBuffer()
 for (const p of pages) {
   await sharp({ create: { width: W, height: H, channels: 3, background: '#EEECE7' } })
     .composite([

@@ -347,8 +347,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 6. What we handle */}
-      <section className={`${section} bg-washi`}>
-        <div className={container}>
+      <section className={`${section} relative bg-washi`}>
+        <SectionBg src="/images/japan-launch/bg-kumiko.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-washi/85 via-washi/55 to-washi/85" />
+        <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={scope.label} kanji={kanji.scope} lines={scope.h2[lang]} />
           </Reveal>
@@ -387,8 +388,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 7. Roles（役割分担） */}
-      <section className={`${section} bg-white`}>
-        <div className={container}>
+      <section className={`${section} relative bg-white`}>
+        <SectionBg src="/images/japan-launch/bg-tea.jpg" imgClass="opacity-40" overlay="bg-gradient-to-b from-white/85 via-white/50 to-white/85" />
+        <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={roles.label} kanji={kanji.roles} lines={roles.h2[lang]} />
           </Reveal>

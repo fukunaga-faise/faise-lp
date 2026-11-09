@@ -35,12 +35,12 @@ export const hero = {
   vertical: '日本上陸支援',
   // 左右分割の写真：左が海外の部屋、右が日本の和室に置かれた同じ商品（AI生成のイメージ素材）
   image: {
-    src: '/images/japan-launch/hero-split.jpg',
+    src: '/images/japan-launch/hero-abroad-japan.jpg',
     w: 1536,
     h: 1024,
     alt: {
-      en: 'The same white skincare tube shown twice: on the left in a brick-walled loft abroad, on the right on a low table in a Japanese tatami room with shoji screens',
-      ja: '同じ白いスキンケアのチューブを左右で比較した写真。左は海外のレンガ壁のロフト、右は障子のある日本の和室の座卓の上',
+      en: 'The same smart speaker shown twice: on the left in a brick-walled loft abroad, on the right on a low table in a Japanese tatami room with shoji screens',
+      ja: '同じスマートスピーカーを左右で比較した写真。左は海外のレンガ壁のロフト、右は障子のある日本の和室の座卓の上',
     } as L,
   },
   split: { abroad: { en: 'Abroad', ja: '海外' } as L, japan: { en: 'Japan', ja: '日本' } as L },

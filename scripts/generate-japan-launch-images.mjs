@@ -14,9 +14,9 @@ const common = 'no text, no letters, no logos, no brand names, no watermark, pho
 
 const images = [
   {
-    file: 'hero-split',
+    file: 'hero-abroad-japan',
     ratio: '3:2',
-    prompt: `A split-screen diptych photograph divided exactly in the middle by a thin vertical line. Left half: an unbranded plain white skincare cream tube (no printing at all) standing upright on its cap on a pale desk in a moody western loft studio with dark brick wall and steel-framed window, dim light, the product placed near the center line, the left part of the left half mostly dark empty wall. Right half: the exact same white skincare tube, same size and same camera angle, standing upright on a low dark wooden table in a bright Japanese tatami room with shoji screens, a small ikebana branch and a ceramic tea cup beside it, soft warm daylight. ${common}`,
+    prompt: `A split-screen diptych photograph divided exactly in the middle by a thin vertical line. Left half: an unbranded white cylindrical smart speaker on a pale desk in a moody western loft studio with dark brick wall and steel-framed window, dim light, the product placed near the center line, the left part of the left half mostly dark empty wall. Right half: the exact same product, same size and same camera angle, on a low dark wooden table in a bright Japanese tatami room with shoji screens, a cast-iron teapot and a ceramic tea cup beside it, soft warm daylight. ${common}`,
   },
   { file: 'gadgets', ratio: '3:2', prompt: `An unbranded white wireless earbuds case and a small minimal smart device on a low wooden table in a Japanese room with shoji screens behind, a ceramic tea cup nearby, ${common}` },
   { file: 'lifestyle', ratio: '3:2', prompt: `Unbranded lifestyle products — a matte insulated bottle, a linen tote bag and a compact lantern — on the wooden engawa veranda of a Japanese house facing a small moss garden, ${common}` },
@@ -28,6 +28,8 @@ const images = [
   { file: 'bg-street', ratio: '3:2', prompt: `A traditional Japanese shopping street at dusk with indigo and red noren curtains and glowing paper lanterns, heavily out of focus with soft bokeh, low contrast, no readable signs, no people in focus, suitable as a faint website background, ${common}` },
   { file: 'bg-garden', ratio: '3:2', prompt: `A quiet Japanese garden with a small arched wooden bridge over a pond in soft morning mist, muted tones, very low contrast, calm and spacious, no people, suitable as a faint website background, ${common}` },
   { file: 'bg-torii', ratio: '3:2', prompt: `A long tunnel of vermilion torii gates in soft light, slightly out of focus, depth receding into the distance, no people, no writing on the gates, suitable as a faint website background, ${common}` },
+  { file: 'bg-kumiko', ratio: '3:2', prompt: `Close-up of a Japanese kumiko wooden lattice screen with intricate interlocking geometric pattern, soft warm backlight through paper, shallow depth of field, very low contrast, suitable as a faint website background, no people, ${common}` },
+  { file: 'bg-tea', ratio: '3:2', prompt: `A quiet Japanese tea room prepared for a tea ceremony: tatami mats, a kettle on the hearth, a tea bowl and whisk set for a guest, shoji light, calm and spacious with empty areas, no people, suitable as a faint website background, ${common}` },
   { file: 'shoot', ratio: '3:2', prompt: `Behind the scenes of a short-form vertical video shoot in a Japanese room with shoji screens: a smartphone on a small tripod with a soft light filming an unbranded gadget held by a creator's hands on a low wooden table, face out of frame, ${common}` },
 ]
 
