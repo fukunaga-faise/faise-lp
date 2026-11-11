@@ -213,8 +213,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 機会：日本という市場（日本展開を考えていなかったブランド向けに冒頭へ） */}
-      <section className={`${section} bg-white`}>
-        <div className={container}>
+      <section className={`${section} relative bg-white`}>
+        <SectionBg src="/images/japan-launch/bg-tea.jpg" overlay="bg-gradient-to-r from-white/95 via-white/70 to-white/25" />
+        <div className={`${container} relative`}>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
             <Reveal>
               <SecHead label={whyJapan.label} kanji={kanji.whyJapan} lines={whyJapan.h2[lang]} />
@@ -225,7 +226,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
             </Reveal>
             <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
               {whyJapan.items.map((w, i) => (
-                <li key={i} className="border-t-2 border-beni/70 pt-6">
+                <li key={i} className="h-full rounded-sm border-t-2 border-beni/70 bg-white/85 px-5 pb-6 pt-6 backdrop-blur-sm">
                   <Reveal delay={i * 0.06}>
                     {/* TODO: 出典確認 — 数字は出典付きで whyJapan.items[].stat / source に入れたときだけ表示する */}
                     {w.stat && <p className="font-display text-[48px] leading-none text-beni">{w.stat}</p>}
@@ -272,7 +273,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 負担が少ないこと（旧：課題・対応範囲・役割を統合） */}
       <section className={`${section} relative bg-white`}>
-        <SectionBg src="/images/japan-launch/bg-shoji.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-white/85 via-white/55 to-white/85" />
+        <SectionBg src="/images/japan-launch/bg-shoji.jpg" overlay="bg-gradient-to-b from-white/80 via-white/30 to-white/50" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={lowLift.label} kanji={kanji.lowLift} lines={lowLift.h2[lang]} />
@@ -319,7 +320,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
           </div>
 
           <Reveal className="mt-10">
-            <div className="rounded-sm border border-beni/20 bg-white/75 px-6 py-7 backdrop-blur-sm md:px-8">
+            <div className="rounded-sm border border-beni/20 bg-white/90 px-6 py-7 backdrop-blur-sm md:px-8">
               <p className="font-mincho text-[17px] font-bold text-sumi md:text-[18px]">{lowLift.hurdles.title[lang]}</p>
               <ul className="mt-5 grid gap-x-8 gap-y-3 md:grid-cols-2">
                 {lowLift.hurdles.items.map((h, i) => (
@@ -336,7 +337,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 8. Partnership models */}
       <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-garden.jpg" imgClass="opacity-50" overlay="bg-gradient-to-b from-washi/85 via-washi/50 to-washi/80" />
+        <SectionBg src="/images/japan-launch/bg-garden.jpg" overlay="bg-gradient-to-b from-washi/80 via-washi/25 to-washi/50" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
@@ -354,13 +355,13 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e]">{models.note[lang]}</p>
+          <p className="mt-6 inline-block rounded-sm bg-white/85 px-3 py-1.5 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e] backdrop-blur-sm">{models.note[lang]}</p>
         </div>
       </section>
 
       {/* 4. How it works */}
       <section className={`${section} relative bg-white`}>
-        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-70" overlay="bg-gradient-to-r from-white via-white/75 to-white/45" />
+        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right" overlay="bg-[linear-gradient(to_top,rgba(255,255,255,.85)_0%,rgba(255,255,255,.6)_35%,rgba(255,255,255,0)_60%),linear-gradient(to_right,rgba(255,255,255,.95),rgba(255,255,255,.55)_45%,rgba(255,255,255,.2))]" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={steps.label} kanji={kanji.steps} lines={steps.h2[lang]} />
@@ -392,7 +393,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 5. Channels（販路） */}
       <section className={`${section} relative bg-sumi`}>
-        <SectionBg src="/images/japan-launch/bg-street.jpg" imgClass="opacity-90" overlay="bg-gradient-to-b from-sumi/80 via-sumi/40 to-sumi/80" />
+        <SectionBg src="/images/japan-launch/bg-street.jpg" overlay="bg-gradient-to-b from-sumi/70 via-sumi/20 to-sumi/65" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={channels.label} kanji={kanji.channels} lines={channels.h2[lang]} light />
@@ -473,7 +474,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 代表の想い */}
       <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-50" overlay="bg-gradient-to-r from-washi via-washi/80 to-washi/60" />
+        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right" overlay="bg-gradient-to-l from-washi/90 via-washi/75 to-washi/30" />
         <div className={`${container} relative`}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
             <Reveal>
@@ -509,8 +510,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 10. FAQ */}
-      <section id="faq" className={`${section} bg-white`}>
-        <div className="mx-auto w-full max-w-[860px] px-6 md:px-10">
+      <section id="faq" className={`${section} relative bg-white`}>
+        <SectionBg src="/images/japan-launch/bg-kumiko.jpg" overlay="bg-white/[0.86]" />
+        <div className="relative mx-auto w-full max-w-[860px] px-6 md:px-10">
           <SecHead label={faq.label} kanji={kanji.faq} lines={[faq.h2[lang]]} />
           <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" divider="divide-[#e6e1da] border-[#e6e1da]" />
         </div>
@@ -518,7 +520,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
       {/* 11. CTA + Form */}
       <section id={FORM_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-beni py-16 md:py-28">
-        <SectionBg src="/images/japan-launch/bg-torii.jpg" imgClass="opacity-80 mix-blend-multiply" overlay="bg-gradient-to-r from-beni-deep/80 via-beni/35 to-beni/55" />
+        <SectionBg src="/images/japan-launch/bg-torii.jpg" imgClass="mix-blend-multiply" overlay="bg-gradient-to-r from-beni-deep/75 via-beni/20 to-beni/40" />
         <p aria-hidden="true" className="pointer-events-none absolute -bottom-[0.12em] left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-display text-[clamp(120px,26vw,360px)] uppercase leading-none text-white/[0.06]">
           Japan
         </p>
