@@ -22,14 +22,13 @@ import {
   images,
   kanji,
   kanjiNumerals,
+  lowLift,
   message,
-  roles,
   faq,
   form,
   hero,
   meta,
   models,
-  problems,
   scope,
   steps,
   track,
@@ -213,8 +212,36 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* Who it's for */}
+      {/* 機会：日本という市場（日本展開を考えていなかったブランド向けに冒頭へ） */}
       <section className={`${section} bg-white`}>
+        <div className={container}>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
+            <Reveal>
+              <SecHead label={whyJapan.label} kanji={kanji.whyJapan} lines={whyJapan.h2[lang]} />
+              <p className={`mt-6 ${bodyClass}`}>{whyJapan.lead[lang]}</p>
+              <div className="mt-8 aspect-[16/9] overflow-hidden bg-washi">
+                <Image src={images.tokyo.src} alt={images.tokyo.alt[lang]} width={images.tokyo.w} height={images.tokyo.h} sizes="(min-width: 1024px) 33vw, 100vw" className="h-full w-full object-cover" />
+              </div>
+            </Reveal>
+            <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
+              {whyJapan.items.map((w, i) => (
+                <li key={i} className="border-t-2 border-beni/70 pt-6">
+                  <Reveal delay={i * 0.06}>
+                    {/* TODO: 出典確認 — 数字は出典付きで whyJapan.items[].stat / source に入れたときだけ表示する */}
+                    {w.stat && <p className="font-display text-[48px] leading-none text-beni">{w.stat}</p>}
+                    <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.6] tracking-[0.03em]">{w.title[lang]}</h3>
+                    <p className="mt-3 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{w.body[lang]}</p>
+                    {w.source && <p className="mt-2 text-[11.5px] text-[#888]">{w.source}</p>}
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Who it's for */}
+      <section className={`${section} bg-washi`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
             <SecHead label={audience.label} kanji={kanji.audience} lines={audience.h2[lang]} />
@@ -243,58 +270,97 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 2. Problem */}
-      <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-shoji.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-washi/80 via-washi/45 to-washi/85" />
+      {/* 負担が少ないこと（旧：課題・対応範囲・役割を統合） */}
+      <section className={`${section} relative bg-white`}>
+        <SectionBg src="/images/japan-launch/bg-shoji.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-white/85 via-white/55 to-white/85" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
-            <SecHead label={problems.label} kanji={kanji.problems} lines={problems.h2[lang]} />
+            <SecHead label={lowLift.label} kanji={kanji.lowLift} lines={lowLift.h2[lang]} />
+            <p className={`mt-6 ${bodyClass}`}>{lowLift.lead[lang]}</p>
           </Reveal>
-          <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 lg:grid-cols-4">
-            {problems.items.map((p, i) => (
-              <li key={i}>
+
+          <div className="mt-10 grid gap-5 md:mt-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <Reveal>
+              <div className={`h-full rounded-sm bg-white px-6 py-7 md:px-8 ${cardShadow}`}>
+                <h3 className="font-mincho text-[20px] font-bold text-sumi">{lowLift.brand.title[lang]}</h3>
+                <ul className="mt-5 space-y-3">
+                  {lowLift.brand.items.map((it) => (
+                    <li key={it.en} className="flex gap-3 text-[15px] leading-[1.75] text-[#333]">
+                      <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0 text-beni" />
+                      {it[lang]}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="relative h-full overflow-hidden rounded-sm bg-beni px-6 py-7 text-white md:px-8">
+                <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
+                <div className="relative">
+                  <h3 className="font-mincho text-[20px] font-bold">{lowLift.faise.title[lang]}</h3>
+                  <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {faise.map((it) => (
+                      <li key={it.name.en} className="flex gap-3 text-[15px] leading-[1.7] text-white/95">
+                        <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0" />
+                        {it.name[lang]}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 border-t border-white/25 pt-5">
+                    <p className="flex items-center gap-2 font-inter text-[11px] font-medium uppercase tracking-[0.22em] text-white/80">
+                      <Handshake size={16} strokeWidth={1.5} aria-hidden="true" />
+                      {scope.legend.partner[lang]}
+                    </p>
+                    <p className="mt-2.5 text-[14.5px] leading-[1.8] text-white/90">{partner.map((it) => it.name[lang]).join(lang === 'ja' ? '・' : ' / ')}</p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal className="mt-10">
+            <div className="rounded-sm border border-beni/20 bg-white/75 px-6 py-7 backdrop-blur-sm md:px-8">
+              <p className="font-mincho text-[17px] font-bold text-sumi md:text-[18px]">{lowLift.hurdles.title[lang]}</p>
+              <ul className="mt-5 grid gap-x-8 gap-y-3 md:grid-cols-2">
+                {lowLift.hurdles.items.map((h, i) => (
+                  <li key={h.en} className="flex gap-3 text-[14.5px] leading-[1.8] text-[#333]">
+                    <span aria-hidden="true" className="font-mincho font-bold text-beni">{kanjiNumerals[i]}</span>
+                    {h[lang]}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 8. Partnership models */}
+      <section className={`${section} relative bg-washi`}>
+        <SectionBg src="/images/japan-launch/bg-garden.jpg" imgClass="opacity-50" overlay="bg-gradient-to-b from-washi/85 via-washi/50 to-washi/80" />
+        <div className={`${container} relative`}>
+          <Reveal className="max-w-3xl">
+            <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
+          </Reveal>
+          <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 md:gap-6">
+            {models.items.map((m, i) => (
+              <li key={m.name}>
                 <Reveal delay={i * 0.06} className="h-full">
-                  <div className={`h-full rounded-sm border-t-[3px] border-beni bg-white px-5 py-6 ${cardShadow}`}>
-                    <p aria-hidden="true" className="font-mincho text-[34px] font-bold leading-none text-beni">{kanjiNumerals[i]}</p>
-                    <p className="mt-4 text-[15px] font-medium leading-[1.85] tracking-[0.02em] text-[#222]">{p[lang]}</p>
+                  <div className={`flex h-full flex-col rounded-sm border-t-[3px] border-beni bg-white px-6 py-7 ${cardShadow}`}>
+                    <p className="font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-beni">{m.name}</p>
+                    <h3 className="mt-3 font-mincho text-[19px] font-bold leading-[1.55] tracking-[0.02em]">{m.title[lang]}</h3>
+                    <p className="mt-3 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{m.body[lang]}</p>
                   </div>
                 </Reveal>
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* 3. Why Japan */}
-      <section className={`${section} bg-white`}>
-        <div className={container}>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
-            <Reveal>
-              <SecHead label={whyJapan.label} kanji={kanji.whyJapan} lines={whyJapan.h2[lang]} />
-              <div className="mt-8 aspect-[16/9] overflow-hidden bg-washi">
-                <Image src={images.tokyo.src} alt={images.tokyo.alt[lang]} width={images.tokyo.w} height={images.tokyo.h} sizes="(min-width: 1024px) 33vw, 100vw" className="h-full w-full object-cover" />
-              </div>
-            </Reveal>
-            <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
-              {whyJapan.items.map((w, i) => (
-                <li key={i} className="border-t-2 border-beni/70 pt-6">
-                  <Reveal delay={i * 0.06}>
-                    {/* TODO: 出典確認 — 数字は出典付きで whyJapan.items[].stat / source に入れたときだけ表示する */}
-                    {w.stat && <p className="font-display text-[48px] leading-none text-beni">{w.stat}</p>}
-                    <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.6] tracking-[0.03em]">{w.title[lang]}</h3>
-                    <p className="mt-3 text-[14.5px] md:text-[14px] leading-[2] tracking-[0.03em] text-[#555]">{w.body[lang]}</p>
-                    {w.source && <p className="mt-2 text-[11.5px] text-[#888]">{w.source}</p>}
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="mt-6 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e]">{models.note[lang]}</p>
         </div>
       </section>
 
       {/* 4. How it works */}
-      <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-70" overlay="bg-gradient-to-r from-washi via-washi/75 to-washi/45" />
+      <section className={`${section} relative bg-white`}>
+        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right opacity-70" overlay="bg-gradient-to-r from-white via-white/75 to-white/45" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
             <SecHead label={steps.label} kanji={kanji.steps} lines={steps.h2[lang]} />
@@ -343,101 +409,6 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* 6. What we handle */}
-      <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-kumiko.jpg" imgClass="opacity-45" overlay="bg-gradient-to-b from-washi/85 via-washi/55 to-washi/85" />
-        <div className={`${container} relative`}>
-          <Reveal className="max-w-3xl">
-            <SecHead label={scope.label} kanji={kanji.scope} lines={scope.h2[lang]} />
-          </Reveal>
-          <div className="mt-10 grid gap-5 md:mt-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-            <Reveal>
-              <div className={`h-full rounded-sm bg-white px-5 py-6 md:px-8 md:py-8 ${cardShadow}`}>
-                <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-beni">{scope.legend.faise[lang]}</p>
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {faise.map((it) => (
-                    <li key={it.name.en} className="flex gap-3 text-[15px] font-medium leading-[1.7] text-[#222]">
-                      <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0 text-beni" />
-                      {it.name[lang]}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <div className="h-full rounded-sm border border-dashed border-beni/40 px-5 py-6 md:px-8 md:py-8">
-                <p className="flex items-center gap-2 font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-[#555]">
-                  <Handshake size={16} strokeWidth={1.5} aria-hidden="true" className="text-beni" />
-                  {scope.legend.partner[lang]}
-                </p>
-                <ul className="mt-5 grid gap-3">
-                  {partner.map((it) => (
-                    <li key={it.name.en} className="flex gap-3 text-[15px] leading-[1.7] text-[#333]">
-                      <span aria-hidden="true" className="mt-[0.7em] h-[6px] w-[6px] shrink-0 rounded-full border border-beni" />
-                      {it.name[lang]}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Roles（役割分担） */}
-      <section className={`${section} relative bg-white`}>
-        <SectionBg src="/images/japan-launch/bg-tea.jpg" imgClass="opacity-40" overlay="bg-gradient-to-b from-white/85 via-white/50 to-white/85" />
-        <div className={`${container} relative`}>
-          <Reveal className="max-w-3xl">
-            <SecHead label={roles.label} kanji={kanji.roles} lines={roles.h2[lang]} />
-          </Reveal>
-          <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-2">
-            {[roles.brand, roles.faise].map((r, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className={`relative h-full overflow-hidden rounded-sm px-6 py-7 md:px-8 ${i === 0 ? 'border border-[#e6e1da] bg-white' : 'bg-beni text-white'}`}>
-                  {i === 1 && <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />}
-                  <div className="relative">
-                    <h3 className={`font-mincho text-[20px] font-bold ${i === 0 ? 'text-sumi' : 'text-white'}`}>{r.title[lang]}</h3>
-                    <ul className="mt-5 space-y-3">
-                      {r.items.map((it) => (
-                        <li key={it.en} className={`flex gap-3 text-[15px] leading-[1.75] ${i === 0 ? 'text-[#333]' : 'text-white/95'}`}>
-                          <Check size={18} strokeWidth={2} aria-hidden="true" className={`mt-[0.2em] shrink-0 ${i === 0 ? 'text-beni' : 'text-white'}`} />
-                          {it[lang]}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Partnership models */}
-      <section className={`${section} relative bg-washi`}>
-        <SectionBg src="/images/japan-launch/bg-garden.jpg" imgClass="opacity-50" overlay="bg-gradient-to-b from-washi/85 via-washi/50 to-washi/80" />
-        <div className={`${container} relative`}>
-          <Reveal className="max-w-3xl">
-            <SecHead label={models.label} kanji={kanji.models} lines={models.h2[lang]} />
-          </Reveal>
-          <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-2 md:gap-6">
-            {models.items.map((m, i) => (
-              <li key={m.name}>
-                <Reveal delay={i * 0.06} className="h-full">
-                  <div className={`flex h-full flex-col rounded-sm border-t-[3px] border-beni bg-white px-6 py-7 ${cardShadow}`}>
-                    <p className="font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-beni">{m.name}</p>
-                    <h3 className="mt-3 font-mincho text-[19px] font-bold leading-[1.55] tracking-[0.02em]">{m.title[lang]}</h3>
-                    <p className="mt-3 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{m.body[lang]}</p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e]">{models.note[lang]}</p>
         </div>
       </section>
 
@@ -538,10 +509,10 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 10. FAQ */}
-      <section id="faq" className={`${section} bg-washi`}>
+      <section id="faq" className={`${section} bg-white`}>
         <div className="mx-auto w-full max-w-[860px] px-6 md:px-10">
           <SecHead label={faq.label} kanji={kanji.faq} lines={[faq.h2[lang]]} />
-          <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" divider="divide-[#ddd6cd] border-[#ddd6cd]" />
+          <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" divider="divide-[#e6e1da] border-[#e6e1da]" />
         </div>
       </section>
 

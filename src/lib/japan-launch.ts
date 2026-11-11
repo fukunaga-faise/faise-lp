@@ -18,12 +18,12 @@ export const meta: Record<Lang, { title: string; description: string }> = {
   en: {
     title: 'Japan Launch | Bring Your Product to Japan — Faise Inc.',
     description:
-      'Japan Launch by Faise helps overseas brands grow in Japan. A team of Japan marketing specialists and working influencers handles localization, influencer promotion through our domestic network, and e-commerce and retail expansion — as your exclusive partner or your marketing agency.',
+      'Never planned to sell in Japan? You don’t need a plan, a team or an office there. Faise’s Japan team — marketing specialists and working influencers — brings your brand to Japanese consumers and grows sales, with very little effort on your side.',
   },
   ja: {
     title: '海外ブランドの日本上陸支援 Japan Launch | 株式会社Faise',
     description:
-      '海外ブランドの日本展開を、マーケティングで支えます。日本市場のマーケティングに強いメンバーと現役インフルエンサーが在籍し、国内インフルエンサーのネットワークを活かしたプロモーションからEC・小売展開まで。独占契約・マーケティング代理の2つの形で支援します。',
+      '日本での販売を計画していなかった海外ブランドを、日本で愛されるブランドに。拠点やチームがなくても、Faiseの日本チーム（マーケティングに強いメンバーと現役インフルエンサー）がプロモーションから販売までを担います。ブランド側の負担はわずかです。',
   },
 }
 
@@ -44,15 +44,15 @@ export const hero = {
     } as L,
   },
   split: { abroad: { en: 'Abroad', ja: '海外' } as L, japan: { en: 'Japan', ja: '日本' } as L },
-  h1: { en: ['Proven abroad.', 'Launched in Japan.'], ja: ['海外で売れた商品を、', '日本でも売れる商品に。'] } as LL,
+  h1: { en: ['Your brand,', 'loved in Japan too.'], ja: ['そのブランドを、', '日本でも愛される存在に。'] } as LL,
   sub: {
-    en: 'We help overseas brands grow in Japan. Our team of Japan marketing specialists and working influencers localizes your brand, gets it in front of Japanese consumers, and builds lasting sales.',
-    ja: '海外ブランドの日本展開を、マーケティングで支えます。日本市場のマーケティングに強いメンバーと現役インフルエンサーのチームが、ブランドの魅力を日本の消費者に届け、売上につなげます。',
+    en: 'Never planned to sell in Japan? You don’t need a plan, a team or an office there. Our Japan team brings your brand to Japanese consumers and grows sales — with very little effort on your side.',
+    ja: '日本での販売を考えていなかった海外ブランドでも大丈夫です。日本に拠点もチームも必要ありません。Faiseの日本チームがブランドを日本の消費者に届け、売上を育てます。ブランド側の負担はわずかです。',
   } as L,
-  cta: { en: 'Get a free Japan Fit Check', ja: '無料で Japan Fit Check' } as L,
+  cta: { en: 'See if Japan fits — free', ja: '日本との相性を無料で診断' } as L,
   note: {
-    en: 'For overseas brands in beauty, lifestyle and gadgets.',
-    ja: '美容・ライフスタイル・ガジェットなど、海外ブランドの日本展開を支援しています。',
+    en: 'No Japan plans yet? That’s exactly where the conversation starts.',
+    ja: '日本展開の予定がなくても、まずはお気軽にご相談ください。',
   } as L,
 }
 
@@ -88,10 +88,10 @@ export const images: Record<'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoo
 
 export const audience = {
   label: 'Who it’s for',
-  h2: { en: ['For overseas brands', 'ready to grow in Japan.'], ja: ['日本で、ブランドを', '育てたい海外企業へ。'] } as LL,
+  h2: { en: ['Brands with', 'Japan potential.'], ja: ['日本で愛される可能性を', '持つブランドへ。'] } as LL,
   lead: {
-    en: 'We work with overseas brands that want to build their presence in Japan — mainly in these categories.',
-    ja: '日本でブランドを広げたい海外企業を支援しています。主に次のカテゴリの商品が対象です。',
+    en: 'You don’t need a Japan plan to start the conversation. We work best with brands in these categories.',
+    ja: '日本展開の計画がなくても問題ありません。主に次のカテゴリのブランドを支援しています。',
   } as L,
   items: [
     {
@@ -115,8 +115,8 @@ export const audience = {
 // 和のアクセント：各セクション見出しの英字ラベルに添える漢字（装飾。読み上げ対象外）
 export const kanji = {
   audience: '対象',
-  problems: '課題',
-  whyJapan: '市場',
+  whyJapan: '機会',
+  lowLift: '一任',
   steps: '流れ',
   scope: '範囲',
   channels: '販路',
@@ -157,59 +157,45 @@ export const channels = {
   ] as { title: L; names: string | L; body: L }[],
 }
 
-// 役割分担。TODO: 要確認 — 契約形態（models）によって変わるため、確定したら内容を調整する
-export const roles = {
-  label: 'Roles',
-  h2: { en: ['You make it.', 'We take it to Japan.'], ja: ['つくるのは、ブランド。', '日本に届けるのは、Faise。'] } as LL,
+// 「負担が少ない」ことを伝えるセクション（旧：課題・役割・対応範囲を統合）
+// 日本で売る予定がなかったブランドに向けて、ブランド側の負担がわずかであることと、日本進出のハードルをFaiseが引き受けることを示す。
+// TODO: 要確認 — ブランド側の役割は契約形態（models）によって変わるため、確定したら内容を調整する
+export const lowLift = {
+  label: 'Little effort on your side',
+  h2: { en: ['Japan, without', 'the heavy lift.'], ja: ['日本展開に、', '大きな負担はいりません。'] } as LL,
+  lead: {
+    en: 'A new country usually means a new language, new partners and new rules. With Faise, you keep doing what you do best — making great products. We take care of the rest.',
+    ja: '新しい国への展開には、言語・パートナー・ルールなど多くの準備が必要です。Faiseなら、ブランドは商品づくりに集中するだけ。それ以外はFaiseが引き受けます。',
+  } as L,
   brand: {
-    title: { en: 'Your side', ja: 'ブランドの役割' } as L,
+    title: { en: 'What we ask of you', ja: 'ブランドにお願いすること' } as L,
     items: [
-      { en: 'Product development and manufacturing', ja: '商品の開発・製造' },
       { en: 'Supplying products for Japan', ja: '日本向けの商品供給' },
-      { en: 'Product information, specs and existing assets (images, video)', ja: '商品情報・仕様・既存素材（画像・動画）の提供' },
-      { en: 'Final decisions on pricing and brand', ja: '価格・ブランドに関する最終判断' },
+      { en: 'Product information and existing assets (images, video)', ja: '商品情報と既存素材（画像・動画）の共有' },
+      { en: 'Approving key decisions on pricing and brand', ja: '価格・ブランドに関する重要な判断' },
     ] as L[],
   },
-  faise: {
-    title: { en: 'Faise’s side', ja: 'Faiseの役割' } as L,
+  faise: { title: { en: 'What Faise takes off your plate', ja: 'Faiseが引き受けること' } as L },
+  hurdles: {
+    title: { en: 'The usual hurdles of entering Japan — handled', ja: '日本進出の“よくあるハードル”も、Faiseが解消します' } as L,
     items: [
-      { en: 'Japan Fit Check and launch strategy', ja: 'Japan Fit Check とローンチ戦略' },
-      { en: 'Japanese concept, product pages and video', ja: '日本向けのコンセプト・商品ページ・動画' },
-      { en: 'Influencer promotion through our domestic network', ja: '国内インフルエンサーのネットワークを活かしたプロモーション' },
-      { en: 'Ads and expansion to e-commerce and retail', ja: '広告運用、EC・小売への展開' },
-      { en: 'Coordinating import, certification and logistics with partners', ja: '輸入・認証・物流のパートナー連携' },
+      { en: 'Japanese-language marketing and product pages that actually convert', ja: '購入につながる、日本語のマーケティングと商品ページ' },
+      { en: 'The local proof Japanese marketplaces and retailers expect', ja: '国内のモール・小売店が求める「日本での実績」づくり' },
+      { en: 'Regulations, logistics and Japanese customer support', ja: '法規制・物流・日本語カスタマーサポート' },
+      { en: 'Japan’s own social platforms, creators and norms', ja: '日本独自のSNS・クリエイター・作法への対応' },
     ] as L[],
   },
-}
-
-export const problems = {
-  label: 'The challenge',
-  h2: { en: ['Selling well abroad', 'doesn’t mean selling in Japan.'], ja: ['海外で売れても、', '日本でそのまま売れるとは限らない。'] } as LL,
-  items: [
-    {
-      en: 'Japanese consumers read reviews and details more carefully than almost anyone — direct translation doesn’t convert.',
-      ja: '日本の消費者は、レビューや商品の細部まで丁寧に読み込みます。直訳した商品ページでは、なかなか購入につながりません。',
-    },
-    {
-      en: 'Marketplaces and retailers in Japan expect local proof before they list you.',
-      ja: '国内のモールや小売店は、取り扱いの前に「日本での実績」を求めます。',
-    },
-    {
-      en: 'Regulations, logistics, and Japanese customer support are hard to manage from abroad.',
-      ja: '法規制への対応、物流、日本語でのカスタマーサポートを、海外から管理するのは簡単ではありません。',
-    },
-    {
-      en: 'Influencer and social marketing in Japan run on different platforms and norms.',
-      ja: '日本のインフルエンサー・SNSマーケティングは、使われるプラットフォームも作法も海外とは異なります。',
-    },
-  ] as L[],
 }
 
 // Why Japan：数字は出典付きのものだけ。現状は定性的な記述のみで、stat は未設定。
 // TODO: 出典確認 — 市場規模・EC市場・クラウドファンディング市場などの数字を入れる場合は、出典（URL・調査名・年）とセットで stat / source に設定する
 export const whyJapan = {
   label: 'Why Japan',
-  h2: { en: ['A market that rewards', 'products done right.'], ja: ['きちんと届けた商品が、', '長く選ばれる市場。'] } as LL,
+  h2: { en: ['A market worth', 'a second look.'], ja: ['見過ごされがちな、', '大きな機会。'] } as LL,
+  lead: {
+    en: 'Japan wasn’t on your roadmap? That’s common. Here’s why it’s worth a closer look.',
+    ja: '日本進出を計画していなかったブランドは少なくありません。それでも、検討する価値がある理由があります。',
+  } as L,
   items: [
     {
       stat: undefined as string | undefined,
@@ -243,15 +229,15 @@ export const whyJapan = {
 
 export const steps = {
   label: 'How it works',
-  h2: { en: ['From your brand abroad', 'to sales in Japan, in five steps.'], ja: ['海外のブランドを、', '5つのステップで日本の売上に。'] } as LL,
+  h2: { en: ['Start with a free check.', 'We take it from there.'], ja: ['まずは無料の診断から。', 'その先はFaiseが進めます。'] } as LL,
   // TODO: 要確認 — タイムラインの目安（例：「最初のローンチまで約90日」）。確定するまで表示しない場合は null にする
   timeline: { en: 'First launch in ~90 days', ja: '最初のローンチまで約90日が目安' } as L | null,
   items: [
     {
       title: { en: 'Japan Fit Check', ja: 'Japan Fit Check' },
       body: {
-        en: 'We assess how well your product fits Japan — competitors, pricing, and the most promising target customers.',
-        ja: '日本市場との相性、競合、価格帯、狙うべきターゲットを評価します。',
+        en: 'Free and with no commitment. We tell you honestly how well your product fits Japan — competitors, pricing and the most promising customers.',
+        ja: '無料・契約不要です。日本市場との相性、競合、価格帯、狙うべきターゲットを率直にお伝えします。',
       },
     },
     {
@@ -431,6 +417,21 @@ export const faq = {
   h2: { en: 'Frequently asked questions', ja: 'よくあるご質問' } as L,
   items: [
     {
+      q: { en: 'We haven’t planned for Japan. Is it still worth talking?', ja: '日本展開を計画していませんが、相談してもよいですか？' },
+      a: {
+        en: 'Yes — many conversations start that way. The Japan Fit Check is free and has no commitment; we’ll tell you honestly whether Japan makes sense for your brand.',
+        ja: 'はい、ぜひご相談ください。Japan Fit Check は無料・契約不要で、日本展開が貴社のブランドに合うかどうかを率直にお伝えします。',
+      },
+    },
+    {
+      q: { en: 'How much of our team’s time will this take?', ja: '自社のチームにどのくらいの負担がかかりますか？' },
+      // TODO: 要確認 — ブランド側の工数の目安
+      a: {
+        en: 'Very little. We mainly need product supply, product information and existing assets, and your approval on key decisions. Faise handles marketing, influencers and sales in Japan.',
+        ja: '負担はわずかです。主にお願いするのは商品の供給、商品情報と既存素材の共有、重要な判断の承認です。日本でのマーケティング・インフルエンサー施策・販売はFaiseが担います。',
+      },
+    },
+    {
       q: { en: 'Do we need a Japanese entity?', ja: '日本法人は必要ですか？' },
       // TODO: 要確認 — 日本法人なしでの販売スキーム（輸入者・販売者を誰が担うか）の正式な回答
       a: {
@@ -483,8 +484,8 @@ export const form = {
   label: 'Japan Fit Check',
   h2: { en: 'Get a free Japan Fit Check', ja: '無料の Japan Fit Check' } as L,
   lead: {
-    en: 'Tell us about your product. We’ll review it and get back to you within 2 business days.',
-    ja: '商品について教えてください。内容を確認のうえ、2営業日以内にご連絡いたします。',
+    en: 'Not sure Japan is right for you? That’s what the Fit Check is for. Tell us about your product and we’ll get back to you within 2 business days.',
+    ja: '日本展開が合うかどうか分からなくても大丈夫です。商品について教えていただければ、2営業日以内にご連絡いたします。',
   } as L,
   fields: {
     name: { en: 'Name', ja: 'お名前' },
