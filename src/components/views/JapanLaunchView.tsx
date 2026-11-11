@@ -477,9 +477,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         <div className={`${container} relative`}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
             <Reveal>
-              {/* 写真は中央寄りに縦長で切り抜く（元画像右下のマークが入らないように） */}
+              {/* 代表の写真（縦長・ほぼ4:5の原寸 499x618 なので、表示幅は最大 440px に抑える） */}
               <div className="relative aspect-[4/5] max-w-[440px] overflow-hidden bg-white">
-                <Image src={images.founder.src} alt={images.founder.alt[lang]} fill sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover object-[50%_30%]" />
+                <Image src={images.founder.src} alt={images.founder.alt[lang]} fill sizes="440px" className="object-cover object-top" />
               </div>
               <div className="mt-6 max-w-[440px]">
                 <p className="font-mincho text-[19px] font-bold">{track.founder.name[lang]}</p>

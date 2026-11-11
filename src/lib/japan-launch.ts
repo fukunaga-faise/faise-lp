@@ -81,7 +81,7 @@ export const images: Record<'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoo
     alt: { en: 'A creator presenting a product to a smartphone on a tripod for a short video, in a Japanese room with shoji screens', ja: '障子のある和室で、三脚に固定したスマートフォンに向けて商品を紹介するショート動画の撮影風景' },
   },
   founder: {
-    src: '/images/founder.jpg', w: 2752, h: 1536,
+    src: '/images/japan-launch/founder-portrait.jpg', w: 499, h: 618,
     alt: { en: 'Haruto Fukunaga, CEO of Faise Inc.', ja: '株式会社Faise 代表取締役 福永 遥斗' },
   },
 }
