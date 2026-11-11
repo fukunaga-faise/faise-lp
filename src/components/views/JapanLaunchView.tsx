@@ -10,7 +10,7 @@ import JapanLaunchForm from '@/components/JapanLaunchForm'
 import { Reveal, ScrollProgress } from '@/components/ui'
 import { display, mincho } from '@/lib/jl-fonts'
 import { localizePath, type Lang } from '@/lib/locale'
-import { SITE_URL, ORG_ID } from '@/lib/site'
+import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 import {
   FORM_ANCHOR,
   JAPAN_LAUNCH_PATH,
@@ -492,6 +492,14 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                     </li>
                   ))}
                 </ol>
+                <a
+                  href={FOUNDER_LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-5 inline-flex items-center gap-2 font-inter text-[12px] font-medium uppercase tracking-[0.22em] text-beni transition-colors hover:text-beni-deep"
+                >
+                  LinkedIn <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </Reveal>
             <Reveal delay={0.08}>
