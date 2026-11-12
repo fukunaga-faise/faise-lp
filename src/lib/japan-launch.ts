@@ -347,11 +347,12 @@ export const track = {
         alt: { en: 'Video thumbnail: a creator applying skincare to her cheek', ja: '動画サムネイル：頬にスキンケアをなじませるクリエイター' } as L,
       },
       {
-        thumb: '/images/japan-launch/cyspera-video-2.jpg',
-        platform: 'TikTok',
-        creator: '@creator_name' as string | null,
-        url: null as string | null,
-        alt: { en: 'Video thumbnail: close-up of cream being applied to the back of a hand', ja: '動画サムネイル：手の甲にクリームをのせるクローズアップ' } as L,
+        // 実際の投稿（2026-11-12 代表者から提供）。クリエイター名は未確認のため非表示
+        thumb: '/images/japan-launch/cyspera-reel-2.jpg',
+        platform: 'Instagram Reels',
+        creator: null as string | null,
+        url: 'https://www.instagram.com/reel/DTsDTtzk0-q/' as string | null,
+        alt: { en: 'Video thumbnail: a smiling creator describing how smoothly a skincare cream spreads', ja: '動画サムネイル：スキンケアクリームのなめらかな塗り心地を笑顔で紹介するクリエイター' } as L,
       },
       {
         thumb: '/images/japan-launch/cyspera-video-3.jpg',
