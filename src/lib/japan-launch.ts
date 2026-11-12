@@ -335,7 +335,7 @@ export const track = {
       { en: 'Influencer promotion', ja: 'インフルエンサーによるプロモーション' },
     ] as L[],
     // インフルエンサー投稿（サムネイル＋動画リンク）。
-    // TODO: ダミー — 実際の投稿のサムネイル画像・クリエイター名・URL に差し替える（url が null の間はリンクにしない）
+    // 3本とも実際の投稿（2026-11-12 代表者から提供）。TODO: 要確認 — クリエイター名の表示可否・投稿の掲載許諾（url が null ならリンクにしない）
     videosLabel: { en: 'Creator content', ja: 'インフルエンサーの投稿' } as L,
     videos: [
       {
@@ -355,11 +355,12 @@ export const track = {
         alt: { en: 'Video thumbnail: a smiling creator describing how smoothly a skincare cream spreads', ja: '動画サムネイル：スキンケアクリームのなめらかな塗り心地を笑顔で紹介するクリエイター' } as L,
       },
       {
-        thumb: '/images/japan-launch/cyspera-video-3.jpg',
-        platform: 'YouTube Shorts',
-        creator: '@creator_name' as string | null,
-        url: null as string | null,
-        alt: { en: 'Video thumbnail: a creator talking about her skincare routine at a desk', ja: '動画サムネイル：デスクでスキンケアについて話すクリエイター' } as L,
+        // 実際の投稿（2026-11-12 代表者から提供）。クリエイター名は未確認のため非表示
+        thumb: '/images/japan-launch/cyspera-reel-3.jpg',
+        platform: 'Instagram Reels',
+        creator: null as string | null,
+        url: 'https://www.instagram.com/reel/DPe9jWiD1Tf/' as string | null,
+        alt: { en: 'Video thumbnail: a smiling creator outdoors talking about how her skin feels', ja: '動画サムネイル：屋外で笑顔で肌の調子について話すクリエイター' } as L,
       },
     ],
     watch: { en: 'Watch', ja: '動画を見る' } as L,
