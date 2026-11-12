@@ -459,7 +459,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                       <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-beni shadow-lg transition-transform duration-300 group-hover:scale-110">
                         <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                       </span>
-                      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-2 text-white">
+                      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-2 text-white [&>*:only-child]:ml-auto">
                         <span className="truncate text-[13px] font-medium">{v.creator}</span>
                         {v.url && <span className="shrink-0 text-[12px] text-white/85">{track.featured.watch[lang]} ↗</span>}
                       </div>
@@ -469,7 +469,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                 return (
                   <li key={i} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-auto">
                     {v.url ? (
-                      <a href={v.url} target="_blank" rel="noopener" className="group block" aria-label={`${v.platform} ${v.creator}`}>
+                      <a href={v.url} target="_blank" rel="noopener" className="group block" aria-label={`${v.platform}${v.creator ? ` ${v.creator}` : ""} — ${track.featured.watch[lang]}`}>
                         {card}
                       </a>
                     ) : (

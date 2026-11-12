@@ -339,23 +339,24 @@ export const track = {
     videosLabel: { en: 'Creator content', ja: 'インフルエンサーの投稿' } as L,
     videos: [
       {
-        thumb: '/images/japan-launch/cyspera-video-1.jpg',
+        // 実際の投稿（2026-11-12 代表者から提供）。クリエイター名は未確認のため非表示
+        thumb: '/images/japan-launch/cyspera-reel-1.jpg',
         platform: 'Instagram Reels',
-        creator: '@creator_name',
-        url: null as string | null,
-        alt: { en: 'Video thumbnail: a creator introducing a skincare tube to the camera', ja: '動画サムネイル：スキンケアのチューブをカメラに向けて紹介するクリエイター' } as L,
+        creator: null as string | null,
+        url: 'https://www.instagram.com/reel/DNFf_7izDul/' as string | null,
+        alt: { en: 'Video thumbnail: a creator applying skincare to her cheek', ja: '動画サムネイル：頬にスキンケアをなじませるクリエイター' } as L,
       },
       {
         thumb: '/images/japan-launch/cyspera-video-2.jpg',
         platform: 'TikTok',
-        creator: '@creator_name',
+        creator: '@creator_name' as string | null,
         url: null as string | null,
         alt: { en: 'Video thumbnail: close-up of cream being applied to the back of a hand', ja: '動画サムネイル：手の甲にクリームをのせるクローズアップ' } as L,
       },
       {
         thumb: '/images/japan-launch/cyspera-video-3.jpg',
         platform: 'YouTube Shorts',
-        creator: '@creator_name',
+        creator: '@creator_name' as string | null,
         url: null as string | null,
         alt: { en: 'Video thumbnail: a creator talking about her skincare routine at a desk', ja: '動画サムネイル：デスクでスキンケアについて話すクリエイター' } as L,
       },
