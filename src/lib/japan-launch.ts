@@ -117,7 +117,6 @@ export const kanji = {
   audience: '対象',
   whyJapan: '機会',
   lowLift: '一任',
-  steps: '流れ',
   scope: '範囲',
   channels: '販路',
   roles: '役割',
@@ -225,50 +224,6 @@ export const whyJapan = {
       },
     },
   ],
-}
-
-export const steps = {
-  label: 'How it works',
-  h2: { en: ['Start with a free check.', 'We take it from there.'], ja: ['まずは無料の診断から。', 'その先はFaiseが進めます。'] } as LL,
-  // TODO: 要確認 — タイムラインの目安（例：「最初のローンチまで約90日」）。確定するまで表示しない場合は null にする
-  timeline: { en: 'First launch in ~90 days', ja: '最初のローンチまで約90日が目安' } as L | null,
-  items: [
-    {
-      title: { en: 'Japan Fit Check', ja: 'Japan Fit Check' },
-      body: {
-        en: 'Free and with no commitment. We tell you honestly how well your product fits Japan — competitors, pricing and the most promising customers.',
-        ja: '無料・契約不要です。日本市場との相性、競合、価格帯、狙うべきターゲットを率直にお伝えします。',
-      },
-    },
-    {
-      title: { en: 'Localization', ja: 'ローカライズ' },
-      body: {
-        en: 'We redesign the concept, messaging, product pages and video for Japan. Not translation — a re-design for Japanese buyers.',
-        ja: '日本向けにコンセプト・訴求・商品ページ・動画をつくり直します。翻訳ではなく、日本の買い手に向けた再設計です。',
-      },
-    },
-    {
-      title: { en: 'Influencer & Content', ja: 'インフルエンサー・コンテンツ' },
-      body: {
-        en: 'Creators from our network — including influencers on our own team — show your product the way Japanese consumers respond to.',
-        ja: 'チームの現役インフルエンサーを含む自社ネットワークのクリエイターが、日本の消費者に響く見せ方で商品を紹介します。',
-      },
-    },
-    {
-      title: { en: 'Launch', ja: 'ローンチ' },
-      body: {
-        en: 'We launch in the channel that fits — e-commerce, select retail, or a launch platform — and turn buzz into first sales.',
-        ja: 'EC・小売・ローンチ向けプラットフォームなど、商品に合う場所で販売を始め、話題を最初の売上につなげます。',
-      },
-    },
-    {
-      title: { en: 'Scale', ja: '販売拡大' },
-      body: {
-        en: 'We expand into e-commerce such as Amazon and Rakuten, and into retail and wholesale.',
-        ja: 'Amazon・楽天などのECや、小売・卸へと販路を広げます。',
-      },
-    },
-  ] as { title: L; body: L }[],
 }
 
 // 対応範囲。by: 'faise' = 自社対応 / 'partner' = パートナーと連携して対応

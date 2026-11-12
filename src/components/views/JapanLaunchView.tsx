@@ -30,7 +30,6 @@ import {
   meta,
   models,
   scope,
-  steps,
   track,
   whyJapan,
 } from '@/lib/japan-launch'
@@ -83,11 +82,10 @@ const buildLd = (lang: Lang) => {
         },
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
-          name: lang === 'ja' ? '支援の流れ' : 'How it works',
-          itemListElement: steps.items.map((s) => ({
-            '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: s.title[lang], description: s.body[lang] },
-          })),
+          name: lang === 'ja' ? 'Faiseが引き受けること' : 'What Faise takes on',
+          itemListElement: scope.items
+            .filter((s) => s.by === 'faise')
+            .map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name[lang] } })),
         },
       },
       {
@@ -356,38 +354,6 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
             ))}
           </ul>
           <p className="mt-6 inline-block rounded-sm bg-white/85 px-3 py-1.5 text-[13px] leading-[1.9] tracking-[0.03em] text-[#6b625e] backdrop-blur-sm">{models.note[lang]}</p>
-        </div>
-      </section>
-
-      {/* 4. How it works */}
-      <section className={`${section} relative bg-white`}>
-        <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right" overlay="bg-[linear-gradient(to_top,rgba(255,255,255,.85)_0%,rgba(255,255,255,.6)_35%,rgba(255,255,255,0)_60%),linear-gradient(to_right,rgba(255,255,255,.95),rgba(255,255,255,.55)_45%,rgba(255,255,255,.2))]" />
-        <div className={`${container} relative`}>
-          <Reveal className="max-w-3xl">
-            <SecHead label={steps.label} kanji={kanji.steps} lines={steps.h2[lang]} />
-            {steps.timeline && (
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-beni/30 bg-white px-4 py-1.5 text-[13px] font-medium tracking-[0.03em] text-beni">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-shu" />
-                {steps.timeline[lang]}
-              </p>
-            )}
-          </Reveal>
-          <ol className="relative mt-10 grid gap-0 md:mt-14 lg:grid-cols-5 lg:gap-6">
-            <span aria-hidden="true" className="absolute left-[24px] right-[calc(20%-24px)] top-[24px] hidden h-[2px] bg-beni/40 lg:block" />
-            {steps.items.map((s, i) => (
-              <li key={i} className="relative flex gap-5 pb-8 last:pb-0 lg:block lg:pb-0">
-                {i < steps.items.length - 1 && <span aria-hidden="true" className="absolute bottom-0 left-[23px] top-[48px] w-[2px] bg-beni/40 lg:hidden" />}
-                <span className="relative z-10 flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[4px] bg-beni font-mincho text-[20px] font-bold text-white">
-                  <span aria-hidden="true">{kanjiNumerals[i]}</span>
-                  <span className="sr-only">{`Step ${i + 1}`}</span>
-                </span>
-                <Reveal delay={i * 0.06} className="pt-2 lg:pt-6">
-                  <h3 className="font-mincho text-[18px] md:text-[19px] font-bold leading-[1.5] tracking-[0.02em]">{s.title[lang]}</h3>
-                  <p className="mt-2.5 text-[14.5px] md:text-[14px] leading-[1.95] tracking-[0.02em] text-[#555]">{s.body[lang]}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 
