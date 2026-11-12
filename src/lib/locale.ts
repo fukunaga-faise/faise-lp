@@ -25,10 +25,8 @@ export function localizePath(href: string, lang: Lang) {
 
 // 表示中のページの、もう一方の言語の URL（言語切り替えボタンの行き先）
 export function alternatePath(pathname: string, lang: Lang) {
-  if (lang === 'en') {
-    const ja = pathname.replace(/^\/en(?=\/|$)/, '')
-    return ja === '' ? '/' : ja
-  }
+  // 英語サイト（Japan Launch LP）から「JA」は、LP の日本語訳ではなく日本語の会社サイトのトップへ
+  if (lang === 'en') return '/'
   // 日本語サイトのどのページからでも、英語は Japan Launch LP へ
   return ENGLISH_ENTRY
 }
