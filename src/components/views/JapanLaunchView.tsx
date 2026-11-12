@@ -415,18 +415,27 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                   width={track.featured.image.w}
                   height={track.featured.image.h}
                   sizes="160px"
-                  className="h-[220px] w-auto object-contain sm:h-[260px]"
+                  className="h-[220px] w-auto object-contain sm:h-[280px]"
                 />
               </div>
               <div className="relative flex items-center px-6 py-8 md:px-10">
                 <div aria-hidden="true" className="bg-seigaiha-light pointer-events-none absolute inset-0" />
-                <div className="relative max-w-[640px]">
+                <div className="relative max-w-[720px]">
                   <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-white/80">
                     {track.featured.label[lang]} — {track.featured.brand}
                   </p>
                   <h3 className="mt-2 font-mincho text-[21px] font-bold leading-[1.5] md:text-[24px]">{track.featured.title[lang]}</h3>
                   <p className="mt-3 text-[14.5px] leading-[1.95] text-white/90">{track.featured.body[lang]}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <p className="mt-6 font-inter text-[11px] font-medium uppercase tracking-[0.22em] text-white/75">{track.featured.workLabel[lang]}</p>
+                  <ul className="mt-3 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+                    {track.featured.work.map((w) => (
+                      <li key={w.en} className="flex gap-2.5 text-[14.5px] leading-[1.7] text-white">
+                        <Check size={17} strokeWidth={2} aria-hidden="true" className="mt-[0.25em] shrink-0" />
+                        {w[lang]}
+                      </li>
+                    ))}
+                  </ul>
+                  <ul className="mt-6 flex flex-wrap gap-2">
                     {track.featured.tags.map((t) => (
                       <li key={t.en} className="rounded-full border border-white/40 px-3 py-1 text-[12px] tracking-[0.04em] text-white">{t[lang]}</li>
                     ))}
@@ -435,6 +444,42 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
               </div>
             </div>
           </Reveal>
+
+          {/* インフルエンサー投稿：PCは3列、スマホは横スワイプのカルーセル */}
+          <div className="mt-10">
+            <p className="font-mincho text-[18px] font-bold text-sumi md:text-[20px]">{track.featured.videosLabel[lang]}</p>
+            <ul className="no-scrollbar -mx-6 mt-5 flex snap-x snap-mandatory scroll-pl-6 gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:max-w-[880px] md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
+              {track.featured.videos.map((v, i) => {
+                const card = (
+                  <>
+                    <div className="relative aspect-[9/16] overflow-hidden rounded-sm bg-sumi">
+                      <Image src={v.thumb} alt={v.alt[lang]} fill sizes="(min-width: 768px) 30vw, 72vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/20" />
+                      <span className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 font-inter text-[11px] font-medium tracking-[0.04em] text-white backdrop-blur-sm">{v.platform}</span>
+                      <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-beni shadow-lg transition-transform duration-300 group-hover:scale-110">
+                        <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                      </span>
+                      <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-2 text-white">
+                        <span className="truncate text-[13px] font-medium">{v.creator}</span>
+                        {v.url && <span className="shrink-0 text-[12px] text-white/85">{track.featured.watch[lang]} ↗</span>}
+                      </div>
+                    </div>
+                  </>
+                )
+                return (
+                  <li key={i} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-auto">
+                    {v.url ? (
+                      <a href={v.url} target="_blank" rel="noopener" className="group block" aria-label={`${v.platform} ${v.creator}`}>
+                        {card}
+                      </a>
+                    ) : (
+                      <div className="group">{card}</div>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 

@@ -30,6 +30,10 @@ const images = [
   { file: 'bg-torii', ratio: '3:2', prompt: `A long tunnel of vermilion torii gates in soft light, slightly out of focus, depth receding into the distance, no people, no writing on the gates, suitable as a faint website background, ${common}` },
   { file: 'bg-kumiko', ratio: '3:2', prompt: `Close-up of a Japanese kumiko wooden lattice screen with intricate interlocking geometric pattern, soft warm backlight through paper, shallow depth of field, very low contrast, suitable as a faint website background, no people, ${common}` },
   { file: 'bg-tea', ratio: '3:2', prompt: `A quiet Japanese tea room prepared for a tea ceremony: tatami mats, a kettle on the hearth, a tea bowl and whisk set for a guest, shoji light, calm and spacious with empty areas, no people, suitable as a faint website background, ${common}` },
+  // シスペラ実績のインフルエンサー投稿サムネイル（ダミー。実際の投稿サムネイルに差し替える）
+  { file: 'cyspera-video-1', ratio: '9:16', prompt: `Vertical smartphone video frame for a short-form beauty video: a young Japanese woman in a bright minimal bathroom holding up a plain white skincare tube (no printing) toward the camera with a natural smile, soft daylight, authentic social-media creator style, ${common}` },
+  { file: 'cyspera-video-2', ratio: '9:16', prompt: `Vertical smartphone video frame for a short-form beauty video: close-up of hands squeezing a small amount of white cream from a plain white tube (no printing) onto the back of a hand, vanity table with a washi paper lamp, soft warm light, ${common}` },
+  { file: 'cyspera-video-3', ratio: '9:16', prompt: `Vertical smartphone video frame for a short-form beauty video: a young Japanese creator sitting at a wooden desk in a cozy room with shoji screens, talking to the camera, a plain white skincare tube (no printing) on the desk, soft ring-light glow, ${common}` },
   { file: 'shoot', ratio: '3:2', prompt: `Behind the scenes of a short-form vertical video shoot in a Japanese room with shoji screens: a smartphone on a small tripod with a soft light filming an unbranded gadget held by a creator's hands on a low wooden table, face out of frame, ${common}` },
 ]
 
@@ -48,11 +52,11 @@ async function generateCutout(prompt) {
 }
 
 // OpenAI（IMAGE_PROVIDER=openai）。横長は 1536x1024 で生成してから切り抜く
-async function generateOpenAI(prompt) {
+async function generateOpenAI(prompt, size = '1536x1024') {
   const res = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },
-    body: JSON.stringify({ model: process.env.IMAGE_MODEL || 'gpt-image-1', prompt, size: '1536x1024', quality: 'high', n: 1 }),
+    body: JSON.stringify({ model: process.env.IMAGE_MODEL || 'gpt-image-1', prompt, size, quality: 'high', n: 1 }),
   })
   if (!res.ok) throw new Error(`${res.status}: ${(await res.text()).slice(0, 300)}`)
   const data = await res.json()
@@ -61,8 +65,13 @@ async function generateOpenAI(prompt) {
 
 async function generate(prompt, aspectRatio) {
   if (process.env.IMAGE_PROVIDER === 'openai') {
-    const raw = await generateOpenAI(prompt)
     const [w, h] = aspectRatio.split(':').map(Number)
+    // 縦長（9:16 など）は 1024x1536 で生成して切り抜く
+    if (h > w) {
+      const raw = await generateOpenAI(prompt, '1024x1536')
+      return sharp(raw).resize(Math.round(1536 * (w / h)), 1536, { fit: 'cover' }).toBuffer()
+    }
+    const raw = await generateOpenAI(prompt)
     const height = Math.round(1536 * (h / w))
     return sharp(raw).resize(1536, Math.min(height, 1024), { fit: 'cover' }).toBuffer()
   }

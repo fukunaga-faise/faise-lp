@@ -323,9 +323,44 @@ export const track = {
     product: { en: 'Cyspera', ja: 'Cyspera（シスペラ）' } as L,
     title: { en: 'Bringing Cyspera by scientis to Japan', ja: 'scientis「シスペラ」の日本展開' } as L,
     body: {
-      en: 'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis — bringing the brand to Japanese consumers through localization and influencer promotion.',
-      ja: 'スイスのスキンケアブランド scientis の「シスペラ」の日本展開を支援。ローカライズとインフルエンサーによるプロモーションで、日本の消費者にブランドを届けています。',
+      en: 'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis — from selling on Amazon and online stores to ads and influencer promotion.',
+      ja: 'スイスのスキンケアブランド scientis の「シスペラ」の日本展開を支援。Amazonやオンラインストアでの販売から、広告運用、インフルエンサーによるプロモーションまでを担っています。',
     } as L,
+    // 実施内容（2026-11-12 代表者から提供：Amazon販売・オンラインEC販売・広告運用・インフルエンサー）
+    workLabel: { en: 'What we did', ja: '実施内容' } as L,
+    work: [
+      { en: 'Sales on Amazon Japan', ja: 'Amazonでの販売' },
+      { en: 'Online store (e-commerce) sales', ja: 'オンラインECでの販売' },
+      { en: 'Ad operations', ja: '広告運用' },
+      { en: 'Influencer promotion', ja: 'インフルエンサーによるプロモーション' },
+    ] as L[],
+    // インフルエンサー投稿（サムネイル＋動画リンク）。
+    // TODO: ダミー — 実際の投稿のサムネイル画像・クリエイター名・URL に差し替える（url が null の間はリンクにしない）
+    videosLabel: { en: 'Creator content', ja: 'インフルエンサーの投稿' } as L,
+    videos: [
+      {
+        thumb: '/images/japan-launch/cyspera-video-1.jpg',
+        platform: 'Instagram Reels',
+        creator: '@creator_name',
+        url: null as string | null,
+        alt: { en: 'Video thumbnail: a creator introducing a skincare tube to the camera', ja: '動画サムネイル：スキンケアのチューブをカメラに向けて紹介するクリエイター' } as L,
+      },
+      {
+        thumb: '/images/japan-launch/cyspera-video-2.jpg',
+        platform: 'TikTok',
+        creator: '@creator_name',
+        url: null as string | null,
+        alt: { en: 'Video thumbnail: close-up of cream being applied to the back of a hand', ja: '動画サムネイル：手の甲にクリームをのせるクローズアップ' } as L,
+      },
+      {
+        thumb: '/images/japan-launch/cyspera-video-3.jpg',
+        platform: 'YouTube Shorts',
+        creator: '@creator_name',
+        url: null as string | null,
+        alt: { en: 'Video thumbnail: a creator talking about her skincare routine at a desk', ja: '動画サムネイル：デスクでスキンケアについて話すクリエイター' } as L,
+      },
+    ],
+    watch: { en: 'Watch', ja: '動画を見る' } as L,
     tags: [
       { en: 'Beauty & skincare', ja: '美容・スキンケア' },
       { en: 'Japan expansion', ja: '日本展開' },
