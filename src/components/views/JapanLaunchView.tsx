@@ -11,6 +11,7 @@ import { Reveal, ScrollProgress } from '@/components/ui'
 import { display, mincho } from '@/lib/jl-fonts'
 import type { Lang } from '@/lib/locale'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
+import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
 import {
   FORM_ANCHOR,
   JAPAN_LAUNCH_PATH,
@@ -36,8 +37,8 @@ import {
 
 const pathFor = (lang: Lang) => (lang === 'ja' ? JAPAN_LAUNCH_PATH : JAPAN_LAUNCH_PATH_EN)
 
-// LP の上部メニュー（LP 内のセクションへ）。英語サイトはこの LP だけなので、会社サイトには飛ばさない
-const navLinks = [
+// LP の上部メニュー（LP 内のセクションへ）。英語サイトはこの LP（とガイド記事）だけなので、会社サイトには飛ばさない
+export const navLinks = [
   { label: 'Why Japan', href: '#why-japan' },
   { label: 'Partnership', href: '#partnership' },
   { label: 'Why Faise', href: '#why-faise' },
@@ -550,6 +551,24 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
         <div className="relative mx-auto w-full max-w-[860px] px-6 md:px-10">
           <SecHead label={faq.label} kanji={kanji.faq} lines={[faq.h2[lang]]} />
           <FaqList items={faq.items.map((f) => ({ q: f.q[lang], a: f.a[lang] }))} className="mt-8" divider="divide-[#e6e1da] border-[#e6e1da]" />
+          {/* 英語のガイド記事（検索・AI からの入口。英語版のみ） */}
+          {lang === 'en' && (
+            <div className="mt-12">
+              <p className="text-[13px] font-medium tracking-[0.08em] text-[#777]">
+                Guides for entering Japan · <Link href={GUIDE_BASE} className="underline decoration-[#ccc] underline-offset-4 hover:text-beni">See all</Link>
+              </p>
+              <ul className="mt-3 divide-y divide-[#e6e1da] border-y border-[#e6e1da]">
+                {japanGuides.map((g) => (
+                  <li key={g.slug}>
+                    <Link href={`${GUIDE_BASE}/${g.slug}`} className="group flex items-center justify-between gap-4 py-4 text-[15.5px] leading-[1.6] text-sumi hover:text-beni">
+                      {g.h1}
+                      <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" className="shrink-0 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
 

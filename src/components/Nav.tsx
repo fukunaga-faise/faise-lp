@@ -35,7 +35,12 @@ export default function Nav({ base = '', links: pageLinks, contactHref }: { base
   const altHref = alternatePath(pathname, lang)
 
   // Contact：ページ専用フォームがあればそこへスクロール、なければ問い合わせモーダル
+  // （別ページのフォームを指す場合はそのページへ移動）
   const openContact = () => {
+    if (contactHref && !contactHref.startsWith('#')) {
+      window.location.href = contactHref
+      return
+    }
     const el = contactHref ? document.querySelector(contactHref) : null
     if (el) el.scrollIntoView({ behavior: 'smooth' })
     else setModalOpen(true)

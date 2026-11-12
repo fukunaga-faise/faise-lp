@@ -16,9 +16,10 @@ export const FORM_ANCHOR = 'fit-check'
 
 export const meta: Record<Lang, { title: string; description: string }> = {
   en: {
-    title: 'Japan Launch | Bring Your Product to Japan — Faise Inc.',
+    // 検索される言葉（Japan market entry / influencer marketing in Japan）を先頭に
+    title: 'Japan Market Entry & Influencer Marketing for Overseas Brands | Faise',
     description:
-      'Never planned to sell in Japan? You don’t need a plan, a team or an office there. Faise’s Japan team — marketing specialists and working influencers — brings your brand to Japanese consumers and grows sales, with very little effort on your side.',
+      'Launch your brand in Japan without a local team or office. Faise handles Japan market entry for overseas beauty, lifestyle and gadget brands — localization, Japanese influencer marketing, Amazon Japan and e-commerce, and retail.',
   },
   ja: {
     title: '海外ブランドの日本上陸支援 Japan Launch | 株式会社Faise',
@@ -46,7 +47,7 @@ export const hero = {
   split: { abroad: { en: 'Abroad', ja: '海外' } as L, japan: { en: 'Japan', ja: '日本' } as L },
   h1: { en: ['Your brand,', 'loved in Japan too.'], ja: ['そのブランドを、', '日本でも愛される存在に。'] } as LL,
   sub: {
-    en: 'Never planned to sell in Japan? You don’t need a plan, a team or an office there. Our Japan team brings your brand to Japanese consumers and grows sales — with very little effort on your side.',
+    en: 'Never planned to sell in Japan? You don’t need a plan, a team or an office there. Our Japan team handles your entry into the Japanese market — localization, Japanese influencer marketing and sales — with very little effort on your side.',
     ja: '日本での販売を考えていなかった海外ブランドでも大丈夫です。日本に拠点もチームも必要ありません。Faiseの日本チームがブランドを日本の消費者に届け、売上を育てます。ブランド側の負担はわずかです。',
   } as L,
   cta: { en: 'See if Japan fits — free', ja: '日本との相性を無料で診断' } as L,
@@ -192,7 +193,7 @@ export const whyJapan = {
   label: 'Why Japan',
   h2: { en: ['A market worth', 'a second look.'], ja: ['見過ごされがちな、', '大きな機会。'] } as LL,
   lead: {
-    en: 'Japan wasn’t on your roadmap? That’s common. Here’s why it’s worth a closer look.',
+    en: 'Japan wasn’t on your roadmap? That’s common. Here’s why the Japanese market is worth a closer look.',
     ja: '日本進出を計画していなかったブランドは少なくありません。それでも、検討する価値がある理由があります。',
   } as L,
   items: [
@@ -310,7 +311,7 @@ export const track = {
     {
       title: { en: 'A wide domestic influencer network', ja: '国内インフルエンサーとの幅広いつながり' },
       body: {
-        en: 'Through the team’s own connections we work with many influencers across Japan — ideal for promoting products like yours.',
+        en: 'Through the team’s own connections we work with many influencers across Japan — the base for influencer marketing in Japan for products like yours.',
         ja: 'メンバー自身のつながりを含め、多くの国内インフルエンサーと連携。海外ブランドの商品プロモーションを得意としています。',
       },
     },

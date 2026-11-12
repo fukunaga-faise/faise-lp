@@ -3,6 +3,7 @@ import { SITE_URL } from '@/lib/site'
 import { guides } from '@/lib/clinic-guides'
 import { services } from '@/lib/services'
 import { cases } from '@/lib/cases'
+import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
 
 type Entry = MetadataRoute.Sitemap[number]
 
@@ -30,6 +31,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...japanLaunch(now),
     ...services.flatMap((s) => page(`/services/${s.slug}`, 0.7, now)),
     ...cases.filter((c) => c.slug !== 'beauty-clinic').flatMap((c) => page(`/works/${c.slug}`, 0.7, now)),
+    // 英語のガイド記事（Japan Launch LP の配下）
+    { url: `${SITE_URL}${GUIDE_BASE}`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },
+    ...japanGuides.map((g) => ({
+      url: `${SITE_URL}${GUIDE_BASE}/${g.slug}`,
+      lastModified: new Date(g.updated),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
     { url: `${SITE_URL}/clinic/guide`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },
     ...guides.map((g) => ({
       url: `${SITE_URL}/clinic/guide/${g.slug}`,
