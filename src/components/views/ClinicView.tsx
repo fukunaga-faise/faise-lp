@@ -12,7 +12,7 @@ export function clinicMetadata(lang: Lang): Metadata {
   return {
     title: m.title,
     description: m.description,
-    alternates: { canonical: path, languages: { ja: '/clinic', en: '/en/clinic', 'x-default': '/clinic' } },
+    alternates: { canonical: path },
     openGraph: {
       title: m.title,
       description: m.description,

@@ -76,7 +76,7 @@ export function serviceMetadata(slug: string, lang: Lang): Metadata {
   return {
     title,
     description: s.body[lang],
-    alternates: { canonical: path, languages: { ja, en, 'x-default': ja } },
+    alternates: { canonical: path },
     openGraph: {
       title,
       description: s.body[lang],

@@ -18,11 +18,19 @@ const contactPaths = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
-    // 英語版（/en/contact など）は英語トップのフォームへ
-    return contactPaths.flatMap((source) => [
+    // 英語サイトは Japan Launch LP（/en/japan-launch）だけ。
+    // 以前の英訳ページ（/en、/en/clinic、/en/services/…、/en/works/…）は LP へ転送する。
+    const englishRetired = ['/en', '/en/clinic/:path*', '/en/services/:path*', '/en/works/:path*'].map((source) => ({
+      source,
+      destination: '/en/japan-launch',
+      permanent: true,
+    }))
+    // 問い合わせ URL の推測アクセス：日本語はトップのフォーム、英語は LP のフォーム（Japan Fit Check）へ
+    const contact = contactPaths.flatMap((source) => [
       { source, destination: '/#contact-form', permanent: true },
-      { source: `/en${source}`, destination: '/en#contact-form', permanent: true },
+      { source: `/en${source}`, destination: '/en/japan-launch#fit-check', permanent: true },
     ])
+    return [...englishRetired, ...contact]
   },
 }
 

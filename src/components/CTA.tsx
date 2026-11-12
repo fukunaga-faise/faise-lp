@@ -12,7 +12,6 @@ const t = {
   lead: { ja: '各種お問い合わせはこちらから。', en: 'Get in touch for any inquiries.' },
   button: { ja: 'お問い合わせフォーム', en: 'Contact form' },
   clinicLink: { ja: '美容クリニックの集客支援', en: 'Marketing support for beauty clinics' },
-  japanLaunchLink: { ja: 'Japan Launch（海外ブランドの日本上陸支援）', en: 'Japan Launch — bring your product to Japan' },
   address: { ja: '株式会社Faise　東京都品川区大井4-18-25', en: 'Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo' },
 }
 
@@ -77,13 +76,10 @@ export function Footer() {
           <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
         </div>
         <div className="flex flex-col gap-3 md:items-end">
-          <Link href={localize('/clinic')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
-            {t.clinicLink[lang]}
-          </Link>
-          {/* Japan Launch の案内は英語サイトのみ（日本語サイトには出さない） */}
-          {lang === 'en' && (
-            <Link href={localize('/japan-launch')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
-              {t.japanLaunchLink[lang]}
+          {/* 英語サイトは Japan Launch LP のみなので、クリニック集客の案内は日本語サイトだけ */}
+          {lang === 'ja' && (
+            <Link href="/clinic" className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+              {t.clinicLink[lang]}
             </Link>
           )}
           <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>

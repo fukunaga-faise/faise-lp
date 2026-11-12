@@ -9,7 +9,7 @@ import PageCurtain from '@/components/PageCurtain'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
 import { Reveal, ScrollProgress } from '@/components/ui'
 import { display, mincho } from '@/lib/jl-fonts'
-import { localizePath, type Lang } from '@/lib/locale'
+import type { Lang } from '@/lib/locale'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 import {
   FORM_ANCHOR,
@@ -35,6 +35,15 @@ import {
 } from '@/lib/japan-launch'
 
 const pathFor = (lang: Lang) => (lang === 'ja' ? JAPAN_LAUNCH_PATH : JAPAN_LAUNCH_PATH_EN)
+
+// LP の上部メニュー（LP 内のセクションへ）。英語サイトはこの LP だけなので、会社サイトには飛ばさない
+const navLinks = [
+  { label: 'Why Japan', href: '#why-japan' },
+  { label: 'Partnership', href: '#partnership' },
+  { label: 'Why Faise', href: '#why-faise' },
+  { label: 'Message', href: '#message' },
+  { label: 'FAQ', href: '#faq' },
+]
 // 英語版がメインのページなので x-default は英語
 const languages = { en: JAPAN_LAUNCH_PATH_EN, ja: JAPAN_LAUNCH_PATH, 'x-default': JAPAN_LAUNCH_PATH_EN }
 
@@ -93,14 +102,19 @@ const buildLd = (lang: Lang) => {
         '@id': `${url}#faq`,
         mainEntity: faq.items.map((f) => ({ '@type': 'Question', name: f.q[lang], acceptedAnswer: { '@type': 'Answer', text: f.a[lang] } })),
       },
-      {
-        '@type': 'BreadcrumbList',
-        '@id': `${url}#breadcrumb`,
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: breadcrumb.home[lang], item: `${SITE_URL}${lang === 'ja' ? '' : '/en'}` },
-          { '@type': 'ListItem', position: 2, name: breadcrumb.here[lang], item: url },
-        ],
-      },
+      // パンくずは日本語版のみ（英語サイトはこの LP がトップ）
+      ...(lang === 'ja'
+        ? [
+            {
+              '@type': 'BreadcrumbList',
+              '@id': `${url}#breadcrumb`,
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: breadcrumb.home[lang], item: SITE_URL },
+                { '@type': 'ListItem', position: 2, name: breadcrumb.here[lang], item: url },
+              ],
+            },
+          ]
+        : []),
     ],
   }
 }
@@ -154,7 +168,6 @@ function Hanko({ text = '上陸', className = '' }: { text?: string; className?:
 }
 
 export default function JapanLaunchView({ lang }: { lang: Lang }) {
-  const loc = (href: string) => localizePath(href, lang)
   const faise = scope.items.filter((i) => i.by === 'faise')
   const partner = scope.items.filter((i) => i.by === 'partner')
 
@@ -163,7 +176,8 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildLd(lang)) }} />
       <PageCurtain />
       <ScrollProgress />
-      <Nav base={loc('/')} />
+      {/* メニューは LP 内の各セクションへ。Contact は LP のフォーム（Japan Fit Check）へスクロール */}
+      <Nav base={pathFor(lang)} links={navLinks} contactHref={`#${FORM_ANCHOR}`} />
 
       {/* 1. Hero：同じ商品を「海外の部屋｜日本の和室」で見せる左右分割の写真 */}
       <section className="relative bg-washi pt-16 md:pt-[76px]">
@@ -181,11 +195,13 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
 
           <div className="relative flex flex-col justify-center px-6 py-10 md:px-10 md:py-14 lg:order-1 lg:py-20 lg:pl-14 lg:pr-12 xl:pl-[max(56px,calc((100vw-1360px)/2+56px))]">
             <div aria-hidden="true" className="bg-seigaiha pointer-events-none absolute inset-x-0 bottom-0 h-1/3 opacity-70 [mask-image:linear-gradient(to_top,black,transparent)]" />
-            <nav aria-label="breadcrumb" className="relative flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777] lg:absolute lg:top-8">
-              <Link href={loc('/')} className="transition-colors hover:text-beni">{breadcrumb.home[lang]}</Link>
-              <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
-              <span aria-current="page" className="text-sumi">{breadcrumb.here[lang]}</span>
-            </nav>
+            {lang === 'ja' && (
+              <nav aria-label="breadcrumb" className="relative flex items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777] lg:absolute lg:top-8">
+                <Link href="/" className="transition-colors hover:text-beni">{breadcrumb.home[lang]}</Link>
+                <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
+                <span aria-current="page" className="text-sumi">{breadcrumb.here[lang]}</span>
+              </nav>
+            )}
             <Reveal className="relative mt-6 max-w-[620px] lg:mt-0">
               <p className="flex items-center gap-4 text-beni">
                 <Hanko />
@@ -211,7 +227,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 機会：日本という市場（日本展開を考えていなかったブランド向けに冒頭へ） */}
-      <section className={`${section} relative bg-white`}>
+      <section id="why-japan" className={`${section} relative scroll-mt-16 bg-white`}>
         <SectionBg src="/images/japan-launch/bg-tea.jpg" overlay="bg-gradient-to-r from-white/95 via-white/70 to-white/25" />
         <div className={`${container} relative`}>
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16">
@@ -334,7 +350,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 8. Partnership models */}
-      <section className={`${section} relative bg-washi`}>
+      <section id="partnership" className={`${section} relative scroll-mt-16 bg-washi`}>
         <SectionBg src="/images/japan-launch/bg-garden.jpg" overlay="bg-gradient-to-b from-washi/80 via-washi/25 to-washi/50" />
         <div className={`${container} relative`}>
           <Reveal className="max-w-3xl">
@@ -380,7 +396,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 9. Why Faise / Track record */}
-      <section className={`${section} bg-white`}>
+      <section id="why-faise" className={`${section} scroll-mt-16 bg-white`}>
         <div className={container}>
           <Reveal className="max-w-3xl">
             <SecHead label={track.label} kanji={kanji.track} lines={track.h2[lang]} />
@@ -484,7 +500,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 代表の想い */}
-      <section className={`${section} relative bg-washi`}>
+      <section id="message" className={`${section} relative scroll-mt-16 bg-washi`}>
         <SectionBg src="/images/japan-launch/bg-path.jpg" imgClass="object-right" overlay="bg-gradient-to-l from-washi/90 via-washi/75 to-washi/30" />
         <div className={`${container} relative`}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
@@ -529,7 +545,7 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
       </section>
 
       {/* 10. FAQ */}
-      <section id="faq" className={`${section} relative bg-white`}>
+      <section id="faq" className={`${section} relative scroll-mt-16 bg-white`}>
         <SectionBg src="/images/japan-launch/bg-kumiko.jpg" overlay="bg-white/[0.86]" />
         <div className="relative mx-auto w-full max-w-[860px] px-6 md:px-10">
           <SecHead label={faq.label} kanji={kanji.faq} lines={[faq.h2[lang]]} />

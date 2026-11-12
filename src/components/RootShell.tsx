@@ -69,7 +69,7 @@ const jsonLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: '株式会社Faise',
-      inLanguage: ['ja', 'en'],
+      inLanguage: 'ja',
       publisher: { '@id': ORG_ID },
     },
   ],

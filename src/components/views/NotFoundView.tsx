@@ -20,10 +20,7 @@ const T = {
       { href: '/clinic', label: '美容クリニックの集客支援' },
       { href: '/clinic/guide', label: '美容クリニック集客ガイド' },
     ],
-    en: [
-      { href: '/', label: 'Home' },
-      { href: '/clinic', label: 'Patient acquisition for beauty clinics' },
-    ],
+    en: [{ href: '/', label: 'Japan Launch — bring your brand to Japan' }],
   },
   contact: { ja: '無料相談・お問い合わせ', en: 'Free consultation' },
 }
@@ -52,7 +49,7 @@ export default function NotFoundView({ lang }: { lang: Lang }) {
           ))}
         </ul>
         <a
-          href={`${loc('/')}#contact-form`}
+          href={lang === 'ja' ? '/#contact-form' : '/en/japan-launch#fit-check'}
           className="mt-10 inline-flex items-center gap-3 rounded-sm bg-gradient-to-r from-brand-sky to-brand px-8 py-4 text-sm font-bold tracking-[0.1em] text-white hover:from-brand hover:to-brand-navy"
         >
           {T.contact[lang]} <ArrowRight size={14} />

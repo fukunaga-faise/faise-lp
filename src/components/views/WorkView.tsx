@@ -43,7 +43,7 @@ export function workMetadata(slug: string, lang: Lang): Metadata {
   return {
     title,
     description: c.body[lang],
-    alternates: { canonical: path, languages: { ja, en, 'x-default': ja } },
+    alternates: { canonical: path },
     openGraph: { title, description: c.body[lang], type: 'article', locale: lang === 'ja' ? 'ja_JP' : 'en_US', url: `${SITE_URL}${path}`, siteName: lang === 'ja' ? '株式会社Faise' : 'Faise Inc.', images: [{ url: og, width: 1200, height: 630 }] },
     twitter: { card: 'summary_large_image', title, description: c.body[lang], images: [og] },
   }
