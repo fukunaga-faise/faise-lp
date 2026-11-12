@@ -80,9 +80,12 @@ export function Footer() {
           <Link href={localize('/clinic')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
             {t.clinicLink[lang]}
           </Link>
-          <Link href={localize('/japan-launch')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
-            {t.japanLaunchLink[lang]}
-          </Link>
+          {/* Japan Launch の案内は英語サイトのみ（日本語サイトには出さない） */}
+          {lang === 'en' && (
+            <Link href={localize('/japan-launch')} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+              {t.japanLaunchLink[lang]}
+            </Link>
+          )}
           <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
         </div>
       </div>

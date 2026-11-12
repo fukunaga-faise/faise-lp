@@ -121,6 +121,8 @@ export default function Services() {
           ))}
         </ul>
 
+        {/* Japan Launch の案内は英語サイトのみ（日本語サイトには出さない） */}
+        {lang === 'en' && (
         <Reveal className="mt-14 md:mt-16">
           <Link
             href={localize('/japan-launch')}
@@ -138,6 +140,7 @@ export default function Services() {
             </span>
           </Link>
         </Reveal>
+        )}
 
         <Reveal className="mt-14 grid gap-8 border-t border-[#ecebe7] pt-9 md:mt-16 md:pt-11 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
           <div>

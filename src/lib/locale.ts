@@ -20,12 +20,16 @@ export function localizePath(href: string, lang: Lang) {
   return `/en${href}`
 }
 
-// 表示中のページの、もう一方の言語の URL
+// 英語の入口（日本語サイトの「EN」ボタンの行き先）。英語サイトは海外ブランド向けの Japan Launch LP が主役。
+export const ENGLISH_ENTRY = '/en/japan-launch'
+
+// 表示中のページの、もう一方の言語の URL（言語切り替えボタンの行き先）
 export function alternatePath(pathname: string, lang: Lang) {
   if (lang === 'en') {
     const ja = pathname.replace(/^\/en(?=\/|$)/, '')
     return ja === '' ? '/' : ja
   }
-  return hasEnglish(pathname) ? localizePath(pathname, 'en') : '/en'
+  // 日本語サイトのどのページからでも、英語は Japan Launch LP へ
+  return ENGLISH_ENTRY
 }
 
