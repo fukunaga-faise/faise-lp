@@ -238,9 +238,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
                 <Image src={images.tokyo.src} alt={images.tokyo.alt[lang]} width={images.tokyo.w} height={images.tokyo.h} sizes="(min-width: 1024px) 33vw, 100vw" className="h-full w-full object-cover" />
               </div>
             </Reveal>
-            <ul className="grid gap-x-8 gap-y-8 md:grid-cols-3">
+            <ul className="grid gap-5 self-start md:grid-cols-3">
               {whyJapan.items.map((w, i) => (
-                <li key={i} className="h-full rounded-sm border-t-2 border-beni/70 bg-white/85 px-5 pb-6 pt-6 backdrop-blur-sm">
+                <li key={i} className="h-full rounded-sm border-t-2 border-beni/70 bg-white/85 p-6 backdrop-blur-sm">
                   <Reveal delay={i * 0.06}>
                     {/* TODO: 出典確認 — 数字は出典付きで whyJapan.items[].stat / source に入れたときだけ表示する */}
                     {w.stat && <p className="font-display text-[48px] leading-none text-beni">{w.stat}</p>}
@@ -462,9 +462,9 @@ export default function JapanLaunchView({ lang }: { lang: Lang }) {
           </Reveal>
 
           {/* インフルエンサー投稿：PCは3列、スマホは横スワイプのカルーセル */}
-          <div className="mt-10">
+          <div className="mt-10 md:mx-auto md:max-w-[880px]">
             <p className="font-mincho text-[18px] font-bold text-sumi md:text-[20px]">{track.featured.videosLabel[lang]}</p>
-            <ul className="no-scrollbar -mx-6 mt-5 flex snap-x snap-mandatory scroll-pl-6 gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:max-w-[880px] md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
+            <ul className="no-scrollbar -mx-6 mt-5 flex snap-x snap-mandatory scroll-pl-6 gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
               {track.featured.videos.map((v, i) => {
                 const card = (
                   <>
