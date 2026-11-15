@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { GuideNav, GuideBreadcrumb, FitCheckBox, Footer } from '@/components/views/JapanGuideParts'
-import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
+import Image from 'next/image'
+import { GUIDE_BASE, guideImage, japanGuides } from '@/lib/japan-guides'
 import { JAPAN_LAUNCH_PATH_EN } from '@/lib/japan-launch'
 import { SITE_URL } from '@/lib/site'
 
@@ -54,15 +55,21 @@ export default function JapanGuideIndex() {
           </p>
           <h1 className="mt-5 text-[clamp(26px,4.6vw,42px)] font-medium leading-[1.35]">Japan market entry guides</h1>
           <p className="mt-6 text-[16px] leading-[1.9] text-[#444]">{description}</p>
-          <ul className="mt-12 divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
-            {japanGuides.map((g) => (
-              <li key={g.slug}>
-                <Link href={`${GUIDE_BASE}/${g.slug}`} className="group block py-7">
-                  <h2 className="text-[19px] md:text-[21px] font-medium leading-[1.5] group-hover:text-brand">{g.h1}</h2>
-                  <p className="mt-2.5 text-[15px] leading-[1.85] text-[#666]">{g.description}</p>
-                </Link>
-              </li>
-            ))}
+          <ul className="mt-12 grid gap-10 md:grid-cols-3 md:gap-7">
+            {japanGuides.map((g) => {
+              const c = guideImage(g.cover)
+              return (
+                <li key={g.slug}>
+                  <Link href={`${GUIDE_BASE}/${g.slug}`} className="group block">
+                    <div className="relative aspect-[3/2] overflow-hidden rounded-sm bg-[#f3f1ec]">
+                      <Image src={c.src} alt={c.alt} fill sizes="(min-width: 768px) 270px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                    </div>
+                    <h2 className="mt-4 text-[17px] md:text-[18px] font-medium leading-[1.5] group-hover:text-brand">{g.h1}</h2>
+                    <p className="mt-2 text-[14px] leading-[1.8] text-[#666]">{g.description}</p>
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
           <FitCheckBox />
         </div>

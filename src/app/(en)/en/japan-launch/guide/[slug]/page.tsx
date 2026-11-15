@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import FaqList from '@/components/FaqList'
-import { GuideNav, GuideBreadcrumb, FitCheckBox, Footer } from '@/components/views/JapanGuideParts'
-import { GUIDE_AUTHOR, GUIDE_BASE, japanGuideBySlug, japanGuides } from '@/lib/japan-guides'
+import Image from 'next/image'
+import { GuideNav, GuideBreadcrumb, FitCheckBox, GuideFigure, CaseStudyBlock, AuthorBox, Footer } from '@/components/views/JapanGuideParts'
+import { GUIDE_AUTHOR, GUIDE_BASE, guideImage, japanGuideBySlug, japanGuides } from '@/lib/japan-guides'
 import { JAPAN_LAUNCH_PATH_EN } from '@/lib/japan-launch'
 import { SITE_URL, ORG_ID, FOUNDER_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 
 const container = 'mx-auto w-full max-w-[760px] px-6 md:px-10'
-const OG = '/og/japan-launch-en.jpg'
 
 export function generateStaticParams() {
   return japanGuides.map((g) => ({ slug: g.slug }))
@@ -18,6 +18,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const g = japanGuideBySlug(params.slug)
   if (!g) return {}
   const path = `${GUIDE_BASE}/${g.slug}`
+  const cover = guideImage(g.cover)
   return {
     title: `${g.title} | Faise`,
     description: g.description,
@@ -31,9 +32,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       siteName: 'Faise Inc.',
       publishedTime: g.published,
       modifiedTime: g.updated,
-      images: [{ url: OG, width: 1200, height: 630, alt: g.h1 }],
+      images: [{ url: cover.src, width: cover.w, height: cover.h, alt: cover.alt }],
     },
-    twitter: { card: 'summary_large_image', title: g.title, description: g.description, images: [OG] },
+    twitter: { card: 'summary_large_image', title: g.title, description: g.description, images: [cover.src] },
   }
 }
 
@@ -44,6 +45,7 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
   if (!g) notFound()
   const url = `${SITE_URL}${GUIDE_BASE}/${g.slug}`
   const others = japanGuides.filter((o) => o.slug !== g.slug)
+  const cover = guideImage(g.cover)
 
   // 構造化データ（ページに表示している本文・FAQと同じテキストのみ）
   const jsonLd = {
@@ -59,7 +61,7 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
         inLanguage: 'en',
         datePublished: g.published,
         dateModified: g.updated,
-        image: `${SITE_URL}${OG}`,
+        image: `${SITE_URL}${cover.src}`,
         author: { '@type': 'Person', '@id': FOUNDER_ID, name: GUIDE_AUTHOR.name, jobTitle: GUIDE_AUTHOR.jobTitle, worksFor: { '@id': ORG_ID }, sameAs: [FOUNDER_LINKEDIN_URL] },
         publisher: { '@id': ORG_ID },
         about: { '@id': `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}#service` },
@@ -99,6 +101,7 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
             Updated <time dateTime={g.updated}>{fmtDate(g.updated)}</time> · By{' '}
             <a href={FOUNDER_LINKEDIN_URL} target="_blank" rel="noopener" className="underline decoration-[#ccc] underline-offset-4 hover:text-brand">{GUIDE_AUTHOR.name}</a>, {GUIDE_AUTHOR.jobTitle}
           </p>
+          <GuideFigure img={g.cover} priority />
           <p className="mt-8 text-[16px] leading-[1.9] text-[#444]">{g.lead}</p>
 
           {/* 結論を先に（AIの引用はページ上部に集中するため） */}
@@ -176,6 +179,8 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
                   </table>
                 </div>
               )}
+              {s.caseStudy && <CaseStudyBlock />}
+              {s.figure && <GuideFigure img={s.figure.img} caption={s.figure.caption} />}
             </section>
           ))}
 
@@ -184,16 +189,26 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
             <FaqList items={g.faq} className="mt-6" />
           </section>
 
+          <AuthorBox />
+
           <FitCheckBox />
 
           <aside className="mt-14">
             <p className="text-[13px] font-medium tracking-[0.04em] text-[#777]">More guides</p>
             <ul className="mt-3 divide-y divide-[#ecebe7] border-y border-[#ecebe7]">
-              {others.map((o) => (
-                <li key={o.slug}>
-                  <Link href={`${GUIDE_BASE}/${o.slug}`} className="block py-4 text-[15.5px] leading-[1.6] hover:text-brand">{o.h1}</Link>
-                </li>
-              ))}
+              {others.map((o) => {
+                const t = guideImage(o.cover)
+                return (
+                  <li key={o.slug}>
+                    <Link href={`${GUIDE_BASE}/${o.slug}`} className="group flex items-center gap-4 py-4 text-[15.5px] leading-[1.6] hover:text-brand">
+                      <span className="relative block aspect-[3/2] w-[96px] shrink-0 overflow-hidden rounded-sm bg-[#f3f1ec]">
+                        <Image src={t.src} alt="" fill sizes="96px" className="object-cover" />
+                      </span>
+                      {o.h1}
+                    </Link>
+                  </li>
+                )
+              })}
             </ul>
           </aside>
         </div>

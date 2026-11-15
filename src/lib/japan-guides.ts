@@ -3,12 +3,25 @@
 //   国内インフルエンサーとのつながり、協業の形2つ、Cyspera（scientis）の支援内容、輸入・認証・物流・CSはパートナーと連携、Fit Check 無料。
 // ※市場規模などの数字は出典なしでは書かない。法規制は一般的な解説にとどめ、最終確認は専門家・公式資料を促す。
 
+import { hero, images } from './japan-launch'
+
+// 記事で使う写真（Japan Launch LP と同じイメージ素材。public/images/japan-launch）
+export type GuideImageKey = 'hero' | 'gadgets' | 'lifestyle' | 'beauty' | 'tokyo' | 'shoot'
+export function guideImage(key: GuideImageKey) {
+  const img = key === 'hero' ? hero.image : images[key]
+  return { src: img.src, w: img.w, h: img.h, alt: img.alt.en }
+}
+
 export type GuideSection = {
   h2: string
   body: string[]
   list?: string[]
   ordered?: boolean
   table?: { caption: string; head: string[]; rows: string[][] }
+  // セクション末尾の写真（キャプション付き）
+  figure?: { img: GuideImageKey; caption: string }
+  // Cyspera の事例ブロック（商品写真・実施内容・実際のインフルエンサー投稿）を表示する
+  caseStudy?: boolean
 }
 
 export type Guide = {
@@ -20,6 +33,8 @@ export type Guide = {
   summary: string[]
   published: string
   updated: string
+  // 記事冒頭のメイン写真（OG 画像・構造化データの image にも使う）
+  cover: GuideImageKey
   sections: GuideSection[]
   faq: { q: string; a: string }[]
 }
@@ -46,7 +61,8 @@ export const japanGuides: Guide[] = [
       'Localize the story, not just the words, and build trust through Japanese creators and reviews before scaling to marketplaces and retail.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-12',
+    updated: '2026-11-15',
+    cover: 'hero',
     sections: [
       {
         h2: '1. Check whether your product fits Japan',
@@ -60,6 +76,7 @@ export const japanGuides: Guide[] = [
           'Product changes: Japanese labeling, manuals and support, plus any certification the product needs.',
           'Story: what is the one reason a Japanese customer should choose you?',
         ],
+        figure: { img: 'tokyo', caption: 'Japanese shoppers compare products carefully, in stores and online.' },
       },
       {
         h2: '2. Understand the rules that apply to your product',
@@ -77,6 +94,7 @@ export const japanGuides: Guide[] = [
             ['All products', 'Labeling and advertising rules', 'Product pages, ads and influencer posts must not mislead, and paid promotions must be disclosed as ads.'],
           ],
         },
+        figure: { img: 'gadgets', caption: 'Gadgets with Bluetooth or Wi-Fi usually need Japanese radio certification (Giteki) before sale.' },
       },
       {
         h2: '3. Decide who acts for you in Japan',
@@ -105,6 +123,7 @@ export const japanGuides: Guide[] = [
           'Prepare detailed product pages: specifications, how to use, ingredients or materials, and support information.',
           'Create content that shows the product in a Japanese setting and lifestyle.',
         ],
+        figure: { img: 'lifestyle', caption: 'Show the product in a Japanese setting, not just a translated catalog photo.' },
       },
       {
         h2: '5. Build trust first, then scale sales',
@@ -118,12 +137,14 @@ export const japanGuides: Guide[] = [
           'Grow on e-commerce marketplaces such as Amazon Japan and Rakuten, plus your own online store.',
           'Use your Japanese sales record to approach specialty stores, retailers and wholesalers.',
         ],
+        figure: { img: 'shoot', caption: 'Short videos from trusted Japanese creators are often where discovery starts.' },
       },
       {
         h2: 'Example: bringing Cyspera by scientis to Japan',
         body: [
           'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis. The work covers sales on Amazon Japan and online stores, ad operations and promotion with Japanese influencers.',
         ],
+        caseStudy: true,
       },
     ],
     faq: [
@@ -147,7 +168,8 @@ export const japanGuides: Guide[] = [
       'Plan for reuse: good creator content can become ads, product page assets and proof for marketplaces and retailers.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-12',
+    updated: '2026-11-15',
+    cover: 'shoot',
     sections: [
       {
         h2: 'Which platforms matter in Japan',
@@ -176,6 +198,7 @@ export const japanGuides: Guide[] = [
           'Content style: does the creator explain products in detail, or just show them?',
           'Track record: past product posts that look natural rather than scripted.',
         ],
+        figure: { img: 'beauty', caption: 'For beauty products, creators who show texture and how they use the product in a daily routine tend to earn more trust.' },
       },
       {
         h2: 'Disclosure rules: avoid stealth marketing',
@@ -197,12 +220,14 @@ export const japanGuides: Guide[] = [
           'Use creator content and the reviews it generates on product pages for Amazon Japan, Rakuten or your own store.',
           'Use the results as proof when talking to Japanese retailers and wholesalers.',
         ],
+        figure: { img: 'tokyo', caption: 'Creator content can keep working long after the post: on product pages, marketplaces and in conversations with retailers.' },
       },
       {
         h2: 'How Faise approaches influencer marketing in Japan',
         body: [
           'Faise’s Japan team includes marketers who specialize in Japanese consumers and active influencers, and through the team’s own connections we work with many influencers across Japan. For Cyspera, a skincare product from the Swiss brand scientis, influencer promotion runs alongside sales on Amazon Japan and online stores and ad operations.',
         ],
+        caseStudy: true,
       },
     ],
     faq: [
@@ -226,7 +251,8 @@ export const japanGuides: Guide[] = [
       'Common launch channels include Amazon Japan, Rakuten, Qoo10 and your own online store, followed by specialty retail.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-12',
+    updated: '2026-11-15',
+    cover: 'beauty',
     sections: [
       {
         h2: 'Regulations: cosmetics under the PMD Act',
@@ -258,6 +284,7 @@ export const japanGuides: Guide[] = [
           'Keep every claim within what is allowed for cosmetics, and disclose sponsored posts as ads.',
           'Collect reviews early and feature them on your product pages.',
         ],
+        figure: { img: 'shoot', caption: 'Showing texture and how the product is used works better than bold claims, which cosmetics rules limit anyway.' },
       },
       {
         h2: 'Sales channels for beauty brands in Japan',
@@ -275,12 +302,14 @@ export const japanGuides: Guide[] = [
             ['Specialty and lifestyle stores', 'Physical presence once you have proof of demand'],
           ],
         },
+        figure: { img: 'tokyo', caption: 'Retail usually comes after online sales and reviews have proven demand in Japan.' },
       },
       {
         h2: 'Example: Cyspera by scientis',
         body: [
           'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis — from selling on Amazon Japan and online stores to ad operations and promotion with Japanese influencers.',
         ],
+        caseStudy: true,
       },
     ],
     faq: [
