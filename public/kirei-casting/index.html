@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>キレイキャスティング</title>
+<meta name="description" content="キレイキャスティングは、美容クリニック・コスメ・サロンなどの美容案件をインフルエンサーにご紹介するキャスティングサービスです。">
+<link rel="canonical" href="https://www.faise-inc.com/kirei-casting">
+<meta property="og:title" content="キレイキャスティング｜美容案件がLINEに届く">
+<meta property="og:description" content="美容クリニック・コスメ・サロンなどの美容案件をLINEでお届け。気になる案件を選んで応募するだけの、美容インフルエンサーのための案件配信サービスです。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.faise-inc.com/kirei-casting">
+<meta property="og:image" content="https://www.faise-inc.com/kirei-casting/images/creator.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,400;1,500&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 写真が主役。淡いピンク〜ライラックのヒーローに人物写真、太いゴシック見出し、ピンクの帯で区切る日本のサービスLPの文法。単一のライトテーマで固定。 */
+:root {
+  color-scheme: light;
+  --bg: #FFF8FA;
+  --surface: #FFFFFF;
+  --ink: #2A1822;
+  --ink-soft: #6B5661;
+  --rose: #D92B6A;
+  --rose-deep: #A81B4E;
+  --blush: #FBDDE7;
+  --lilac: #E8E1F7;
+  --gold: #B08442;
+  --line: #F0DDE4;
+  --line-green: #06B34C;
+  --line-green-deep: #04933D;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --font-latin: "Bodoni Moda", "Didot", Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { text-wrap: balance; word-break: auto-phrase; font-weight: 900; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+.nw { white-space: nowrap; }
+
+.wrap {
+  max-width: 1120px; margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 60px; padding: 0 34px;
+  border-radius: 999px; border: 2px solid transparent;
+  font: 700 17px/1.2 var(--font-body); letter-spacing: 0.04em;
+  text-decoration: none; cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-line { background: var(--line-green); color: var(--surface); box-shadow: 0 6px 0 var(--line-green-deep); }
+.btn-line:hover { background: var(--line-green-deep); }
+.btn-primary { background: var(--rose); color: var(--surface); box-shadow: 0 6px 0 var(--rose-deep); }
+.btn-primary:hover { background: var(--rose-deep); }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--surface); }
+.btn-small { min-height: 44px; padding: 0 22px; font-size: 14px; box-shadow: none; }
+.btn .free { background: var(--surface); color: var(--line-green-deep); border-radius: 999px; padding: 3px 10px; font-size: 13px; }
+.cta-note { margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- header ---------- */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.logo-jp { font: 900 21px/1 var(--font-body); letter-spacing: 0.04em; color: var(--rose); }
+.logo-en { font: italic 400 13px/1 var(--font-latin); color: var(--ink-soft); }
+.nav { display: flex; align-items: center; gap: 26px; }
+.nav a:not(.btn) { font-size: 14px; font-weight: 700; text-decoration: none; }
+.nav a:not(.btn):hover { color: var(--rose); }
+
+/* ---------- hero ---------- */
+.hero { background: linear-gradient(115deg, var(--blush) 0%, var(--bg) 42%, var(--lilac) 100%); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 32px; align-items: end; padding-block: 56px 0; }
+.hero-copy { padding-bottom: 64px; min-width: 0; }
+.ribbon { display: inline-block; background: var(--ink); color: var(--surface); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; padding: 5px 18px; border-radius: 999px; }
+.hero h1 { margin-top: 20px; font-size: clamp(34px, 5.3vw, 68px); line-height: 1.3; letter-spacing: 0.02em; }
+.hero h1 em { font-style: normal; color: var(--rose); background: linear-gradient(transparent 68%, var(--surface) 68%); }
+.hero-lead { margin-top: 22px; max-width: 30em; font-size: 17px; font-weight: 500; }
+.sns { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.sns li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 2px 14px; font: italic 500 15px/1.8 var(--font-latin); }
+.hero-cta { margin-top: 30px; }
+.hero-visual { position: relative; min-width: 0; align-self: end; }
+.hero-visual img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% 20%; border-radius: 240px 240px 0 0; box-shadow: 0 0 0 10px var(--surface); }
+.badge {
+  position: absolute; display: grid; place-content: center; text-align: center;
+  width: 112px; height: 112px; border-radius: 50%;
+  background: var(--rose); color: var(--surface); font-weight: 900; font-size: 15px; line-height: 1.35;
+  box-shadow: 0 10px 24px -10px var(--rose-deep);
+}
+.badge b { font-size: 24px; }
+.badge.b1 { left: -6%; top: 14%; rotate: -8deg; }
+.badge.b2 { left: -10%; top: 46%; background: var(--surface); color: var(--rose); border: 2px solid var(--rose); rotate: 6deg; }
+
+/* trust strip */
+.strip { background: var(--rose); color: var(--surface); }
+.strip ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.strip li { padding: 22px 16px; text-align: center; font-weight: 700; line-height: 1.5; border-left: 1px solid rgba(255, 255, 255, .35); min-width: 0; }
+.strip li:first-child { border-left: 0; }
+.strip small { display: block; font: italic 400 14px/1.4 var(--font-latin); opacity: .9; }
+.strip strong { font-size: 19px; font-weight: 900; }
+
+/* ---------- sections ---------- */
+.section { padding-block: 88px; }
+.section.tint { background: var(--surface); }
+.sec-head { text-align: center; max-width: 720px; margin-inline: auto; }
+.sec-head .en { font: italic 400 18px/1.2 var(--font-latin); color: var(--rose); }
+.sec-head h2 { margin-top: 8px; font-size: clamp(26px, 3.6vw, 40px); line-height: 1.5; letter-spacing: 0.03em; }
+.sec-head h2 em { font-style: normal; color: var(--rose); }
+.sec-head p { margin-top: 14px; color: var(--ink-soft); }
+
+/* worries */
+.worries { margin-top: 44px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.worries li { position: relative; background: var(--surface); border: 2px solid var(--line); border-radius: 20px; padding: 26px 24px; font-weight: 700; line-height: 1.7; min-width: 0; }
+.worries li::after { content: ""; position: absolute; left: 40px; bottom: -14px; width: 24px; height: 24px; background: var(--surface); border-right: 2px solid var(--line); border-bottom: 2px solid var(--line); rotate: 45deg; }
+.worries span { display: block; margin-top: 8px; font-weight: 400; font-size: 14px; color: var(--ink-soft); }
+.answer { margin-top: 56px; text-align: center; font-weight: 900; font-size: clamp(20px, 2.8vw, 28px); line-height: 1.6; }
+.answer em { font-style: normal; color: var(--rose); }
+
+/* genres */
+.genres { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.genre { background: var(--bg); border-radius: 20px; overflow: hidden; min-width: 0; }
+.genre img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.genre div { padding: 18px 22px 24px; }
+.genre .en { font: italic 400 14px/1 var(--font-latin); color: var(--gold); }
+.genre h3 { margin-top: 6px; font-size: 20px; line-height: 1.5; }
+.genre p { margin-top: 6px; font-size: 14px; color: var(--ink-soft); line-height: 1.8; }
+
+/* reasons */
+.reasons { margin-top: 56px; display: grid; gap: 64px; }
+.reason { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.reason:nth-child(even) .reason-media { order: 2; }
+.reason-media img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 24px; }
+.reason .num { font: italic 400 20px/1 var(--font-latin); color: var(--rose); }
+.reason h3 { margin-top: 10px; font-size: clamp(22px, 2.7vw, 30px); line-height: 1.55; }
+.reason h3 span { background: linear-gradient(transparent 62%, var(--blush) 62%); }
+.reason p { margin-top: 14px; color: var(--ink-soft); }
+.chips { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-block; padding: 3px 14px; border-radius: 999px; background: var(--lilac); font-size: 13px; font-weight: 700; line-height: 1.8; }
+/* LINE配信のイメージ図 */
+.talk { max-width: 400px; margin-inline: auto; border-radius: 28px; overflow: hidden; background: var(--lilac); box-shadow: 0 20px 44px -26px rgba(42, 24, 34, .5); }
+.talk-head { background: var(--line-green); color: var(--surface); font-weight: 900; text-align: center; padding: 12px 16px; }
+.talk-body { padding: 20px 18px 16px; display: grid; gap: 14px; }
+.bubble { position: relative; background: var(--surface); border-radius: 4px 18px 18px 18px; padding: 14px 16px; font-size: 14px; line-height: 1.7; max-width: 88%; }
+.bubble b { display: block; color: var(--rose-deep); font-weight: 900; }
+.bubble span { display: block; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); text-align: center; font-weight: 700; color: var(--line-green-deep); }
+.talk-note { margin: 0; font-size: 12px; color: var(--ink-soft); text-align: right; }
+/* 投稿前チェックの図 */
+.check-card { background: var(--surface); border-radius: 24px; padding: 28px; box-shadow: 0 20px 44px -26px rgba(42, 24, 34, .5); }
+.check-card .post { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; border-bottom: 1px dashed var(--line); }
+.check-card .post img { width: 96px; height: 96px; border-radius: 14px; object-fit: cover; flex: none; }
+.check-card .post p { margin: 0; font-size: 14px; color: var(--ink); line-height: 1.7; }
+.check-card .pr { display: inline-block; background: var(--ink); color: var(--surface); font-size: 12px; font-weight: 700; border-radius: 4px; padding: 0 8px; margin-right: 6px; }
+.check-card ul { margin-top: 16px; display: grid; gap: 8px; font-size: 15px; font-weight: 700; }
+.check-card li { display: flex; gap: 10px; align-items: baseline; }
+.check-card li::before { content: "✓"; color: var(--line-green); font-weight: 900; }
+
+/* flow */
+.flow { margin-top: 48px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: step; }
+.flow li { counter-increment: step; position: relative; padding: 26px 18px; background: var(--surface); border: 2px solid var(--line); border-radius: 18px; text-align: center; min-width: 0; }
+.flow li::before { content: "STEP " counter(step); display: inline-block; background: var(--rose); color: var(--surface); font-weight: 900; font-size: 13px; letter-spacing: 0.08em; border-radius: 999px; padding: 0 14px; line-height: 2; }
+.flow h3 { margin-top: 12px; font-size: 18px; line-height: 1.5; }
+.flow p { margin-top: 6px; font-size: 14px; color: var(--ink-soft); line-height: 1.8; text-align: left; }
+
+/* whom */
+.whom { margin-top: 40px; max-width: 920px; margin-inline: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 40px; }
+.whom li { display: flex; gap: 14px; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--line); font-weight: 700; }
+.whom li::before { content: "✓"; color: var(--rose); font-weight: 900; }
+
+/* faq */
+.faq { margin: 40px auto 0; max-width: 800px; display: grid; gap: 12px; }
+.faq details { background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 0 22px; }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; font-weight: 700; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: "Q"; flex: none; font: italic 500 22px/1 var(--font-latin); color: var(--rose); }
+.faq summary span { flex: 1; }
+.faq summary::after { content: "+"; flex: none; font: 400 26px/1 var(--font-latin); color: var(--rose); transition: rotate .2s ease; }
+.faq details[open] summary::after { rotate: 45deg; }
+.faq details p { padding: 0 0 22px 34px; color: var(--ink-soft); }
+
+/* entry */
+.entry { background: linear-gradient(115deg, var(--rose) 0%, var(--rose-deep) 100%); color: var(--surface); overflow: hidden; }
+.entry .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end; padding-block: 72px 0; }
+.entry-copy { padding-bottom: 72px; min-width: 0; }
+.entry .en { font: italic 400 18px/1.2 var(--font-latin); }
+.entry h2 { margin-top: 10px; font-size: clamp(28px, 4.2vw, 48px); line-height: 1.45; letter-spacing: 0.03em; }
+.entry p { margin-top: 14px; max-width: 30em; }
+.entry .btn { margin-top: 28px; }
+.entry-note { margin-top: 12px; min-height: 1.9em; font-size: 14px; }
+.entry-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 30%; border-radius: 28px 28px 0 0; }
+
+/* business */
+.biz { background: var(--surface); }
+.biz .wrap { padding-block: 56px; display: grid; grid-template-columns: 200px minmax(0, 1fr) auto; gap: 32px; align-items: center; }
+.biz img { width: 200px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; }
+.biz h2 { font-size: 22px; line-height: 1.6; }
+.biz p { margin-top: 4px; font-size: 14px; color: var(--ink-soft); }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--line); }
+.site-footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 13px; color: var(--ink-soft); }
+.site-footer ul { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .nav a:not(.btn) { display: none; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 36px 0; }
+  .hero-copy { padding-bottom: 0; }
+  .hero-visual { max-width: 420px; margin-inline: auto; width: 100%; }
+  .badge.b1 { left: 0; } .badge.b2 { left: -2%; }
+  .worries, .genres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reason { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .reason:nth-child(even) .reason-media { order: 0; }
+  .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .entry .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 56px 0; }
+  .entry-copy { padding-bottom: 0; }
+  .biz .wrap { grid-template-columns: minmax(0, 1fr); }
+  .section { padding-block: 64px; }
+}
+@media (max-width: 560px) {
+  .logo-en { display: none; }
+  .logo-jp { font-size: 16px; white-space: nowrap; }
+  .site-header .btn-small { padding: 0 14px; font-size: 12px; white-space: nowrap; }
+  .worries, .genres, .flow, .whom, .strip ul { grid-template-columns: minmax(0, 1fr); }
+  .strip li { border-left: 0; border-top: 1px solid rgba(255, 255, 255, .35); padding: 14px 16px; }
+  .strip li:first-child { border-top: 0; }
+  .btn { width: 100%; padding: 0 20px; }
+  .btn-small { width: auto; }
+  .badge { width: 92px; height: 92px; font-size: 13px; }
+  .badge b { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="キレイキャスティング">
+      <span class="logo-jp">キレイキャスティング</span>
+      <span class="logo-en">Kirei Casting</span>
+    </a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="#genres">案件ジャンル</a>
+      <a href="#reasons">選ばれる理由</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#faq">よくある質問</a>
+      <a class="btn btn-line btn-small" href="#entry">LINEで無料登録</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="ribbon">美容案件が、LINEに届く</p>
+        <h1><span class="nw">美容が好きな</span><span class="nw">あなたへ。</span><br><span class="nw"><em>「キレイ」</em>が、</span><span class="nw">仕事になる。</span></h1>
+        <p class="hero-lead">美容クリニック・コスメ・サロンなどの美容案件を、LINEでまとめてお届け。気になる案件を選んで応募するだけの、美容インフルエンサーのための案件配信サービスです。</p>
+        <ul class="sns" aria-label="対応SNS">
+          <li>Instagram</li><li>TikTok</li><li>YouTube</li><li>X</li>
+        </ul>
+        <div class="hero-cta">
+          <a class="btn btn-line" href="#entry"><span class="free">無料</span>LINEで登録する</a>
+          <p class="cta-note">友だち追加するだけ。登録料・手数料はかかりません。</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="/kirei-casting/images/hero.jpg" alt="スマートフォンを手に微笑む女性" width="1024" height="1536">
+        <p class="badge b1"><span>登録・利用<br><b>無料</b></span></p>
+        <p class="badge b2"><span>美容案件に<br><b>特化</b></span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <ul>
+        <li><small>Free</small><strong>登録・利用は無料</strong></li>
+        <li><small>Beauty only</small><strong>美容ジャンルに特化</strong></li>
+        <li><small>Your choice</small><strong>気になる案件だけ応募</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">Problem</p>
+        <h2><span class="nw">PR案件、こんな<em>お悩み</em>は</span><span class="nw">ありませんか？</span></h2>
+      </div>
+      <ul class="worries">
+        <li>案件を受けてみたいけれど、探し方がわからない<span>DMを待つだけでは、なかなか声がかからない。</span></li>
+        <li>美容以外の案件ばかりで、受けたい案件が見つからない<span>いろいろなジャンルが混ざった案件サイトでは、探すだけで時間がかかる。</span></li>
+        <li>登録や応募の手続きが面倒そう<span>プロフィール作成に専用アプリ。始める前に疲れてしまう。</span></li>
+      </ul>
+      <p class="answer">そのお悩み、<em>キレイキャスティング</em>に<span class="nw">おまかせください。</span></p>
+    </div>
+  </section>
+
+  <section class="section tint" id="genres">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">Genres</p>
+        <h2>ご紹介するのは、<em>美容の案件だけ</em>。</h2>
+        <p>体験してみたかった施術や、気になっていたアイテム。キレイキャスティングが扱う美容案件を、登録者のみなさまにLINEでお届けします。</p>
+      </div>
+      <ul class="genres">
+        <li class="genre"><img src="/kirei-casting/images/clinic.jpg" alt="美容クリニックでの肌の施術" width="1536" height="1024" loading="lazy"><div><span class="en">Clinic</span><h3>美容クリニック</h3><p>肌管理、医療脱毛、美容点滴などの来院体験とレポート投稿。</p></div></li>
+        <li class="genre"><img src="/kirei-casting/images/cosme.jpg" alt="美容液やリップなどのコスメ" width="1536" height="1024" loading="lazy"><div><span class="en">Skincare &amp; Makeup</span><h3>スキンケア・コスメ</h3><p>新商品のお試し、使用感レビュー、メイク動画でのご紹介。</p></div></li>
+        <li class="genre"><img src="/kirei-casting/images/hair.jpg" alt="ヘアサロンでのスタイリング" width="1536" height="1024" loading="lazy"><div><span class="en">Hair</span><h3>ヘアサロン</h3><p>カット・カラー、髪質改善、ヘッドスパなどの来店体験。</p></div></li>
+        <li class="genre"><img src="/kirei-casting/images/esthe.jpg" alt="エステサロンの施術ルーム" width="1536" height="1024" loading="lazy"><div><span class="en">Esthetic</span><h3>エステ・ボディケア</h3><p>フェイシャル、痩身、リラクゼーションの体験レポート。</p></div></li>
+        <li class="genre"><img src="/kirei-casting/images/nail.jpg" alt="ネイルサロンでの施術" width="1536" height="1024" loading="lazy"><div><span class="en">Nail &amp; Eye</span><h3>ネイル・まつげ</h3><p>ネイルデザイン、まつげパーマ、アイブロウサロンのご紹介。</p></div></li>
+        <li class="genre"><img src="/kirei-casting/images/inner.jpg" alt="スムージーとサプリメント" width="1536" height="1024" loading="lazy"><div><span class="en">Inner care</span><h3>インナーケア</h3><p>美容ドリンク、サプリメント、フィットネス関連の案件。</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="reasons">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">Why Kirei Casting</p>
+        <h2>キレイキャスティングが<em>選ばれる理由</em></h2>
+      </div>
+      <div class="reasons">
+        <article class="reason">
+          <div class="reason-media"><img src="/kirei-casting/images/creator.jpg" alt="自宅でスキンケア動画を撮影する女性" width="1536" height="1024" loading="lazy"></div>
+          <div>
+            <p class="num">Reason 1</p>
+            <h3><span>美容案件だけが、</span><br>LINEにまとめて届く。</h3>
+            <p>扱うのは美容領域の案件のみ。新しい案件が出るたびにLINEでお知らせするので、案件サイトを見て回る必要はありません。いつものLINEを開くだけで、最新の美容案件をチェックできます。</p>
+          </div>
+        </article>
+        <article class="reason">
+          <div class="reason-media">
+            <div class="talk" role="img" aria-label="LINEに届く案件配信のイメージ">
+              <p class="talk-head">キレイキャスティング</p>
+              <div class="talk-body">
+                <div class="bubble"><b>【新着案件】美容クリニック</b>肌管理メニューの体験レポート<br>来院1回・リール投稿1本<span>応募する ›</span></div>
+                <div class="bubble"><b>【新着案件】スキンケア</b>新作美容液のレビュー動画<br>商品のご提供＋報酬<span>応募する ›</span></div>
+                <p class="talk-note">※ 配信画面はイメージです</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="num">Reason 2</p>
+            <h3><span>気になる案件だけ、</span><br>自分で選んで応募できる。</h3>
+            <p>届いた案件の中から、やってみたいものにだけ応募すればOK。ノルマや応募の義務はありません。忙しい時期は見送って、気になる案件が来たときだけ動けます。</p>
+          </div>
+        </article>
+        <article class="reason">
+          <div class="reason-media">
+            <div class="check-card">
+              <div class="post">
+                <img src="/kirei-casting/images/cosme.jpg" alt="" width="96" height="96" loading="lazy">
+                <p><span class="pr">PR</span>最近のお気に入り美容液。朝のメイク前に使っています。</p>
+              </div>
+              <ul>
+                <li>PR表記が見やすい位置にある</li>
+                <li>効果を言い切る表現がない</li>
+                <li>企業から受けた提供内容が明記されている</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <p class="num">Reason 3</p>
+            <h3><span>PRのルールも、</span><br>案件ごとにご案内。</h3>
+            <p>美容のPRには守るべき決まりがあります。PR表記や使えない表現などの注意点を案件ごとにお伝えするので、初めての方も安心して投稿できます。</p>
+            <div class="chips">
+              <span class="chip">ステマ規制（景品表示法）</span>
+              <span class="chip">薬機法</span>
+              <span class="chip">医療広告ガイドライン</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="flow">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">Flow</p>
+        <h2>ご利用の流れ</h2>
+        <p>登録から応募まで、いつものLINEで完結します。</p>
+      </div>
+      <ol class="flow">
+        <li><h3>LINEで無料登録</h3><p>友だち追加するだけで登録完了です。</p></li>
+        <li><h3>案件がLINEに届く</h3><p>新着の美容案件を、登録者のみなさまに配信します。</p></li>
+        <li><h3>気になる案件に応募</h3><p>やってみたい案件を選んで、LINEから応募します。</p></li>
+        <li><h3>体験・投稿</h3><p>来店や商品のお試しをして、案内に沿って投稿します。</p></li>
+        <li><h3>報酬のお受け取り</h3><p>投稿の完了後、案件ごとの条件でお支払いします。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="whom">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">For you</p>
+        <h2>こんな方をお待ちしています</h2>
+      </div>
+      <ul class="whom">
+        <li>美容やコスメの発信が好きで、仕事にもつなげたい</li>
+        <li>PR案件に興味はあるが、何から始めればいいかわからない</li>
+        <li>案件を探す時間がなく、届いたものから選びたい</li>
+        <li>気になる案件だけを自分のペースで受けたい</li>
+        <li>Instagram・TikTok・YouTube・Xのいずれかで発信している</li>
+        <li>気になっていた施術やアイテムを実際に体験してみたい</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section tint" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="en">FAQ</p>
+        <h2>よくあるご質問</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary><span>登録や利用に費用はかかりますか？</span></summary>
+          <p>かかりません。登録料・紹介手数料など、インフルエンサーの方にお支払いいただく費用はありません。</p>
+        </details>
+        <details>
+          <summary><span>フォロワーが少なくても登録できますか？</span></summary>
+          <p>ご登録いただけます。応募条件は案件ごとに異なりますので、配信される案件の内容をご確認ください。</p>
+        </details>
+        <details>
+          <summary><span>届いた案件には必ず応募しなければいけませんか？</span></summary>
+          <p>いいえ。気になる案件にだけご応募ください。応募しなくても、その後の配信に影響はありません。</p>
+        </details>
+        <details>
+          <summary><span>応募すれば必ず案件を受けられますか？</span></summary>
+          <p>案件ごとに募集人数や条件があるため、ご希望に添えない場合があります。結果は応募後にお知らせします。</p>
+        </details>
+        <details>
+          <summary><span>報酬はどのように決まりますか？</span></summary>
+          <p>案件ごとに異なります。金銭報酬のほか、施術や商品のご提供を含む案件もあります。条件は案件の配信時にお知らせします。</p>
+        </details>
+        <details>
+          <summary><span>顔出しをしていなくても大丈夫ですか？</span></summary>
+          <p>顔出しが不要な案件もあります。案件ごとの条件をご確認ください。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="entry" id="entry">
+    <div class="wrap">
+      <div class="entry-copy">
+        <p class="en">Entry</p>
+        <h2>まずは、LINEで<span class="nw">無料登録から。</span></h2>
+        <p>友だち追加するだけで始められます。新着の美容案件が、あなたのLINEに届きます。</p>
+        <a class="btn btn-line" data-entry="line" href="#entry"><span class="free">無料</span>LINEで登録する</a>
+        <p class="entry-note" id="entry-note" role="status"></p>
+      </div>
+      <div class="entry-photo"><img src="/kirei-casting/images/creator.jpg" alt="" width="1536" height="1024" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="biz">
+    <div class="wrap">
+      <img src="/kirei-casting/images/staff.jpg" alt="" width="200" height="150" loading="lazy">
+      <div>
+        <h2>企業・クリニックのご担当者さまへ</h2>
+        <p>美容領域に強いインフルエンサーのキャスティングをご検討の方は、こちらからご相談ください。</p>
+      </div>
+      <a class="btn btn-ghost" data-entry="biz" href="#entry">案件掲載のご相談</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <ul>
+      <li><a href="https://www.faise-inc.com/">運営会社</a></li>
+      <li><a href="#top">プライバシーポリシー</a></li>
+      <li><a href="#top">利用規約</a></li>
+    </ul>
+    <p>※ 掲載の写真・投稿例はイメージです　© 2026 キレイキャスティング</p>
+  </div>
+</footer>
+
+<script>
+// 公開前にここへ実際のURLを設定してください（空のままだと「準備中」の案内を表示します）
+const ENTRY_URLS = {
+  line: "", // LINE公式アカウントの友だち追加URL
+  biz: ""   // 企業向けお問い合わせ先のURL
+};
+const note = document.getElementById("entry-note");
+document.querySelectorAll("[data-entry]").forEach((el) => {
+  const url = ENTRY_URLS[el.dataset.entry];
+  if (url) {
+    el.href = url;
+    el.target = "_blank";
+    el.rel = "noopener";
+  } else {
+    el.addEventListener("click", () => {
+      note.textContent = "登録窓口はただいま準備中です。公開までもうしばらくお待ちください。";
+    });
+  }
+});
+</script>
+</body>
+</html>

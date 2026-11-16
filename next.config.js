@@ -17,6 +17,12 @@ const contactPaths = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // キレイキャスティングのLP（public/kirei-casting の静的HTML）を /kirei-casting で配信する
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: '/kirei-casting', destination: '/kirei-casting/index.html' }],
+    }
+  },
   async redirects() {
     // 英語サイトは Japan Launch LP（/en/japan-launch）だけ。
     // 以前の英訳ページ（/en、/en/clinic、/en/services/…、/en/works/…）は LP へ転送する。
