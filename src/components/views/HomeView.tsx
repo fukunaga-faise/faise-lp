@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import ClientStrip from '@/components/ClientStrip'
 import Mission from '@/components/Mission'
 import Services from '@/components/Services'
+import Products from '@/components/Products'
 import CaseStudies from '@/components/CaseStudies'
 import Works from '@/components/Works'
 import Clients from '@/components/Clients'
@@ -37,6 +38,7 @@ export default function HomeView({ lang }: { lang: Lang }) {
       <ClientStrip />
       <Mission />
       <Services />
+      <Products />
       <CaseStudies />
       <Works />
       <Clients />

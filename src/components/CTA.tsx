@@ -88,6 +88,11 @@ export function Footer() {
               {t.clinicLink[lang]}
             </Link>
           )}
+          {lang === 'ja' && (
+            <Link href="/uketsuke-neko" className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+              受付ネコの手（LINE返信のAI下書き）
+            </Link>
+          )}
           <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
         </div>
       </div>

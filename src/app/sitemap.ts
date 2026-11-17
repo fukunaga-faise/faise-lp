@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...page('/', 1, now),
     ...page('/clinic', 0.8, now),
+    ...page('/uketsuke-neko', 0.8, now),
     ...japanLaunch(now),
     ...services.flatMap((s) => page(`/services/${s.slug}`, 0.7, now)),
     ...cases.filter((c) => c.slug !== 'beauty-clinic').flatMap((c) => page(`/works/${c.slug}`, 0.7, now)),
