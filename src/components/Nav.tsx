@@ -25,7 +25,20 @@ type NavLink = { label: string; href: string }
 
 // links / contactHref を渡すと、そのページ専用のメニューになる（Japan Launch LP 用）。
 // 渡さない場合は会社サイトのメニュー（base のトップの各セクション）と、問い合わせモーダル。
-export default function Nav({ base = '', links: pageLinks, contactHref }: { base?: string; links?: NavLink[]; contactHref?: string }) {
+// contactLabel を渡すとボタン文言を差し替え、モバイルでもヘッダーにボタンを出す。ctaTone='beni' でえんじ色のボタン。
+export default function Nav({
+  base = '',
+  links: pageLinks,
+  contactHref,
+  contactLabel,
+  ctaTone = 'brand',
+}: {
+  base?: string
+  links?: NavLink[]
+  contactHref?: string
+  contactLabel?: string
+  ctaTone?: 'brand' | 'beni'
+}) {
   const items = pageLinks ?? links.map((l) => ({ label: l.label, href: `${base}${l.href}` }))
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -103,14 +116,26 @@ export default function Nav({ base = '', links: pageLinks, contactHref }: { base
 
           <button
             onClick={openContact}
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy bg-[length:140%_100%] bg-left text-white font-inter text-[12px] 2xl:text-[13px] font-medium tracking-[0.22em] uppercase pl-7 pr-6 py-3.5 transition-all duration-500 hover:bg-right hover:shadow-[0_10px_28px_-10px_rgba(37,99,214,0.7)]"
+            className={`group relative inline-flex items-center gap-3 overflow-hidden rounded-full text-white font-inter text-[12px] 2xl:text-[13px] font-medium pl-7 pr-6 py-3.5 transition-all duration-500 ${
+              ctaTone === 'beni'
+                ? 'bg-beni tracking-[0.04em] hover:bg-beni-deep'
+                : 'bg-gradient-to-r from-brand-sky via-brand to-brand-navy bg-[length:140%_100%] bg-left tracking-[0.22em] uppercase hover:bg-right hover:shadow-[0_10px_28px_-10px_rgba(37,99,214,0.7)]'
+            }`}
           >
             <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 bg-white/30 opacity-0 group-hover:opacity-100 group-hover:[animation:faiseShine_.9s_ease]" />
-            {t.contact[lang]}
+            {contactLabel ?? t.contact[lang]}
             <ArrowRight size={15} strokeWidth={1.25} className="transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
 
+        {contactLabel && (
+          <button
+            onClick={openContact}
+            className={`ml-auto mr-3 inline-flex items-center rounded-full px-3.5 py-2 text-[11.5px] font-semibold text-white xl:hidden ${ctaTone === 'beni' ? 'bg-beni' : 'bg-brand'}`}
+          >
+            {contactLabel}
+          </button>
+        )}
         <button
           onClick={() => setOpen(!open)}
           className="xl:hidden flex flex-col gap-1.5 p-2 -mr-2"
@@ -150,9 +175,9 @@ export default function Nav({ base = '', links: pageLinks, contactHref }: { base
               animate={{ opacity: 1 }}
               transition={{ delay: 0.35 }}
               onClick={() => { setOpen(false); openContact() }}
-              className="mt-4 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-brand-sky via-brand to-brand-navy text-white font-inter text-[12px] font-medium tracking-[0.2em] uppercase px-9 py-4"
+              className={`mt-4 inline-flex items-center gap-3 rounded-full text-white font-inter text-[12px] font-medium px-9 py-4 ${ctaTone === 'beni' ? 'bg-beni tracking-[0.04em]' : 'bg-gradient-to-r from-brand-sky via-brand to-brand-navy tracking-[0.2em] uppercase'}`}
             >
-              {t.mobileCta[lang]}
+              {contactLabel ?? t.mobileCta[lang]}
               <ArrowRight size={15} strokeWidth={1.25} />
             </motion.button>
 
