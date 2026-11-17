@@ -11,7 +11,7 @@ const t = {
   h2: { ja: ['まずは、お気軽に', 'ご相談ください。'], en: ['Get in touch', 'with any questions.'] },
   lead: { ja: '各種お問い合わせはこちらから。', en: 'Get in touch for any inquiries.' },
   button: { ja: 'お問い合わせフォーム', en: 'Contact form' },
-  clinicLink: { ja: '美容クリニックの集客支援', en: 'Marketing support for beauty clinics' },
+  clinicLink: { ja: 'バズクル（美容クリニックの集客支援）', en: 'Marketing support for beauty clinics' },
   address: { ja: '株式会社Faise　東京都品川区大井4-18-25', en: 'Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo' },
 }
 

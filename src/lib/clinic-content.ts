@@ -6,9 +6,9 @@ type L = Record<Lang, string>
 
 export const clinicMeta: Record<Lang, { title: string; description: string }> = {
   ja: {
-    title: '美容クリニックの集客支援｜インフルエンサー×広告運用 | 株式会社Faise',
+    title: 'バズクル｜美容クリニックの集客を成果報酬で（インフルエンサー×広告運用） | 株式会社Faise',
     description:
-      '美容インフルエンサーが来院・施術の様子を紹介する投稿を広告に活用し、美容クリニックの新規患者獲得を支援。キャスティングから広告運用、予約導線の改善まで一貫対応。成果報酬型サービス「バズクル」は初期費用・キャスティング費・月額固定費0円。事例：CPA平均35%削減。',
+      '美容クリニック向け成果報酬型集客サービス「バズクル」。インフルエンサーの実際の施術体験を広告クリエイティブとして活用し、予約成果で評価・改善。約500名の美容系インフルエンサーネットワーク、予約数最大8倍の実績。初期費用・キャスティング費・月額固定費0円。',
   },
   en: {
     title: 'Marketing for Beauty Clinics in Japan | Influencers × Social Ads | Faise Inc.',
@@ -18,12 +18,12 @@ export const clinicMeta: Record<Lang, { title: string; description: string }> = 
 }
 
 export const clinicContent = {
-  breadcrumb: { home: { ja: 'ホーム', en: 'Home' } as L, here: { ja: '美容クリニックの集客支援', en: 'Marketing for beauty clinics' } as L },
+  breadcrumb: { home: { ja: 'ホーム', en: 'Home' } as L, here: { ja: 'バズクル（美容クリニックの集客支援）', en: 'Marketing for beauty clinics' } as L },
   hero: {
     label: 'Beauty Clinic' as string,
     h1: { ja: ['美容クリニックの', '集客支援'], en: ['Marketing support', 'for beauty clinics'] } as Record<Lang, string[]>,
     lead: {
-      ja: '美容インフルエンサーの起用から、コンテンツ制作、SNS広告の運用、LP・予約導線の改善まで。新規来院につながる集客の課題に、実行まで向き合います。',
+      ja: 'インフルエンサーのリアルな体験を、広告クリエイティブとして活用。成果を見ながら改善を重ね、予約につながる広告へ育てます。初期費用・キャスティング費・月額固定費は0円の成果報酬型です。',
       en: 'From casting beauty influencers and producing content to running social ads and improving landing pages and booking flows. We take on your clinic’s acquisition challenges, through to execution.',
     } as L,
     cta: { ja: 'このテーマで相談する', en: 'Talk to us about this' } as L,
@@ -132,12 +132,6 @@ export const clinicContent = {
     unit: { ja: '倍', en: 'x' } as L,
     metricLabel: { ja: '予約数（最大）', en: 'Bookings (max)' } as L,
     note: { ja: '※投稿のみの期間と、広告配信後の期間の予約数を比較', en: '※Compares bookings in the post-only period with the period after ads ran.' } as L,
-    exampleLabel: { ja: '都内の美容クリニック様の事例', en: 'Example: a beauty clinic in Tokyo' } as L,
-    exampleHead: { ja: ['', 'フォロワー', '再生', '予約'], en: ['', 'Followers', 'Views', 'Bookings'] } as Record<Lang, string[]>,
-    examples: [
-      { name: { ja: '投稿A', en: 'Post A' } as L, cells: { ja: ['1.4万人', '4.2万回', '21件'], en: ['14k', '42k', '21'] } as Record<Lang, string[]> },
-      { name: { ja: '投稿B', en: 'Post B' } as L, cells: { ja: ['4.2万人', '34.5万回', '86件'], en: ['42k', '345k', '86'] } as Record<Lang, string[]> },
-    ],
     networkLabel: { ja: '美容系インフルエンサーのネットワーク', en: 'Beauty influencer network' } as L,
     network: { ja: '約500名', en: 'About 500' } as L,
     networkBody: {
