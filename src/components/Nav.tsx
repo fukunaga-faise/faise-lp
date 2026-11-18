@@ -32,12 +32,14 @@ export default function Nav({
   contactHref,
   contactLabel,
   ctaTone = 'brand',
+  solid = false,
 }: {
   base?: string
   links?: NavLink[]
   contactHref?: string
   contactLabel?: string
   ctaTone?: 'brand' | 'beni'
+  solid?: boolean // 背景が暗いページ用：最初から白い背景のヘッダーにする
 }) {
   const items = pageLinks ?? links.map((l) => ({ label: l.label, href: `${base}${l.href}` }))
   const [scrolled, setScrolled] = useState(false)
@@ -83,7 +85,7 @@ export default function Nav({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.1 }}
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-14 h-16 md:h-[76px] transition-all duration-500 ${
-          scrolled || open ? 'bg-white/90 backdrop-blur-md border-b border-[#ecebe7]' : 'bg-gradient-to-b from-white/90 via-white/45 to-transparent'
+          scrolled || open || solid ? 'bg-white/95 backdrop-blur-md border-b border-[#ecebe7]' : 'bg-gradient-to-b from-white/90 via-white/45 to-transparent'
         }`}
       >
         <a href={base || '#'} className="flex items-center gap-2.5" aria-label="Faise">

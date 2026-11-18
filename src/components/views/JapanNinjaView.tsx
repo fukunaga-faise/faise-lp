@@ -7,7 +7,7 @@ import { Footer } from '@/components/CTA'
 import FaqList from '@/components/FaqList'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
 import NinjaTerminal from '@/components/NinjaTerminal'
-import { display, mincho } from '@/lib/jl-fonts'
+import { display, serif } from '@/lib/jl-fonts-en'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
 import { JAPAN_LAUNCH_PATH, JAPAN_LAUNCH_PATH_EN, audience, channels, faq, form, images, models, track, whyJapan } from '@/lib/japan-launch'
@@ -81,6 +81,10 @@ const ld = {
   ],
 }
 
+// 画像は表示サイズに変換済みの WebP を直接配信する（next/image の最適化 /_next/image を通さない）。
+// 生成: node scripts/build-japan-ninja-webp.mjs → public/images/japan-ninja/web/
+const W = (name: string) => `/images/japan-ninja/web/${name}.webp`
+
 const container = 'mx-auto w-full max-w-[1280px] px-5 md:px-10'
 const section = 'py-16 md:py-24'
 const ninjaByKey = Object.fromEntries(clan.map((c) => [c.key, c])) as Record<NinjaKey, (typeof clan)[number]>
@@ -130,7 +134,7 @@ function NinjaAvatar({ k, size = 36 }: { k: NinjaKey; size?: number }) {
       style={{ width: size, height: size, ['--tw-ring-color' as string]: n.color }}
       title={`${n.name} — ${n.role}`}
     >
-      <Image src={`${n.img}.webp`} alt="" fill sizes={`${size}px`} className="object-cover object-[50%_14%] scale-[2.2] origin-[50%_14%]" />
+      <Image unoptimized src={W(n.key)} alt="" fill sizes={`${size}px`} className="object-cover object-[50%_14%] scale-[2.2] origin-[50%_14%]" />
     </span>
   )
 }
@@ -138,9 +142,9 @@ function NinjaAvatar({ k, size = 36 }: { k: NinjaKey; size?: number }) {
 export default function JapanNinjaView() {
   const featured = track.featured
   return (
-    <main className={`${display.variable} ${mincho.variable} bg-white text-sumi`}>
+    <main className={`${display.variable} ${serif.variable} bg-white text-sumi`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <Nav base={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} contactHref={`#${SCAN_ANCHOR}`} contactLabel={CTA_LABEL} ctaTone="beni" />
+      <Nav base={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} contactHref={`#${SCAN_ANCHOR}`} contactLabel={CTA_LABEL} ctaTone="beni" solid />
 
       {/* Hero：見出し・CTA・ターミナル風アニメーション、下に4人の集合イラスト */}
       <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
@@ -160,7 +164,7 @@ export default function JapanNinjaView() {
         </div>
         <div className={`${container} relative pb-12 md:pb-16`}>
           <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-white/10">
-            <Image src="/images/japan-ninja/clan.webp" alt={ninjaHero.clanAlt} fill sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
+            <Image unoptimized src={W('clan')} alt={ninjaHero.clanAlt} fill loading="eager" sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
@@ -179,7 +183,7 @@ export default function JapanNinjaView() {
                 <div className="h-full">
                   <article className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_20px_40px_-30px_rgba(20,26,46,0.6)]">
                     <div className="relative aspect-[2/3]">
-                      <Image src={`${c.img}.webp`} alt={c.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                      <Image unoptimized src={W(c.key)} alt={c.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
                     </div>
                     <div className="flex flex-1 flex-col border-t-4 p-5" style={{ borderColor: c.color }}>
                       <p className="font-inter text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: c.color }}>
@@ -207,7 +211,7 @@ export default function JapanNinjaView() {
             <H2 lines={whyJapan.h2.en} />
             <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{whyJapan.lead.en}</p>
             <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-lg">
-              <Image src={images.tokyo.src} alt={images.tokyo.alt.en} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
+              <Image unoptimized src={W('tokyo')} alt={images.tokyo.alt.en} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
             </div>
           </div>
           <ul className="grid gap-5 self-start md:grid-cols-3">
@@ -235,7 +239,7 @@ export default function JapanNinjaView() {
               return (
                 <li key={a.img}>
                   <div className="relative aspect-[3/2] overflow-hidden rounded-lg">
-                    <Image src={img.src} alt={img.alt.en} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                    <Image unoptimized src={W(a.img)} alt={img.alt.en} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
                   </div>
                   <h3 className="mt-4 font-mincho text-[20px] font-bold">{a.title.en}</h3>
                   <p className="mt-2 text-[15px] leading-[1.8] text-[#555]">{a.body.en}</p>
@@ -356,7 +360,7 @@ export default function JapanNinjaView() {
       {/* Channels */}
       <section className={`${section} relative bg-sumi text-white`}>
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          <Image src="/images/japan-launch/bg-street.jpg" alt="" fill sizes="100vw" className="object-cover opacity-40" />
+          <Image unoptimized src={W('bg-street')} alt="" fill sizes="100vw" className="object-cover opacity-40" />
         </div>
         <div className={`${container} relative`}>
           <div className="max-w-3xl">
@@ -384,7 +388,7 @@ export default function JapanNinjaView() {
           </div>
           <div className="mt-10 overflow-hidden rounded-lg bg-beni text-white md:flex">
             <div className="flex items-center justify-center bg-white p-6 md:w-[28%] md:shrink-0">
-              <Image src={featured.image.src} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="160px" className="h-[230px] w-auto object-contain md:h-[280px]" />
+              <Image unoptimized src={W('case-cyspera')} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="160px" className="h-[230px] w-auto object-contain md:h-[280px]" />
             </div>
             <div className="p-6 md:p-10">
               <p className="font-inter text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">Case — {featured.brand}</p>
@@ -419,7 +423,7 @@ export default function JapanNinjaView() {
                 <li key={i} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-auto">
                   <a href={v.url ?? '#'} target="_blank" rel="noopener" className="group block" aria-label={`${v.platform} — watch the creator video ${i + 1}`}>
                     <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-sumi">
-                      <Image src={v.thumb} alt={v.alt.en} fill sizes="(min-width: 768px) 30vw, 72vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                      <Image unoptimized src={W(`reel-${i + 1}`)} alt={v.alt.en} fill sizes="(min-width: 768px) 30vw, 72vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/20" />
                       <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 font-inter text-[11px] font-medium text-white">{v.platform}</span>
                       <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-beni shadow-lg transition-transform group-hover:scale-110">
@@ -461,7 +465,7 @@ export default function JapanNinjaView() {
       <section id="leader" className={`${section} scroll-mt-16 bg-white`}>
         <div className={`${container} grid gap-10 md:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)] md:items-center lg:gap-14`}>
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-lg">
-            <Image src={images.founder.src} alt={images.founder.alt.en} fill sizes="340px" className="object-cover object-top" />
+            <Image unoptimized src={W('founder')} alt={images.founder.alt.en} fill sizes="340px" className="object-cover object-top" />
           </div>
           <div>
             <Eyebrow>{leader.label}</Eyebrow>

@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google'
-import { Noto_Sans_JP } from 'next/font/google'
 import type { ReactNode } from 'react'
 import { LanguageProvider, type Lang } from '@/lib/language'
 import { SITE_URL, ORG_ID, FOUNDER_ID, PRTIMES_COMPANY_URL, FOUNDER_LINKEDIN_URL } from '@/lib/site'
@@ -14,12 +13,8 @@ const inter = Inter({
   display: 'swap',
 })
 
-const noto = Noto_Sans_JP({
-  subsets: ['latin'],
-  weight: ['400', '500', '700', '900'],
-  variable: '--font-noto',
-  display: 'swap',
-})
+// 日本語の本文フォント（Noto Sans JP）は日本語レイアウトから fontClassName で渡す（src/lib/fonts-ja.ts）。
+// 英語レイアウトでは読み込まず、font-en クラスで --font-noto を Inter に向ける（globals.css）。
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -76,9 +71,9 @@ const jsonLd = {
 }
 
 
-export default function RootShell({ lang, children }: { lang: Lang; children: ReactNode }) {
+export default function RootShell({ lang, fontClassName = '', children }: { lang: Lang; fontClassName?: string; children: ReactNode }) {
   return (
-    <html lang={lang} className={`${inter.variable} ${noto.variable}`}>
+    <html lang={lang} className={`${inter.variable} ${fontClassName}`}>
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-8N1V5BVY4K" />
         <script

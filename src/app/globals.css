@@ -79,3 +79,6 @@ body {
   background-size: 40px 20px;
 }
 .writing-vertical { writing-mode: vertical-rl; text-orientation: upright; }
+
+/* 英語サイト：Noto Sans JP を読み込まないので、本文フォントの変数を Inter に向ける（RootShell の fontClassName） */
+.font-en { --font-noto: var(--font-inter); }

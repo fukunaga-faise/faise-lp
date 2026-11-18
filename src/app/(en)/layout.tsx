@@ -30,5 +30,5 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <RootShell lang="en">{children}</RootShell>
+  return <RootShell lang="en" fontClassName="font-en">{children}</RootShell>
 }

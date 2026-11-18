@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import RootShell from '@/components/RootShell'
+import { noto } from '@/lib/fonts-ja'
 import { SITE_URL } from '@/lib/site'
 
 export const viewport: Viewport = {
@@ -41,5 +42,5 @@ export const metadata: Metadata = {
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <RootShell lang="ja">{children}</RootShell>
+  return <RootShell lang="ja" fontClassName={noto.variable}>{children}</RootShell>
 }

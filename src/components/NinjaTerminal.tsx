@@ -28,8 +28,13 @@ export default function NinjaTerminal() {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReduce(mq.matches)
     if (mq.matches) return
-    setRow(0)
-    setChars(0)
+    // 読み込み直後は全行を静止表示し、ページの読み込みが落ち着いてからタイピングを始める（初期表示の負荷を避ける）
+    const start = () => {
+      setRow(0)
+      setChars(0)
+    }
+    const t = setTimeout(start, 2500)
+    return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
