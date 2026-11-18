@@ -26,7 +26,6 @@ export const ninjaNav = [
   { label: 'Promises', href: '#promises' },
   { label: 'Case', href: '#case' },
   { label: 'Service', href: '#service' },
-  { label: 'Flow', href: '#flow' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -176,21 +175,6 @@ export const cyspera = {
     { title: 'Influencer marketing', body: 'We cast Japanese influencers and planned and managed their content.' },
     { title: 'Fulfillment', body: 'We managed shipping to customers in Japan.' },
   ] as { title: string; body: string; link?: { href: string; label: string } }[],
-}
-
-// 流れ（問い合わせから拡販まで）
-// TODO: 要記入 — 各ステップの目安期間（週）
-export const flow = {
-  label: 'How it works',
-  h2: ['From one message', 'to launch day.'],
-  steps: [
-    { title: 'Contact', body: 'Tell us about your product through the form.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Free Japan Scan', body: 'Within 2 business days: your target buyer, price range, key selling points and best channels.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Meeting & proposal', body: 'An online meeting, then a written proposal with the model and terms.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Get ready', body: 'Import and certification with partners; brand story, product pages and videos localized.', ninja: 'basho' as NinjaKey },
-    { title: 'Launch', body: 'Your online store and Amazon and Rakuten listings go live, with creator content leading the way.', ninja: 'chiyome' as NinjaKey },
-    { title: 'Scale', body: 'Grow through ads and marketplaces, then expand into retail.', ninja: 'kotaro' as NinjaKey },
-  ],
 }
 
 // 創業者（the clan leader）。事実は経歴と「幼少期にアメリカで7年間」のみ

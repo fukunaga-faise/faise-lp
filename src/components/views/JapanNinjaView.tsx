@@ -24,7 +24,6 @@ import {
   clanSection,
   companyFacts,
   finalCta,
-  flow,
   leader,
   midCta,
   ninjaFaq,
@@ -123,7 +122,6 @@ const edoAlt: Record<string, string> = {
 
 const container = 'mx-auto w-full max-w-[1280px] px-5 md:px-10'
 const section = 'py-16 md:py-24'
-const ninjaByKey = Object.fromEntries(clan.map((c) => [c.key, c])) as Record<NinjaKey, (typeof clan)[number]>
 
 // 見出し上の小ラベル。seal を渡すと朱色の落款（漢字1字・装飾）を添える
 function Eyebrow({ children, light = false, seal }: { children: React.ReactNode; light?: boolean; seal?: string }) {
@@ -192,19 +190,36 @@ function CtaButton({ light = false, className = '' }: { light?: boolean; classNa
   )
 }
 
-// 忍者の小さなアイコン（キャラクター画像の顔まわりを丸く切り抜く）
-function NinjaAvatar({ k, size = 36 }: { k: NinjaKey; size?: number }) {
-  const n = ninjaByKey[k]
+// 忍者のポーズ違いの切り抜きイラスト（背景透過）。生成: node scripts/generate-launch-ninja-poses.mjs
+const poseAlt: Record<string, string> = {
+  'hanzo-map': 'Hanzo, the strategist ninja, pointing at a scroll map of Japan',
+  'hanzo-contract': 'Hanzo bowing and offering a scroll tied with a red cord',
+  'hanzo-shield': 'Hanzo standing guard with a red shield and a checklist',
+  'basho-write': 'Basho, the localizer ninja, writing with a large brush pen next to a laptop',
+  'basho-read': 'Basho sitting cross-legged, reading a scroll and explaining',
+  'chiyome-film': 'Chiyome, the influencer lead, filming with a smartphone on a gimbal',
+  'chiyome-letter': 'Chiyome waving and holding up a letter with a red seal',
+  'kotaro-leap': 'Kotaro, the growth marketer, leaping with a kunai and a rising chart',
+  'kotaro-box': 'Kotaro running with a delivery box under his arm',
+  'kotaro-megaphone': 'Kotaro shouting through a red megaphone and holding up a phone with an ad',
+}
+function Pose({ name, className = '' }: { name: string; className?: string }) {
   return (
-    <span
-      className="relative inline-block shrink-0 overflow-hidden rounded-full ring-2"
-      style={{ width: size, height: size, ['--tw-ring-color' as string]: n.color }}
-      title={`${n.name} — ${n.role}`}
-    >
-      <Image unoptimized src={W(n.key)} alt="" fill sizes={`${size}px`} className="object-cover object-[50%_14%] scale-[2.2] origin-[50%_14%]" />
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={W(`pose-${name}`)}
+      alt={poseAlt[name] ?? ''}
+      loading="lazy"
+      decoding="async"
+      className={`pointer-events-none select-none object-contain drop-shadow-[0_14px_18px_rgba(0,0,0,0.28)] ${className}`}
+    />
   )
 }
+// セクションごとに登場させるポーズ
+const promisePoses = ['basho-write', 'basho-read', 'chiyome-film', 'kotaro-leap', 'hanzo-shield']
+const servicePoses: Record<NinjaKey, string> = { hanzo: 'hanzo-map', basho: 'basho-write', chiyome: 'chiyome-film', kotaro: 'kotaro-leap' }
+const waysPoses = ['hanzo-contract', 'kotaro-megaphone']
+
 
 // スクロール表示の遅延（ms）
 const delay = (ms: number) => ({ ['--fx-d' as string]: `${ms}ms` }) as React.CSSProperties
@@ -341,7 +356,7 @@ export default function JapanNinjaView() {
       {/* 3. Who it's for：海外で売れている商品を持つメーカー */}
       <section id="who" className={`${section} scroll-mt-16 bg-white`}>
         <div className={container}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)_minmax(0,0.55fr)] lg:items-center lg:gap-10">
             <div data-fx>
               <Eyebrow seal="客">{whoFor.label}</Eyebrow>
               <H2 lines={whoFor.h2} />
@@ -354,6 +369,9 @@ export default function JapanNinjaView() {
                 </li>
               ))}
             </ul>
+            <div data-fx="pop" className="flex justify-center">
+              <Pose name="hanzo-map" className="ninja-bob h-[300px] w-auto md:h-[380px]" />
+            </div>
           </div>
           <ul className="mt-12 grid gap-8 md:grid-cols-3">
             {whoFor.categories.map((a, i) => (
@@ -383,7 +401,7 @@ export default function JapanNinjaView() {
           </div>
           <ol className="mt-12 space-y-5">
             {promises.items.map((p, i) => (
-              <li key={i} data-fx={i % 2 ? 'right' : 'left'} className="grid gap-5 rounded-2xl border-2 border-white/15 bg-white/[0.03] p-5 md:grid-cols-[150px_minmax(0,1fr)_40px_minmax(0,1.1fr)] md:items-center md:gap-6 md:p-7">
+              <li key={i} data-fx={i % 2 ? 'right' : 'left'} className="grid gap-5 rounded-2xl border-2 border-white/15 bg-white/[0.03] p-5 md:grid-cols-[120px_minmax(0,1fr)_32px_minmax(0,1.1fr)_150px] md:items-center md:gap-6 md:p-7">
                 <p className="flex items-baseline gap-2 md:block">
                   <span className="font-inter text-[12px] font-bold uppercase tracking-[0.2em] text-white/70">Promise</span>
                   <span className="font-display text-[44px] leading-none text-shu md:block md:text-[64px]">{String(i + 1).padStart(2, '0')}</span>
@@ -395,12 +413,12 @@ export default function JapanNinjaView() {
                   </p>
                 </div>
                 <p aria-hidden="true" className="text-center text-[22px] text-[#F2B4A2] md:rotate-[-90deg]">↓</p>
-                <div className="flex items-start gap-3">
-                  <NinjaAvatar k={p.ninja} size={42} />
-                  <p>
-                    <span className="inline-block rounded-full bg-beni px-3 py-1 font-inter text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Our promise</span>
-                    <span className="mt-2 block text-[17px] font-bold leading-[1.5] text-white">{p.so}</span>
-                  </p>
+                <p>
+                  <span className="inline-block rounded-full bg-beni px-3 py-1 font-inter text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Our promise</span>
+                  <span className="mt-2 block text-[17px] font-bold leading-[1.5] text-white">{p.so}</span>
+                </p>
+                <div className="flex justify-center md:-my-10 md:justify-end">
+                  <Pose name={promisePoses[i]} className="h-[180px] w-auto transition-transform duration-500 hover:-translate-y-2 md:h-[200px]" />
                 </div>
               </li>
             ))}
@@ -411,7 +429,10 @@ export default function JapanNinjaView() {
       {/* 中間CTA */}
       <section className="relative overflow-hidden bg-beni py-12 text-white md:py-16">
         <div className={`${container} flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between`}>
-          <div data-fx="left">
+          <div data-fx="pop" className="self-center md:-my-12">
+            <Pose name="kotaro-megaphone" className="ninja-bob h-[170px] w-auto md:h-[230px]" />
+          </div>
+          <div data-fx="left" className="md:flex-1">
             <p className="font-mincho text-[clamp(21px,5vw,30px)] font-bold leading-[1.4]">{midCta.h2}</p>
             <p className="mt-2 text-[15px] text-white/85">{midCta.body}</p>
           </div>
@@ -428,7 +449,11 @@ export default function JapanNinjaView() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#141A2E]/70 via-[#141A2E]/40 to-[#141A2E]" />
         </div>
         <div className={`${container} relative`}>
+          <Pose name="kotaro-box" className="ninja-bob absolute -top-6 right-0 hidden h-[220px] w-auto lg:block" />
           <SectionHead en="Voice" label={featured.label.en} title={featured.title.en} light />
+          <div className="mt-6 flex justify-center lg:hidden">
+            <Pose name="kotaro-box" className="h-[150px] w-auto" />
+          </div>
           <div data-fx className="mt-12 grid overflow-hidden rounded-2xl border-2 border-sumi bg-white text-sumi shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
             <div className="relative flex flex-col items-center justify-center gap-6 bg-washi bg-seigaiha p-8">
               <span className="absolute left-4 top-4 rounded-full border-2 border-sumi bg-white px-3 py-1 font-inter text-[11px] font-bold uppercase tracking-[0.18em]">Case 01</span>
@@ -498,13 +523,16 @@ export default function JapanNinjaView() {
           <SectionHead en="Service" label={service.label} title={service.h2} />
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {clan.map((c, i) => (
-              <li key={c.key} data-fx="pop" style={delay(i * 110)} className="overflow-hidden rounded-2xl border-2 border-sumi bg-white shadow-[0_10px_24px_rgba(28,25,23,0.14)] transition-transform duration-300 hover:-translate-y-1.5">
-                <div className="flex items-center gap-3 px-4 py-3.5 text-white" style={{ backgroundColor: c.color }}>
-                  <NinjaAvatar k={c.key} size={42} />
-                  <div className="min-w-0">
-                    <p className="font-display text-[19px] uppercase leading-none tracking-[0.03em]">#{c.role}</p>
-                    <p className="mt-1 truncate text-[12px] text-white/85">{c.name}</p>
-                  </div>
+              <li key={c.key} data-fx="pop" style={delay(i * 110)} className="group overflow-hidden rounded-2xl border-2 border-sumi bg-white shadow-[0_10px_24px_rgba(28,25,23,0.14)] transition-transform duration-300 hover:-translate-y-1.5">
+                <div className="relative flex h-[230px] items-end justify-center overflow-hidden" style={{ backgroundColor: c.color }}>
+                  <div aria-hidden="true" className="absolute inset-0 bg-seigaiha-light" />
+                  <Pose name={servicePoses[c.key]} className="relative h-[215px] w-auto translate-y-4 transition-transform duration-500 group-hover:translate-y-0" />
+                </div>
+                <div className="flex items-baseline justify-between gap-2 border-y-2 border-sumi px-4 py-3">
+                  <p className="whitespace-nowrap font-display text-[19px] uppercase leading-none tracking-[0.03em]" style={{ color: c.color }}>
+                    #{c.role}
+                  </p>
+                  <p className="truncate text-[12px] text-[#595959]">{c.name}</p>
                 </div>
                 <ul className="space-y-2.5 p-5">
                   {service.faise
@@ -553,7 +581,8 @@ export default function JapanNinjaView() {
                   <p className="font-display text-[22px] uppercase tracking-[0.03em]">{m.name}</p>
                   <span className="font-display text-[34px] leading-none text-white/40">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <div className="flex flex-1 flex-col p-6">
+                <div className="relative flex flex-1 flex-col p-6 sm:pr-[170px]">
+                  <Pose name={waysPoses[i]} className="mx-auto mb-4 h-[160px] w-auto sm:absolute sm:bottom-3 sm:right-3 sm:mb-0 sm:h-[210px]" />
                   <h3 className="font-mincho text-[21px] font-bold leading-[1.4]">{m.title}</h3>
                   <p className="mt-3 text-[15px] leading-[1.85] text-[#555]">{m.body}</p>
                   <p className="mt-auto flex gap-2 border-t-2 border-dashed border-sumi/15 pt-4 text-[14px] font-semibold">
@@ -564,34 +593,6 @@ export default function JapanNinjaView() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* 8. Flow：問い合わせから拡販まで（PCは横のタイムライン、スマホは縦） */}
-      <section id="flow" className="relative scroll-mt-16 overflow-hidden bg-[#141A2E] bg-seigaiha-light py-20 text-white md:py-28">
-        <div className={`${container} relative`}>
-          <SectionHead en="Flow" label={flow.label} title={flow.h2} light />
-          <ol className="relative mt-14 grid gap-5 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-8">
-            {/* つなぐ線 */}
-            <span aria-hidden="true" className="absolute left-[27px] top-2 h-[calc(100%-1rem)] w-0.5 bg-gradient-to-b from-shu via-shu/60 to-transparent lg:hidden" />
-            {flow.steps.map((s, i) => (
-              <li key={s.title} data-fx={i % 2 ? 'right' : 'left'} style={delay(i * 90)} className="relative flex gap-4">
-                <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-white bg-shu font-display text-[22px] shadow-[0_0_0_6px_#141A2E]">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div className="flex-1 rounded-2xl border-2 border-white/15 bg-white/[0.06] p-5 backdrop-blur-sm">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-mincho text-[17px] font-bold">{s.title}</h3>
-                    <NinjaAvatar k={s.ninja} size={30} />
-                  </div>
-                  <p className="mt-2 text-[14px] leading-[1.7] text-white/75">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div data-fx className="mt-14 flex justify-center">
-            <CtaButton light />
-          </div>
         </div>
       </section>
 
@@ -647,8 +648,12 @@ export default function JapanNinjaView() {
 
       {/* 10. FAQ（取引条件・法規・既存チャネルの疑問もここで答える）＋ガイドへのリンク */}
       <section id="faq" className="relative scroll-mt-16 overflow-hidden bg-white py-20 md:py-28">
-        <div className="mx-auto w-full max-w-[920px] px-5 md:px-10">
+        <div className="relative mx-auto w-full max-w-[920px] px-5 md:px-10">
+          <Pose name="basho-read" className="ninja-bob absolute -left-56 top-4 hidden h-[260px] w-auto 2xl:block" />
           <SectionHead en="Q&A" label={ninjaFaq.label} title={ninjaFaq.h2} />
+          <div className="mt-6 flex justify-center 2xl:hidden">
+            <Pose name="basho-read" className="h-[150px] w-auto" />
+          </div>
           <div data-fx className="mt-12 rounded-2xl border-2 border-sumi bg-white px-5 shadow-[0_10px_24px_rgba(28,25,23,0.12)] md:px-8">
             <FaqList items={ninjaFaq.items} divider="divide-[#e6e1da] border-transparent" qClass="text-shu" />
           </div>
@@ -687,6 +692,7 @@ export default function JapanNinjaView() {
                 </li>
               ))}
             </ul>
+            <Pose name="chiyome-letter" className="ninja-bob mx-auto mt-10 h-[240px] w-auto lg:mx-0 lg:h-[300px]" />
           </div>
           <div data-fx="right">
             <JapanLaunchForm lang={lang} />
