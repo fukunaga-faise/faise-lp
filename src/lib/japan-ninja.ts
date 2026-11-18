@@ -1,14 +1,14 @@
-// JAPAN NINJA（/en/japan-launch の英語LP）専用の文言とデータ。
+// LAUNCH NINJA by Faise（/en/japan-launch の英語LP。旧仮称 JAPAN NINJA）専用の文言とデータ。
 // 日本語版（/japan-launch）は従来の JapanLaunchView のまま。共通の内容（対象・Why Japan・契約形態・販路・事例・FAQ・フォーム）は japan-launch.ts を使う。
 // 方針：自分たちを笑えるユーモアで見せつつ、数字と中身は真面目に出す。史実は断定しない（"Legend says..." の書き方）。
 // 数字は創作しない。未確定の数値は {{TODO: 数値}} のプレースホルダーで表示し、コメントで明示する。
 
-export const NINJA_NAME = 'JAPAN NINJA by Faise'
+export const NINJA_NAME = 'LAUNCH NINJA by Faise'
 export const SCAN_ANCHOR = 'scan'
 export const CTA_LABEL = 'Get your free Japan Scan'
 
 export const ninjaMeta = {
-  title: 'JAPAN NINJA by Faise | Japan Market Entry & Influencer Marketing for Overseas Brands',
+  title: 'LAUNCH NINJA by Faise | Japan Market Entry & Influencer Marketing for Overseas Brands',
   description:
     'Japan has unwritten rules. Faise is a Tokyo team that knows them — reviews, ingredients, Rakuten and Amazon, PSE and Giteki, Japanese social. We take overseas beauty, lifestyle and gadget brands into Japan. Start with a free Japan Scan.',
 }

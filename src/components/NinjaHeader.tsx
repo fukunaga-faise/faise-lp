@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
+import LaunchNinjaLogo from '@/components/LaunchNinjaLogo'
 
-// JAPAN NINJA（英語LP）用の軽量ヘッダー。共通の Nav（framer-motion を使用）と同じ見た目・リンクを、
+// LAUNCH NINJA（英語LP）用の軽量ヘッダー。共通の Nav（framer-motion を使用）と同じ見た目・リンクを、
 // アニメーションライブラリなしで実装して、ページの JavaScript を減らす。
 // CTA はただのページ内リンク（#scan）なので JS なしでも動く。JS はモバイルメニューの開閉だけ。
 type Props = {
@@ -19,9 +20,8 @@ export default function NinjaHeader({ home, links, ctaHref, ctaLabel, altHref }:
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-[#ecebe7] bg-white/95 px-5 backdrop-blur-md md:h-[76px] md:px-10 lg:px-14">
-        <a href={home} className="flex items-center gap-2.5" aria-label="Faise — JAPAN NINJA home">
-          <img src="/logo-mark.png" alt="" width={28} height={28} className="h-7 w-auto md:h-8" />
-          <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111] md:text-[20px]">Faise</span>
+        <a href={home} aria-label="LAUNCH NINJA by Faise — home">
+          <LaunchNinjaLogo markClassName="h-7 w-auto md:h-9" textClassName="text-[17px] md:text-[22px]" />
         </a>
 
         <nav aria-label="Page sections" className="hidden xl:block">
@@ -42,9 +42,11 @@ export default function NinjaHeader({ home, links, ctaHref, ctaLabel, altHref }:
           </a>
           <a
             href={ctaHref}
-            className="group inline-flex items-center gap-2 rounded-full bg-beni px-3.5 py-2 text-[11.5px] font-semibold text-white transition-colors hover:bg-beni-deep xl:px-7 xl:py-3.5 xl:text-[13px]"
+            className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-beni px-3.5 py-2 text-[11.5px] font-semibold text-white transition-colors hover:bg-beni-deep xl:px-7 xl:py-3.5 xl:text-[13px]"
           >
-            {ctaLabel}
+            {/* スマホはロゴと並ぶので短い表記にする（読み上げは正式な文言） */}
+            <span className="sm:hidden" aria-hidden="true">Free Japan Scan</span>
+            <span className="sr-only sm:not-sr-only">{ctaLabel}</span>
             <ArrowRight size={15} strokeWidth={1.5} aria-hidden="true" className="hidden transition-transform group-hover:translate-x-1 xl:block" />
           </a>
           <button

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, Handshake, X } from 'lucide-react'
 import NinjaHeader from '@/components/NinjaHeader'
+import LaunchNinjaLogo from '@/components/LaunchNinjaLogo'
 import FaqList from '@/components/FaqList'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
 import NinjaTerminal from '@/components/NinjaTerminal'
@@ -29,10 +30,10 @@ import {
   type NinjaKey,
 } from '@/lib/japan-ninja'
 
-// JAPAN NINJA：英語LP（/en/japan-launch）。日本語版（/japan-launch）は JapanLaunchView のまま。
+// LAUNCH NINJA by Faise：英語LP（/en/japan-launch）。日本語版（/japan-launch）は JapanLaunchView のまま。
 const lang = 'en' as const
 const url = `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}`
-const OG = '/og/japan-ninja.png' // 生成: node scripts/generate-og-japan-ninja.mjs
+const OG = '/og/launch-ninja.jpg' // 生成: node scripts/generate-launch-ninja-brand.mjs
 
 export function japanNinjaMetadata(): Metadata {
   return {
@@ -49,6 +50,8 @@ export function japanNinjaMetadata(): Metadata {
       images: [{ url: OG, width: 1200, height: 630, alt: NINJA_NAME }],
     },
     twitter: { card: 'summary_large_image', title: ninjaMeta.title, description: ninjaMeta.description, images: [OG] },
+    // このページだけ LAUNCH NINJA のマークをファビコンにする
+    icons: { icon: [{ url: '/images/japan-ninja/launch-ninja-icon.svg', type: 'image/svg+xml' }, { url: '/images/japan-ninja/launch-ninja-icon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/images/japan-ninja/launch-ninja-apple.png' },
   }
 }
 
@@ -174,7 +177,10 @@ export default function JapanNinjaView() {
         </div>
         <div className={`${container} relative grid gap-10 py-12 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14`}>
           <div>
-            <Eyebrow light>{ninjaHero.eyebrow}</Eyebrow>
+            <p>
+              <LaunchNinjaLogo tone="dark" markClassName="h-11 w-auto md:h-14" textClassName="text-[26px] md:text-[32px]" />
+              <span className="sr-only">{ninjaHero.eyebrow}</span>
+            </p>
             <h1 className="mt-6 font-mincho text-[clamp(32px,8.6vw,44px)] font-bold leading-[1.18] tracking-[0.005em] md:text-[clamp(44px,4.6vw,64px)]">
               <span className="block">{ninjaHero.h1[0]}</span>
               <span className="block text-[#F2B4A2]">{ninjaHero.h1[1]}</span>
@@ -566,11 +572,10 @@ export default function JapanNinjaView() {
       <footer className="bg-white py-10">
         <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
           <div className="flex flex-col gap-3">
-            <a href={JAPAN_LAUNCH_PATH_EN} className="flex items-center gap-2.5" aria-label="Faise">
-              <img src="/logo-mark.png" alt="" width={28} height={28} className="h-7 w-auto" />
-              <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
+            <a href={JAPAN_LAUNCH_PATH_EN} aria-label={`${NINJA_NAME} — top`}>
+              <LaunchNinjaLogo markClassName="h-10 w-auto" textClassName="text-[24px]" />
             </a>
-            <p className="text-[11px] tracking-[0.04em] text-[#5f5f5f]">Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo</p>
+            <p className="text-[11px] tracking-[0.04em] text-[#5f5f5f]">A service by Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo</p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <Link href={GUIDE_BASE} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-beni">
