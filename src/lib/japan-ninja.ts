@@ -12,12 +12,12 @@ export const CORPORATE_NUMBER = ''
 export const CTA_NOTE = 'Free · Reply within 2 business days · NDA on request'
 
 export const ninjaMeta = {
-  title: 'Japan Distributor & Makuake Launch Partner | LAUNCH NINJA by Faise',
+  title: 'Japan Market Entry & Exclusive Distribution Partner | LAUNCH NINJA by Faise',
   description:
-    'Tokyo-based partner for overseas consumer brands. Exclusive distribution, Makuake launches, Amazon & Rakuten, and Giteki/PSE coordination. Get a free Japan Scan.',
+    'Tokyo-based partner for overseas consumer brands. Take an exclusive Japan license or keep your setup and let us run the marketing: e-commerce, Amazon & Rakuten, ads and influencers. Get a free Japan Scan.',
   // AI 検索・要約で引用されやすい定義文（ページ上部にも表示）
   definition:
-    'LAUNCH NINJA by Faise is a Tokyo-based Japan market entry service for overseas consumer brands, offering exclusive distribution, Makuake crowdfunding launches, Amazon and Rakuten sales, influencer marketing, and Giteki/PSE coordination with partners.',
+    'LAUNCH NINJA by Faise is a Tokyo-based Japan market entry service for overseas consumer brands. Faise either takes an exclusive license and launches the product across Japanese channels (its own online store, Amazon, Rakuten, retail and more), or runs the Japan marketing for a brand’s existing setup — localization, ads and influencer marketing, with import and certification handled together with partners.',
 }
 
 // 上部メニュー（LP 内のセクションへ）
@@ -33,8 +33,8 @@ export const ninjaNav = [
 export const ninjaHero = {
   eyebrow: NINJA_NAME,
   kicker: 'Japan has unwritten rules. Your brand needs a ninja.',
-  h1: ['Launch your product in Japan.', 'Exclusive distribution and Makuake, handled by a Tokyo team.'],
-  sub: 'We take overseas consumer products to Japan: exclusive distribution, Makuake launches, Amazon and Rakuten, and Giteki/PSE coordination with our partners. You keep making great products.',
+  h1: ['Launch your product in Japan.', 'Exclusive licensing or marketing — handled by a Tokyo team.'],
+  sub: 'We take overseas consumer products to Japan — localization, our own online stores, Amazon and Rakuten, ads and influencers, with import and certification handled together with partners. You keep making great products.',
   note: 'For makers of gadgets, lifestyle and beauty products. No Japanese entity needed.',
   clanAlt:
     'Illustration of the four Faise ninjas standing together in front of a night Tokyo skyline: Hanzo in indigo at the center, Basho in moss green, Chiyome in crimson and Kotaro in charcoal and orange',
@@ -125,7 +125,7 @@ export const service = {
     { name: 'Localization of story & claims', ninja: 'basho' as NinjaKey },
     { name: 'Japanese product pages', ninja: 'basho' as NinjaKey },
     { name: 'Short video & content', ninja: 'basho' as NinjaKey },
-    { name: 'Makuake page & launch', ninja: 'chiyome' as NinjaKey },
+    { name: 'Launch campaigns & PR', ninja: 'chiyome' as NinjaKey },
     { name: 'Influencer casting', ninja: 'chiyome' as NinjaKey },
     { name: 'Ads (Meta, Google, Amazon)', ninja: 'kotaro' as NinjaKey },
     { name: 'Amazon & Rakuten operations', ninja: 'kotaro' as NinjaKey },
@@ -134,7 +134,7 @@ export const service = {
   partnerTitle: 'With our partners',
   partner: ['Import', 'PSE & Giteki', 'Logistics', 'Japanese customer support'],
   channelsTitle: 'Where we sell',
-  channels: ['Makuake', 'Amazon Japan', 'Rakuten Ichiba', 'Instagram · TikTok · YouTube', 'Specialty & lifestyle stores'],
+  channels: ['Our own online stores', 'Amazon Japan', 'Rakuten Ichiba', 'Instagram · TikTok · YouTube', 'Crowdfunding (when it fits)', 'Specialty & lifestyle stores'],
 }
 
 export const clanSection = {
@@ -164,16 +164,20 @@ export const midCta = {
   body: 'Send us a message. We reply within 2 business days with a free one-page Japan Scan.',
 }
 
-// Cyspera の数値枠。
-// TODO: 数値 — 以下の value はすべて未確定のプレースホルダー。実数（と期間・比較条件）が確定したら差し替える。数字は創作しないこと
-export const caseMetrics = [
-  { label: 'Monthly sales growth', value: '{{TODO: 数値}}', note: 'vs. launch month' },
-  { label: 'Reels views', value: '{{TODO: 数値}}', note: 'across 3 creator posts' },
-  { label: 'Reels saves', value: '{{TODO: 数値}}', note: 'across 3 creator posts' },
-  { label: 'Reviews', value: '{{TODO: 数値}}', note: 'Amazon & online store' },
-]
+// 実績：Cyspera（英語LP専用。日本語ページは japan-launch.ts の track.featured のまま）
+export const cyspera = {
+  stat: { value: '10,000+', label: 'units sold within three months of launch' },
+  lead: 'We led the Japan launch of Cyspera, a skincare brand from the Swiss company scientis, and sold more than 10,000 units within three months of launch.',
+  workLabel: 'Faise handled every part of the Japan go-to-market',
+  work: [
+    { title: 'Localization & positioning', body: 'We adapted the brand message and product information for Japanese consumers.' },
+    { title: 'E-commerce', body: 'We built and ran the Japanese online store.', link: { href: 'https://www.luxora.shop/products/cyspera-dark-spot-treatment', label: 'luxora.shop' } },
+    { title: 'Advertising', body: 'We produced the ad creatives in-house and ran the paid campaigns.' },
+    { title: 'Influencer marketing', body: 'We cast Japanese influencers and planned and managed their content.' },
+    { title: 'Fulfillment', body: 'We managed shipping to customers in Japan.' },
+  ] as { title: string; body: string; link?: { href: string; label: string } }[],
+}
 
-// FLOW：6ステップ
 // 流れ（問い合わせから拡販まで）
 // TODO: 要記入 — 各ステップの目安期間（週）
 export const flow = {
@@ -184,7 +188,7 @@ export const flow = {
     { title: 'Free Japan Scan', body: 'Within 2 business days: buyer, price band, claims that land and best channels.', ninja: 'hanzo' as NinjaKey },
     { title: 'Meeting & proposal', body: 'An online meeting, then a proposal with the model and terms in writing.', ninja: 'hanzo' as NinjaKey },
     { title: 'Prepare', body: 'Compliance and import with partners; story, pages and video localized.', ninja: 'basho' as NinjaKey },
-    { title: 'Launch', body: 'Makuake or marketplace launch, with creators going first.', ninja: 'chiyome' as NinjaKey },
+    { title: 'Launch', body: 'Online store, Amazon and Rakuten go live, with creators going first.', ninja: 'chiyome' as NinjaKey },
     { title: 'Scale', body: 'Amazon, Rakuten, ads, then retail.', ninja: 'kotaro' as NinjaKey },
   ],
 }
@@ -210,12 +214,12 @@ export const finalCta = {
 // 信頼バー（ヒーロー直下）。事実のみ
 export const trustBar = ['Faise Inc. — registered in Japan', 'Based in Tokyo', 'Founded December 2025', 'CEO: ex-Sony, ex-Katana marketer', 'NDA on request', 'We work in English']
 
-// 対象（Kickstarter などで実績のあるメーカー）
+// 対象（海外で売れている商品を持つメーカー）
 export const whoFor = {
   label: 'Who it’s for',
   h2: ['Built for makers who are ready for Japan —', 'even if Japan wasn’t in the plan.'],
   items: [
-    'You’ve proven demand on Kickstarter, Indiegogo or your own store.',
+    'Your product already sells abroad — on your own store, Amazon or Kickstarter.',
     'You don’t have a Japanese entity, team or importer.',
     'You make consumer products: gadgets, lifestyle or beauty.',
     'You’d rather not spend months learning Japan’s rules yourself.',
@@ -227,38 +231,24 @@ export const whoFor = {
   ],
 }
 
-// 協業の形（3つ）
+// 協業の形（2つ）
 export const waysToWork = {
   label: 'Ways to work',
-  h2: ['Three ways to', 'launch in Japan.'],
+  h2: ['Two ways to', 'launch in Japan.'],
   items: [
     {
-      name: 'Exclusive Distribution',
-      title: 'We become your exclusive partner in Japan.',
-      body: 'Import (with our partners), launch, sales and marketing — handled as one team, for an agreed term.',
+      name: 'Exclusive License',
+      title: 'We license your brand for Japan and launch it everywhere.',
+      body: 'We take an exclusive license for Japan and run the whole launch as one team: import (with our partners), our own online store, Amazon and Rakuten, ads, influencers and retail — for an agreed term.',
       best: 'Best if you want Japan handled end-to-end.',
-    },
-    {
-      name: 'Makuake Launch',
-      title: 'We launch you on Makuake.',
-      body: 'We plan and run your launch on Makuake, one of Japan’s best-known crowdfunding platforms for new products, then carry the momentum into Amazon, Rakuten and retail.',
-      best: 'Best if you’ve just finished a Kickstarter or Indiegogo campaign.',
     },
     {
       name: 'Marketing Only',
       title: 'You keep your setup. We run the marketing.',
-      body: 'Keep your current distributor or Amazon setup. We run localization, influencers, content and ads in Japan.',
+      body: 'Keep your current distributor, Amazon or online store. We run localization, ad creatives and campaigns, and influencer marketing in Japan.',
       best: 'Best if you already sell in Japan but sales are flat.',
     },
   ],
-  note: 'Models can be combined — for example, a Makuake launch first, then exclusive distribution.',
-}
-
-// Makuake の説明（数字は出典付きで確定してから足す）
-// TODO: 要記入 — Makuake の規模（プロジェクト数・応援総額など）を、出典と年月つきで追加する
-export const makuake = {
-  title: 'What is Makuake?',
-  body: 'Makuake is one of Japan’s best-known crowdfunding platforms for launching new products to early adopters. It works like a Japanese Kickstarter, and many buyers and retailers watch it for what’s new. A strong Makuake launch gives you Japanese reviews, buzz and a sales record to take to Amazon, Rakuten and stores.',
 }
 
 // 会社情報
@@ -284,7 +274,7 @@ export const ninjaFaq = {
   items: [
     {
       q: 'What does exclusive distribution in Japan look like with you?',
-      a: 'Faise becomes your single partner for Japan for an agreed, renewable term. The term, territory and channel scope are written into a distribution agreement before anything ships, and exclusivity can be limited to specific channels if you already sell in Japan.',
+      a: 'Faise takes an exclusive license and becomes your single partner for Japan for an agreed, renewable term. The term, territory and channel scope are written into a distribution agreement before anything ships, and exclusivity can be limited to specific channels if you already sell in Japan.',
     },
     {
       q: 'Is there a minimum order or sales commitment?',
@@ -304,15 +294,11 @@ export const ninjaFaq = {
     },
     {
       q: 'What have you done before?',
-      a: 'We run the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis: sales on Amazon Japan and online stores, ad operations and creator content with Japanese influencers. Our CEO also brings marketing experience from Sony and Katana, a Japanese marketing firm.',
+      a: 'We led the Japan launch of Cyspera, a skincare brand from the Swiss company scientis, and sold more than 10,000 units within three months of launch. We handled localization, the Japanese online store, ad creatives and campaigns, influencer marketing and fulfillment. Our CEO also brings marketing experience from Sony and Katana, a Japanese marketing firm.',
     },
     {
-      q: 'What is Makuake?',
-      a: 'Makuake is one of Japan’s best-known crowdfunding platforms for launching new products. It works like a Japanese Kickstarter: early adopters back new products, and a strong launch gives you Japanese reviews and a sales record to take to Amazon, Rakuten and retailers.',
-    },
-    {
-      q: 'We already ran a Kickstarter or Indiegogo campaign. Can we still launch on Makuake?',
-      a: 'In many cases, yes — Makuake is about launching to Japanese buyers. Makuake has its own rules, for example on products already sold in Japan, so we check your product’s eligibility before planning the launch.',
+      q: 'Where will our product be sold in Japan?',
+      a: 'Wherever your buyers are. Usually that means our own Japanese online store, Amazon Japan and Rakuten Ichiba, backed by ads and influencer content — then specialty and lifestyle retail. Crowdfunding platforms are an option when they fit the product, not a requirement.',
     },
     {
       q: 'Who handles Giteki, PSE, Japanese labels and import?',

@@ -19,14 +19,13 @@ import {
   NINJA_NAME,
   SCAN_ANCHOR,
   about,
-  caseMetrics,
+  cyspera,
   clan,
   clanSection,
   companyFacts,
   finalCta,
   flow,
   leader,
-  makuake,
   midCta,
   ninjaFaq,
   ninjaHero,
@@ -89,13 +88,13 @@ const ld = {
       '@id': `${url}#service`,
       name: NINJA_NAME,
       alternateName: 'LAUNCH NINJA',
-      serviceType: 'Japan market entry, exclusive distribution and Makuake launch for overseas brands',
+      serviceType: 'Japan market entry, exclusive licensing and marketing for overseas brands',
       description: ninjaMeta.definition,
       url,
       inLanguage: 'en',
       provider: { '@id': ORG_ID },
       areaServed: { '@type': 'Country', name: 'Japan' },
-      audience: { '@type': 'BusinessAudience', name: 'Overseas consumer product makers and brands, including Kickstarter and Indiegogo creators' },
+      audience: { '@type': 'BusinessAudience', name: 'Overseas consumer product makers and brands' },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Ways to work',
@@ -125,8 +124,6 @@ const edoAlt: Record<string, string> = {
 const container = 'mx-auto w-full max-w-[1280px] px-5 md:px-10'
 const section = 'py-16 md:py-24'
 const ninjaByKey = Object.fromEntries(clan.map((c) => [c.key, c])) as Record<NinjaKey, (typeof clan)[number]>
-// 未確定（{{TODO}}）の数値は表示しない
-const shownMetrics = caseMetrics.filter((m) => !m.value.includes('TODO'))
 
 // 見出し上の小ラベル。seal を渡すと朱色の落款（漢字1字・装飾）を添える
 function Eyebrow({ children, light = false, seal }: { children: React.ReactNode; light?: boolean; seal?: string }) {
@@ -341,7 +338,7 @@ export default function JapanNinjaView() {
         </div>
       </section>
 
-      {/* 3. Who it's for：Kickstarter などで実績のあるメーカー */}
+      {/* 3. Who it's for：海外で売れている商品を持つメーカー */}
       <section id="who" className={`${section} scroll-mt-16 bg-white`}>
         <div className={container}>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
@@ -433,34 +430,38 @@ export default function JapanNinjaView() {
         <div className={`${container} relative`}>
           <SectionHead en="Voice" label={featured.label.en} title={featured.title.en} light />
           <div data-fx className="mt-12 grid overflow-hidden rounded-2xl border-2 border-sumi bg-white text-sumi shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
-            <div className="relative flex items-center justify-center bg-washi bg-seigaiha p-8">
+            <div className="relative flex flex-col items-center justify-center gap-6 bg-washi bg-seigaiha p-8">
               <span className="absolute left-4 top-4 rounded-full border-2 border-sumi bg-white px-3 py-1 font-inter text-[11px] font-bold uppercase tracking-[0.18em]">Case 01</span>
-              <Image unoptimized src={W('case-cyspera')} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="200px" className="ninja-bob h-[220px] w-auto object-contain md:h-[280px]" />
+              <Image unoptimized src={W('case-cyspera')} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="200px" className="ninja-bob mt-6 h-[200px] w-auto object-contain md:h-[250px]" />
+              {/* 実績の数字（大きく） */}
+              <div className="w-full rounded-xl border-2 border-sumi bg-white px-4 py-4 text-center shadow-[4px_4px_0_#1D1B1A]">
+                <p className="font-display text-[clamp(44px,8vw,60px)] leading-none text-shu">{cyspera.stat.value}</p>
+                <p className="mt-2 text-[13.5px] font-semibold leading-[1.4]">{cyspera.stat.label}</p>
+              </div>
             </div>
             <div className="p-6 md:p-10">
               <p className="font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-beni">{featured.brand}</p>
-              <p className="mt-3 text-[16px] leading-[1.85] text-[#333]">{featured.body.en}</p>
-              <p className="mt-6 font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#666]">{featured.workLabel.en}</p>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {featured.work.map((w) => (
-                  <li key={w.en} className="inline-flex items-center gap-1.5 rounded-full border-2 border-sumi bg-washi px-3.5 py-1.5 text-[13.5px] font-semibold">
-                    <Check size={14} strokeWidth={2.5} aria-hidden="true" className="text-beni" />
-                    {w.en}
+              <p className="mt-3 text-[16.5px] font-medium leading-[1.8] text-[#222]">{cyspera.lead}</p>
+              <p className="mt-7 font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#666]">{cyspera.workLabel}</p>
+              <ul className="mt-3 divide-y divide-dashed divide-sumi/15 border-y border-dashed border-sumi/15">
+                {cyspera.work.map((w) => (
+                  <li key={w.title} className="flex gap-3 py-3">
+                    <Check size={18} strokeWidth={2.5} aria-hidden="true" className="mt-[0.2em] shrink-0 text-beni" />
+                    <p className="text-[14.5px] leading-[1.65] text-[#444]">
+                      <span className="font-bold text-sumi">{w.title}: </span>
+                      {w.body}
+                      {w.link && (
+                        <>
+                          {' '}
+                          <a href={w.link.href} target="_blank" rel="noopener" className="font-semibold text-beni underline underline-offset-4 hover:text-beni-deep">
+                            {w.link.label} ↗
+                          </a>
+                        </>
+                      )}
+                    </p>
                   </li>
                 ))}
               </ul>
-              {/* 数値枠。TODO: 数値 — caseMetrics の value が確定したものだけ表示される（japan-ninja.ts） */}
-              {shownMetrics.length > 0 && (
-                <ul className="mt-6 grid grid-cols-2 gap-3">
-                  {shownMetrics.map((m) => (
-                    <li key={m.label} className="rounded-xl border-2 border-sumi bg-washi p-4">
-                      <p className="text-[12.5px] font-medium text-[#555]">{m.label}</p>
-                      <p className="mt-1.5 font-display text-[30px] leading-none text-beni">{m.value}</p>
-                      <p className="mt-1.5 text-[11.5px] text-[#595959]">{m.note}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </div>
           </div>
 
@@ -541,14 +542,14 @@ export default function JapanNinjaView() {
         </div>
       </section>
 
-      {/* 7. Ways to work：3つのモデル＋Makuake の説明 */}
+      {/* 7. Ways to work：2つのモデル（独占ライセンス／マーケティングのみ） */}
       <section id="models" className="relative scroll-mt-16 overflow-hidden bg-white py-20 md:py-28">
         <div className={container}>
           <SectionHead en="Plans" label={waysToWork.label} title={waysToWork.h2} />
-          <ul className="mt-12 grid gap-6 lg:grid-cols-3">
+          <ul className="mx-auto mt-12 grid max-w-[1000px] gap-6 md:grid-cols-2">
             {waysToWork.items.map((m, i) => (
               <li key={m.name} data-fx style={delay(i * 120)} className="flex flex-col overflow-hidden rounded-2xl border-2 border-sumi bg-white shadow-[0_10px_24px_rgba(28,25,23,0.14)] transition-transform duration-300 hover:-translate-y-1.5">
-                <div className={`flex items-center justify-between px-6 py-4 text-white ${['bg-beni', 'bg-shu', 'bg-sumi'][i]}`}>
+                <div className={`flex items-center justify-between px-6 py-4 text-white ${['bg-beni', 'bg-sumi'][i]}`}>
                   <p className="font-display text-[22px] uppercase tracking-[0.03em]">{m.name}</p>
                   <span className="font-display text-[34px] leading-none text-white/40">{String(i + 1).padStart(2, '0')}</span>
                 </div>
@@ -563,17 +564,6 @@ export default function JapanNinjaView() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-center text-[14px] text-[#595959]">{waysToWork.note}</p>
-          <div data-fx className="mt-12 grid overflow-hidden rounded-2xl border-2 border-sumi bg-[#141A2E] text-white md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <div className="relative aspect-[16/10] md:aspect-auto">
-              <Image unoptimized src={W('edo-market')} alt={edoAlt.market} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
-            </div>
-            <div className="p-6 md:p-10">
-              <p className="font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#F2B4A2]">Makuake</p>
-              <h3 className="mt-2 font-mincho text-[24px] font-bold">{makuake.title}</h3>
-              <p className="mt-3 text-[15px] leading-[1.85] text-white/85">{makuake.body}</p>
-            </div>
-          </div>
         </div>
       </section>
 
