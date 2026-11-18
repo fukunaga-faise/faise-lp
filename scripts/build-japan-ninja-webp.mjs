@@ -14,8 +14,6 @@ const jobs = [
   ['clan', 'public/images/japan-ninja/clan.png', 1200, 66],
   ['hero-bg', 'public/images/japan-ninja/hero-bg.png', 1600, 60],
   ['hero-bg-sm', 'public/images/japan-ninja/hero-bg.png', 900, 55],
-  ['hero-import', 'public/images/japan-ninja/hero-import.png', 1600, 64],
-  ['hero-import-sm', 'public/images/japan-ninja/hero-import.png', 1000, 58],
   ['edo-market', 'public/images/japan-ninja/edo-market.png', 1000, 66],
   ['edo-beauty', 'public/images/japan-ninja/edo-beauty.png', 800, 66],
   ['edo-lifestyle', 'public/images/japan-ninja/edo-lifestyle.png', 800, 66],

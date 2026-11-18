@@ -45,8 +45,6 @@ import {
 const lang = 'en' as const
 const url = `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}`
 const OG = '/og/launch-ninja.jpg' // 生成: node scripts/generate-launch-ninja-brand.mjs
-// ヒーロー背景の案：'a' = LAUNCH NINJA のマークの透過、'b' = 江戸の港に海外の品が届く浮世絵
-const HERO_VARIANT: 'a' | 'b' = 'b'
 // 主CTA の行き先：ページ下部の問い合わせフォーム
 const CTA_HREF = `#${SCAN_ANCHOR}`
 
@@ -223,10 +221,10 @@ export default function JapanNinjaView() {
       <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} ctaHref={CTA_HREF} ctaLabel={CTA_LABEL} ctaShort={CTA_SHORT} altHref="/" />
 
       {/* 1. Hero：誰に・何をするかを最初の画面で。主CTA＝問い合わせフォーム。
-          背景は2案（HERO_VARIANT）：a＝LAUNCH NINJA のマークの透過、b＝江戸の港に海外の品が届き人々が使う浮世絵 */}
-      <section data-hero={HERO_VARIANT} className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
-        {/* 案A：ロゴ（マーク）の透過 */}
-        <div aria-hidden="true" className="hero-a pointer-events-none absolute inset-0 bg-seigaiha-light">
+          背景は LAUNCH NINJA のマークの透過 */}
+      <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
+        {/* 背景：LAUNCH NINJA のマークを大きく透過させて置く（ゆっくり浮き沈み） */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-seigaiha-light">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_72%_45%,rgba(210,73,43,0.28),transparent_58%)]" />
           <div className="absolute right-[-30%] top-[46%] w-[150%] -translate-y-1/2 opacity-[0.14] sm:right-[-12%] sm:w-[90%] md:right-[-4%] md:top-1/2 md:w-[60%] md:opacity-[0.2] lg:w-[54%]">
             <div className="ninja-float">
@@ -234,13 +232,6 @@ export default function JapanNinjaView() {
             </div>
           </div>
         </div>
-        {/* 案B：江戸の港に海外の品が届き、人々が使っている浮世絵。スマホは小さい画像 */}
-        <div aria-hidden="true" className="hero-b pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-cover bg-[position:70%_bottom] bg-no-repeat bg-[url('/images/japan-ninja/web/hero-import-sm.webp')] md:bg-[url('/images/japan-ninja/web/hero-import.webp')] md:bg-[position:right_center]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#141A2E]/90 via-[#141A2E]/75 to-[#141A2E]/30 md:bg-gradient-to-r md:from-[#141A2E] md:via-[#141A2E]/75 md:to-[#141A2E]/0" />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#141A2E]" />
-        </div>
-
         <div className={`${container} relative flex min-h-[calc(100svh-64px)] flex-col justify-center py-12 md:min-h-[640px] md:py-20 lg:min-h-[calc(100svh-76px)]`}>
           <div className="max-w-[640px]">
             <p>

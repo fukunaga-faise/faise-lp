@@ -111,8 +111,6 @@ body {
   .ninja-stamp { animation: ninjaStamp .35s ease-out; }
 }
 
-/* ヒーロー背景の案（data-hero="a"：ロゴの透過／"b"：江戸の港に海外の品が届く浮世絵） */
-[data-hero="a"] .hero-b, [data-hero="b"] .hero-a { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .ninja-float { animation: ninjaFloat 9s ease-in-out infinite; }
 }
