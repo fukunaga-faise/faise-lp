@@ -113,17 +113,17 @@ export const clanSection = {
   legendNote: 'Legend says...',
 }
 
-// 5 PROMISES：「Myth（海外ブランドの思い込み）」→「So we...」
+// 5 PROMISES：「Myth（海外ブランドの思い込み）」→「So we...」（so は "So we…" に続く文として、主語を省いて書く）
 export const promises = {
   label: 'Why a ninja?',
   h2: ['5 promises', 'against 5 myths.'],
   lead: 'Most overseas brands arrive in Japan with the same five assumptions. Here’s what we do instead.',
   items: [
-    { myth: 'Translate the English page and it’ll sell.', so: 'We rewrite your story for Japanese buyers, not just the words.', ninja: 'basho' as NinjaKey },
-    { myth: 'A hit abroad is a hit in Japan.', so: 'We map local competitors and the claims that land before launch.', ninja: 'hanzo' as NinjaKey },
-    { myth: 'Pick influencers by follower count.', so: 'We pick by saves, comments and buyer fit.', ninja: 'chiyome' as NinjaKey },
-    { myth: 'List on Amazon and it sells.', so: 'We engineer the first reviews before we scale.', ninja: 'kotaro' as NinjaKey },
-    { myth: 'Deal with certification and logistics later.', so: 'PSE, Giteki, import and CS run in parallel with partners from day one.', ninja: 'hanzo' as NinjaKey },
+    { myth: 'Translate the English page and it’ll sell.', so: 'Rewrite your story for Japanese buyers, not just the words.', ninja: 'basho' as NinjaKey },
+    { myth: 'A hit abroad is a hit in Japan.', so: 'Map local competitors and the claims that land before launch.', ninja: 'hanzo' as NinjaKey },
+    { myth: 'Pick influencers by follower count.', so: 'Pick by saves, comments and buyer fit.', ninja: 'chiyome' as NinjaKey },
+    { myth: 'List on Amazon and it sells.', so: 'Engineer the first reviews before we scale.', ninja: 'kotaro' as NinjaKey },
+    { myth: 'Deal with certification and logistics later.', so: 'Run PSE, Giteki, import and CS in parallel with partners from day one.', ninja: 'hanzo' as NinjaKey },
   ],
 }
 

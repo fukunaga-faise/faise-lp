@@ -413,7 +413,7 @@ export const faq = {
     {
       q: { en: 'We haven’t planned for Japan. Is it still worth talking?', ja: '日本展開を計画していませんが、相談してもよいですか？' },
       a: {
-        en: 'Yes — many conversations start that way. The Japan Fit Check is free and has no commitment; we’ll tell you honestly whether Japan makes sense for your brand.',
+        en: 'Yes — many conversations start that way. The Japan Scan is free and has no commitment; we’ll tell you honestly whether Japan makes sense for your brand.',
         ja: 'はい、ぜひご相談ください。Japan Fit Check は無料・契約不要で、日本展開が貴社のブランドに合うかどうかを率直にお伝えします。',
       },
     },
@@ -429,7 +429,7 @@ export const faq = {
       q: { en: 'Do we need a Japanese entity?', ja: '日本法人は必要ですか？' },
       // TODO: 要確認 — 日本法人なしでの販売スキーム（輸入者・販売者を誰が担うか）の正式な回答
       a: {
-        en: 'Not necessarily. Depending on the partnership model, Faise or our partners can act as the local party in Japan. We’ll confirm the right setup during the Japan Fit Check.',
+        en: 'Not necessarily. Depending on the partnership model, Faise or our partners can act as the local party in Japan. We’ll confirm the right setup after your Japan Scan.',
         ja: '必ずしも必要ではありません。契約形態によっては、Faiseまたはパートナーが日本側の窓口を担います。最適な形は Japan Fit Check の中でご提案します。',
       },
     },
@@ -437,7 +437,7 @@ export const faq = {
       q: { en: 'How long until launch?', ja: 'ローンチまでどのくらいかかりますか？' },
       // TODO: 要確認 — 期間の目安
       a: {
-        en: 'It depends on the product, certification needs and launch channel. We’ll give you a timeline after the Japan Fit Check.',
+        en: 'It depends on the product, certification needs and launch channel. We’ll give you a timeline after your Japan Scan.',
         ja: '商品や必要な認証、ローンチするチャネルによって異なります。Japan Fit Check の後に、スケジュールの目安をお伝えします。',
       },
     },
@@ -459,7 +459,7 @@ export const faq = {
     {
       q: { en: 'What does it cost?', ja: '費用はどのくらいかかりますか？' },
       a: {
-        en: 'It depends on the partnership model and scope. The Japan Fit Check is free — we’ll propose terms after reviewing your product.',
+        en: 'It depends on the partnership model and scope. The Japan Scan is free — we’ll propose terms after reviewing your product.',
         ja: '契約形態と支援範囲によって異なります。Japan Fit Check は無料で、商品を確認したうえで条件をご提案します。',
       },
     },
@@ -476,9 +476,9 @@ export const faq = {
 
 export const form = {
   label: 'Japan Fit Check',
-  h2: { en: 'Get a free Japan Fit Check', ja: '無料の Japan Fit Check' } as L,
+  h2: { en: 'Get your free Japan Scan', ja: '無料の Japan Fit Check' } as L,
   lead: {
-    en: 'Not sure Japan is right for you? That’s what the Fit Check is for. Tell us about your product and we’ll get back to you within 2 business days.',
+    en: 'Send us your product URL. Within 2 business days, you get a one-page Japan Scan: who your Japanese buyer is, which claims will land (and which won’t), price band, best channels, and the creator types to start with. Free. NDA on request.',
     ja: '日本展開が合うかどうか分からなくても大丈夫です。商品について教えていただければ、2営業日以内にご連絡いたします。',
   } as L,
   fields: {
@@ -510,15 +510,15 @@ export const form = {
   ],
   // フォーム横の安心材料。TODO: 要確認 — NDA締結の可否・英語対応の可否
   assurances: [
-    { en: 'The Japan Fit Check is free', ja: 'Japan Fit Check は無料です' },
+    { en: 'The Japan Scan is free', ja: 'Japan Fit Check は無料です' },
     { en: 'NDA available on request', ja: 'ご希望に応じてNDAを締結します' },
     { en: 'English is fine', ja: '英語でのやりとりも可能です' },
     { en: 'A product link and a short overview are enough to start', ja: '商品URLと簡単な概要だけで始められます' },
   ] as L[],
   select: { en: 'Select', ja: '選択してください' } as L,
-  send: { en: 'Request my Japan Fit Check', ja: '申し込む' } as L,
+  send: { en: 'Get your free Japan Scan', ja: '申し込む' } as L,
   sending: { en: 'Sending...', ja: '送信中...' } as L,
   error: { en: 'Something went wrong. Please try again in a moment.', ja: '送信に失敗しました。時間をおいて再度お試しください。' } as L,
-  successTitle: { en: 'Thank you — request received', ja: '送信が完了しました' } as L,
-  successBody: { en: 'We’ll get back to you within 2 business days.', ja: '2営業日以内にご連絡いたします。' } as L,
+  successTitle: { en: 'Thank you — the clan is on it', ja: '送信が完了しました' } as L,
+  successBody: { en: 'Your Japan Scan will reach you within 2 business days.', ja: '2営業日以内にご連絡いたします。' } as L,
 }

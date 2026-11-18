@@ -1,7 +1,8 @@
-import JapanLaunchView, { japanLaunchMetadata } from '@/components/views/JapanLaunchView'
+import JapanNinjaView, { japanNinjaMetadata } from '@/components/views/JapanNinjaView'
 
-export const metadata = japanLaunchMetadata('en')
+// 英語LP は JAPAN NINJA コンセプト（日本語版 /japan-launch は JapanLaunchView のまま）
+export const metadata = japanNinjaMetadata()
 
 export default function Page() {
-  return <JapanLaunchView lang="en" />
+  return <JapanNinjaView />
 }
