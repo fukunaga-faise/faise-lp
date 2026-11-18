@@ -1,4 +1,4 @@
-// /en/japan-launch/guide 配下の英語ガイド記事（海外ブランド向けの日本進出ノウハウ）。ページ表示と構造化データで共通利用する。
+// /en/launch-ninja/guide 配下の英語ガイド記事（海外ブランド向けの日本進出ノウハウ）。ページ表示と構造化データで共通利用する。
 // ※Faise について書くのは Japan Launch LP（japan-launch.ts）に載っている事実だけ：日本チーム（マーケター・現役インフルエンサー）、
 //   国内インフルエンサーとのつながり、協業の形2つ、Cyspera（scientis）の支援内容、輸入・認証・物流・CSはパートナーと連携、Fit Check 無料。
 // ※市場規模などの数字は出典なしでは書かない。法規制は一般的な解説にとどめ、最終確認は専門家・公式資料を促す。
@@ -39,7 +39,7 @@ export type Guide = {
   faq: { q: string; a: string }[]
 }
 
-export const GUIDE_BASE = '/en/japan-launch/guide'
+export const GUIDE_BASE = '/en/launch-ninja/guide'
 export const GUIDE_AUTHOR = { name: 'Haruto Fukunaga', jobTitle: 'CEO, Faise Inc.' }
 
 const REG_NOTE =

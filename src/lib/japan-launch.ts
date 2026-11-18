@@ -1,6 +1,6 @@
 import type { Lang } from './locale'
 
-// 海外ブランド向け「日本上陸支援」LP（/en/japan-launch がメイン、/japan-launch は日本の代理店・パートナー向け）。
+// 海外ブランド向け「日本上陸支援」LP（/en/launch-ninja がメイン、/japan-launch は日本の代理店・パートナー向け）。
 // 文言はすべてここで管理する。事実として確認できていない箇所は TODO コメントを残し、数字・事例・ロゴは創作しないこと。
 
 type L = Record<Lang, string>
@@ -11,7 +11,7 @@ export const SERVICE_NAME = 'Japan Launch by Faise'
 export const SERVICE_SHORT = 'Japan Launch'
 
 export const JAPAN_LAUNCH_PATH = '/japan-launch'
-export const JAPAN_LAUNCH_PATH_EN = '/en/japan-launch'
+export const JAPAN_LAUNCH_PATH_EN = '/en/launch-ninja'
 export const FORM_ANCHOR = 'fit-check'
 
 export const meta: Record<Lang, { title: string; description: string }> = {

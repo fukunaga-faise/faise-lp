@@ -3,7 +3,7 @@
 export type Lang = 'ja' | 'en'
 
 // 英語の入口（日本語サイトの「EN」ボタンの行き先）。英語サイトは海外ブランド向けの Japan Launch LP だけ。
-export const ENGLISH_ENTRY = '/en/japan-launch'
+export const ENGLISH_ENTRY = '/en/launch-ninja'
 
 // 言語は URL で決まる（日本語: /…、英語: /en/…）。検索エンジンが両方を別ページとして読めるようにするため、
 // 画面上の切り替えではなく、対応する URL へのリンクで切り替える。

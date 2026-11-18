@@ -78,7 +78,7 @@ export function Footer() {
         <div className="flex flex-col gap-3 md:items-end">
           {/* 英語サイト（Japan Launch LP）では、日本進出ガイドへのリンク */}
           {lang === 'en' && (
-            <Link href="/en/japan-launch/guide" className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
+            <Link href="/en/launch-ninja/guide" className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-brand">
               Japan market entry guides
             </Link>
           )}

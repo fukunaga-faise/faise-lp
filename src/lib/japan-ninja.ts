@@ -1,4 +1,4 @@
-// LAUNCH NINJA by Faise（/en/japan-launch の英語LP。旧仮称 JAPAN NINJA）専用の文言とデータ。
+// LAUNCH NINJA by Faise（/en/launch-ninja の英語LP。旧仮称 JAPAN NINJA）専用の文言とデータ。
 // 日本語版（/japan-launch）は従来の JapanLaunchView のまま。共通の内容（対象・Why Japan・契約形態・販路・事例・FAQ・フォーム）は japan-launch.ts を使う。
 // 方針：自分たちを笑えるユーモアで見せつつ、数字と中身は真面目に出す。史実は断定しない（"Legend says..." の書き方）。
 // 数字は創作しない。未確定の数値は {{TODO: 数値}} のプレースホルダーで表示し、コメントで明示する。

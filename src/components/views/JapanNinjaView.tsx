@@ -40,7 +40,7 @@ import {
   type NinjaKey,
 } from '@/lib/japan-ninja'
 
-// LAUNCH NINJA by Faise：英語LP（/en/japan-launch）。日本語版（/japan-launch）は JapanLaunchView のまま。
+// LAUNCH NINJA by Faise：英語LP（/en/launch-ninja）。日本語版（/japan-launch）は JapanLaunchView のまま。
 // 構成：海外メーカーの実際の質問（独占条件・費用・支払・売れる根拠・法規・既存チャネル・会社の信頼性）に、上から順に答える。
 const lang = 'en' as const
 const url = `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}`

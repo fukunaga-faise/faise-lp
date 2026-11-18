@@ -15,7 +15,7 @@ function page(path: string, priority: number, lastModified: Date): Entry[] {
 // Japan Launch は英語版がメイン（x-default も英語）
 function japanLaunch(lastModified: Date): Entry[] {
   const ja = `${SITE_URL}/japan-launch`
-  const en = `${SITE_URL}/en/japan-launch`
+  const en = `${SITE_URL}/en/launch-ninja`
   const alternates = { languages: { en, ja, 'x-default': en } }
   return [
     { url: en, lastModified, changeFrequency: 'monthly', priority: 0.8, alternates },

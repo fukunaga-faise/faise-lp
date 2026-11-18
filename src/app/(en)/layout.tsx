@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description,
     type: 'website',
     locale: 'en_US',
-    url: `${SITE_URL}/en/japan-launch`,
+    url: `${SITE_URL}/en/launch-ninja`,
     siteName: 'Faise Inc.',
     images: [{ url: '/og/home-en.jpg', width: 1200, height: 630, alt: title }],
   },

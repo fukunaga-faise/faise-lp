@@ -49,7 +49,7 @@ export default function NotFoundView({ lang }: { lang: Lang }) {
           ))}
         </ul>
         <a
-          href={lang === 'ja' ? '/#contact-form' : '/en/japan-launch#fit-check'}
+          href={lang === 'ja' ? '/#contact-form' : '/en/launch-ninja#scan'}
           className="mt-10 inline-flex items-center gap-3 rounded-sm bg-gradient-to-r from-brand-sky to-brand px-8 py-4 text-sm font-bold tracking-[0.1em] text-white hover:from-brand hover:to-brand-navy"
         >
           {T.contact[lang]} <ArrowRight size={14} />
