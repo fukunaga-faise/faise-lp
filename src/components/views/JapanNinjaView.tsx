@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, Handshake, X } from 'lucide-react'
-import Nav from '@/components/Nav'
-import { Footer } from '@/components/CTA'
+import NinjaHeader from '@/components/NinjaHeader'
 import FaqList from '@/components/FaqList'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
 import NinjaTerminal from '@/components/NinjaTerminal'
@@ -162,13 +161,14 @@ export default function JapanNinjaView() {
   return (
     <main className={`${display.variable} ${serif.variable} bg-white text-sumi`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <Nav base={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} contactHref={`#${SCAN_ANCHOR}`} contactLabel={CTA_LABEL} ctaTone="beni" solid />
+      <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} ctaHref={`#${SCAN_ANCHOR}`} ctaLabel={CTA_LABEL} altHref="/" />
 
       {/* Hero：見出し・CTA・ターミナル風アニメーション、下に4人の集合イラスト */}
       <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
         {/* 背景：浮世絵風の夜の城下町（満月・屋根の上を跳ぶ忍者・手裏剣）。見出しの左側は濃い色を重ねて読みやすくする */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[1100px] overflow-hidden md:h-[900px]">
-          <Image unoptimized src={W('hero-bg')} alt="" fill loading="eager" sizes="100vw" className="object-cover object-[78%_center] md:object-right-top" />
+          {/* CSS の背景画像にして、見出し（LCP）より後に読み込ませる。スマホは小さい画像 */}
+          <div className="absolute inset-0 bg-cover bg-[position:78%_center] bg-no-repeat bg-[url('/images/japan-ninja/web/hero-bg-sm.webp')] md:bg-[url('/images/japan-ninja/web/hero-bg.webp')] md:bg-[position:right_top]" />
           <div className="absolute inset-0 bg-[#141A2E]/55 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#141A2E]/90 lg:via-[#141A2E]/45 lg:to-[#141A2E]/10" />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-[#141A2E]" />
         </div>
@@ -187,7 +187,7 @@ export default function JapanNinjaView() {
         </div>
         <div className={`${container} relative pb-12 md:pb-16`}>
           <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-white/10">
-            <Image unoptimized src={W('clan')} alt={ninjaHero.clanAlt} fill loading="eager" sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
+            <Image unoptimized src={W('clan')} alt={ninjaHero.clanAlt} fill sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
@@ -562,7 +562,24 @@ export default function JapanNinjaView() {
         </div>
       </section>
 
-      <Footer />
+      {/* フッター（共通 Footer の英語版と同じ内容をサーバー側で描画。アニメーション用の JS を読み込まないため） */}
+      <footer className="bg-white py-10">
+        <div className={`${container} flex flex-col items-start justify-between gap-6 md:flex-row md:items-center`}>
+          <div className="flex flex-col gap-3">
+            <a href={JAPAN_LAUNCH_PATH_EN} className="flex items-center gap-2.5" aria-label="Faise">
+              <img src="/logo-mark.png" alt="" width={28} height={28} className="h-7 w-auto" />
+              <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
+            </a>
+            <p className="text-[11px] tracking-[0.04em] text-[#5f5f5f]">Faise Inc. — 4-18-25 Oi, Shinagawa-ku, Tokyo</p>
+          </div>
+          <div className="flex flex-col gap-3 md:items-end">
+            <Link href={GUIDE_BASE} className="text-[12.5px] tracking-[0.04em] text-[#555] transition-colors hover:text-beni">
+              Japan market entry guides
+            </Link>
+            <p className="text-[10.5px] tracking-[0.04em] text-[#666]">© 2025 Faise Inc. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </main>
   )
 }
