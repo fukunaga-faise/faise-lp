@@ -494,7 +494,7 @@ export const form = {
   } as Record<string, L>,
   placeholders: {
     markets: { en: 'e.g. US, EU, Korea', ja: '例：アメリカ、EU、韓国' },
-    message: { en: 'Your product, Kickstarter/Indiegogo link, Giteki/PSE status, current distributors — anything that helps', ja: '商品の特徴や、日本での目標などをお聞かせください' },
+    message: { en: 'Tell us about your product: where it sells today, Giteki/PSE status, current distributors — anything that helps.', ja: '商品の特徴や、日本での目標などをお聞かせください' },
   } as Record<string, L>,
   categories: [
     { value: 'beauty', label: { en: 'Beauty & skincare', ja: '美容・スキンケア' } },
@@ -512,8 +512,8 @@ export const form = {
   assurances: [
     { en: 'The Japan Scan is free', ja: 'Japan Fit Check は無料です' },
     { en: 'NDA available on request', ja: 'ご希望に応じてNDAを締結します' },
-    { en: 'English is fine', ja: '英語でのやりとりも可能です' },
-    { en: 'A product link and a short overview are enough to start', ja: '商品URLと簡単な概要だけで始められます' },
+    { en: 'We work in English', ja: '英語でのやりとりも可能です' },
+    { en: 'A product link and a short overview are all we need to start', ja: '商品URLと簡単な概要だけで始められます' },
   ] as L[],
   select: { en: 'Select', ja: '選択してください' } as L,
   send: { en: 'Send message', ja: '申し込む' } as L,

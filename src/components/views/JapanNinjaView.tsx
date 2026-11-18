@@ -398,7 +398,7 @@ export default function JapanNinjaView() {
                 <div className="flex items-start gap-3">
                   <NinjaAvatar k={p.ninja} size={42} />
                   <p>
-                    <span className="inline-block rounded-full bg-beni px-3 py-1 font-inter text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">So we…</span>
+                    <span className="inline-block rounded-full bg-beni px-3 py-1 font-inter text-[11.5px] font-bold uppercase tracking-[0.14em] text-white">Our promise</span>
                     <span className="mt-2 block text-[17px] font-bold leading-[1.5] text-white">{p.so}</span>
                   </p>
                 </div>
