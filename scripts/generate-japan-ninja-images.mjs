@@ -124,6 +124,9 @@ const scenes = {
     'A traveler in Edo travel clothes resting at a roadside teahouse under a red parasol, with a sleek insulated water bottle, a modern minimal backpack and a small LED camping lantern beside him, Mount Fuji in the distance.',
   'edo-gadgets':
     'A cheerful Edo townsman in a shop on tatami wearing wireless earbuds and swiping a tablet, a small smart speaker and a smartwatch on a low wooden counter, curious neighbors peeking in through the noren.',
+  // ヒーロー背景（案B）：海外の品が船で江戸に届き、人々が使っている。左側は見出し用に落ち着いた空と海を残す
+  'hero-import':
+    'Wide harbor scene at dusk in Edo: on the right half, a large foreign tall sailing ship is docked and small ninja porters in dark indigo carry wooden crates down the gangplank; the open crates on the pier reveal modern products (wireless earbuds, a sleek smartphone, skincare pump bottles, a compact camera, an insulated bottle); excited townspeople in kimono on the pier try them on the spot: a woman tests skin cream on her hand, a young man listens with earbuds, a child holds up a gadget, a merchant shows a tablet. Paper lanterns glow along the pier, a large pale full moon and stylized waves. The left 40 percent is a calm dark indigo evening sky over the sea with soft clouds and no figures, leaving empty space for text.',
   'edo-night-street':
     'A dark night Edo shopping street lined with glowing paper lanterns and noren curtains, a hikyaku courier running with a modern cardboard delivery box on his pole, shop windows displaying modern gadgets, deep indigo night sky with a crescent moon, mostly dark tones.',
 }

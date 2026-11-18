@@ -3,10 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, Handshake, X } from 'lucide-react'
 import NinjaHeader from '@/components/NinjaHeader'
-import LaunchNinjaLogo from '@/components/LaunchNinjaLogo'
+import LaunchNinjaLogo, { LaunchNinjaMark } from '@/components/LaunchNinjaLogo'
 import FaqList from '@/components/FaqList'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
-import NinjaTerminal from '@/components/NinjaTerminal'
 import { CardRail, ScrollFx, StickyCta } from '@/components/NinjaFx'
 import { display, serif } from '@/lib/jl-fonts-en'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
@@ -46,6 +45,8 @@ import {
 const lang = 'en' as const
 const url = `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}`
 const OG = '/og/launch-ninja.jpg' // 生成: node scripts/generate-launch-ninja-brand.mjs
+// ヒーロー背景の案：'a' = LAUNCH NINJA のマークの透過、'b' = 江戸の港に海外の品が届く浮世絵
+const HERO_VARIANT: 'a' | 'b' = 'b'
 // 主CTA の行き先：ページ下部の問い合わせフォーム
 const CTA_HREF = `#${SCAN_ANCHOR}`
 
@@ -221,31 +222,37 @@ export default function JapanNinjaView() {
       <ScrollFx />
       <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} ctaHref={CTA_HREF} ctaLabel={CTA_LABEL} ctaShort={CTA_SHORT} altHref="/" />
 
-      {/* 1. Hero：誰に・何をするかを最初の画面で。主CTA＝問い合わせフォーム */}
-      <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
-        {/* 背景：浮世絵風の夜の城下町（満月・屋根の上を跳ぶ忍者・手裏剣）。見出しの左側は濃い色を重ねて読みやすくする */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* CSS の背景画像にして、見出し（LCP）より後に読み込ませる。スマホは小さい画像 */}
-          <div className="absolute inset-0 bg-cover bg-[position:78%_center] bg-no-repeat bg-[url('/images/japan-ninja/web/hero-bg-sm.webp')] md:bg-[url('/images/japan-ninja/web/hero-bg.webp')] md:bg-[position:right_top]" />
-          <div className="absolute inset-0 bg-[#141A2E]/60 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#141A2E]/90 lg:via-[#141A2E]/50 lg:to-[#141A2E]/10" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-[#141A2E]" />
-          {/* 回る手裏剣（装飾） */}
-          <svg viewBox="0 0 100 100" className="ninja-spin absolute -right-10 bottom-24 hidden h-40 w-40 text-white/10 lg:block">
-            <path fill="currentColor" d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42Z" />
-          </svg>
+      {/* 1. Hero：誰に・何をするかを最初の画面で。主CTA＝問い合わせフォーム。
+          背景は2案（HERO_VARIANT）：a＝LAUNCH NINJA のマークの透過、b＝江戸の港に海外の品が届き人々が使う浮世絵 */}
+      <section data-hero={HERO_VARIANT} className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
+        {/* 案A：ロゴ（マーク）の透過 */}
+        <div aria-hidden="true" className="hero-a pointer-events-none absolute inset-0 bg-seigaiha-light">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_72%_45%,rgba(210,73,43,0.28),transparent_58%)]" />
+          <div className="absolute right-[-30%] top-[46%] w-[150%] -translate-y-1/2 opacity-[0.14] sm:right-[-12%] sm:w-[90%] md:right-[-4%] md:top-1/2 md:w-[60%] md:opacity-[0.2] lg:w-[54%]">
+            <div className="ninja-float">
+              <LaunchNinjaMark tone="dark" className="h-auto w-full" />
+            </div>
+          </div>
         </div>
-        <div className={`${container} relative grid gap-10 py-12 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14`}>
-          <div>
+        {/* 案B：江戸の港に海外の品が届き、人々が使っている浮世絵。スマホは小さい画像 */}
+        <div aria-hidden="true" className="hero-b pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-cover bg-[position:70%_bottom] bg-no-repeat bg-[url('/images/japan-ninja/web/hero-import-sm.webp')] md:bg-[url('/images/japan-ninja/web/hero-import.webp')] md:bg-[position:right_center]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141A2E]/90 via-[#141A2E]/75 to-[#141A2E]/30 md:bg-gradient-to-r md:from-[#141A2E] md:via-[#141A2E]/75 md:to-[#141A2E]/0" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#141A2E]" />
+        </div>
+
+        <div className={`${container} relative flex min-h-[calc(100svh-64px)] flex-col justify-center py-12 md:min-h-[640px] md:py-20 lg:min-h-[calc(100svh-76px)]`}>
+          <div className="max-w-[640px]">
             <p>
               <LaunchNinjaLogo tone="dark" markClassName="h-11 w-auto md:h-14" textClassName="text-[26px] md:text-[32px]" />
               <span className="sr-only">{ninjaHero.eyebrow}</span>
             </p>
             <p className="mt-6 font-mincho text-[16px] font-bold text-[#F2B4A2] md:text-[18px]">{ninjaHero.kicker}</p>
             <h1 className="mt-3 font-mincho font-bold tracking-[0.005em]">
-              <span className="block text-[clamp(32px,8.6vw,44px)] leading-[1.15] md:text-[clamp(44px,4.6vw,62px)]">{ninjaHero.h1[0]}</span>
+              <span className="block text-[clamp(34px,9vw,46px)] leading-[1.12] md:text-[clamp(48px,5vw,68px)]">{ninjaHero.h1[0]}</span>
               <span className="mt-3 block text-[clamp(19px,4.8vw,24px)] leading-[1.45] text-white/90 md:text-[clamp(22px,2vw,28px)]">{ninjaHero.h1[1]}</span>
             </h1>
-            <p className="mt-6 max-w-[36em] text-[16px] leading-[1.8] text-white/85 md:text-[17px]">{ninjaHero.sub}</p>
+            <p className="mt-6 max-w-[34em] text-[16px] leading-[1.8] text-white/85 md:text-[17px]">{ninjaHero.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
               <CtaButton />
               <a href="#about" className="text-[15px] font-semibold text-white underline decoration-1 underline-offset-[6px] hover:text-[#F2B4A2]">
@@ -254,11 +261,8 @@ export default function JapanNinjaView() {
             </div>
             <p className="mt-4 text-[13px] text-white/75">{CTA_NOTE}</p>
           </div>
-          <NinjaTerminal />
-        </div>
-        {/* 信頼バー：実在する会社であることを最初に示す */}
-        <div className={`${container} relative pb-12 md:pb-16`}>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 border-y border-white/15 py-4 text-[13px] text-white/80">
+          {/* 信頼バー：実在する会社であることを最初に示す */}
+          <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/15 pt-5 text-[13px] text-white/80">
             {trustBar.map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <Check size={14} strokeWidth={2.25} aria-hidden="true" className="text-[#F2B4A2]" />

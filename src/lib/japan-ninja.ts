@@ -40,21 +40,6 @@ export const ninjaHero = {
     'Illustration of the four Faise ninjas standing together in front of a night Tokyo skyline: Hanzo in indigo at the center, Basho in moss green, Chiyome in crimson and Kotaro in charcoal and orange',
 }
 
-// ターミナル風アニメーション（イメージ。実際の診断結果ではない）
-export const terminal = {
-  command: 'Scanning yourbrand.com …',
-  lines: [
-    { who: '[Hanzo]', label: 'Target buyer', value: 'women 27–39, ingredient-savvy', tone: 'indigo' },
-    { who: '[Hanzo]', label: 'Price band', value: '¥4,000–6,000', tone: 'indigo' },
-    { who: '[Basho]', label: 'Claim that lands', value: '"transparent formula"', tone: 'moss' },
-    { who: '[Basho]', label: 'Claim that won’t', value: '"clean beauty"  ✗', tone: 'moss' },
-    { who: '[Chiyome]', label: 'Creator fit', value: 'skincare micro-creators (10–80k), high saves', tone: 'crimson' },
-    { who: '[Kotaro]', label: 'Channel route', value: 'Instagram → Rakuten → Amazon', tone: 'orange' },
-  ],
-  done: 'Japan Scan complete.',
-  note: '※ Sample output — illustrative, not real data',
-}
-
 export type NinjaKey = 'hanzo' | 'basho' | 'chiyome' | 'kotaro'
 
 // 4人のキャラクター。逸話は伝承として書く（史実と断定しない）。色はテーマカラー。
