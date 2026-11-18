@@ -19,6 +19,12 @@ const products = [
     img: '/images/products/uketsuke-neko.jpg',
     body: 'クリニックのLINE返信をAIが下書きするサービスです。Lステップ・エルメ・LINE公式アカウントを乗り換えずにそのまま使え、返信はスタッフが確認して送信します。',
   },
+  {
+    name: 'LAUNCH NINJA',
+    href: '/en/launch-ninja',
+    img: '/images/products/launch-ninja.jpg',
+    body: '海外の消費者向けブランドの日本進出を支援するサービスです（英語サイト）。独占販売代理、Makuakeでのローンチ、Amazon・楽天での販売、パートナーと連携した技適・PSEの対応まで、東京のチームが担当します。',
+  },
 ]
 
 export default function Products() {
