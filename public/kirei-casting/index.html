@@ -258,7 +258,7 @@ img { display: block; max-width: 100%; height: auto; }
       <a href="#reasons">選ばれる理由</a>
       <a href="#flow">ご利用の流れ</a>
       <a href="#faq">よくある質問</a>
-      <a class="btn btn-line btn-small" href="#entry">LINEで無料登録</a>
+      <a class="btn btn-line btn-small" data-entry="line" href="#entry">LINEで無料登録</a>
     </nav>
   </div>
 </header>
@@ -274,7 +274,7 @@ img { display: block; max-width: 100%; height: auto; }
           <li>Instagram</li><li>TikTok</li><li>YouTube</li><li>X</li>
         </ul>
         <div class="hero-cta">
-          <a class="btn btn-line" href="#entry"><span class="free">無料</span>LINEで登録する</a>
+          <a class="btn btn-line" data-entry="line" href="#entry"><span class="free">無料</span>LINEで登録する</a>
           <p class="cta-note">友だち追加するだけ。登録料・手数料はかかりません。</p>
         </div>
       </div>
@@ -498,7 +498,7 @@ img { display: block; max-width: 100%; height: auto; }
 <script>
 // 公開前にここへ実際のURLを設定してください（空のままだと「準備中」の案内を表示します）
 const ENTRY_URLS = {
-  line: "", // LINE公式アカウントの友だち追加URL
+  line: "https://lin.ee/wHTo74d", // LINE公式アカウントの友だち追加URL
   biz: ""   // 企業向けお問い合わせ先のURL
 };
 const note = document.getElementById("entry-note");
