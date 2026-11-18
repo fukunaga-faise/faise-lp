@@ -111,3 +111,37 @@ if (want('hero-bg')) {
     console.log(`→ hero-bg failed: ${e.message}`)
   }
 }
+
+// Why Japan 以降の挿絵：「江戸の世界に最新のガジェット」。人物は特定の実在人物・作品に似せない
+const SCENE_STYLE =
+  'Original wide illustration in the style of a traditional Japanese ukiyo-e woodblock print, Edo-period town life, bold black key lines, flat muted colors of Prussian blue, indigo, vermilion, ochre and sumi black, visible washi paper grain, playful anachronism: modern consumer gadgets and products appear naturally in the Edo world, drawn in the same woodblock style. No text, no kanji, no letters, no seals, no signature, no logos, no brand names. Do not copy any specific existing artwork or artist.'
+const scenes = {
+  'edo-market':
+    'A lively Edo market street with wooden shop stalls and noren curtains; the stalls display smartphones, wireless earbuds and skincare bottles; townspeople in kimono browse and check smartphones, a merchant shows a tablet to a customer.',
+  'edo-beauty':
+    'A woman in an elegant Edo kimono kneeling at a lacquered mirror stand in a tatami room, applying cream from a modern pump skincare bottle, a smartphone and a few modern cosmetic jars on the stand, soft afternoon light through shoji.',
+  'edo-lifestyle':
+    'A traveler in Edo travel clothes resting at a roadside teahouse under a red parasol, with a sleek insulated water bottle, a modern minimal backpack and a small LED camping lantern beside him, Mount Fuji in the distance.',
+  'edo-gadgets':
+    'A cheerful Edo townsman in a shop on tatami wearing wireless earbuds and swiping a tablet, a small smart speaker and a smartwatch on a low wooden counter, curious neighbors peeking in through the noren.',
+  'edo-night-street':
+    'A dark night Edo shopping street lined with glowing paper lanterns and noren curtains, a hikyaku courier running with a modern cardboard delivery box on his pole, shop windows displaying modern gadgets, deep indigo night sky with a crescent moon, mostly dark tones.',
+}
+
+const sceneKeys = Object.keys(scenes).filter((k) => only.includes(k) || only.includes('scenes'))
+await Promise.all(
+  sceneKeys.map(async (k) => {
+    try {
+      const res = await fetch('https://api.openai.com/v1/images/generations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${KEY}` },
+        body: JSON.stringify({ model: 'gpt-image-2', prompt: `${SCENE_STYLE} ${scenes[k]}`, size: '1536x1024', quality: 'high', n: 1 }),
+      })
+      if (!res.ok) throw new Error(`${res.status}: ${(await res.text()).slice(0, 300)}`)
+      await save(k, Buffer.from((await res.json()).data[0].b64_json, 'base64'), { maxH: 1024 })
+      console.log(`→ ${k} ok`)
+    } catch (e) {
+      console.log(`→ ${k} failed: ${e.message}`)
+    }
+  }),
+)
