@@ -82,3 +82,27 @@ body {
 
 /* 英語サイト：Noto Sans JP を読み込まないので、本文フォントの変数を Inter に向ける（RootShell の fontClassName） */
 .font-en { --font-noto: var(--font-inter); }
+
+/* LAUNCH NINJA（英語LP）の動き。ScrollFx が、読み込み時に画面外にある [data-fx] へ .fx-wait を付け、見えたら .is-in を付ける。
+   JS が動かない・動きを減らす設定のときは何も隠さない */
+@media (prefers-reduced-motion: no-preference) {
+  .fx-wait { opacity: 0; transform: translate3d(0, 32px, 0); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--fx-d, 0ms); }
+  .fx-wait[data-fx="left"] { transform: translate3d(-40px, 0, 0); }
+  .fx-wait[data-fx="right"] { transform: translate3d(40px, 0, 0); }
+  .fx-wait[data-fx="pop"] { transform: scale(.9) translate3d(0, 18px, 0); }
+  .fx-wait.is-in { opacity: 1; transform: none; }
+  /* 1文字ずつタイプする見出し */
+  .fx-wait[data-fx="type"] { opacity: 1; transform: none; }
+  .fx-wait[data-fx="type"] .fx-ch { opacity: 0; }
+  .fx-wait[data-fx="type"].is-in .fx-ch { animation: ninjaChar .01s linear forwards; animation-delay: calc(var(--i) * 75ms); }
+  .ninja-marquee { animation: ninjaMarquee 26s linear infinite; }
+  .ninja-bob { animation: ninjaBob 4.5s ease-in-out infinite; }
+  .ninja-caret { animation: ninjaCaret 1s steps(1) infinite; }
+  .ninja-shine::after { content: ''; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: translate3d(-120%,0,0) skewX(-18deg); animation: faiseShine 3.6s ease-in-out infinite; animation-delay: 1.2s; pointer-events: none; }
+  .ninja-spin { animation: ninjaSpin 12s linear infinite; }
+}
+@keyframes ninjaChar { to { opacity: 1; } }
+@keyframes ninjaMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@keyframes ninjaBob { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-7px,0); } }
+@keyframes ninjaCaret { 50% { opacity: 0; } }
+@keyframes ninjaSpin { to { transform: rotate(360deg); } }

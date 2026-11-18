@@ -25,10 +25,11 @@ export const ninjaMeta = {
 
 // 上部メニュー（LP 内のセクションへ）
 export const ninjaNav = [
-  { label: 'Models', href: '#models' },
-  { label: 'Terms', href: '#terms' },
-  { label: 'Compliance', href: '#compliance' },
+  { label: 'About', href: '#about' },
+  { label: 'Promises', href: '#promises' },
   { label: 'Case', href: '#case' },
+  { label: 'Terms', href: '#terms' },
+  { label: 'Flow', href: '#flow' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -65,6 +66,7 @@ export const clan: {
   key: NinjaKey
   name: string
   role: string
+  does: string // カード下部の担当業務（短く）
   legend: string
   catch: string
   color: string
@@ -76,6 +78,7 @@ export const clan: {
     key: 'hanzo',
     name: 'Hattori Hanzo',
     role: 'Strategist',
+    does: 'Japan strategy · pricing · channels',
     legend: 'Guided Tokugawa Ieyasu safely through hostile Iga in 1582.',
     catch: 'Guided a shogun through enemy land. Now guides your brand through Japan.',
     color: '#2B3A67',
@@ -87,6 +90,7 @@ export const clan: {
     key: 'basho',
     name: 'Matsuo Basho',
     role: 'Localizer',
+    does: 'Story · product pages · video',
     legend: 'Born in Iga; legend says the haiku master was a ninja.',
     catch: 'Said everything in 17 syllables. Rewrites your story for Japanese hearts.',
     color: '#4F5D2F',
@@ -98,6 +102,7 @@ export const clan: {
     key: 'chiyome',
     name: 'Mochizuki Chiyome',
     role: 'Creator Caster',
+    does: 'Influencers · creator content',
     legend: 'Said to have led a nationwide network of traveling messengers for Takeda Shingen.',
     catch: 'Ran a nationwide network of messengers. Now runs ours: creators who move buyers.',
     color: '#9E1F35',
@@ -108,15 +113,46 @@ export const clan: {
   {
     key: 'kotaro',
     name: 'Fuma Kotaro',
-    role: 'Commerce Operator',
+    role: 'Growth Marketer',
+    does: 'Ads · Amazon & Rakuten · retail',
     legend: 'Leader of the Fuma clan, famed for night raids for the Hojo.',
     catch: 'Raided at night. Now raids Rakuten rankings.',
     color: '#2E2E2E',
     accent: '#F08A3C',
     img: '/images/japan-ninja/kotaro',
-    alt: 'Illustration of Kotaro, a growth-hacker ninja in charcoal and orange holding a kunai and a rising sales chart',
+    alt: 'Illustration of Kotaro, a growth-marketer ninja in charcoal and orange holding a kunai and a rising sales chart',
   },
 ]
+
+// 「LAUNCH NINJA とは？」（ファーストビュー直下の大見出し＋4人のカード）
+export const about = {
+  label: 'Who we are',
+  pre: 'What is',
+  title: 'LAUNCH NINJA?',
+  lead: ['A strangely quiet clan', 'that launches brands in Japan.'],
+  ribbon: 'Who are we?',
+}
+
+// 業務対応範囲（Faise／パートナー）。Faise の担当には忍者を添える
+// TODO: 要確認 — 自社対応か連携かの最終判断
+export const service = {
+  label: 'Service',
+  h2: ['Everything from strategy to sales —', 'the clan handles it.'],
+  faise: [
+    { name: 'Japan market strategy', ninja: 'hanzo' as NinjaKey },
+    { name: 'Pricing & positioning', ninja: 'hanzo' as NinjaKey },
+    { name: 'Localization of story & claims', ninja: 'basho' as NinjaKey },
+    { name: 'Japanese product pages', ninja: 'basho' as NinjaKey },
+    { name: 'Short video & content', ninja: 'basho' as NinjaKey },
+    { name: 'Makuake page & launch', ninja: 'chiyome' as NinjaKey },
+    { name: 'Influencer casting', ninja: 'chiyome' as NinjaKey },
+    { name: 'Ads (Meta, Google, Amazon)', ninja: 'kotaro' as NinjaKey },
+    { name: 'Amazon & Rakuten operations', ninja: 'kotaro' as NinjaKey },
+    { name: 'Retail expansion', ninja: 'kotaro' as NinjaKey },
+  ],
+  partnerTitle: 'With our partners',
+  partner: ['Import', 'PSE & Giteki', 'Logistics', 'Japanese customer support'],
+}
 
 export const clanSection = {
   label: 'Meet the Clan',
