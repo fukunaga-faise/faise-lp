@@ -516,9 +516,9 @@ export const form = {
     { en: 'A product link and a short overview are enough to start', ja: '商品URLと簡単な概要だけで始められます' },
   ] as L[],
   select: { en: 'Select', ja: '選択してください' } as L,
-  send: { en: 'Request a call', ja: '申し込む' } as L,
+  send: { en: 'Send message', ja: '申し込む' } as L,
   sending: { en: 'Sending...', ja: '送信中...' } as L,
   error: { en: 'Something went wrong. Please try again in a moment.', ja: '送信に失敗しました。時間をおいて再度お試しください。' } as L,
   successTitle: { en: 'Thank you — we’ll be in touch', ja: '送信が完了しました' } as L,
-  successBody: { en: 'Within 2 business days we’ll reply with times for a 30-min call. Your free Japan Scan follows the call.', ja: '2営業日以内にご連絡いたします。' } as L,
+  successBody: { en: 'We’ll reply within 2 business days with your free Japan Scan.', ja: '2営業日以内にご連絡いたします。' } as L,
 }

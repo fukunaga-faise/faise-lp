@@ -5,19 +5,16 @@
 
 export const NINJA_NAME = 'LAUNCH NINJA by Faise'
 export const SCAN_ANCHOR = 'scan'
-export const CTA_LABEL = 'Book a 30-min call' // 主CTA：オンライン面談
-export const SCAN_LABEL = 'Get a free Japan Scan' // 副CTA
-// TODO: 要記入 — 面談予約ページ（Calendly / TimeRex / Google カレンダーの予約ページなど）の URL。
-// 空のあいだは、主CTAもページ下部のフォーム（#scan：面談のリクエスト）へ移動する
-export const BOOKING_URL = ''
+export const CTA_LABEL = 'Contact us' // 主CTA：ページ下部の問い合わせフォーム（#scan）へ
+export const CTA_SHORT = 'Contact' // スマホのヘッダー用
 // TODO: 要記入 — 法人番号（13桁）。入れると信頼バーと会社情報・構造化データに表示される
 export const CORPORATE_NUMBER = ''
-export const CTA_NOTE = 'English · Zoom or Google Meet · No commitment · NDA on request'
+export const CTA_NOTE = 'Free · Reply within 2 business days · NDA on request'
 
 export const ninjaMeta = {
   title: 'Japan Distributor & Makuake Launch Partner | LAUNCH NINJA by Faise',
   description:
-    'Tokyo-based partner for overseas consumer brands. Exclusive distribution, Makuake launches, Amazon & Rakuten, and Giteki/PSE coordination. Book a free 30-min call.',
+    'Tokyo-based partner for overseas consumer brands. Exclusive distribution, Makuake launches, Amazon & Rakuten, and Giteki/PSE coordination. Get a free Japan Scan.',
   // AI 検索・要約で引用されやすい定義文（ページ上部にも表示）
   definition:
     'LAUNCH NINJA by Faise is a Tokyo-based Japan market entry service for overseas consumer brands, offering exclusive distribution, Makuake crowdfunding launches, Amazon and Rakuten sales, influencer marketing, and Giteki/PSE coordination with partners.',
@@ -28,7 +25,7 @@ export const ninjaNav = [
   { label: 'About', href: '#about' },
   { label: 'Promises', href: '#promises' },
   { label: 'Case', href: '#case' },
-  { label: 'Terms', href: '#terms' },
+  { label: 'Service', href: '#service' },
   { label: 'Flow', href: '#flow' },
   { label: 'FAQ', href: '#faq' },
 ]
@@ -45,17 +42,16 @@ export const ninjaHero = {
 
 // ターミナル風アニメーション（イメージ。実際の診断結果ではない）
 export const terminal = {
-  command: '$ ninja --scan yourbrand.com',
+  command: 'Scanning yourbrand.com …',
   lines: [
-    { who: '[Hanzo]', label: 'Mapping the market...', value: 'Target: women 27–39, ingredient-savvy', tone: 'indigo' },
-    { who: '[Hanzo]', label: 'Price band:', value: '¥4,000–6,000', tone: 'indigo' },
-    { who: '[Basho]', label: 'Claim that lands:', value: '"transparent formula"', tone: 'moss' },
-    { who: '[Basho]', label: 'Claim that won’t:', value: '"clean beauty"  ✗', tone: 'moss' },
-    { who: '[Chiyome]', label: 'Creator fit:', value: 'skincare micro-creators (10–80k), high saves', tone: 'crimson' },
-    { who: '[Kotaro]', label: 'Channel route:', value: 'Instagram → Rakuten → Amazon', tone: 'orange' },
+    { who: '[Hanzo]', label: 'Target buyer', value: 'women 27–39, ingredient-savvy', tone: 'indigo' },
+    { who: '[Hanzo]', label: 'Price band', value: '¥4,000–6,000', tone: 'indigo' },
+    { who: '[Basho]', label: 'Claim that lands', value: '"transparent formula"', tone: 'moss' },
+    { who: '[Basho]', label: 'Claim that won’t', value: '"clean beauty"  ✗', tone: 'moss' },
+    { who: '[Chiyome]', label: 'Creator fit', value: 'skincare micro-creators (10–80k), high saves', tone: 'crimson' },
+    { who: '[Kotaro]', label: 'Channel route', value: 'Instagram → Rakuten → Amazon', tone: 'orange' },
   ],
-  done: '✔ Japan Scan ready.',
-  title: 'sample — japan-scan',
+  done: 'Japan Scan complete.',
   note: '※ Sample output — illustrative, not real data',
 }
 
@@ -152,6 +148,8 @@ export const service = {
   ],
   partnerTitle: 'With our partners',
   partner: ['Import', 'PSE & Giteki', 'Logistics', 'Japanese customer support'],
+  channelsTitle: 'Where we sell',
+  channels: ['Makuake', 'Amazon Japan', 'Rakuten Ichiba', 'Instagram · TikTok · YouTube', 'Specialty & lifestyle stores'],
 }
 
 export const clanSection = {
@@ -177,8 +175,8 @@ export const promises = {
 
 // 中間CTA（PROMISES の後）
 export const midCta = {
-  h2: 'Questions about terms, costs or compliance?',
-  body: 'Talk to us for 30 minutes. We’ll answer them for your product — and send a free Japan Scan after the call.',
+  h2: 'Curious what the clan would do with your product?',
+  body: 'Send us a message. We reply within 2 business days with a free one-page Japan Scan.',
 }
 
 // Cyspera の数値枠。
@@ -191,18 +189,16 @@ export const caseMetrics = [
 ]
 
 // FLOW：6ステップ
-// TODO: 要記入 — 各ステップの目安期間（週）。決まったら step に when を足して表示する
+// 流れ（問い合わせから拡販まで）
+// TODO: 要記入 — 各ステップの目安期間（週）
 export const flow = {
-  label: 'How it works',
-  h2: ['From first call', 'to launch day.'],
-  note: 'Timing depends mostly on certification. You get a week-by-week timeline in the proposal.',
+  label: 'Flow',
+  h2: ['From one message', 'to launch day.'],
   steps: [
-    { title: 'Call (30 min)', body: 'Your product, current channels and goals. Ask us anything.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Free Japan Scan', body: 'Buyer, price band, claims that land, channels and compliance flags.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Proposal & terms', body: 'Model, deal terms and every cost line, in writing.', ninja: 'hanzo' as NinjaKey },
-    { title: 'NDA & agreement', body: 'Exclusivity scope, pricing and exit terms signed.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Compliance & import', body: 'PSE, Giteki, labels and import run with our partners.', ninja: 'hanzo' as NinjaKey },
-    { title: 'Localize', body: 'Story, product pages, Makuake page and video for Japanese buyers.', ninja: 'basho' as NinjaKey },
+    { title: 'Contact', body: 'Tell us about your product through the form.', ninja: 'hanzo' as NinjaKey },
+    { title: 'Free Japan Scan', body: 'Within 2 business days: buyer, price band, claims that land and best channels.', ninja: 'hanzo' as NinjaKey },
+    { title: 'Meeting & proposal', body: 'An online meeting, then a proposal with the model and terms in writing.', ninja: 'hanzo' as NinjaKey },
+    { title: 'Prepare', body: 'Compliance and import with partners; story, pages and video localized.', ninja: 'basho' as NinjaKey },
     { title: 'Launch', body: 'Makuake or marketplace launch, with creators going first.', ninja: 'chiyome' as NinjaKey },
     { title: 'Scale', body: 'Amazon, Rakuten, ads, then retail.', ninja: 'kotaro' as NinjaKey },
   ],
@@ -221,10 +217,9 @@ export const leader = {
 
 // 最後の CTA（フォーム）
 export const finalCta = {
-  label: 'Book a call',
-  h2: 'Let’s see if Japan fits your product.',
-  body: 'Book a 30-minute call. We’ll ask about your product, current channels and goals, and tell you honestly whether Japan makes sense. After the call you get a free one-page Japan Scan within 2 business days: your Japanese buyer, price band, claims that land, best channels and compliance flags.',
-  formNote: 'Prefer email? Send the form — we’ll reply with times for a call within 2 business days.',
+  label: 'Contact',
+  h2: ['Your product.', 'Japan.', 'Leave the rest to the clan.'],
+  body: 'Tell us about your product. Within 2 business days we reply with a free one-page Japan Scan — your Japanese buyer, price band, claims that land and best channels — and honest advice on whether Japan makes sense.',
 }
 
 // 信頼バー（ヒーロー直下）。事実のみ
@@ -272,55 +267,6 @@ export const waysToWork = {
     },
   ],
   note: 'Models can be combined — for example, a Makuake launch first, then exclusive distribution.',
-}
-
-// 取引条件の目安。
-// TODO: 要記入 — 標準の独占期間・最低発注数の有無・モデル別の費用・支払条件（前払い/後払い・サイト）・解約条件が決まったら、value を具体的な条件に差し替える。
-// 現在の value は「契約で何を決めるか」の説明のみで、数値や約束は入れていない
-export const terms = {
-  label: 'Deal terms',
-  h2: 'Deal terms, in plain English.',
-  lead: 'Every deal is tailored to the product, but these are the points we agree in writing — before anything ships.',
-  rows: [
-    { item: 'Exclusivity term', value: 'A fixed, renewable term written into the agreement. The length is agreed per product.' },
-    { item: 'Territory & scope', value: 'Japan. Exclusivity can be scoped by channel (for example, online only) so it fits your existing setup.' },
-    { item: 'Minimum commitment', value: 'Discussed openly up front. Any first-order quantity is based on the Japan Scan, not a fixed number.' },
-    { item: 'Costs', value: 'Depends on the model. Every cost line is in the proposal before you sign — no surprises later.' },
-    { item: 'Wholesale pricing', value: 'A wholesale price per SKU, set from the Japanese retail price band we propose together.' },
-    { item: 'Payment terms', value: 'Timing and method are agreed in the contract. Tell us your standard terms and we start from there.' },
-    { item: 'Review & exit', value: 'Review points and exit terms are written into the agreement, so neither side is locked in blindly.' },
-  ],
-}
-
-// 法規対応の分担。lead = 主担当、support = 協力
-// TODO: 要確認 — 輸入者（Importer of record）・PSE 届出事業者・技適の申請者を、自社かパートナーかで確定させる
-export const compliance = {
-  label: 'Compliance',
-  h2: ['Giteki, PSE, labels and import —', 'who does what.'],
-  lead: 'Requirements depend on the product. We flag them in the Japan Scan and confirm them before anything ships.',
-  cols: ['Faise', 'You', 'Our partners'],
-  rows: [
-    { item: 'Checking which rules apply', cells: ['lead', 'support', 'support'] },
-    { item: 'Importer of record', cells: ['support', '', 'lead'] },
-    { item: 'PSE (electrical products)', cells: ['support', 'support', 'lead'] },
-    { item: 'Giteki (Bluetooth, Wi-Fi and other radio)', cells: ['support', 'support', 'lead'] },
-    { item: 'Japanese labels & manuals', cells: ['lead', 'support', ''] },
-    { item: 'Customs & logistics', cells: ['support', '', 'lead'] },
-    { item: 'Japanese customer support', cells: ['support', '', 'lead'] },
-  ] as { item: string; cells: ('lead' | 'support' | '')[] }[],
-  legend: { lead: 'Leads', support: 'Supports' },
-  youNote: 'From you: technical documents and test reports you already have (for example FCC/CE reports), product samples and approvals.',
-}
-
-// 既存チャネルとの関係
-export const existing = {
-  label: 'Your current channels',
-  h2: ['Already on Amazon, or working', 'with a distributor? That’s fine.'],
-  items: [
-    'We map your current channels first — Amazon Japan, cross-border sellers and any distributors in Asia.',
-    'Exclusivity can be scoped by channel, so it doesn’t clash with what already works.',
-    'Pricing rules are agreed in writing to protect your existing partners and your brand.',
-  ],
 }
 
 // Makuake の説明（数字は出典付きで確定してから足す）

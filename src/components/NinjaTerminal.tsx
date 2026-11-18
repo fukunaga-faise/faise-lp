@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react'
 import { terminal } from '@/lib/japan-ninja'
 
-// ターミナル風アニメーション：1行ずつタイプしてループ。prefers-reduced-motion なら全行を静止表示。
-// 画面読み上げ向けには全文を sr-only で渡し、アニメーション部分は aria-hidden にする。
-const toneClass: Record<string, string> = {
-  indigo: 'text-[#9DB0F0]',
-  moss: 'text-[#C3D08F]',
-  crimson: 'text-[#F5A3B1]',
-  orange: 'text-[#F6A15C]',
+// ヒーローの「密書（巻物）」：忍者たちが Japan Scan の結果を1行ずつ書き込んでいく演出。ループする。
+// prefers-reduced-motion なら全行を静止表示。画面読み上げ向けには全文を sr-only で渡し、演出部分は aria-hidden にする。
+// （中身はイメージ。実際の診断結果ではないことを下に明記する）
+const inkClass: Record<string, string> = {
+  indigo: 'text-[#2B3A67]',
+  moss: 'text-[#4F5D2F]',
+  crimson: 'text-[#9E1F35]',
+  orange: 'text-[#B3541E]',
 }
 
 const rows = [
@@ -17,7 +18,8 @@ const rows = [
   ...terminal.lines.map((l) => ({ kind: 'line' as const, ...l })),
   { kind: 'done' as const, text: terminal.done },
 ]
-const fullText = (r: (typeof rows)[number]) => (r.kind === 'line' ? `${r.who} ${r.label} ${r.value}` : r.text)
+const name = (who: string) => who.replace(/[[\]]/g, '')
+const fullText = (r: (typeof rows)[number]) => (r.kind === 'line' ? `${name(r.who)}: ${r.label} — ${r.value}` : r.text)
 
 export default function NinjaTerminal() {
   const [reduce, setReduce] = useState(false)
@@ -28,75 +30,123 @@ export default function NinjaTerminal() {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReduce(mq.matches)
     if (mq.matches) return
-    // 読み込み直後は全行を静止表示し、ページの読み込みが落ち着いてからタイピングを始める（初期表示の負荷を避ける）
-    const start = () => {
+    // 読み込み直後は全行を静止表示し、ページの読み込みが落ち着いてから書き込みを始める（初期表示の負荷を避ける）
+    const t = setTimeout(() => {
       setRow(0)
       setChars(0)
-    }
-    const t = setTimeout(start, 2500)
+    }, 2500)
     return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
     if (reduce || row >= rows.length + 1) return
     if (row === rows.length) {
-      // 全行表示したら少し待ってから最初へ
+      // 全行そろったら少し待ってから最初へ
       const t = setTimeout(() => {
         setRow(0)
         setChars(0)
-      }, 2600)
+      }, 3200)
       return () => clearTimeout(t)
     }
-    const len = fullText(rows[row]).length
+    const r = rows[row]
+    const len = r.kind === 'line' ? r.value.length : r.text.length
     if (chars < len) {
-      const t = setTimeout(() => setChars((c) => Math.min(c + (rows[row].kind === 'cmd' ? 1 : 3), len)), rows[row].kind === 'cmd' ? 45 : 18)
+      const t = setTimeout(() => setChars((c) => Math.min(c + (r.kind === 'cmd' ? 1 : 2), len)), r.kind === 'cmd' ? 45 : 24)
       return () => clearTimeout(t)
     }
     const t = setTimeout(() => {
-      setRow((r) => r + 1)
+      setRow((x) => x + 1)
       setChars(0)
-    }, rows[row].kind === 'cmd' ? 500 : 260)
+    }, r.kind === 'cmd' ? 500 : 320)
     return () => clearTimeout(t)
   }, [row, chars, reduce])
 
+  // その行を何文字まで見せるか（-1 = まだ出さない）
   const visible = (i: number) => (reduce || i < row ? Infinity : i === row ? chars : -1)
+  const brush = <span className="ml-0.5 inline-block h-[0.95em] w-[3px] translate-y-[2px] animate-pulse rounded-full bg-sumi/70" />
+  const rod = (
+    <>
+      <span className="absolute -left-2.5 top-1/2 h-6 w-3 -translate-y-1/2 rounded-sm bg-[#C9A24B] shadow-[inset_0_-2px_0_rgba(0,0,0,0.25)]" />
+      <span className="absolute -right-2.5 top-1/2 h-6 w-3 -translate-y-1/2 rounded-sm bg-[#C9A24B] shadow-[inset_0_-2px_0_rgba(0,0,0,0.25)]" />
+    </>
+  )
 
   return (
-    <figure className="w-full overflow-hidden rounded-lg border border-white/10 bg-[#0D0F14] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]">
-      <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-2.5" aria-hidden="true">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-        <span className="ml-3 font-mono text-[11px] text-white/45">{terminal.title}</span>
+    <figure className="relative mx-auto w-full max-w-[560px] py-2">
+      {/* 巻物の軸（上） */}
+      <div aria-hidden="true" className="absolute inset-x-1 top-0 z-10 h-4 rounded-full bg-gradient-to-b from-[#7A4A2E] to-[#3A1F12] shadow-[0_3px_6px_rgba(0,0,0,0.45)]">
+        {rod}
       </div>
-      <p className="sr-only">{rows.map(fullText).join('. ')}</p>
-      <div aria-hidden="true" className="min-h-[244px] px-4 py-4 font-mono text-[11.5px] leading-[1.75] text-white/85 sm:min-h-[232px] sm:text-[12.5px]">
-        {rows.map((r, i) => {
-          const n = visible(i)
-          if (n < 0) return null
-          const cursor = !reduce && i === row && <span className="ml-0.5 inline-block h-[1em] w-[0.55em] translate-y-[2px] animate-pulse bg-white/70" />
-          if (r.kind !== 'line') {
-            const text = r.text.slice(0, n)
+
+      <div className="relative overflow-hidden border-x-[6px] border-beni bg-[#F3EEE3] px-5 pb-4 pt-6 text-sumi shadow-[0_30px_60px_-30px_rgba(0,0,0,0.8)] sm:px-7">
+        {/* 和紙のかすれ（装飾） */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(122,48,45,0.10),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(29,27,26,0.07),transparent_60%)]" />
+
+        <div aria-hidden="true" className="relative flex items-center justify-between gap-3 border-b-2 border-sumi/80 pb-3">
+          <p className="font-mincho text-[18px] font-bold leading-tight">
+            Secret Scroll
+            <span className="mt-0.5 block font-inter text-[10.5px] font-semibold uppercase tracking-[0.24em] text-beni">The clan’s Japan Scan · sample</span>
+          </p>
+          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[3px] bg-shu font-mincho text-[18px] font-bold text-white shadow-[2px_2px_0_#1D1B1A]">密</span>
+        </div>
+
+        <p className="sr-only">{rows.map(fullText).join('. ')}</p>
+
+        <div aria-hidden="true" className="relative min-h-[318px] pt-3 sm:min-h-[300px]">
+          {rows.map((r, i) => {
+            const n = visible(i)
+            if (n < 0) return null
+            const writing = !reduce && i === row
+            if (r.kind === 'cmd') {
+              return (
+                <p key={i} className="pb-1 font-mincho text-[15px] italic text-[#555]">
+                  {r.text.slice(0, n)}
+                  {writing && brush}
+                </p>
+              )
+            }
+            if (r.kind === 'done') {
+              // 最後は落款（はんこ）を押す
+              return (
+                <div key={i} className="mt-3 flex items-center justify-end gap-3">
+                  <p className="font-mincho text-[15px] font-bold text-beni">
+                    {r.text.slice(0, n)}
+                    {writing && brush}
+                  </p>
+                  {n >= r.text.length && (
+                    <span className="ninja-stamp inline-flex h-11 w-11 rotate-[-8deg] items-center justify-center rounded-[4px] border-[3px] border-shu font-mincho text-[21px] font-bold text-shu">忍</span>
+                  )}
+                </div>
+              )
+            }
             return (
-              <div key={i} className={r.kind === 'done' ? 'mt-1 text-[#6EE7A0]' : 'text-white'}>
-                {text}
-                {cursor}
+              <div key={i} className="flex items-start gap-3 border-b border-dashed border-sumi/20 py-2">
+                <img
+                  src={`/images/japan-ninja/web/${name(r.who).toLowerCase()}.webp`}
+                  alt=""
+                  width={30}
+                  height={30}
+                  className="mt-0.5 h-[30px] w-[30px] shrink-0 rounded-full object-cover object-[50%_12%] ring-2 ring-sumi/70"
+                />
+                <p className="min-w-0 text-[13.5px] leading-[1.55] sm:text-[14px]">
+                  <span className={`font-mincho font-bold ${inkClass[r.tone]}`}>{name(r.who)}</span>
+                  <span className="text-[#666]"> · {r.label} — </span>
+                  <span className="font-semibold">
+                    {r.value.slice(0, n)}
+                    {writing && brush}
+                  </span>
+                </p>
               </div>
             )
-          }
-          const head = `${r.who} ${r.label} `
-          const shown = fullText(r).slice(0, n)
-          return (
-            <div key={i} className="flex flex-wrap gap-x-2">
-              <span className={toneClass[r.tone]}>{shown.slice(0, r.who.length)}</span>
-              <span className="text-white/70">{shown.slice(r.who.length + 1, head.length - 1)}</span>
-              <span className="text-white">{shown.slice(head.length)}</span>
-              {cursor}
-            </div>
-          )
-        })}
+          })}
+        </div>
+        <figcaption className="relative mt-1 text-right text-[11px] text-[#666]">{terminal.note}</figcaption>
       </div>
-      <figcaption className="border-t border-white/10 px-4 py-2 text-right font-mono text-[10.5px] text-white/50">{terminal.note}</figcaption>
+
+      {/* 巻物の軸（下） */}
+      <div aria-hidden="true" className="absolute inset-x-1 bottom-0 z-10 h-4 rounded-full bg-gradient-to-b from-[#7A4A2E] to-[#3A1F12] shadow-[0_-2px_6px_rgba(0,0,0,0.35)]">
+        {rod}
+      </div>
     </figure>
   )
 }

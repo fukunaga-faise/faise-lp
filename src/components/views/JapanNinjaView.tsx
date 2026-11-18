@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Check, Handshake, Minus, X } from 'lucide-react'
+import { ArrowRight, Check, Handshake, X } from 'lucide-react'
 import NinjaHeader from '@/components/NinjaHeader'
 import LaunchNinjaLogo from '@/components/LaunchNinjaLogo'
 import FaqList from '@/components/FaqList'
@@ -11,22 +11,19 @@ import { CardRail, ScrollFx, StickyCta } from '@/components/NinjaFx'
 import { display, serif } from '@/lib/jl-fonts-en'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
-import { JAPAN_LAUNCH_PATH, JAPAN_LAUNCH_PATH_EN, channels, form, images, track } from '@/lib/japan-launch'
+import { JAPAN_LAUNCH_PATH, JAPAN_LAUNCH_PATH_EN, form, images, track } from '@/lib/japan-launch'
 import {
-  BOOKING_URL,
   CORPORATE_NUMBER,
   CTA_LABEL,
+  CTA_SHORT,
   CTA_NOTE,
   NINJA_NAME,
   SCAN_ANCHOR,
-  SCAN_LABEL,
   about,
   caseMetrics,
   clan,
   clanSection,
   companyFacts,
-  compliance,
-  existing,
   finalCta,
   flow,
   leader,
@@ -38,7 +35,6 @@ import {
   ninjaNav,
   promises,
   service,
-  terms,
   trustBar,
   waysToWork,
   whoFor,
@@ -50,9 +46,8 @@ import {
 const lang = 'en' as const
 const url = `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}`
 const OG = '/og/launch-ninja.jpg' // 生成: node scripts/generate-launch-ninja-brand.mjs
-// 主CTA（面談予約）の行き先。予約ページの URL が未設定のあいだはページ下部のフォームへ
-const BOOK_HREF = BOOKING_URL || `#${SCAN_ANCHOR}`
-const BOOK_EXTERNAL = Boolean(BOOKING_URL)
+// 主CTA の行き先：ページ下部の問い合わせフォーム
+const CTA_HREF = `#${SCAN_ANCHOR}`
 
 export function japanNinjaMetadata(): Metadata {
   return {
@@ -166,27 +161,37 @@ function H2({ lines, light = false, className = '' }: { lines: string[] | string
   )
 }
 
-// 主CTA：オンライン面談の予約
+// セクション見出し（中央寄せ。後ろに大きな英字を薄く敷く）
+function SectionHead({ en, label, title, light = false }: { en: string; label: string; title: string[] | string; light?: boolean }) {
+  return (
+    <div data-fx className="relative text-center">
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute left-1/2 top-[-0.42em] -translate-x-1/2 select-none whitespace-nowrap font-display text-[clamp(76px,18vw,190px)] uppercase leading-none ${light ? 'text-white/[0.07]' : 'text-sumi/[0.06]'}`}
+      >
+        {en}
+      </span>
+      <p className={`relative flex items-center justify-center gap-3 font-inter text-[12px] font-semibold uppercase tracking-[0.3em] ${light ? 'text-[#F2B4A2]' : 'text-beni'}`}>
+        <span className="h-px w-8 bg-current opacity-50" />
+        {label}
+        <span className="h-px w-8 bg-current opacity-50" />
+      </p>
+      <H2 lines={title} light={light} className="relative mx-auto max-w-3xl" />
+    </div>
+  )
+}
+
+// 主CTA：問い合わせフォームへ
 function CtaButton({ light = false, className = '' }: { light?: boolean; className?: string }) {
   return (
     <a
-      href={BOOK_HREF}
-      {...(BOOK_EXTERNAL ? { target: '_blank', rel: 'noopener' } : {})}
+      href={CTA_HREF}
       className={`ninja-shine group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full px-7 py-4 text-[15px] font-bold tracking-[0.02em] transition-colors ${
         light ? 'bg-white text-beni hover:bg-washi' : 'bg-beni text-white hover:bg-beni-deep'
       } ${className}`}
     >
       {CTA_LABEL}
       <ArrowRight size={17} strokeWidth={2} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
-    </a>
-  )
-}
-
-// 副CTA：無料の Japan Scan（フォームへ）
-function ScanLink({ light = false, className = '' }: { light?: boolean; className?: string }) {
-  return (
-    <a href={`#${SCAN_ANCHOR}`} className={`inline-flex items-center gap-2 text-[15px] font-semibold underline decoration-1 underline-offset-[6px] ${light ? 'text-white hover:text-[#F2B4A2]' : 'text-beni hover:text-beni-deep'} ${className}`}>
-      {SCAN_LABEL}
     </a>
   )
 }
@@ -205,30 +210,6 @@ function NinjaAvatar({ k, size = 36 }: { k: NinjaKey; size?: number }) {
   )
 }
 
-// 法規対応表のセル（主担当／協力／なし）
-function Role({ v }: { v: 'lead' | 'support' | '' }) {
-  if (v === 'lead')
-    return (
-      <span className="inline-flex items-center gap-1.5 font-semibold text-beni">
-        <span aria-hidden="true" className="h-3 w-3 rounded-full bg-beni" />
-        {compliance.legend.lead}
-      </span>
-    )
-  if (v === 'support')
-    return (
-      <span className="inline-flex items-center gap-1.5 text-[#444]">
-        <span aria-hidden="true" className="h-3 w-3 rounded-full border-2 border-beni" />
-        {compliance.legend.support}
-      </span>
-    )
-  return (
-    <span className="text-[#888]">
-      <Minus size={14} aria-hidden="true" />
-      <span className="sr-only">Not involved</span>
-    </span>
-  )
-}
-
 // スクロール表示の遅延（ms）
 const delay = (ms: number) => ({ ['--fx-d' as string]: `${ms}ms` }) as React.CSSProperties
 
@@ -238,9 +219,9 @@ export default function JapanNinjaView() {
     <main className={`${display.variable} ${serif.variable} bg-white text-sumi`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <ScrollFx />
-      <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} ctaHref={BOOK_HREF} ctaLabel={CTA_LABEL} altHref="/" />
+      <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} ctaHref={CTA_HREF} ctaLabel={CTA_LABEL} ctaShort={CTA_SHORT} altHref="/" />
 
-      {/* 1. Hero：誰に・何をするかを最初の画面で。主CTA＝面談予約、副CTA＝無料 Japan Scan */}
+      {/* 1. Hero：誰に・何をするかを最初の画面で。主CTA＝問い合わせフォーム */}
       <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
         {/* 背景：浮世絵風の夜の城下町（満月・屋根の上を跳ぶ忍者・手裏剣）。見出しの左側は濃い色を重ねて読みやすくする */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -267,7 +248,9 @@ export default function JapanNinjaView() {
             <p className="mt-6 max-w-[36em] text-[16px] leading-[1.8] text-white/85 md:text-[17px]">{ninjaHero.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
               <CtaButton />
-              <ScanLink light />
+              <a href="#about" className="text-[15px] font-semibold text-white underline decoration-1 underline-offset-[6px] hover:text-[#F2B4A2]">
+                Meet the clan
+              </a>
             </div>
             <p className="mt-4 text-[13px] text-white/75">{CTA_NOTE}</p>
           </div>
@@ -442,60 +425,60 @@ export default function JapanNinjaView() {
           </div>
           <div data-fx="pop" className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
             <CtaButton light />
-            <ScanLink light />
           </div>
         </div>
       </section>
 
-      {/* 5. Case：Cyspera（数値は確定したものだけ表示 + Reels 3本） */}
-      <section id="case" className={`${section} scroll-mt-16 bg-white`}>
-        <div className={container}>
-          <div data-fx className="max-w-3xl">
-            <Eyebrow seal="績">{featured.label.en}</Eyebrow>
-            <H2 lines={featured.title.en} />
-          </div>
-          <div data-fx className={`mt-10 overflow-hidden bg-beni text-white md:flex ${print}`}>
-            <div className="flex items-center justify-center bg-white p-6 md:w-[28%] md:shrink-0">
-              <Image unoptimized src={W('case-cyspera')} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="160px" className="ninja-bob h-[230px] w-auto object-contain md:h-[280px]" />
+      {/* 5. Case（VOICE）：夜の城下町を背景に、事例カード＋クリエイター動画 */}
+      <section id="case" className="relative scroll-mt-16 overflow-hidden bg-[#141A2E] py-20 text-white md:py-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <Image unoptimized src={W('edo-night-street')} alt="" fill sizes="100vw" className="object-cover opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#141A2E]/70 via-[#141A2E]/40 to-[#141A2E]" />
+        </div>
+        <div className={`${container} relative`}>
+          <SectionHead en="Voice" label={featured.label.en} title={featured.title.en} light />
+          <div data-fx className="mt-12 grid overflow-hidden rounded-2xl border-2 border-sumi bg-white text-sumi shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
+            <div className="relative flex items-center justify-center bg-washi bg-seigaiha p-8">
+              <span className="absolute left-4 top-4 rounded-full border-2 border-sumi bg-white px-3 py-1 font-inter text-[11px] font-bold uppercase tracking-[0.18em]">Case 01</span>
+              <Image unoptimized src={W('case-cyspera')} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="200px" className="ninja-bob h-[220px] w-auto object-contain md:h-[280px]" />
             </div>
             <div className="p-6 md:p-10">
-              <p className="font-inter text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">Case — {featured.brand}</p>
-              <p className="mt-3 text-[15.5px] leading-[1.85] text-white/95">{featured.body.en}</p>
-              <p className="mt-6 font-inter text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">{featured.workLabel.en}</p>
-              <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+              <p className="font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-beni">{featured.brand}</p>
+              <p className="mt-3 text-[16px] leading-[1.85] text-[#333]">{featured.body.en}</p>
+              <p className="mt-6 font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#666]">{featured.workLabel.en}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
                 {featured.work.map((w) => (
-                  <li key={w.en} className="flex gap-2.5 text-[15px] leading-[1.6]">
-                    <Check size={17} strokeWidth={2} aria-hidden="true" className="mt-[0.2em] shrink-0" />
+                  <li key={w.en} className="inline-flex items-center gap-1.5 rounded-full border-2 border-sumi bg-washi px-3.5 py-1.5 text-[13.5px] font-semibold">
+                    <Check size={14} strokeWidth={2.5} aria-hidden="true" className="text-beni" />
                     {w.en}
                   </li>
                 ))}
               </ul>
+              {/* 数値枠。TODO: 数値 — caseMetrics の value が確定したものだけ表示される（japan-ninja.ts） */}
+              {shownMetrics.length > 0 && (
+                <ul className="mt-6 grid grid-cols-2 gap-3">
+                  {shownMetrics.map((m) => (
+                    <li key={m.label} className="rounded-xl border-2 border-sumi bg-washi p-4">
+                      <p className="text-[12.5px] font-medium text-[#555]">{m.label}</p>
+                      <p className="mt-1.5 font-display text-[30px] leading-none text-beni">{m.value}</p>
+                      <p className="mt-1.5 text-[11.5px] text-[#595959]">{m.note}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
 
-          {/* 数値枠。TODO: 数値 — caseMetrics の value が確定したものだけ表示される（japan-ninja.ts） */}
-          {shownMetrics.length > 0 && (
-            <ul className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {shownMetrics.map((m) => (
-                <li key={m.label} className={`bg-washi p-5 ${print}`}>
-                  <p className="text-[13px] font-medium text-[#555]">{m.label}</p>
-                  <p className="mt-2 font-display text-[clamp(22px,5vw,34px)] leading-none text-beni">{m.value}</p>
-                  <p className="mt-2 text-[12px] text-[#595959]">{m.note}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="mt-10 md:mx-auto md:max-w-[880px]">
-            <p data-fx className="font-mincho text-[19px] font-bold md:text-[21px]">
+          <div className="mt-14 md:mx-auto md:max-w-[900px]">
+            <p data-fx className="text-center font-mincho text-[20px] font-bold md:text-[22px]">
               {featured.videosLabel.en}
             </p>
-            <ul className="no-scrollbar -mx-5 mt-5 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
+            <ul className="no-scrollbar -mx-5 mt-6 flex snap-x snap-mandatory scroll-pl-5 gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0">
               {featured.videos.map((v, i) => (
-                <li key={i} data-fx="pop" style={delay(i * 120)} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-auto">
+                <li key={i} data-fx="pop" style={delay(i * 120)} className="w-[70%] shrink-0 snap-start sm:w-[44%] md:w-auto">
                   <a href={v.url ?? '#'} target="_blank" rel="noopener" className="group block" aria-label={`${v.platform} — watch the creator video ${i + 1}`}>
-                    <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-sumi">
-                      <Image unoptimized src={W(`reel-${i + 1}`)} alt={v.alt.en} fill sizes="(min-width: 768px) 30vw, 72vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                    <div className="relative aspect-[9/16] overflow-hidden rounded-2xl border-2 border-white/80 bg-sumi transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:-rotate-1">
+                      <Image unoptimized src={W(`reel-${i + 1}`)} alt={v.alt.en} fill sizes="(min-width: 768px) 30vw, 70vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
                       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/20" />
                       <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 font-inter text-[11px] font-medium text-white">{v.platform}</span>
                       <span aria-hidden="true" className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-beni shadow-lg transition-transform group-hover:scale-110">
@@ -513,291 +496,212 @@ export default function JapanNinjaView() {
         </div>
       </section>
 
-      {/* 6. Service：業務対応範囲＋販路 */}
-      <section id="service" className={`${section} scroll-mt-16 bg-washi bg-seigaiha`}>
+      {/* 6. Service：4人それぞれの担当（色つきのカード）＋パートナー・販路 */}
+      <section id="service" className="relative scroll-mt-16 overflow-hidden bg-washi bg-seigaiha py-20 md:py-28">
         <div className={container}>
-          <div data-fx className="max-w-3xl">
-            <Eyebrow seal="任">{service.label}</Eyebrow>
-            <H2 lines={service.h2} />
-          </div>
-          <ul className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
-            {service.faise.map((s, i) => (
-              <li key={s.name} data-fx="pop" style={delay((i % 5) * 70)} className={`flex flex-col items-center gap-3 bg-white p-4 text-center transition-transform hover:-translate-y-1 ${print}`}>
-                <NinjaAvatar k={s.ninja} size={46} />
-                <span className="text-[14px] font-semibold leading-[1.4]">{s.name}</span>
+          <SectionHead en="Service" label={service.label} title={service.h2} />
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {clan.map((c, i) => (
+              <li key={c.key} data-fx="pop" style={delay(i * 110)} className="overflow-hidden rounded-2xl border-2 border-sumi bg-white shadow-[0_10px_24px_rgba(28,25,23,0.14)] transition-transform duration-300 hover:-translate-y-1.5">
+                <div className="flex items-center gap-3 px-4 py-3.5 text-white" style={{ backgroundColor: c.color }}>
+                  <NinjaAvatar k={c.key} size={42} />
+                  <div className="min-w-0">
+                    <p className="font-display text-[19px] uppercase leading-none tracking-[0.03em]">#{c.role}</p>
+                    <p className="mt-1 truncate text-[12px] text-white/85">{c.name}</p>
+                  </div>
+                </div>
+                <ul className="space-y-2.5 p-5">
+                  {service.faise
+                    .filter((s) => s.ninja === c.key)
+                    .map((s) => (
+                      <li key={s.name} className="flex gap-2.5 text-[15px] font-medium leading-[1.5]">
+                        <Check size={17} strokeWidth={2.5} aria-hidden="true" className="mt-[0.2em] shrink-0" style={{ color: c.color }} />
+                        {s.name}
+                      </li>
+                    ))}
+                </ul>
               </li>
             ))}
           </ul>
-          <div data-fx className="mt-6 flex flex-wrap items-center gap-3 rounded-lg border border-dashed border-beni/60 bg-white/70 p-5">
-            <span className="flex items-center gap-2 font-mincho text-[17px] font-bold">
-              <Handshake size={18} strokeWidth={1.75} aria-hidden="true" className="text-beni" />
-              {service.partnerTitle}
-            </span>
-            {service.partner.map((p) => (
-              <span key={p} className="rounded-full border border-sumi/30 bg-white px-3 py-1 text-[13.5px]">
-                {p}
-              </span>
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            {[
+              { title: service.partnerTitle, items: service.partner, icon: <Handshake size={18} strokeWidth={1.75} aria-hidden="true" className="text-beni" /> },
+              { title: service.channelsTitle, items: service.channels, icon: <ArrowRight size={18} strokeWidth={2} aria-hidden="true" className="text-beni" /> },
+            ].map((g) => (
+              <div key={g.title} data-fx className="rounded-2xl border-2 border-dashed border-sumi/40 bg-white/80 p-5">
+                <p className="flex items-center gap-2 font-mincho text-[17px] font-bold">
+                  {g.icon}
+                  {g.title}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {g.items.map((p) => (
+                    <span key={p} className="rounded-full border-2 border-sumi bg-white px-3 py-1 text-[13.5px] font-medium">
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-          <h3 data-fx className="mt-14 font-mincho text-[clamp(21px,4.6vw,26px)] font-bold">
-            {channels.h2.en.join(' ')}
-          </h3>
-          <ul className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {channels.items.map((c, i) => (
-              <li key={i} data-fx style={delay(i * 90)} className={`bg-white p-6 ${print}`}>
-                <h4 className="font-mincho text-[19px] font-bold">{c.title.en}</h4>
-                <p className="mt-1.5 font-inter text-[12.5px] font-semibold text-beni">{typeof c.names === 'string' ? c.names : c.names.en}</p>
-                <p className="mt-3 text-[14.5px] leading-[1.8] text-[#555]">{c.body.en}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
       {/* 7. Ways to work：3つのモデル＋Makuake の説明 */}
-      <section id="models" className={`${section} scroll-mt-16 bg-white`}>
+      <section id="models" className="relative scroll-mt-16 overflow-hidden bg-white py-20 md:py-28">
         <div className={container}>
-          <div data-fx className="max-w-3xl">
-            <Eyebrow seal="契">{waysToWork.label}</Eyebrow>
-            <H2 lines={waysToWork.h2} />
-          </div>
-          <ul className="mt-10 grid gap-5 lg:grid-cols-3">
+          <SectionHead en="Plans" label={waysToWork.label} title={waysToWork.h2} />
+          <ul className="mt-12 grid gap-6 lg:grid-cols-3">
             {waysToWork.items.map((m, i) => (
-              <li key={m.name} data-fx style={delay(i * 120)} className={`flex flex-col bg-white p-6 transition-transform hover:-translate-y-1 md:p-8 ${print}`}>
-                <p className="font-inter text-[12.5px] font-bold uppercase tracking-[0.18em] text-beni">{m.name}</p>
-                <h3 className="mt-2 font-mincho text-[21px] font-bold leading-[1.4]">{m.title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.85] text-[#555]">{m.body}</p>
-                <p className="mt-auto pt-5 text-[14px] font-semibold text-sumi">{m.best}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 text-[14px] text-[#595959]">{waysToWork.note}</p>
-          <div data-fx className={`mt-10 bg-[#141A2E] p-6 text-white md:p-8 ${print}`}>
-            <h3 className="font-mincho text-[20px] font-bold">{makuake.title}</h3>
-            <p className="mt-3 max-w-[60em] text-[15px] leading-[1.85] text-white/85">{makuake.body}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Deal terms：独占・最低数量・費用・卸値・支払・解約 */}
-      <section id="terms" className={`${section} scroll-mt-16 bg-washi bg-seigaiha`}>
-        <div className={`${container} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14`}>
-          <div data-fx>
-            <Eyebrow seal="約">{terms.label}</Eyebrow>
-            <H2 lines={terms.h2} />
-            <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{terms.lead}</p>
-          </div>
-          <dl data-fx="right" className={`divide-y divide-[#e6e1da] bg-white ${print}`}>
-            {terms.rows.map((r) => (
-              <div key={r.item} className="grid gap-1 p-5 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-6">
-                <dt className="font-mincho text-[16.5px] font-bold">{r.item}</dt>
-                <dd className="text-[15px] leading-[1.75] text-[#444]">{r.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* 9. Compliance：技適・PSE・表示・輸入の分担表 */}
-      <section id="compliance" className={`${section} scroll-mt-16 bg-white`}>
-        <div className={container}>
-          <div data-fx className="max-w-3xl">
-            <Eyebrow seal="法">{compliance.label}</Eyebrow>
-            <H2 lines={compliance.h2} />
-            <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{compliance.lead}</p>
-          </div>
-          {/* スマホ：項目ごとのカード（横に広い表は使わない） */}
-          <ul className="mt-10 space-y-4 md:hidden">
-            {compliance.rows.map((r) => (
-              <li key={r.item} data-fx className={`bg-white p-5 ${print}`}>
-                <p className="font-mincho text-[16px] font-bold">{r.item}</p>
-                <dl className="mt-3 space-y-1.5 text-[14px]">
-                  {compliance.cols.map((c, i) => (
-                    <div key={c} className="flex items-center justify-between gap-4">
-                      <dt className="text-[#555]">{c}</dt>
-                      <dd>
-                        <Role v={r.cells[i]} />
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </li>
-            ))}
-          </ul>
-          {/* PC：分担表 */}
-          <div data-fx className={`mt-10 hidden bg-white md:block ${print}`}>
-            <table className="w-full text-left text-[14.5px]">
-              <thead>
-                <tr className="border-b-2 border-sumi">
-                  <th scope="col" className="p-4 font-mincho text-[15px] font-bold">
-                    Item
-                  </th>
-                  {compliance.cols.map((c) => (
-                    <th key={c} scope="col" className="p-4 font-mincho text-[15px] font-bold">
-                      {c}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#e6e1da]">
-                {compliance.rows.map((r) => (
-                  <tr key={r.item}>
-                    <th scope="row" className="p-4 font-medium">
-                      {r.item}
-                    </th>
-                    {r.cells.map((v, i) => (
-                      <td key={i} className="p-4">
-                        <Role v={v} />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-5 max-w-[60em] text-[14px] leading-[1.75] text-[#555]">{compliance.youNote}</p>
-        </div>
-      </section>
-
-      {/* 10. 既存チャネル（Amazon・他代理店）との関係 */}
-      <section className={`${section} bg-washi bg-seigaiha`}>
-        <div className={`${container} grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-14`}>
-          <div data-fx>
-            <Eyebrow seal="路">{existing.label}</Eyebrow>
-            <H2 lines={existing.h2} />
-          </div>
-          <ul className="space-y-4">
-            {existing.items.map((it, i) => (
-              <li key={it} data-fx="right" style={delay(i * 100)} className={`flex gap-3 bg-white p-5 text-[15.5px] leading-[1.7] ${print}`}>
-                <Check size={19} strokeWidth={2.25} aria-hidden="true" className="mt-[0.15em] shrink-0 text-beni" />
-                {it}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 11. How it works：面談から発売まで */}
-      <section id="flow" className={`${section} scroll-mt-16 bg-white`}>
-        <div className={container}>
-          <div data-fx className="max-w-3xl">
-            <Eyebrow seal="流">{flow.label}</Eyebrow>
-            <H2 lines={flow.h2} />
-            <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{flow.note}</p>
-          </div>
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {flow.steps.map((s, i) => (
-              <li key={s.title} data-fx="pop" style={delay((i % 4) * 110)} className={`relative bg-white p-5 transition-transform hover:-translate-y-1 ${print}`}>
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-[34px] leading-none text-shu">{String(i + 1).padStart(2, '0')}</span>
-                  <NinjaAvatar k={s.ninja} size={36} />
+              <li key={m.name} data-fx style={delay(i * 120)} className="flex flex-col overflow-hidden rounded-2xl border-2 border-sumi bg-white shadow-[0_10px_24px_rgba(28,25,23,0.14)] transition-transform duration-300 hover:-translate-y-1.5">
+                <div className={`flex items-center justify-between px-6 py-4 text-white ${['bg-beni', 'bg-shu', 'bg-sumi'][i]}`}>
+                  <p className="font-display text-[22px] uppercase tracking-[0.03em]">{m.name}</p>
+                  <span className="font-display text-[34px] leading-none text-white/40">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <h3 className="mt-3 font-mincho text-[18px] font-bold">{s.title}</h3>
-                <p className="mt-2 text-[14px] leading-[1.7] text-[#555]">{s.body}</p>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-mincho text-[21px] font-bold leading-[1.4]">{m.title}</h3>
+                  <p className="mt-3 text-[15px] leading-[1.85] text-[#555]">{m.body}</p>
+                  <p className="mt-auto flex gap-2 border-t-2 border-dashed border-sumi/15 pt-4 text-[14px] font-semibold">
+                    <Check size={17} strokeWidth={2.5} aria-hidden="true" className="mt-[0.15em] shrink-0 text-beni" />
+                    {m.best}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-center text-[14px] text-[#595959]">{waysToWork.note}</p>
+          <div data-fx className="mt-12 grid overflow-hidden rounded-2xl border-2 border-sumi bg-[#141A2E] text-white md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <div className="relative aspect-[16/10] md:aspect-auto">
+              <Image unoptimized src={W('edo-market')} alt={edoAlt.market} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+            </div>
+            <div className="p-6 md:p-10">
+              <p className="font-inter text-[11px] font-bold uppercase tracking-[0.22em] text-[#F2B4A2]">Makuake</p>
+              <h3 className="mt-2 font-mincho text-[24px] font-bold">{makuake.title}</h3>
+              <p className="mt-3 text-[15px] leading-[1.85] text-white/85">{makuake.body}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Flow：問い合わせから拡販まで（PCは横のタイムライン、スマホは縦） */}
+      <section id="flow" className="relative scroll-mt-16 overflow-hidden bg-[#141A2E] bg-seigaiha-light py-20 text-white md:py-28">
+        <div className={`${container} relative`}>
+          <SectionHead en="Flow" label={flow.label} title={flow.h2} light />
+          <ol className="relative mt-14 grid gap-5 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-8">
+            {/* つなぐ線 */}
+            <span aria-hidden="true" className="absolute left-[27px] top-2 h-[calc(100%-1rem)] w-0.5 bg-gradient-to-b from-shu via-shu/60 to-transparent lg:hidden" />
+            {flow.steps.map((s, i) => (
+              <li key={s.title} data-fx={i % 2 ? 'right' : 'left'} style={delay(i * 90)} className="relative flex gap-4">
+                <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-white bg-shu font-display text-[22px] shadow-[0_0_0_6px_#141A2E]">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="flex-1 rounded-2xl border-2 border-white/15 bg-white/[0.06] p-5 backdrop-blur-sm">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-mincho text-[17px] font-bold">{s.title}</h3>
+                    <NinjaAvatar k={s.ninja} size={30} />
+                  </div>
+                  <p className="mt-2 text-[14px] leading-[1.7] text-white/75">{s.body}</p>
+                </div>
               </li>
             ))}
           </ol>
+          <div data-fx className="mt-14 flex justify-center">
+            <CtaButton light />
+          </div>
         </div>
       </section>
 
-      {/* 12. Founder：the clan leader */}
-      <section id="leader" className={`${section} scroll-mt-16 bg-washi bg-seigaiha`}>
-        <div className={`${container} grid gap-10 md:grid-cols-[minmax(0,0.6fr)_minmax(0,1.4fr)] md:items-center lg:gap-14`}>
-          <div data-fx="left" className={`relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden ${print}`}>
-            <Image unoptimized src={W('founder')} alt={images.founder.alt.en} fill sizes="340px" className="object-cover object-top" />
+      {/* 9. Founder：the clan leader＋会社情報 */}
+      <section id="leader" className="relative scroll-mt-16 overflow-hidden bg-washi bg-seigaiha py-20 md:py-28">
+        <div className={`${container} grid gap-12 md:grid-cols-[minmax(0,0.65fr)_minmax(0,1.35fr)] md:items-start lg:gap-16`}>
+          <div data-fx="left" className="relative mx-auto w-full max-w-[340px]">
+            <span aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl bg-shu" />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-2 border-sumi">
+              <Image unoptimized src={W('founder')} alt={images.founder.alt.en} fill sizes="340px" className="object-cover object-top" />
+            </div>
           </div>
           <div data-fx="right">
             <Eyebrow seal="頭">{leader.label}</Eyebrow>
             <H2 lines={leader.h2} />
-            {leader.body.map((p, i) => (
-              <p key={i} className="mt-5 text-[16px] leading-[1.9] text-[#444]">
-                {p}
-              </p>
-            ))}
-            <p className="mt-6 font-mincho text-[16px] font-bold">{leader.signature}</p>
-            <ol className="mt-4 space-y-1.5 text-[14px] text-[#555]">
-              {track.founder.career.map((c) => (
-                <li key={c.period}>
-                  <span className="mr-3 font-mono text-[13px] text-[#555]">{c.period}</span>
-                  {c.org.en}
-                </li>
+            <div className="relative mt-6 rounded-2xl border-2 border-sumi bg-white p-6 md:p-8">
+              <span aria-hidden="true" className="absolute -top-6 left-5 font-mincho text-[72px] leading-none text-shu">“</span>
+              {leader.body.map((p, i) => (
+                <p key={i} className={`text-[16px] leading-[1.9] text-[#333] ${i ? 'mt-4' : ''}`}>
+                  {p}
+                </p>
               ))}
-            </ol>
-            <a href={FOUNDER_LINKEDIN_URL} target="_blank" rel="noopener" className="mt-5 inline-flex items-center gap-2 font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-beni hover:text-beni-deep">
-              LinkedIn <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 13. Company：会社情報 */}
-      <section id="company" className={`${section} scroll-mt-16 bg-white`}>
-        <div className={container}>
-          <div data-fx className={`grid gap-8 bg-washi p-6 md:p-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-14 ${print}`}>
-            <div>
-              <Eyebrow seal="社">{companyFacts.label}</Eyebrow>
-              <H2 lines={companyFacts.h2} />
-              <p className="mt-5 text-[14.5px] leading-[1.8] text-[#555]">{companyFacts.verifyNote}</p>
+              <p className="mt-5 font-mincho text-[16px] font-bold">{leader.signature}</p>
             </div>
-            <dl className="divide-y divide-[#ddd6cd] border-y border-[#ddd6cd]">
-              {[...companyFacts.rows, ...(CORPORATE_NUMBER ? [{ k: 'Corporate No.', v: CORPORATE_NUMBER }] : [])].map((r) => (
-                <div key={r.k} className="grid gap-1 py-3.5 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-6">
-                  <dt className="text-[14px] font-semibold text-[#555]">{r.k}</dt>
-                  <dd className="text-[15px] leading-[1.7]">{r.v}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* 14. FAQ + Guides */}
-      <section id="faq" className={`${section} scroll-mt-16 bg-washi bg-seigaiha`}>
-        <div className="mx-auto w-full max-w-[860px] px-5 md:px-10">
-          <div data-fx>
-            <Eyebrow seal="問">{ninjaFaq.label}</Eyebrow>
-            <H2 lines={ninjaFaq.h2} />
-          </div>
-          <FaqList items={ninjaFaq.items} className="mt-8" divider="divide-[#ddd6cd] border-[#ddd6cd]" qClass="text-beni" />
-          <div className="mt-14">
-            <p className="text-[14px] font-semibold tracking-[0.04em] text-[#555]">
-              Guides for entering Japan ·{' '}
-              <Link href={GUIDE_BASE} className="text-beni underline underline-offset-4">
-                See all
-              </Link>
-            </p>
-            <ul className="mt-3 divide-y divide-[#ddd6cd] border-y border-[#ddd6cd]">
-              {japanGuides.map((g) => (
-                <li key={g.slug}>
-                  <Link href={`${GUIDE_BASE}/${g.slug}`} className="group flex items-center justify-between gap-4 py-4 text-[15.5px] leading-[1.6] hover:text-beni">
-                    {g.h1}
-                    <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" className="shrink-0 transition-transform group-hover:translate-x-1" />
-                  </Link>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              <ol className="space-y-1.5 text-[14px] text-[#444]">
+                {track.founder.career.map((c) => (
+                  <li key={c.period}>
+                    <span className="mr-3 font-mono text-[13px] text-[#555]">{c.period}</span>
+                    {c.org.en}
+                  </li>
+                ))}
+                <li className="pt-2">
+                  <a href={FOUNDER_LINKEDIN_URL} target="_blank" rel="noopener" className="inline-flex items-center gap-2 font-inter text-[13px] font-semibold uppercase tracking-[0.18em] text-beni hover:text-beni-deep">
+                    LinkedIn <span aria-hidden="true">↗</span>
+                  </a>
                 </li>
-              ))}
-            </ul>
+              </ol>
+              <dl id="company" className="space-y-1.5 text-[13.5px]">
+                {[...companyFacts.rows, ...(CORPORATE_NUMBER ? [{ k: 'Corporate No.', v: CORPORATE_NUMBER }] : [])]
+                  .filter((r) => r.k !== 'Service' && r.k !== 'CEO')
+                  .map((r) => (
+                    <div key={r.k} className="flex gap-3">
+                      <dt className="w-[78px] shrink-0 font-semibold text-[#555]">{r.k}</dt>
+                      <dd className="text-[#333]">{r.v}</dd>
+                    </div>
+                  ))}
+              </dl>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 15. Final CTA：面談予約（予約ページが未設定のあいだはフォームで面談をリクエスト） */}
-      <section id={SCAN_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-[#141A2E] py-16 text-white md:py-24">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(122,48,45,0.55),transparent_60%)]" />
-        <div className="relative mx-auto grid w-full max-w-[1120px] gap-10 px-5 md:px-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
+      {/* 10. FAQ（取引条件・法規・既存チャネルの疑問もここで答える）＋ガイドへのリンク */}
+      <section id="faq" className="relative scroll-mt-16 overflow-hidden bg-white py-20 md:py-28">
+        <div className="mx-auto w-full max-w-[920px] px-5 md:px-10">
+          <SectionHead en="Q&A" label={ninjaFaq.label} title={ninjaFaq.h2} />
+          <div data-fx className="mt-12 rounded-2xl border-2 border-sumi bg-white px-5 shadow-[0_10px_24px_rgba(28,25,23,0.12)] md:px-8">
+            <FaqList items={ninjaFaq.items} divider="divide-[#e6e1da] border-transparent" qClass="text-shu" />
+          </div>
+          <p className="mt-8 text-center text-[14px] text-[#555]">
+            More in our{' '}
+            <Link href={GUIDE_BASE} className="font-semibold text-beni underline underline-offset-4">
+              guides to entering Japan
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* 11. Final CTA：問い合わせフォーム */}
+      <section id={SCAN_ANCHOR} className="relative scroll-mt-16 overflow-hidden bg-[#141A2E] py-20 text-white md:py-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 bg-[url('/images/japan-ninja/web/hero-bg-sm.webp')] md:bg-[url('/images/japan-ninja/web/hero-bg.webp')]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#141A2E] via-[#141A2E]/85 to-[#141A2E]/60" />
+        </div>
+        <div className="relative mx-auto grid w-full max-w-[1160px] gap-12 px-5 md:px-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div data-fx="left">
-            <Eyebrow light seal="密">{finalCta.label}</Eyebrow>
-            <H2 lines={finalCta.h2} light />
-            <p className="mt-5 text-[15.5px] leading-[1.85] text-white/85">{finalCta.body}</p>
-            {BOOK_EXTERNAL && <CtaButton light className="mt-8" />}
+            <LaunchNinjaLogo tone="dark" markClassName="h-10 w-auto" textClassName="text-[24px]" />
+            <h2 className="mt-8 font-mincho text-[clamp(30px,7vw,52px)] font-bold leading-[1.2]">
+              {finalCta.h2.map((l, i) => (
+                <span key={l} className={`block ${i === 2 ? 'mt-2 text-[0.62em] text-[#F2B4A2]' : ''}`}>
+                  {l}
+                </span>
+              ))}
+            </h2>
+            <p className="mt-6 text-[15.5px] leading-[1.85] text-white/85">{finalCta.body}</p>
             <ul className="mt-8 space-y-3">
-              {[CTA_NOTE, ...form.assurances.map((a) => a.en)].map((a) => (
+              {form.assurances.map((a) => a.en).map((a) => (
                 <li key={a} className="flex gap-3 text-[15px] leading-[1.6]">
                   <Check size={18} strokeWidth={2} aria-hidden="true" className="mt-[0.15em] shrink-0 text-[#F2B4A2]" />
                   {a}
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-[14px] leading-[1.75] text-white/70">{finalCta.formNote}</p>
           </div>
           <div data-fx="right">
             <JapanLaunchForm lang={lang} />
@@ -823,8 +727,8 @@ export default function JapanNinjaView() {
         </div>
       </footer>
 
-      {/* スマホ：下部固定の CTA */}
-      <StickyCta href={BOOK_HREF} label={CTA_LABEL} external={BOOK_EXTERNAL} />
+      {/* スマホ：下部固定の CTA（問い合わせフォームへ） */}
+      <StickyCta href={CTA_HREF} label={CTA_LABEL} external={false} />
     </main>
   )
 }
