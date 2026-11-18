@@ -45,7 +45,7 @@ export default function NinjaHeader({ home, links, ctaHref, ctaLabel, altHref }:
             className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-beni px-3.5 py-2 text-[11.5px] font-semibold text-white transition-colors hover:bg-beni-deep xl:px-7 xl:py-3.5 xl:text-[13px]"
           >
             {/* スマホはロゴと並ぶので短い表記にする（読み上げは正式な文言） */}
-            <span className="sm:hidden" aria-hidden="true">Free Japan Scan</span>
+            <span className="sm:hidden" aria-hidden="true">Book a call</span>
             <span className="sr-only sm:not-sr-only">{ctaLabel}</span>
             <ArrowRight size={15} strokeWidth={1.5} aria-hidden="true" className="hidden transition-transform group-hover:translate-x-1 xl:block" />
           </a>

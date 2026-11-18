@@ -67,7 +67,7 @@ export default function NinjaTerminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
-        <span className="ml-3 font-mono text-[11px] text-white/45">ninja — japan-scan</span>
+        <span className="ml-3 font-mono text-[11px] text-white/45">{terminal.title}</span>
       </div>
       <p className="sr-only">{rows.map(fullText).join('. ')}</p>
       <div aria-hidden="true" className="min-h-[244px] px-4 py-4 font-mono text-[11.5px] leading-[1.75] text-white/85 sm:min-h-[232px] sm:text-[12.5px]">

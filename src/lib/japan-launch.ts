@@ -494,7 +494,7 @@ export const form = {
   } as Record<string, L>,
   placeholders: {
     markets: { en: 'e.g. US, EU, Korea', ja: '例：アメリカ、EU、韓国' },
-    message: { en: 'Anything we should know about your product or goals in Japan', ja: '商品の特徴や、日本での目標などをお聞かせください' },
+    message: { en: 'Your product, Kickstarter/Indiegogo link, Giteki/PSE status, current distributors — anything that helps', ja: '商品の特徴や、日本での目標などをお聞かせください' },
   } as Record<string, L>,
   categories: [
     { value: 'beauty', label: { en: 'Beauty & skincare', ja: '美容・スキンケア' } },
@@ -516,9 +516,9 @@ export const form = {
     { en: 'A product link and a short overview are enough to start', ja: '商品URLと簡単な概要だけで始められます' },
   ] as L[],
   select: { en: 'Select', ja: '選択してください' } as L,
-  send: { en: 'Get your free Japan Scan', ja: '申し込む' } as L,
+  send: { en: 'Request a call', ja: '申し込む' } as L,
   sending: { en: 'Sending...', ja: '送信中...' } as L,
   error: { en: 'Something went wrong. Please try again in a moment.', ja: '送信に失敗しました。時間をおいて再度お試しください。' } as L,
-  successTitle: { en: 'Thank you — the clan is on it', ja: '送信が完了しました' } as L,
-  successBody: { en: 'Your Japan Scan will reach you within 2 business days.', ja: '2営業日以内にご連絡いたします。' } as L,
+  successTitle: { en: 'Thank you — we’ll be in touch', ja: '送信が完了しました' } as L,
+  successBody: { en: 'Within 2 business days we’ll reply with times for a 30-min call. Your free Japan Scan follows the call.', ja: '2営業日以内にご連絡いたします。' } as L,
 }
