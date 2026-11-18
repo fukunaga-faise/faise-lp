@@ -91,3 +91,23 @@ if (want('clan')) {
     console.log(`→ clan failed: ${e.message}`)
   }
 }
+
+// ヒーロー背景（人物なしの情景。左側は見出しを載せるので暗く空けておく）
+const HERO_BG =
+  'Original wide landscape illustration in the style of a traditional Japanese ukiyo-e woodblock print: a deep indigo night over the tiled rooftops of an Edo-period town, a large pale full moon on the right, stylized swirling clouds, three small black ninja silhouettes leaping between rooftops on the right half, a few shuriken flying through the air, subtle washi paper grain, limited palette of Prussian blue, indigo and sumi black with faint vermilion accents. The left half is mostly calm dark night sky with clouds and no figures, leaving empty space for text. No text, no kanji, no letters, no seals, no signature, no logos. Do not copy any specific existing artwork or artist.'
+
+if (want('hero-bg')) {
+  try {
+    const res = await fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${KEY}` },
+      body: JSON.stringify({ model: 'gpt-image-2', prompt: HERO_BG, size: '1536x1024', quality: 'high', n: 1 }),
+    })
+    if (!res.ok) throw new Error(`${res.status}: ${(await res.text()).slice(0, 300)}`)
+    const buf = Buffer.from((await res.json()).data[0].b64_json, 'base64')
+    await save('hero-bg', buf, { maxH: 1024 })
+    console.log('→ hero-bg ok')
+  } catch (e) {
+    console.log(`→ hero-bg failed: ${e.message}`)
+  }
+}

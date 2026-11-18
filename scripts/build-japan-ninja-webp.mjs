@@ -12,6 +12,7 @@ await mkdir(out, { recursive: true })
 // [出力名, 元画像, 幅, 画質（省略時 78。浮世絵は紙の質感で重くなるので低め）]
 const jobs = [
   ['clan', 'public/images/japan-ninja/clan.png', 1200, 66],
+  ['hero-bg', 'public/images/japan-ninja/hero-bg.png', 1600, 60],
   ['hanzo', 'public/images/japan-ninja/hanzo.png', 560, 66],
   ['basho', 'public/images/japan-ninja/basho.png', 560, 66],
   ['chiyome', 'public/images/japan-ninja/chiyome.png', 560, 66],

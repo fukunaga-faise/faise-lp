@@ -148,7 +148,12 @@ export default function JapanNinjaView() {
 
       {/* Hero：見出し・CTA・ターミナル風アニメーション、下に4人の集合イラスト */}
       <section className="relative overflow-hidden bg-[#141A2E] pt-16 text-white md:pt-[76px]">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(122,48,45,0.45),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(43,58,103,0.6),transparent_60%)]" />
+        {/* 背景：浮世絵風の夜の城下町（満月・屋根の上を跳ぶ忍者・手裏剣）。見出しの左側は濃い色を重ねて読みやすくする */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[1100px] overflow-hidden md:h-[900px]">
+          <Image unoptimized src={W('hero-bg')} alt="" fill loading="eager" sizes="100vw" className="object-cover object-[78%_center] md:object-right-top" />
+          <div className="absolute inset-0 bg-[#141A2E]/55 lg:bg-transparent lg:bg-gradient-to-r lg:from-[#141A2E]/90 lg:via-[#141A2E]/45 lg:to-[#141A2E]/10" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-[#141A2E]" />
+        </div>
         <div className={`${container} relative grid gap-10 py-12 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14`}>
           <div>
             <Eyebrow light>{ninjaHero.eyebrow}</Eyebrow>
