@@ -7,17 +7,19 @@ export default function FaqList({
   items,
   className = '',
   divider = 'divide-[#ecebe7] border-[#ecebe7]',
+  qClass = 'text-brand-sky',
 }: {
   items: { q: string; a: string }[]
   className?: string
   divider?: string
+  qClass?: string // 「Q.」の色（背景色に応じて読みやすい色に変える用）
 }) {
   return (
     <div className={`divide-y border-y ${divider} ${className}`}>
       {items.map((f) => (
         <details key={f.q} className="group">
           <summary className="flex cursor-pointer list-none items-start gap-3 py-5 text-[15.5px] md:text-[16px] font-medium leading-[1.7] tracking-[0.03em] text-[#111] transition-colors hover:text-brand [&::-webkit-details-marker]:hidden">
-            <span className="font-inter text-brand-sky">Q.</span>
+            <span className={`font-inter ${qClass}`}>Q.</span>
             <span className="flex-1">{f.q}</span>
             <ChevronDown
               size={18}

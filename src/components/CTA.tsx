@@ -73,7 +73,7 @@ export function Footer() {
             <img src="/logo-mark.png" alt="" className="h-7 w-auto" />
             <span className="font-inter text-[18px] font-semibold tracking-[0.14em] text-[#111]">Faise</span>
           </a>
-          <p className="text-[11px] tracking-[0.04em] text-[#777]">{t.address[lang]}</p>
+          <p className="text-[11px] tracking-[0.04em] text-[#5f5f5f]">{t.address[lang]}</p>
         </div>
         <div className="flex flex-col gap-3 md:items-end">
           {/* 英語サイト（Japan Launch LP）では、日本進出ガイドへのリンク */}
@@ -93,7 +93,7 @@ export function Footer() {
               受付ネコの手（LINE返信のAI下書き）
             </Link>
           )}
-          <p className="text-[10.5px] tracking-[0.04em] text-[#888]">© 2025 Faise Inc. All rights reserved.</p>
+          <p className="text-[10.5px] tracking-[0.04em] text-[#666]">© 2025 Faise Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

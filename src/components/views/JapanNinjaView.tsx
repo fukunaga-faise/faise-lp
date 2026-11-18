@@ -7,7 +7,6 @@ import { Footer } from '@/components/CTA'
 import FaqList from '@/components/FaqList'
 import JapanLaunchForm from '@/components/JapanLaunchForm'
 import NinjaTerminal from '@/components/NinjaTerminal'
-import { Reveal, ScrollProgress } from '@/components/ui'
 import { display, mincho } from '@/lib/jl-fonts'
 import { SITE_URL, ORG_ID, FOUNDER_LINKEDIN_URL } from '@/lib/site'
 import { GUIDE_BASE, japanGuides } from '@/lib/japan-guides'
@@ -141,7 +140,6 @@ export default function JapanNinjaView() {
   return (
     <main className={`${display.variable} ${mincho.variable} bg-white text-sumi`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <ScrollProgress />
       <Nav base={JAPAN_LAUNCH_PATH_EN} links={ninjaNav} contactHref={`#${SCAN_ANCHOR}`} contactLabel={CTA_LABEL} ctaTone="beni" />
 
       {/* Hero：見出し・CTA・ターミナル風アニメーション、下に4人の集合イラスト */}
@@ -162,7 +160,7 @@ export default function JapanNinjaView() {
         </div>
         <div className={`${container} relative pb-12 md:pb-16`}>
           <div className="relative aspect-[16/9] overflow-hidden rounded-lg border border-white/10">
-            <Image src="/images/japan-ninja/clan.webp" alt={ninjaHero.clanAlt} fill priority sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
+            <Image src="/images/japan-ninja/clan.webp" alt={ninjaHero.clanAlt} fill sizes="(min-width: 1280px) 1200px, 100vw" className="object-cover" />
           </div>
         </div>
       </section>
@@ -170,15 +168,15 @@ export default function JapanNinjaView() {
       {/* Meet the Clan */}
       <section id="clan" className={`${section} scroll-mt-16 bg-washi`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{clanSection.label}</Eyebrow>
             <H2 lines={clanSection.h2} />
             <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{clanSection.lead}</p>
-          </Reveal>
+          </div>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {clan.map((c, i) => (
               <li key={c.key}>
-                <Reveal delay={i * 0.06} className="h-full">
+                <div className="h-full">
                   <article className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_20px_40px_-30px_rgba(20,26,46,0.6)]">
                     <div className="relative aspect-[2/3]">
                       <Image src={`${c.img}.webp`} alt={c.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
@@ -189,12 +187,12 @@ export default function JapanNinjaView() {
                       </p>
                       <h3 className="mt-1.5 font-mincho text-[21px] font-bold">{c.name}</h3>
                       <p className="mt-3 text-[15px] font-medium leading-[1.65] text-sumi">“{c.catch}”</p>
-                      <p className="mt-auto pt-4 text-[12.5px] leading-[1.7] text-[#666]">
+                      <p className="mt-auto pt-4 text-[12.5px] leading-[1.7] text-[#595959]">
                         <span className="font-semibold italic">{clanSection.legendNote}</span> {c.legend}
                       </p>
                     </div>
                   </article>
-                </Reveal>
+                </div>
               </li>
             ))}
           </ul>
@@ -204,14 +202,14 @@ export default function JapanNinjaView() {
       {/* Why Japan */}
       <section id="why-japan" className={`${section} scroll-mt-16 bg-white`}>
         <div className={`${container} grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-14`}>
-          <Reveal>
+          <div>
             <Eyebrow>{whyJapan.label}</Eyebrow>
             <H2 lines={whyJapan.h2.en} />
             <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{whyJapan.lead.en}</p>
             <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-lg">
               <Image src={images.tokyo.src} alt={images.tokyo.alt.en} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
             </div>
-          </Reveal>
+          </div>
           <ul className="grid gap-5 self-start md:grid-cols-3">
             {whyJapan.items.map((w, i) => (
               <li key={i} className="h-full rounded-lg border-t-2 border-beni bg-washi p-6">
@@ -226,11 +224,11 @@ export default function JapanNinjaView() {
       {/* Who it's for */}
       <section className={`${section} bg-washi`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{audience.label}</Eyebrow>
             <H2 lines={audience.h2.en} />
             <p className="mt-5 text-[15.5px] leading-[1.9] text-[#555]">{audience.lead.en}</p>
-          </Reveal>
+          </div>
           <ul className="mt-10 grid gap-8 md:grid-cols-3">
             {audience.items.map((a) => {
               const img = images[a.img]
@@ -251,11 +249,11 @@ export default function JapanNinjaView() {
       {/* 5 PROMISES：Myth → So we... */}
       <section id="promises" className={`${section} scroll-mt-16 bg-[#141A2E] text-white`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow light>{promises.label}</Eyebrow>
             <H2 lines={promises.h2} light />
             <p className="mt-5 text-[15.5px] leading-[1.9] text-white/80">{promises.lead}</p>
-          </Reveal>
+          </div>
           <ol className="mt-10 divide-y divide-white/10 border-y border-white/10">
             {promises.items.map((p, i) => (
               <li key={i} className="grid gap-4 py-6 md:grid-cols-[110px_minmax(0,1fr)_minmax(0,1.15fr)] md:items-center md:gap-8">
@@ -291,10 +289,10 @@ export default function JapanNinjaView() {
       {/* What we handle：ブランド／Faise（忍者アイコン付き）／パートナー */}
       <section className={`${section} bg-white`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{handle.label}</Eyebrow>
             <H2 lines={handle.h2} />
-          </Reveal>
+          </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.3fr)_minmax(0,0.8fr)]">
             <div className="rounded-lg border border-[#e6e1da] p-6">
               <h3 className="font-mincho text-[19px] font-bold">{handle.brand.title}</h3>
@@ -338,10 +336,10 @@ export default function JapanNinjaView() {
       {/* Two ways to work */}
       <section id="partnership" className={`${section} scroll-mt-16 bg-washi`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{models.label}</Eyebrow>
             <H2 lines={models.h2.en} />
-          </Reveal>
+          </div>
           <ul className="mt-10 grid gap-5 md:grid-cols-2">
             {models.items.map((m) => (
               <li key={m.name} className="rounded-lg border-t-4 border-beni bg-white p-6 md:p-8">
@@ -351,7 +349,7 @@ export default function JapanNinjaView() {
               </li>
             ))}
           </ul>
-          <p className="mt-5 text-[14px] text-[#666]">{models.note.en}</p>
+          <p className="mt-5 text-[14px] text-[#595959]">{models.note.en}</p>
         </div>
       </section>
 
@@ -361,10 +359,10 @@ export default function JapanNinjaView() {
           <Image src="/images/japan-launch/bg-street.jpg" alt="" fill sizes="100vw" className="object-cover opacity-40" />
         </div>
         <div className={`${container} relative`}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow light>{channels.label}</Eyebrow>
             <H2 lines={channels.h2.en} light />
-          </Reveal>
+          </div>
           <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {channels.items.map((c, i) => (
               <li key={i} className="rounded-lg bg-white p-6 text-sumi">
@@ -380,10 +378,10 @@ export default function JapanNinjaView() {
       {/* Case：Cyspera（数値枠 + Reels 3本） */}
       <section id="case" className={`${section} scroll-mt-16 bg-white`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{featured.label.en}</Eyebrow>
             <H2 lines={featured.title.en} />
-          </Reveal>
+          </div>
           <div className="mt-10 overflow-hidden rounded-lg bg-beni text-white md:flex">
             <div className="flex items-center justify-center bg-white p-6 md:w-[28%] md:shrink-0">
               <Image src={featured.image.src} alt={featured.image.alt.en} width={featured.image.w} height={featured.image.h} sizes="160px" className="h-[230px] w-auto object-contain md:h-[280px]" />
@@ -409,7 +407,7 @@ export default function JapanNinjaView() {
               <li key={m.label} className="rounded-lg bg-washi p-5">
                 <p className="text-[13px] font-medium text-[#555]">{m.label}</p>
                 <p className="mt-2 font-display text-[clamp(22px,5vw,34px)] leading-none text-beni">{m.value}</p>
-                <p className="mt-2 text-[12px] text-[#666]">{m.note}</p>
+                <p className="mt-2 text-[12px] text-[#595959]">{m.note}</p>
               </li>
             ))}
           </ul>
@@ -440,10 +438,10 @@ export default function JapanNinjaView() {
       {/* FLOW */}
       <section id="flow" className={`${section} scroll-mt-16 bg-washi`}>
         <div className={container}>
-          <Reveal className="max-w-3xl">
+          <div className="max-w-3xl">
             <Eyebrow>{flow.label}</Eyebrow>
             <H2 lines={flow.h2} />
-          </Reveal>
+          </div>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {flow.steps.map((s, i) => (
               <li key={s.title} className="relative rounded-lg bg-white p-5">
@@ -477,7 +475,7 @@ export default function JapanNinjaView() {
             <ol className="mt-4 space-y-1.5 text-[14px] text-[#555]">
               {track.founder.career.map((c) => (
                 <li key={c.period}>
-                  <span className="mr-3 font-mono text-[13px] text-[#777]">{c.period}</span>
+                  <span className="mr-3 font-mono text-[13px] text-[#555]">{c.period}</span>
                   {c.org.en}
                 </li>
               ))}
@@ -494,7 +492,7 @@ export default function JapanNinjaView() {
         <div className="mx-auto w-full max-w-[860px] px-5 md:px-10">
           <Eyebrow>{faq.label}</Eyebrow>
           <H2 lines={faq.h2.en} />
-          <FaqList items={faq.items.map((f) => ({ q: f.q.en, a: f.a.en }))} className="mt-8" divider="divide-[#ddd6cd] border-[#ddd6cd]" />
+          <FaqList items={faq.items.map((f) => ({ q: f.q.en, a: f.a.en }))} className="mt-8" divider="divide-[#ddd6cd] border-[#ddd6cd]" qClass="text-beni" />
           <div className="mt-14">
             <p className="text-[14px] font-semibold tracking-[0.04em] text-[#555]">
               Guides for entering Japan ·{' '}
