@@ -18,7 +18,7 @@ function japanLaunch(lastModified: Date): Entry[] {
   const en = `${SITE_URL}/en/launch-ninja`
   const alternates = { languages: { en, ja, 'x-default': en } }
   return [
-    { url: en, lastModified, changeFrequency: 'monthly', priority: 0.8, alternates },
+    { url: en, lastModified, changeFrequency: 'weekly', priority: 0.9, alternates },
     { url: ja, lastModified, changeFrequency: 'monthly', priority: 0.6, alternates },
   ]
 }

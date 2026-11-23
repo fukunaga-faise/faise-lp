@@ -80,24 +80,63 @@ const ld = {
       founder: { '@type': 'Person', name: 'Haruto Fukunaga', sameAs: [FOUNDER_LINKEDIN_URL] },
       address: { '@type': 'PostalAddress', streetAddress: '4-18-25 Oi', addressLocality: 'Shinagawa-ku', addressRegion: 'Tokyo', postalCode: '140-0014', addressCountry: 'JP' },
       sameAs: [FOUNDER_LINKEDIN_URL],
+      areaServed: { '@type': 'Country', name: 'Japan' },
+      knowsAbout: [
+        'Marketing in Japan',
+        'Japan market entry',
+        'Influencer marketing in Japan',
+        'Amazon Japan',
+        'Rakuten Ichiba',
+        'Localization for Japanese consumers',
+        'Cross-border e-commerce',
+        'PSE and Giteki certification (with partners)',
+      ],
+      contactPoint: { '@type': 'ContactPoint', contactType: 'sales', url: `${url}#${SCAN_ANCHOR}`, availableLanguage: ['English', 'Japanese'], areaServed: 'Worldwide' },
       ...(CORPORATE_NUMBER ? { identifier: { '@type': 'PropertyValue', propertyID: 'Japan Corporate Number', value: CORPORATE_NUMBER } } : {}),
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: ninjaMeta.title,
+      description: ninjaMeta.description,
+      inLanguage: 'en',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${url}#service` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${SITE_URL}${OG}`, width: 1200, height: 630 },
+      breadcrumb: { '@id': `${url}#breadcrumb` },
+      // 音声・AI での読み上げに向く部分（定義文と FAQ）
+      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['#definition', '#faq h2'] },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Faise', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: NINJA_NAME, item: url },
+      ],
     },
     {
       '@type': 'Service',
       '@id': `${url}#service`,
       name: NINJA_NAME,
       alternateName: 'LAUNCH NINJA',
-      serviceType: 'Japan market entry, exclusive licensing and marketing for overseas brands',
+      serviceType: ['Marketing agency in Japan', 'Influencer marketing in Japan', 'Japan market entry', 'E-commerce and marketplace management in Japan'],
       description: ninjaMeta.definition,
       url,
       inLanguage: 'en',
       provider: { '@id': ORG_ID },
       areaServed: { '@type': 'Country', name: 'Japan' },
-      audience: { '@type': 'BusinessAudience', name: 'Overseas consumer product makers and brands' },
+      audience: { '@type': 'BusinessAudience', name: 'Overseas consumer brands that want to market and sell in Japan' },
+      availableLanguage: ['English', 'Japanese'],
+      subjectOf: japanGuides.map((g) => ({ '@id': `${SITE_URL}${GUIDE_BASE}/${g.slug}#article` })),
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: 'Ways to work',
-        itemListElement: waysToWork.items.map((m) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: m.name, description: m.body } })),
+        itemListElement: [
+          ...waysToWork.items.map((m) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: m.name, description: m.body } })),
+          ...service.faise.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name } })),
+        ],
       },
     },
     {
@@ -304,7 +343,7 @@ export default function JapanNinjaView() {
                 </span>
               ))}
             </p>
-            <p data-fx style={delay(220)} className="mx-auto mt-5 max-w-[46em] text-[15.5px] leading-[1.85] text-[#555]">
+            <p id="definition" data-fx style={delay(220)} className="mx-auto mt-5 max-w-[46em] text-[15.5px] leading-[1.85] text-[#555]">
               {ninjaMeta.definition}
             </p>
           </div>
@@ -450,7 +489,7 @@ export default function JapanNinjaView() {
         </div>
         <div className={`${container} relative`}>
           <Pose name="kotaro-box" className="ninja-bob absolute -top-6 right-0 hidden h-[220px] w-auto lg:block" />
-          <SectionHead en="Voice" label={featured.label.en} title={featured.title.en} light />
+          <SectionHead en="Voice" label={featured.label.en} title={cyspera.title} light />
           <div className="mt-6 flex justify-center lg:hidden">
             <Pose name="kotaro-box" className="h-[150px] w-auto" />
           </div>
@@ -657,13 +696,24 @@ export default function JapanNinjaView() {
           <div data-fx className="mt-12 rounded-2xl border-2 border-sumi bg-white px-5 shadow-[0_10px_24px_rgba(28,25,23,0.12)] md:px-8">
             <FaqList items={ninjaFaq.items} divider="divide-[#e6e1da] border-transparent" qClass="text-shu" />
           </div>
-          <p className="mt-8 text-center text-[14px] text-[#555]">
-            More in our{' '}
-            <Link href={GUIDE_BASE} className="font-semibold text-beni underline underline-offset-4">
-              guides to entering Japan
-            </Link>
-            .
-          </p>
+          <div data-fx className="mt-12">
+            <p className="text-center font-mincho text-[19px] font-bold">Guides to marketing and selling in Japan</p>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {japanGuides.map((g) => (
+                <li key={g.slug}>
+                  <Link href={`${GUIDE_BASE}/${g.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-xl border-2 border-sumi/15 bg-washi px-4 py-3.5 text-[14.5px] font-medium leading-[1.5] transition-colors hover:border-beni hover:text-beni">
+                    {g.h1}
+                    <ArrowRight size={16} strokeWidth={2} aria-hidden="true" className="shrink-0 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-center text-[14px] text-[#555]">
+              <Link href={GUIDE_BASE} className="font-semibold text-beni underline underline-offset-4">
+                See all guides
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 

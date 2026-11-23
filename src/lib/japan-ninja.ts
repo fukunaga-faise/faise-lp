@@ -12,12 +12,12 @@ export const CORPORATE_NUMBER = ''
 export const CTA_NOTE = 'Free · We reply within 2 business days · NDA available'
 
 export const ninjaMeta = {
-  title: 'Japan Market Entry & Exclusive Distribution Partner | LAUNCH NINJA by Faise',
+  title: 'Japan Marketing Agency for Overseas Brands | LAUNCH NINJA by Faise',
   description:
-    'A Tokyo-based partner for overseas consumer brands. License your brand to us for Japan, or keep your current setup and let us run your marketing: e-commerce, Amazon and Rakuten, ads and influencers. Get a free Japan Scan.',
+    'Tokyo-based marketing agency for overseas brands: localization, influencer marketing, Amazon Japan & Rakuten, ads and e-commerce. Get a free Japan Scan.',
   // AI 検索・要約で引用されやすい定義文（ページ上部にも表示）
   definition:
-    'LAUNCH NINJA by Faise is a Tokyo-based Japan market entry service for overseas consumer brands. Brands can either grant Faise an exclusive license for Japan, and Faise launches the product across its own online store, Amazon, Rakuten and retail, or keep their current setup and have Faise run their marketing in Japan: localization, ads and influencer marketing. Import and certification are handled with partners.',
+    'LAUNCH NINJA by Faise is a Tokyo-based marketing agency for overseas consumer brands that want to market and sell in Japan. Brands either keep their current setup and have Faise run their marketing in Japan (localization, influencer marketing, ads, Amazon Japan and Rakuten), or grant Faise an exclusive license for Japan and Faise runs the whole launch, from its own online store to retail. Import and certification are handled with partners.',
 }
 
 // 上部メニュー（LP 内のセクションへ）
@@ -32,7 +32,7 @@ export const ninjaNav = [
 export const ninjaHero = {
   eyebrow: NINJA_NAME,
   kicker: 'Japan has unwritten rules. Your brand needs a ninja.',
-  h1: ['Launch your product in Japan.', 'As your exclusive partner or your marketing team, based in Tokyo.'],
+  h1: ['Launch your product in Japan.', 'A Tokyo-based marketing agency for overseas brands — or your exclusive partner in Japan.'],
   sub: 'We bring overseas consumer products to Japan: localization, e-commerce, Amazon and Rakuten, ads and influencers. Import and certification are handled with trusted partners, so you can stay focused on your product.',
   note: 'For makers of gadgets, lifestyle and beauty products. No Japanese entity needed.',
   clanAlt:
@@ -116,8 +116,8 @@ export const about = {
 // 業務対応範囲（Faise／パートナー）。Faise の担当には忍者を添える
 // TODO: 要確認 — 自社対応か連携かの最終判断
 export const service = {
-  label: 'Service',
-  h2: ['From strategy to sales,', 'the clan has it covered.'],
+  label: 'Our Japan marketing services',
+  h2: ['Japan marketing services,', 'from strategy to sales.'],
   faise: [
     { name: 'Japan market strategy', ninja: 'hanzo' as NinjaKey },
     { name: 'Pricing & positioning', ninja: 'hanzo' as NinjaKey },
@@ -147,7 +147,7 @@ export const clanSection = {
 export const promises = {
   label: 'Why a ninja?',
   h2: ['Five myths.', 'Five promises.'],
-  lead: 'Most overseas brands come to Japan with the same five assumptions. Here’s what we do instead.',
+  lead: 'Most overseas brands come to Japan with the same five assumptions about marketing here. Here’s what we do instead.',
   items: [
     { myth: 'Translate the English page and it’ll sell.', so: 'We rewrite your story for Japanese buyers, not just translate the words.', ninja: 'basho' as NinjaKey },
     { myth: 'A hit abroad is a hit in Japan.', so: 'We study local competitors and find the messages that work before launch.', ninja: 'hanzo' as NinjaKey },
@@ -165,6 +165,7 @@ export const midCta = {
 
 // 実績：Cyspera（英語LP専用。日本語ページは japan-launch.ts の track.featured のまま）
 export const cyspera = {
+  title: 'Case study: 10,000+ units sold in Japan in three months',
   stat: { value: '10,000+', label: 'units sold within three months of launch' },
   lead: 'We led the Japan launch of Cyspera, a skincare brand from the Swiss company scientis, and sold more than 10,000 units within three months of launch.',
   workLabel: 'Faise handled every part of the Japan go-to-market',
@@ -254,8 +255,32 @@ export const companyFacts = {
 // 回答は最初の一文で結論を言う（AI 検索に引用されやすい書き方）。未確定の条件は断定しない
 export const ninjaFaq = {
   label: 'FAQ',
-  h2: 'Frequently asked questions about selling in Japan',
+  h2: 'FAQ: marketing and selling in Japan with a local agency',
   items: [
+    {
+      q: 'What does a marketing agency in Japan do for overseas brands?',
+      a: 'A Japan-based marketing agency adapts your brand for Japanese buyers and runs the marketing that drives sales here. At Faise, that means localizing your brand story and product pages, casting Japanese influencers and managing their content, producing ad creatives and running paid campaigns, and managing Amazon Japan, Rakuten and your Japanese online store.',
+    },
+    {
+      q: 'Why work with a Japan-based agency instead of a global one?',
+      a: 'Japanese buyers respond to different messages, platforms and levels of detail than buyers in the US or Europe. A team based in Tokyo works in Japanese every day, knows local creators and marketplaces, and can spot cultural and regulatory issues before they cost you. We still work with you in English.',
+    },
+    {
+      q: 'Which marketing channels work best in Japan?',
+      a: 'It depends on the product, but most consumer brands combine Japanese influencer content on Instagram, TikTok, YouTube and X with paid ads, and sell through Amazon Japan, Rakuten Ichiba and their own online store. Detailed Japanese product pages and early reviews matter a lot, because Japanese buyers research carefully before they buy.',
+    },
+    {
+      q: 'Can you run influencer marketing in Japan for us?',
+      a: 'Yes. We cast Japanese creators who fit your audience, brief them in Japanese, check their content and make sure sponsored posts are clearly disclosed, as Japan’s stealth marketing rules require. The best-performing posts can then be reused as ads and on product pages.',
+    },
+    {
+      q: 'Do you only work with brands that already sell in Japan?',
+      a: 'No. We work with brands that are new to Japan and with brands that already sell here but want better results. New brands often start with our free Japan Scan; existing sellers often choose our Marketing Only model.',
+    },
+    {
+      q: 'How much does it cost to work with a marketing agency in Japan?',
+      a: 'It depends on the model, the channels and the scope. Every cost line is listed in our proposal before you sign, and the first step, the one-page Japan Scan, is free.',
+    },
     {
       q: 'How does exclusive distribution in Japan work with you?',
       a: 'You grant Faise an exclusive license for Japan for an agreed, renewable term, and we become your single partner there. The term, territory and channels are set out in a distribution agreement before anything ships. If you already sell in Japan, exclusivity can be limited to specific channels.',

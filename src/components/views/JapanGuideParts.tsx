@@ -1,25 +1,25 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import Nav from '@/components/Nav'
+import NinjaHeader from '@/components/NinjaHeader'
 import { Footer } from '@/components/CTA'
-import { navLinks } from '@/components/views/JapanLaunchView'
-import { JAPAN_LAUNCH_PATH_EN, FORM_ANCHOR, images, track } from '@/lib/japan-launch'
+import { JAPAN_LAUNCH_PATH_EN, images, track } from '@/lib/japan-launch'
+import { CTA_LABEL, CTA_SHORT, NINJA_NAME, SCAN_ANCHOR, cyspera, ninjaNav } from '@/lib/japan-ninja'
 import { GUIDE_AUTHOR, GUIDE_BASE, guideImage, type GuideImageKey } from '@/lib/japan-guides'
 import { FOUNDER_LINKEDIN_URL } from '@/lib/site'
 
-// 英語ガイド記事の共通パーツ（メニュー・パンくず・LP への誘導・フッター）
-export const lpNavLinks = navLinks.map((l) => ({ ...l, href: `${JAPAN_LAUNCH_PATH_EN}${l.href}` }))
-export const FIT_CHECK_HREF = `${JAPAN_LAUNCH_PATH_EN}#${FORM_ANCHOR}`
+// 英語ガイド記事の共通パーツ（メニュー・パンくず・LP への誘導・フッター）。LAUNCH NINJA の LP と同じヘッダー・問い合わせ導線を使う
+export const lpNavLinks = ninjaNav.map((l) => ({ ...l, href: `${JAPAN_LAUNCH_PATH_EN}${l.href}` }))
+export const CONTACT_HREF = `${JAPAN_LAUNCH_PATH_EN}#${SCAN_ANCHOR}`
 
 export function GuideNav() {
-  return <Nav base={JAPAN_LAUNCH_PATH_EN} links={lpNavLinks} contactHref={FIT_CHECK_HREF} />
+  return <NinjaHeader home={JAPAN_LAUNCH_PATH_EN} links={lpNavLinks} ctaHref={CONTACT_HREF} ctaLabel={CTA_LABEL} ctaShort={CTA_SHORT} altHref="/" />
 }
 
 export function GuideBreadcrumb({ current }: { current?: string }) {
   return (
     <nav aria-label="breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-[12.5px] tracking-[0.04em] text-[#777]">
-      <Link href={JAPAN_LAUNCH_PATH_EN} className="transition-colors hover:text-brand">Japan Launch</Link>
+      <Link href={JAPAN_LAUNCH_PATH_EN} className="transition-colors hover:text-brand">{NINJA_NAME}</Link>
       <ChevronRight size={13} strokeWidth={1.5} aria-hidden="true" />
       {current ? (
         <>
@@ -34,16 +34,17 @@ export function GuideBreadcrumb({ current }: { current?: string }) {
   )
 }
 
+// 記事末尾の問い合わせ導線（LAUNCH NINJA の問い合わせフォームへ）
 export function FitCheckBox() {
   return (
     <div className="mt-14 rounded-sm bg-brand-tint px-6 py-7 md:px-8">
-      <p className="text-[16px] font-medium leading-[1.7] text-brand-navy">Thinking about Japan for your brand?</p>
+      <p className="text-[16px] font-medium leading-[1.7] text-brand-navy">Looking for a marketing agency in Japan?</p>
       <p className="mt-2 text-[14.5px] leading-[1.85] text-[#555]">
-        The Japan Fit Check is free. Share a product link and a short overview, and Faise’s Japan team will tell you honestly whether Japan makes sense for your brand — and how to start.
+        LAUNCH NINJA by Faise is a Tokyo-based marketing agency for overseas brands. Tell us about your product, and within 2 business days we’ll send you a free one-page Japan Scan with our honest view on whether Japan is right for you.
       </p>
       <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-[13px] font-medium tracking-[0.04em]">
-        <Link href={FIT_CHECK_HREF} className="text-brand hover:text-brand-navy">Get a free Japan Fit Check →</Link>
-        <Link href={JAPAN_LAUNCH_PATH_EN} className="text-[#333] hover:text-brand">How Japan Launch works →</Link>
+        <Link href={CONTACT_HREF} className="text-brand hover:text-brand-navy">Contact us →</Link>
+        <Link href={JAPAN_LAUNCH_PATH_EN} className="text-[#333] hover:text-brand">See how LAUNCH NINJA works →</Link>
       </div>
     </div>
   )
@@ -73,11 +74,12 @@ export function CaseStudyBlock() {
         </div>
         <div>
           <p className="font-inter text-[11px] font-medium uppercase tracking-[0.24em] text-brand">Case · {f.brand}</p>
-          <p className="mt-1.5 text-[17px] font-medium leading-[1.5]">{f.title.en}</p>
-          <p className="mt-3 text-[13px] font-medium text-[#555]">{f.workLabel.en}</p>
+          <p className="mt-1.5 text-[17px] font-medium leading-[1.5]">{cyspera.title}</p>
+          <p className="mt-2 text-[14px] leading-[1.75] text-[#444]">{cyspera.lead}</p>
+          <p className="mt-3 text-[13px] font-medium text-[#555]">{cyspera.workLabel}</p>
           <ul className="mt-1.5 flex flex-wrap gap-2">
-            {f.work.map((w) => (
-              <li key={w.en} className="rounded-full border border-[#e3e2dd] bg-white px-3 py-1 text-[12.5px] text-[#444]">{w.en}</li>
+            {cyspera.work.map((w) => (
+              <li key={w.title} className="rounded-full border border-[#e3e2dd] bg-white px-3 py-1 text-[12.5px] text-[#444]">{w.title}</li>
             ))}
           </ul>
         </div>

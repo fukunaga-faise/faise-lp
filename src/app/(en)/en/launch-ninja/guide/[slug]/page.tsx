@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { display, serif } from '@/lib/jl-fonts-en'
 import { notFound } from 'next/navigation'
 import FaqList from '@/components/FaqList'
 import Image from 'next/image'
@@ -75,7 +76,7 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
         '@type': 'BreadcrumbList',
         '@id': `${url}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Japan Launch', item: `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}` },
+          { '@type': 'ListItem', position: 1, name: 'LAUNCH NINJA by Faise', item: `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}` },
           { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE_URL}${GUIDE_BASE}` },
           { '@type': 'ListItem', position: 3, name: g.h1, item: url },
         ],
@@ -84,7 +85,7 @@ export default function JapanGuidePage({ params }: { params: { slug: string } })
   }
 
   return (
-    <main className="bg-white text-[#111]">
+    <main className={`${display.variable} ${serif.variable} bg-white text-[#111]`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <GuideNav />
 

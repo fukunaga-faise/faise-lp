@@ -1,15 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { display, serif } from '@/lib/jl-fonts-en'
 import { GuideNav, GuideBreadcrumb, FitCheckBox, Footer } from '@/components/views/JapanGuideParts'
 import Image from 'next/image'
 import { GUIDE_BASE, guideImage, japanGuides } from '@/lib/japan-guides'
 import { JAPAN_LAUNCH_PATH_EN } from '@/lib/japan-launch'
 import { SITE_URL } from '@/lib/site'
 
-const title = 'Japan Market Entry Guides for Overseas Brands | Faise'
+const title = 'Guides to Marketing and Selling in Japan for Overseas Brands | Faise'
 const description =
-  'Practical guides for overseas consumer brands entering Japan: Japan market entry step by step, influencer marketing in Japan, and launching a beauty or skincare brand in Japan.'
-const OG = '/og/japan-launch-en.jpg'
+  'Practical guides for overseas brands from LAUNCH NINJA by Faise, a Tokyo-based marketing agency: marketing in Japan, choosing a marketing agency in Japan, Japan market entry, influencer marketing in Japan and launching a beauty brand in Japan.'
+const OG = '/og/launch-ninja.jpg'
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +26,7 @@ const jsonLd = {
     {
       '@type': 'CollectionPage',
       '@id': `${SITE_URL}${GUIDE_BASE}#page`,
-      name: 'Japan market entry guides',
+      name: 'Guides to marketing and selling in Japan',
       description,
       url: `${SITE_URL}${GUIDE_BASE}`,
       inLanguage: 'en',
@@ -34,7 +35,7 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Japan Launch', item: `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}` },
+        { '@type': 'ListItem', position: 1, name: 'LAUNCH NINJA by Faise', item: `${SITE_URL}${JAPAN_LAUNCH_PATH_EN}` },
         { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE_URL}${GUIDE_BASE}` },
       ],
     },
@@ -43,7 +44,7 @@ const jsonLd = {
 
 export default function JapanGuideIndex() {
   return (
-    <main className="bg-white text-[#111]">
+    <main className={`${display.variable} ${serif.variable} bg-white text-[#111]`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <GuideNav />
       <section className="pt-28 pb-16 md:pt-40 md:pb-24">
@@ -53,7 +54,7 @@ export default function JapanGuideIndex() {
             <span className="block h-px w-7 bg-gradient-to-r from-brand-sky to-brand" />
             Japan Guide
           </p>
-          <h1 className="mt-5 text-[clamp(26px,4.6vw,42px)] font-medium leading-[1.35]">Japan market entry guides</h1>
+          <h1 className="mt-5 text-[clamp(26px,4.6vw,42px)] font-medium leading-[1.35]">Guides to marketing and selling in Japan</h1>
           <p className="mt-6 text-[16px] leading-[1.9] text-[#444]">{description}</p>
           <ul className="mt-12 grid gap-10 md:grid-cols-3 md:gap-7">
             {japanGuides.map((g) => {

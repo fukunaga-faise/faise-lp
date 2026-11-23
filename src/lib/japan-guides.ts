@@ -1,6 +1,7 @@
 // /en/launch-ninja/guide 配下の英語ガイド記事（海外ブランド向けの日本進出ノウハウ）。ページ表示と構造化データで共通利用する。
-// ※Faise について書くのは Japan Launch LP（japan-launch.ts）に載っている事実だけ：日本チーム（マーケター・現役インフルエンサー）、
-//   国内インフルエンサーとのつながり、協業の形2つ、Cyspera（scientis）の支援内容、輸入・認証・物流・CSはパートナーと連携、Fit Check 無料。
+// ※Faise について書くのは LAUNCH NINJA の LP（japan-ninja.ts）に載っている事実だけ：東京のマーケティング会社、協業の形2つ
+//   （Exclusive License／Marketing Only）、Cyspera（scientis）を発売3か月で1万個超（ローカライズ・自社EC・広告・インフルエンサー・配送）、
+//   輸入・認証はパートナーと連携、Japan Scan 無料。
 // ※市場規模などの数字は出典なしでは書かない。法規制は一般的な解説にとどめ、最終確認は専門家・公式資料を促す。
 
 import { hero, images } from './japan-launch'
@@ -61,7 +62,7 @@ export const japanGuides: Guide[] = [
       'Localize the story, not just the words, and build trust through Japanese creators and reviews before scaling to marketplaces and retail.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-15',
+    updated: '2026-11-23',
     cover: 'hero',
     sections: [
       {
@@ -100,11 +101,11 @@ export const japanGuides: Guide[] = [
         h2: '3. Decide who acts for you in Japan',
         body: [
           'Most brands entering Japan do not start with their own entity. Instead, a local party handles the parts that need a presence in Japan, such as import, sales and customer support. What matters is being clear about who does what.',
-          'At Faise we offer two models. As your exclusive partner in Japan, we take responsibility for the brand in Japan and drive both sales and marketing over the long term. As your marketing team in Japan, you keep your current sales setup and we plan and run marketing — localization, influencers, content and ads. Import, certification, logistics and Japanese customer support are handled together with specialist partners.',
+          'At Faise we offer two models. With an Exclusive License, you license your brand to us for Japan and we run the whole launch — our own online store, Amazon and Rakuten, ads, influencers and retail. With Marketing Only, you keep your current sales setup and we run your marketing in Japan: localization, influencers, content and ads. Import, certification, logistics and Japanese customer support are handled with specialist partners.',
         ],
         table: {
           caption: 'Two common ways to work with a Japan partner',
-          head: ['', 'Exclusive partner', 'Marketing team'],
+          head: ['', 'Exclusive license', 'Marketing only'],
           rows: [
             ['Who sells', 'The partner, as your representative in Japan', 'You or your existing distributor'],
             ['Who markets', 'The partner', 'The partner'],
@@ -140,9 +141,9 @@ export const japanGuides: Guide[] = [
         figure: { img: 'shoot', caption: 'Short videos from trusted Japanese creators are often where discovery starts.' },
       },
       {
-        h2: 'Example: bringing Cyspera by scientis to Japan',
+        h2: 'Example: 10,000+ units of Cyspera sold in Japan in three months',
         body: [
-          'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis. The work covers sales on Amazon Japan and online stores, ad operations and promotion with Japanese influencers.',
+          'We led the Japan launch of Cyspera, a skincare brand from the Swiss company scientis, and sold more than 10,000 units within three months of launch. Faise handled localization and positioning, the Japanese online store, ad creatives and paid campaigns, influencer marketing and fulfillment.',
         ],
         caseStudy: true,
       },
@@ -168,7 +169,7 @@ export const japanGuides: Guide[] = [
       'Plan for reuse: good creator content can become ads, product page assets and proof for marketplaces and retailers.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-15',
+    updated: '2026-11-23',
     cover: 'shoot',
     sections: [
       {
@@ -225,7 +226,7 @@ export const japanGuides: Guide[] = [
       {
         h2: 'How Faise approaches influencer marketing in Japan',
         body: [
-          'Faise’s Japan team includes marketers who specialize in Japanese consumers and active influencers, and through the team’s own connections we work with many influencers across Japan. For Cyspera, a skincare product from the Swiss brand scientis, influencer promotion runs alongside sales on Amazon Japan and online stores and ad operations.',
+          'Faise’s Japan team includes marketers who specialize in Japanese consumers and active influencers, and through the team’s own connections we work with many influencers across Japan. For Cyspera, a skincare brand from the Swiss company scientis, we cast Japanese influencers and managed their content alongside the Japanese online store and paid ads — and sold more than 10,000 units within three months of launch.',
         ],
         caseStudy: true,
       },
@@ -251,7 +252,7 @@ export const japanGuides: Guide[] = [
       'Common launch channels include Amazon Japan, Rakuten, Qoo10 and your own online store, followed by specialty retail.',
     ],
     published: '2026-11-12',
-    updated: '2026-11-15',
+    updated: '2026-11-23',
     cover: 'beauty',
     sections: [
       {
@@ -307,7 +308,7 @@ export const japanGuides: Guide[] = [
       {
         h2: 'Example: Cyspera by scientis',
         body: [
-          'Faise supports the Japan expansion of Cyspera, a skincare product from the Swiss brand scientis — from selling on Amazon Japan and online stores to ad operations and promotion with Japanese influencers.',
+          'We led the Japan launch of Cyspera, a skincare brand from the Swiss company scientis, and sold more than 10,000 units within three months of launch. Faise handled localization and positioning, the Japanese online store, ad creatives and paid campaigns, influencer marketing and fulfillment.',
         ],
         caseStudy: true,
       },
@@ -316,6 +317,173 @@ export const japanGuides: Guide[] = [
       { q: 'Can we sell cosmetics in Japan without a Japanese company?', a: 'A company licensed in Japan must take responsibility for marketing cosmetics there. Many overseas brands work with a Japanese partner that holds the license rather than setting up their own entity.' },
       { q: 'Do product labels need to be in Japanese?', a: 'Yes. Cosmetics sold in Japan need Japanese labeling, including the full ingredient list.' },
       { q: 'What can we claim in ads for skincare in Japan?', a: 'Cosmetics can only use a limited range of claims, and stronger effect claims may require the product to be approved as a quasi-drug. The same limits apply to product pages and influencer posts.' },
+    ],
+  },
+  {
+    slug: 'marketing-in-japan',
+    title: 'Marketing in Japan: A Practical Guide for Overseas Brands',
+    h1: 'Marketing in Japan: a practical guide for overseas brands',
+    description:
+      'How marketing in Japan works for overseas consumer brands: what Japanese buyers expect, which channels matter (Instagram, X, YouTube, TikTok, LINE, Amazon Japan, Rakuten), localization, influencer marketing, advertising rules and how to measure results.',
+    lead:
+      'Japan rewards brands that do their homework. Japanese buyers read product details closely, trust reviews and recommendations from people they follow, and notice when a brand has simply translated its English page. This guide covers how marketing in Japan differs from other markets, and what overseas brands should get right first.',
+    summary: [
+      'Japanese buyers research carefully: detailed Japanese product pages, clear specifications and genuine reviews often matter as much as the ad that brought them there.',
+      'Discovery is creator-led: Instagram, X, YouTube and TikTok are central to how people find new products, and LINE is part of everyday communication.',
+      'Marketplaces are where many purchases happen: Amazon Japan and Rakuten Ichiba sit alongside brands’ own online stores.',
+      'Localize the message, not just the language — and follow Japan’s rules on ad disclosure and product claims.',
+    ],
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    cover: 'tokyo',
+    sections: [
+      {
+        h2: '1. What makes marketing in Japan different',
+        body: [
+          'Many of the tools are familiar — social media, search, marketplaces, influencers — but the way Japanese consumers use them is different. Three patterns come up again and again for consumer brands.',
+        ],
+        list: [
+          'Detail builds trust: buyers expect complete information in natural Japanese, including specifications, how to use the product and what is in the box.',
+          'Reviews and word of mouth carry weight: early reviews on marketplaces and honest creator content often decide whether a new brand gets a chance.',
+          'Quality signals matter: packaging, customer support in Japanese and reliable delivery are part of the brand, not afterthoughts.',
+        ],
+      },
+      {
+        h2: '2. The channels that matter',
+        body: [
+          'Most consumer brands in Japan combine discovery channels, where people first see the product, with sales channels, where they buy it. The mix depends on the category and the price point.',
+        ],
+        table: {
+          caption: 'Common marketing and sales channels for consumer brands in Japan',
+          head: ['Channel', 'Typical role', 'Notes'],
+          rows: [
+            ['Instagram', 'Visual discovery and saved posts', 'Strong for beauty, skincare and lifestyle goods'],
+            ['X', 'Real-time conversation and word of mouth', 'Widely used in Japan; good for launches and fan communities'],
+            ['YouTube', 'Longer reviews and how-to videos', 'Useful for gadgets and products that need explaining'],
+            ['TikTok', 'Short videos that spread quickly', 'Works well when the product has a visible effect'],
+            ['LINE', 'Messaging and brand accounts', 'Part of everyday communication; used for customer relationships'],
+            ['Amazon Japan, Rakuten Ichiba', 'Marketplaces where many purchases happen', 'Product pages, reviews and marketplace ads drive sales'],
+            ['Your own online store', 'Brand experience and direct customer data', 'Often launched alongside marketplaces'],
+          ],
+        },
+      },
+      {
+        h2: '3. Localize the story, not just the words',
+        body: [
+          'A direct translation of an English product page rarely works. Japanese copy needs a different rhythm, a different level of detail and claims that fit local expectations and rules. The most effective approach is to decide what Japanese buyers need to hear first — the problem the product solves, how it fits into daily life, why it can be trusted — and rebuild the page around that.',
+        ],
+        figure: { img: 'lifestyle', caption: 'Showing how a product fits into everyday life in Japan often works better than listing features.' },
+      },
+      {
+        h2: '4. Influencer marketing and advertising',
+        body: [
+          'Creator content is one of the fastest ways for a new brand to be discovered in Japan, and the best-performing posts can be reused as ads and on product pages. Paid or gifted posts must be clearly disclosed: since October 2023, stealth marketing has been regulated under Japan’s Act against Unjustifiable Premiums and Misleading Representations.',
+          'Some categories also have strict limits on claims. Cosmetics, for example, are regulated under the Pharmaceutical and Medical Device Act, and the same limits apply to ads, product pages and influencer posts.',
+          REG_NOTE,
+        ],
+      },
+      {
+        h2: '5. Measure what matters',
+        body: [
+          'Track the whole path from discovery to purchase rather than likes alone. Useful measures include saves and comments on creator posts, click-through to product pages, marketplace conversion, review volume and rating, and repeat purchases. Reviewing these together shows which creators, messages and channels actually sell.',
+        ],
+      },
+      {
+        h2: '6. How LAUNCH NINJA by Faise runs marketing in Japan',
+        body: [
+          'LAUNCH NINJA by Faise is a Tokyo-based marketing agency for overseas brands. We localize your brand story and product pages, cast and manage Japanese influencers, produce ad creatives and run paid campaigns, and manage Amazon Japan, Rakuten and Japanese online stores. For Cyspera, a skincare brand from the Swiss company scientis, we sold more than 10,000 units within three months of launch.',
+        ],
+        caseStudy: true,
+      },
+    ],
+    faq: [
+      { q: 'What is the best way to market a foreign product in Japan?', a: 'Start by localizing the story and product pages for Japanese buyers, then combine creator content on platforms such as Instagram, X, YouTube and TikTok with paid ads, and sell through Amazon Japan, Rakuten Ichiba or your own store. Early reviews matter a lot.' },
+      { q: 'Which social media platforms are most important in Japan?', a: 'Instagram, X, YouTube and TikTok are central to product discovery, and LINE is part of everyday communication. The right mix depends on the product category and the audience.' },
+      { q: 'Do we need a Japanese team to market in Japan?', a: 'Not necessarily. Many overseas brands work with a marketing agency based in Japan that handles Japanese copy, creators, ads and marketplaces while the brand works with the agency in English.' },
+    ],
+  },
+  {
+    slug: 'choose-marketing-agency-japan',
+    title: 'How to Choose a Marketing Agency in Japan: A Guide for Overseas Brands',
+    h1: 'How to choose a marketing agency in Japan: a guide for overseas brands',
+    description:
+      'What to look for when choosing a marketing agency in Japan as an overseas brand: types of agencies, the services you need, questions to ask, warning signs, and how pricing and contracts usually work.',
+    lead:
+      'Choosing a marketing agency in Japan is one of the most important decisions an overseas brand makes when entering the market. The right partner knows Japanese buyers, creators and marketplaces and can work with you in English; the wrong one can burn budget on tactics that do not fit Japan. This guide explains the options and the questions to ask.',
+    summary: [
+      'Decide what you need first: full market entry, or marketing for a product that already sells in Japan.',
+      'Agencies in Japan range from large advertising groups to digital, influencer and market entry specialists — each fits a different stage.',
+      'Ask for real case studies, who will actually work on your account, and how results will be measured.',
+      'Make sure the agency can communicate in English and that every cost line is written into the proposal before you sign.',
+    ],
+    published: '2026-11-23',
+    updated: '2026-11-23',
+    cover: 'shoot',
+    sections: [
+      {
+        h2: '1. Start with what you need',
+        body: [
+          'Before comparing agencies, be clear about the job. A brand that has never sold in Japan needs help with positioning, localization, sales channels and often import and certification. A brand that already sells in Japan usually needs better marketing: stronger Japanese content, influencer campaigns, ads and marketplace optimization.',
+        ],
+      },
+      {
+        h2: '2. Types of marketing agencies in Japan',
+        body: ['Different types of agencies fit different stages and budgets.'],
+        table: {
+          caption: 'Common types of marketing partners in Japan',
+          head: ['Type', 'Strengths', 'Best for'],
+          rows: [
+            ['Large advertising agencies', 'Mass media, large campaigns, broad networks', 'Big brands with large budgets'],
+            ['Digital and performance agencies', 'Paid search and social ads, analytics', 'Brands that already have product pages and distribution'],
+            ['Influencer marketing agencies', 'Creator casting and campaign management', 'Brands that need awareness and content'],
+            ['Market entry agencies', 'Localization, channels and marketing combined', 'Overseas brands launching or relaunching in Japan'],
+            ['Distributors', 'Import, wholesale and retail relationships', 'Products ready for retail distribution'],
+          ],
+        },
+      },
+      {
+        h2: '3. Questions to ask an agency',
+        ordered: true,
+        list: [
+          'Which overseas brands have you launched or grown in Japan, and what were the results?',
+          'Who will work on our account day to day, and will they communicate with us in English?',
+          'How will you localize our brand story — not just translate it?',
+          'How do you choose influencers, and how do you handle ad disclosure rules?',
+          'Which channels would you start with for our product, and why?',
+          'How will results be reported, and how often?',
+          'What exactly is included in the fee, and what costs extra?',
+        ],
+        body: ['A good agency will answer these clearly and specifically for your product.'],
+      },
+      {
+        h2: '4. Warning signs',
+        body: ['Be careful if an agency:'],
+        list: [
+          'Proposes only translation of your existing materials.',
+          'Chooses influencers by follower count alone.',
+          'Cannot explain how it handles stealth marketing rules or product claim limits.',
+          'Guarantees sales results before reviewing your product.',
+          'Leaves key costs vague until after you sign.',
+        ],
+      },
+      {
+        h2: '5. Pricing and contracts',
+        body: [
+          'Agencies in Japan charge in different ways: monthly retainers, project fees, a share of ad spend, performance-based fees, or a mix. For market entry, some partners also take an exclusive license or distribution rights and earn from product sales. Whatever the model, ask for a written proposal that lists every cost line, the term, and how either side can review or end the agreement.',
+        ],
+      },
+      {
+        h2: '6. Where LAUNCH NINJA by Faise fits',
+        body: [
+          'LAUNCH NINJA by Faise is a Tokyo-based marketing agency for overseas consumer brands. You can keep your current setup and have us run your marketing in Japan, or license your brand to us for Japan and let us run the whole launch. We work in English, and the first step — a one-page Japan Scan — is free. For Cyspera by scientis, we sold more than 10,000 units within three months of launch.',
+        ],
+        caseStudy: true,
+      },
+    ],
+    faq: [
+      { q: 'How do I find a good marketing agency in Japan?', a: 'Start by defining whether you need full market entry or marketing for an existing setup, then ask agencies for relevant case studies, who will work on your account, how they localize content and how they report results.' },
+      { q: 'Do marketing agencies in Japan work in English?', a: 'Some do. If your team does not speak Japanese, choose an agency that can communicate in English while running the work in Japanese.' },
+      { q: 'How much does a marketing agency in Japan cost?', a: 'It varies widely by agency type, channels and scope. Ask for a written proposal that lists every cost line before you sign.' },
     ],
   },
 ]
